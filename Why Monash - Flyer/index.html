@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html data-sign="OS?">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/HelveticaNeue/stylesheet.css');
+
+      html {
+        font-family: "Helvetica Neue";
+        font-size: 11pt;
+        color: #020202;
+        word-break: break-word;
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }      
+
+      /* Helper classes */
+      .u-hide { display: none; }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .container.page-2{
+        margin: 0 0.55em;
+      }
+
+
+      /* Header Styles */
+
+      header {
+        position: relative;
+        width: 100%;
+        height: 7em;
+        padding: 0.85em 1em 0.55em 0.8em;
+        overflow: hidden;
+      }
+
+      header .background-image{
+        position: absolute;
+        top:0;
+        left:0;
+        display: block;
+        width: 100%;
+        height: inherit;
+        z-index:0;
+      }
+
+      header .logo{
+        position: relative;
+        max-width: 27%;
+      }
+
+      header .heading,
+      header .sub-heading{
+        text-transform: uppercase;
+        font-family: 'Helvetica Neue Cond';
+        color:white;
+        z-index:99;
+      }
+      header .header-text{
+        display: flex;
+        height: 5em;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding-bottom: 0.5em;
+      }
+
+      header .heading{
+        font-size:42pt;
+        margin-left: 0.08em;
+        line-height:0.98em;
+      }
+
+      header .sub-heading{
+        font-size:23pt;
+        margin-left:0.155em;
+      }
+
+
+      .body-content.grid-container {
+        display: grid;
+        height: 10.5em;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "left-col right-col";
+        padding-top: 0.57em;
+      }
+
+      .left-col { grid-area: left-col; }
+
+      .right-col { grid-area: right-col; background: #9651A0; margin-left: 0.25em; padding:0.4em 0.56em 0.3em 0.56em;}
+
+      .left-col .blurb{
+        font-family: 'Helvetica Neue Cond';
+        font-size: 14pt;
+        padding-left: 2.75em;
+        padding-top: 0.1em;
+        line-height: 1.2em;
+        color: #006CAC;
+        min-height: 131px;
+      }      
+
+
+      .left-col .info-wrapper{
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 0.45em 0.25em 0 0.66em;
+        min-height: 107px;
+      }
+
+      .left-col .info-wrapper .info-image{
+        width:1.3em;
+        margin-right: 0.1em;
+      }
+      .left-col .info-wrapper .info-text{
+        margin-bottom: 0.1em;
+
+      }
+
+      .left-col .info-wrapper .info-text h1{
+        font-family: 'Helvetica Neue Cond';
+        color: #006CAC;
+        font-size:17pt;
+        text-transform:uppercase;
+      }
+      .left-col .info-wrapper .info-text p{
+        font-family:'Helvetica Neue';
+        font-size:8pt;
+        margin-top:0.8em;
+        line-height: 1.4em;
+
+      }
+      .left-col .info-wrapper.orange{
+        margin: 0.45em 0.25em 0 0;
+        max-height: 2.5em;
+        height: 2.5em;
+        background: #F26334;
+        padding-top: 0.14em;
+        padding-left:0.8em;
+      }
+      .left-col .info-wrapper.orange .info-text{
+        color: white;
+      }
+      .left-col .info-wrapper.orange .info-text h1{
+        color: white;
+        font-size: 18pt;
+      }
+      .left-col .info-wrapper.orange .info-text h2{
+        font-size: 11pt;
+        font-family: 'Helvetica Neue Cond';
+        text-transform: uppercase;
+        margin-top: 0.8em;
+      }
+      .left-col .info-wrapper.orange .info-text p{
+        font-size:   6pt;
+      }
+
+      .right-col .heading{
+        font-family: 'Helvetica Neue Cond';
+        text-transform: uppercase;
+        color: white;
+        font-size: 24pt;
+        margin-top: 0.4em;
+        margin-left: 1.69em;
+      }
+
+      .right-col img{
+        width: 5em;
+        position: absolute;
+        top: 8em;
+      }
+
+      .right-col .sub-heading{
+        font-size: 15pt;
+        font-family: 'Helvetica Neue Cond';
+        color: white;
+        text-transform: uppercase;
+        margin-top: 1.9em;
+        margin-bottom:0.25em;
+        line-height: 1.1em;
+
+      }
+
+      .right-col .row{
+        display:flex;
+        font-size:9pt;
+        font-family: 'Helvetica Neue';
+        color:white;
+        margin-bottom: 0.1em;
+      }
+      .right-col .ranking-wrapper{
+        margin-top:0.3em;
+        min-height:135px;
+      }
+      .right-col .text{
+        max-width:2.25em;
+        min-width:2em;
+        margin-bottom:0.3em;
+        color:white;
+        float:left;
+      }
+
+      .right-col .text:nth-of-type(1),
+      .right-col .text:nth-of-type(3){
+        margin-right:0.7em;
+      }
+
+      .right-col .text h1{
+        font-size: 24pt;
+        font-family: 'Helvetica Neue Cond';
+        font-weight: bold;
+        color:white;
+      }
+
+      .right-col .text p{
+        font-size: 9pt;
+        font-family: 'Helvetica Neue Cond';
+        text-transform: uppercase;
+      }
+      .right-col .lower-text{
+        position: relative;
+        font-size: 7pt;
+        font-family: 'Helvetica Neue Cond';
+        text-align: left;
+        color: white;
+        float: left;
+      }
+
+      /* Page 2 */
+
+      .testimonial-wrapper{
+        width:100%;
+        height: 4.8em;
+        display: flex;
+        margin-bottom: 0.55em;
+      }
+
+      .testimonial-wrapper .hero-image{
+        height: 100%;
+        width: 4.36em;
+        position:relative;
+        margin-right: 0.27em;
+      }
+
+      .testimonial-wrapper  .testimonial-text{
+        height: 100%;
+        background: #F26334;
+        position: relative;
+        width: calc(100% - 4.63em);
+        font-size: 8pt;
+        font-family: 'Helvetica Neue';
+        color: white;
+        padding: 0.7em 1.2em;
+        display: flex;
+        align-items: flex-end;
+      }
+
+      .table-heading{
+        font-size: 16pt;
+        text-transform: uppercase;
+        font-family: 'Helvetica Neue Cond';
+        color: #9651A0;
+      }
+
+      .entry-requirements-table table{
+        width:100%;
+      }
+
+      .entry-requirements-table table tr:nth-child(even){
+        background: #f7f4f9;
+      }
+
+      .entry-requirements-table table td{
+        font-size: 7pt;
+        font-family: 'Helvetica Neue Med Cond';
+        text-transform: uppercase;
+        padding-left: 0.9em;
+        padding: 0.75em;
+        border: 1px solid #c5c5c5;
+      }
+      .entry-requirements-table table td:last-child{
+        border-right: 0;
+      }
+      .entry-requirements-table table td:nth-child(1){
+        border-left: 0;
+      }
+
+      .entry-requirements-table table tbody tr td:nth-child(1) p{
+        width: 165px;
+      }
+
+      .entry-requirements-table table tbody tr:nth-child(2) td:nth-child(2){
+        height:6.1em !important;
+      }
+      .entry-requirements-table table tbody tr:last-child td p{
+        text-transform: none;
+      }
+      .entry-requirements-table table tbody tr:last-child td:first-child p{
+        text-transform: uppercase;
+      }
+
+      .entry-requirements-table table tbody tr:nth-child(2) td p {
+        font-family: 'Helvetica Neue Med Cond' !important;
+      }
+
+      .entry-requirements-table table td p{
+        width: 5em;
+        min-width: 7em;
+      }
+      .entry-requirements-table table tr:first-child td {
+        border: none;
+      }
+      .entry-requirements-table table tr:first-child td:nth-last-child(2),
+      .entry-requirements-table table tr:first-child td:nth-last-child(1){
+        background: #9651A0;
+        color: white;
+      }
+      .entry-requirements-table table tr:first-child td p{
+        font-family:'Helvetica Neue Med Cond' !important ;
+        padding-left:2px;
+      }
+
+      .post-table-text{
+        width: 100%;
+        height: auto;
+        display: flex;
+        margin: 10px 0;
+
+      }
+
+      .post-table-text .table-notes{
+        font-size: 6pt;
+        font-family:'Helvetica Neue light Cond';
+        color: #939698;
+        margin-right: 2em;
+      }
+      .post-table-text .table-notes strong{
+        font-weight:normal;
+        color: #9651A0;
+      }
+      .post-table-text .ad-links{
+        font-size: 6pt;
+        color: #221E1F;
+        font-family:'Helvetica Neue';
+        line-height:1.4em;
+
+      }
+      .post-table-text .ad-links strong{
+        font-size: 6pt;
+        color: #221E1F;
+        font-weight:normal;
+        font-family:'Helvetica Neue Med Cond';	
+      }
+
+      .footer-url-wrapper{
+        height: 1.8em;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+      }
+
+      .footer-url-wrapper .url{
+        font-family: Helvetica Neue Cond;
+        text-transform: uppercase;
+        font-size: 25pt;
+        color: white;
+        max-width:9em;
+        margin-left: 3.5em;
+        position: relative;
+      }
+
+      .footer-url-wrapper .url-text{
+        font-size: 8pt;
+        margin-right: 1rem;
+        line-height: 1.45;
+      }
+
+      .footer-url-wrapper .url-text h1{
+        font-size: 10pt;
+        font-family:'Helvetica Neue Med Cond';
+        text-transform:uppercase;
+      }
+
+
+      .footer-fine-print{
+        font-size: 6.5pt;
+        width: 100%;
+        font-family: 'Helvetica Neue Cond';
+        color: #939698;
+      }
+
+      .page + .page {
+        border-top: 1px solid lightblue;
+      }
+
+      .showLogo-primary .logo-reversed{
+        display: none;
+      }
+
+      .showLogo-reversed .logo-blue{
+        display: none;
+      }
+
+      .monash-m { 
+        position: absolute;
+        top: 0; 
+        right: 0.6em; 
+        width: 3em; 
+        z-index: 1; 
+        opacity: 0.5; }
+      .monash-m img { 
+        width: 100%; 
+      }
+
+
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+
+          <header style="">
+
+            <div class="background-image">{{{background-image-WM}}}</div>
+
+            <div class="logo logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-reversed {{/logo-colour}}">
+              <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+              <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+            </div>
+            <div class="monash-m">
+              <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/c7e5f5832e1234e6172a7a7173defc8c/m.svg">
+            </div><!--monash-m-->
+
+            <div class="header-text">
+              <div class="heading" data-max-line="2">{{{heading-WM}}}</div>
+              <div class="sub-heading" data-max-line="2">{{{sub-heading-WM}}}</div>
+            </div>
+
+          </header>
+
+          <div class="body-content grid-container">
+
+            <div class="left-col">
+              <div class="blurb" data-max-line="6"> {{{monash-blurb}}} </div>
+
+              {{#collection.infographic-section}}
+              {{#block.infographic-text}}
+              <div class="info-wrapper">
+                <img class="info-image" src="{{{infographic}}}" />
+                <div class="info-text" data-max-height="116"> {{{text}}}</div>
+              </div>
+              {{/block.infographic-text}}
+              {{/collection.infographic-section}}
+
+              {{#collection.lower-infographic-section}}
+              {{#block.lower-infographic-text}}
+              <div class="info-wrapper orange">
+                <img class="info-image" src="{{{infographic}}}" />
+                <div class="info-text" data-max-height="130"> {{{text}}}</div>
+              </div>
+              {{/block.lower-infographic-text}}
+              {{/collection.lower-infographic-section}}
+            </div>
+            <div class="right-col">
+              <div class="heading" data-max-line="1">  {{{right-col-heading}}} </div>
+              {{#right-col-heading}} <img src="https://files.outfit.io/media_library_items/114904/Asset%25201.svg">{{/right-col-heading}}
+              <div class="sub-heading" data-max-line="2">   {{{right-col-subheading}}} </div>
+              {{#spreadsheet.course-rankings}}
+              <div class="row">
+                {{col-1}} &nbsp; {{col-2}}
+              </div>
+              {{/spreadsheet.course-rankings}}
+              <div class="ranking-wrapper">
+                {{#collection.monash-rankings}}
+                {{#block.monash-rankings-block}}
+                <div class="text" data-max-height="68">{{{text}}}</div>
+                {{/block.monash-rankings-block}}
+
+                {{/collection.monash-rankings}}
+              </div>
+              <div class="lower-text"> {{{right-col-lower-text}}}</div>
+            </div>
+
+          </div>	
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-2 }}"></div>
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container page-2 fit">
+
+          <div class="testimonial-wrapper">
+            <div class="hero-image"><div class="reposition-fix">{{{hero-image-WM}}}</div></div>
+            <div class="testimonial-text" > <div style="width:32em;" data-max-height="250">{{{testimonial-text}}}</div></div>
+          </div>
+
+          <div class="table-heading"> {{{table-heading}}} </div>
+          <div class="entry-requirements-table">
+            <table>
+              {{#spreadsheet.entry-requirements-wh}}
+              <tr>
+                <td style="width:165px"><p>{{column-1-WM}}</p></td>
+                <td><p style="font-family:'Helvetica Neue Light Cond';">{{column-2-WM}}</p></td>
+                <td><p style="font-family:'Helvetica Neue Light Cond';">{{column-3-WM}}</p></td>
+                <td><p style="font-family:'Helvetica Neue Light Cond';">{{column-4-WM}}</p></td>
+                <td><p style="font-family:'Helvetica Neue Light Cond';">{{column-5-WM}}</p></td>
+                <td><p style="font-family:'Helvetica Neue Light Cond';">{{column-6-WM}}</p></td>
+                <td><p style="font-family:'Helvetica Neue Light Cond';">{{column-7-WM}}</p></td>
+              </tr>
+              {{/spreadsheet.entry-requirements-wh}}
+            </table>
+          </div>
+
+          <div class="post-table-text">
+            <div class="table-notes">  {{{table-notes}}} </div>
+
+            <div class="ad-links">  {{{ad-links}}} </div>
+
+          </div>
+          {{#monash-url}}
+          <div class="footer-url-wrapper" style="background-image:url('https://files.outfit.io/media_library_items/115292/monash-url.svg')">
+
+            <div class="url" data-max-height="70">{{{monash-url}}}</div>
+            <div class="url-text" data-max-line="4">{{{monash-url-text}}}</div>
+          </div>
+          {{/monash-url}}
+
+          <div class="footer-fine-print" data-max-line="2">{{{terms-and-cond}}}</div>
+
+
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="js/dynamic-inject.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+          hideEmptyTitles();
+        });
+      });
+
+      const injectObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectDynamicContent();
+        });
+      });      
+
+      const injectSources = document.querySelectorAll('[data-target-id]');
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      if ( injectSources.length > 0 ) {
+        injectSources.forEach(src => {
+          injectObserver.observe(src, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });            
+        });
+      }    
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+        injectDynamicContent();
+        hideEmptyTitles();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+
+    </script>
+
+
+  </body>
+</html>
