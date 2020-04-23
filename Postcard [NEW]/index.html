@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html data-sign="OSM">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <style>
+      /*
+      {{show-crop}}
+      {{theme-color}}
+      {{background-color}}
+      {{MH_background-image--pc}}
+      {{MH_heading-text--pc}}
+      {{MH_heading-text-size--pc}}
+      {{MH_event-details--pc}}
+      {{MH_footer-text--pc}}
+      {{MH_cricos--pc}}
+      */
+
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/HelveticaNeueCond/stylesheet.css');           
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Helvetica%20Neue%20Condensed%20LT/stylesheet.css');
+
+      :root {
+        --white: {{account.colors.white}};
+        --black: {{account.colors.black}};
+        --grey: #828b91;
+        
+        --background-color: var(--{{background-color}});
+        --theme-color: var(--{{theme-color}});
+      }
+
+      html {
+        font-family: 'Helvetica Neue Condensed LT Std';
+        font-size: 11pt;
+        color: var(--theme-color);
+        word-break: break-word;
+      }
+      
+      .container{
+        background: var(--background-color);
+      }
+      
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }      
+
+      /* Helper classes */
+      .u-hide { display: none; }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .fit {
+        display: flex;
+      }
+
+      .section {
+        position: relative;
+        font-size: 0;
+      }
+      
+      .section--left {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding: 27pt 28pt 25.5pt 28pt;
+      }
+      
+      .section--right {
+        width: 129.3pt;
+      }
+
+      .header {
+        margin-left: 5pt;
+        margin-bottom: 20.8pt;
+      }
+
+      .logo	{
+        width: 81.7pt;
+        display: none;
+      }
+
+      .logo--primary {
+        margin-top: 2pt;
+      }
+      
+      .logoColor--white .logo--primary, 
+      .logoColor--black .logo--secondary {
+        display: block;
+      }
+
+      .body	{
+        flex: 1;
+      }
+
+      .heading {
+        max-width: 252pt;
+        margin-bottom: 6.1pt;
+        font-size: 43.6pt;
+        font-weight: 300;
+        text-transform: uppercase;
+        color: var(--theme-color);
+      }
+
+      .heading__inner {
+        font-size: {{{MH_heading-text-size--pc}}}%;
+        line-height: 0.9em;
+      }
+
+      .details {
+        max-width: 139pt;
+        font-size: 10.1pt;
+        line-height: 1.2em;
+        letter-spacing: -0.2pt;
+        color: var(--theme-color);
+      }
+
+      .footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .text {
+        max-width: 256pt;
+        font-size: 9.6pt;
+        line-height: 1.25em;
+        color: var(--theme-color);
+      }
+
+      .shape {
+        width: 100%;
+        height: 100%;
+        clip-path: polygon(0% 100%, 25% 100%, 25% 57%, 33% 100%, 60% 100%, 68.5% 57%, 68% 100%, 100% 100%, 100% 0%, 53.8% 0%, 46.7% 35%, 40% 0%, 0% 0%);
+
+        {{^MH_m-overlay-image--ps}}
+        background-color: {{MN_m-overlay-colour--ps}};
+        opacity: {{MN_m-opacity--ps}};
+        {{/MH_m-overlay-image--ps}}
+
+        {{#MH_m-overlay-image--ps}}
+        background-image: url('{{{MH_m-overlay-image--ps}}}');
+        z-index: 1;
+        background-size: cover;
+        background-position: center;
+        {{/MH_m-overlay-image--ps}}
+      }
+      
+      
+      
+      .mImage{
+        width: 129.3pt;
+        height: 100%;
+      }
+      
+      .mImage img{
+        height: calc(100% + 5%);
+      }
+      
+      {{#mImage}}
+      .section--right {
+        width: auto;
+        margin-right: -2px; /*To get MC College Logo to sit again the edge*/
+      }
+      
+      .mImage{
+        width: 167pt;
+      }
+      
+      {{/mImage}}
+      
+      .cricos {
+        margin-top: 15.1pt;
+        font-size: 5.9pt;
+        line-height: 1.2em;
+        color: var(--theme-color);
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" data-crop="{{show-crop}}">
+
+    <div class="page logoColor--{{theme-color}}">
+
+      <div class="bleed">
+
+        <div class="container fit">
+
+          <div class="backgroundImage"><div class="reposition-fix">{{{MH_background-image--pc}}}</div></div><!--backgroundImage-->
+          <div class="section section--left">
+            <div class="header">
+              <img class="logo logo--primary" src="{{{account.logos.mu-logo-reversed}}}"><!--logo-->
+              <img class="logo logo--secondary" src="{{{account.logos.mu-logo}}}"><!--logo-->
+            </div><!--header-->
+            <div class="body">
+              <div class="heading"><div class="heading__inner" data-max-line="2.2">{{{MH_heading-text--pc}}}</div></div><!--heading-->
+              <div class="details" data-max-line="4.2">{{{MH_event-details--pc}}}</div><!--details-->
+            </div><!--body-->
+            <div class="footer">
+              <div class="text" data-max-line="2">{{{MH_footer-text--pc}}}</div><!--text-->
+              <div class="cricos" data-max-line="2">{{{MH_cricos--pc}}}</div><!--cricos-->
+            </div><!--footer-->
+          </div><!--section--left-->
+          <div class="section section--right">
+          {{^mImage}}<div class="shape"></div><!--shape-->{{/mImage}}
+            <div class="mImage"><img src="{{{mImage}}}"/></div>
+			</div><!--section--right-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="js/dynamic-inject.js"></script>
+    <script src="js/text-fit-min.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+    </script>
+    <script>
+
+      console.clear();
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+          hideEmptyTitles();
+        });
+      });
+
+      const injectObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectDynamicContent();
+        });
+      });      
+
+      const injectSources = document.querySelectorAll('[data-target-id]');
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      if ( injectSources.length > 0 ) {
+        injectSources.forEach(src => {
+          injectObserver.observe(src, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });            
+        });
+      }    
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+        injectDynamicContent();
+        hideEmptyTitles();
+      });
+
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+
+    </script>
+
+
+  </body>
+</html>
