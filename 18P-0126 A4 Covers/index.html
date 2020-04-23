@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <style>
+      * { -webkit-font-smoothing: antialiased; }
+      
+      body { color: #020202; }
+      .overflow {
+        border: 1px dashed red;
+        position: relative; }
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4, 
+      .overflow h5, 
+      .overflow h6, 
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 5px;
+        right: 5px;
+        height: 15px;
+        width: 15px;
+        border: 1px solid red;
+        color: red;
+        padding: 2px 2px 2px 3px;
+        box-sizing: border-box;
+        font-size: 13px;
+        text-align: center;
+        line-height: 8px;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is overset content in this column. Please remove it';
+        position: absolute;
+        top: 25px;
+        right: 5px;
+        background-color: black;
+        color: white;
+        border-radius: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+      .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/0a7c3d670f208f47a82b343279fc8d4b/18P-0126%20INTERNAL%20A4%20Landscape%20Covers_Page_01.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+      body { font-family: 'Helvetica Neue Cond'; font-weight: normal; }
+      h1, h2, h3, h4, h5, ,h6 { font-weight: 500; }
+      .clip-1 {
+        -webkit-clip-path: polygon(0% 0%, 0% 100%, 26.6% 100%, 27.6% 58%, 36% 100%, 64% 100%, 73% 59%, 73% 100%, 100% 100%, 100% 0%, 56% 0%, 50% 33%, 43% 0);
+        clip-path: polygon(0% 0%, 0% 100%, 26.6% 100%, 27.6% 58%, 36% 100%, 64% 100%, 73% 59%, 73% 100%, 100% 100%, 100% 0%, 56% 0%, 50% 33%, 43% 0);
+        background-color: {{{ cover-theme-colour }}}; background-size: cover;  background-position: center; background-repeat: no-repeat; 
+        position: absolute; top: 46%; bottom: 0; right: 0; width: 34%; mix-blend-mode: multiply;
+      }
+      .clip-2 {
+        -webkit-clip-path: polygon(0% 0%, 0% 100%, 26.6% 100%, 27.6% 58%, 36% 100%, 64% 100%, 73% 59%, 73% 100%, 100% 100%, 100% 0%, 56% 0%, 50% 33%, 43% 0);
+        clip-path: polygon(0% 0%, 0% 100%, 26.6% 100%, 27.6% 58%, 36% 100%, 64% 100%, 73% 59%, 73% 100%, 100% 100%, 100% 0%, 56% 0%, 50% 33%, 43% 0);
+        background-color: {{{ cover-theme-colour }}}; position: absolute; top: 46%; bottom: 0; right: 0; width: 34%; mix-blend-mode: multiply; z-index: 5;
+      }
+      .background-image { position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-size: cover; background-position: center; background-repeat: no-repeat; }
+      .logo { position: absolute; top: 1.2em; left: 1.2em; width: 3.6em; } .logo img { width: 100%; }
+      .showLogo-primary .logo-reversed{
+        display: none;
+      }
+
+      .showLogo-reversed .logo-blue{
+        display: none;
+      }
+      .faculty { position: absolute; text-transform: uppercase; top: 1.2em; right: 2.5em; z-index: 10; } .height { max-height: 2.6em; }
+      .faculty p { color: #020202; font-family: 'Helvetica Neue Light Cond'; font-size: 0.3em; font-weight: 300; line-height: 1.2em; }
+      .text { position: absolute; top: 42%; left: 0; right: auto; text-transform: uppercase; letter-spacing: 0.03em; } 
+      .top { color: {{{ cover-theme-colour }}}; padding: 0 0 0.2em 1.38em; border-bottom: 1px solid #020202; } 
+      .text h1 { font-family: 'Helvetica Neue Light Cond'; font-size: 0.65em; font-weight: 300; } .text h2 { font-family: 'Helvetica Neue Med Cond'; font-size: 0.65em; font-weight: 500; }
+      .bottom { margin: 1em 0 0 1.38em; } 
+      .text h3 { font-size: 0.35em; } .text h4 { font-family: 'Helvetica Neue Med Cond'; font-size: 0.35em; font-weight: 500; }
+      .url { position: absolute; left: 1.4em; bottom: 9%; } .url p { color: {{{ cover-theme-colour }}}; font-family: 'Helvetica Neue Cond'; font-size: 0.25em; font-weight: normal; }
+      @media (min-height: 760px) and (max-height: 850px) and (min-width: 1100px) and (max-width: 1180px) {
+        .logo { top: 1.4em; left: 1.4em; width: 4.1em; } .text h1, .text h2 { font-size: 0.8em; } .url { left: 1.6em; bottom: 12%; } .url p { font-size: 0.3em; }
+        .faculty { top: 1.45em; right: 9.75em; } .faculty p { font-size: 0.35em; line-height: 1.15em; } .height { max-height: 3.2em; }
+        .clip-1, .clip-2 { height: auto; width: 30%; top: 0; right: 0.9em; } .text { top: 40.2%; }.top { padding: 0 0 0.45em 1.58em; } .bottom { margin: 0.65em 0 0 1.58em; } 
+      }
+      .page {
+        	height: 99.9vh !important;
+            overflow: hidden;
+      }
+      
+      .data-futures-m, .data-futures-enabled .clip-1, .data-futures-enabled .clip-2, .data-futures-label, .data-futures-enabled .faculty-name	{	display: none;	}
+      .data-futures-enabled .text {     top: 32.8%; max-width: 62%;		}
+      .data-futures-enabled .url {	max-width: 26%;	}
+      .data-futures-enabled .data-futures-m	{
+        display: block;
+        background-size: auto 100%;
+        background-position: center left;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 46%;
+        bottom: 0;
+        right: 0;
+        width: 69%;
+        mix-blend-mode: multiply;
+        background-image: url(https://files.outfit.io/media_library_items/181729/Full%2520M%2520Pattern-01.svg);
+      }
+      
+      .data-futures-enabled .data-futures-label{	display: block;	font-size: 45pt;	}
+      
+      
+    </style>
+  </head>
+  <body style="background: white" class="{{data-future-design-enabled}}">
+    <div class="page">
+      <div class="bleed">
+        <div class="faculty faculty-name"><p>{{{team.stacked-faculty-name}}}</p></div>
+        <div class="faculty data-futures-label"><p><span style="color: {{{account.colors.monash-blue}}};">MONASH</span><br>DATA<br>FUTURES</p></div>
+        <div class="background-image" style="background-image: url('{{{ background-image }}}');"></div>
+        <div class="logo logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+          <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+          <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+        </div>
+        <div class="clip-1" style="background-image: url({{{ image }}})"></div><div class="clip-2"></div>
+        <div class="data-futures-m"></div>
+        <div class="text"><div class="top"><div class="height"><div class="check-overflow"><h1 style="font-size:{{#header-font-size}}{{header-font-size}}em{{/header-font-size}}{{^header-font-size}}0.6em{{/header-font-size}};">{{{ header }}}</h1><h2 style="font-size:{{#header-font-size}}{{header-font-size}}em{{/header-font-size}}{{^header-font-size}}0.6em{{/header-font-size}};">{{{ subheading }}}</h2></div></div></div><div class="bottom"><h3 style="font-size:{{#sub-heading-font-size}}{{sub-heading-font-size}}em{{/sub-heading-font-size}}{{^sub-heading-font-size}}0.35em{{/sub-heading-font-size}};">Presented by</h3><h4 style="font-size:{{#sub-heading-font-size}}{{sub-heading-font-size}}em{{/sub-heading-font-size}}{{^sub-heading-font-size}}0.35em{{/sub-heading-font-size}};">{{{ name }}}</h4></div></div>
+        <div class="url"><p>{{{ website }}}</p></div>
+      </div>
+    </div>
+    <script>
+      window.showCrop = {{show-crop}};
+    </script>
+    <script src="main.js"></script>
+    <script src="prefixfree.js"></script>
+    <script>
+      function loop() { checkHeight(document.getElementsByClassName('check-overflow')); } setInterval(loop, 500);
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
