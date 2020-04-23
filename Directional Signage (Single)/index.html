@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <script src="tinycolor.js"></script>
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <style>
+      @import "https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css";
+      @import "https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css";
+
+      :root {
+        --global-text-color: #fff;
+      }
+
+      * {
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Helvetica Neue LT Std Condensed', 'Helvetica Neue Condensed', helvetica, arial, sans-serif;
+      }
+
+      .fit {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+
+      .test-background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+        pointer-events: none;
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/4efba3d717d2245ccc1b948499b8aea0/17P-0985%20MU%20Directional%20Landscape_Page_2.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0.7;
+      }
+      .show-crop .test-background-image {
+        top: 2.8mm;
+        left: 2.8mm;
+        right: 2.8mm;
+        bottom: 2.8mm;
+      }
+
+      .page {
+        background-color: rgb(0, 107, 171);
+      }
+
+      .black-background {
+        background-color: #373435;
+      }
+
+      .black-background.reverse {
+        --global-text-color: #373435;
+      }
+
+      .blue-background {
+        background-color: {{{account.colors.monash-blue}}};
+      }
+
+      .blue-background.reverse {
+        --global-text-color: {{{account.colors.monash-blue}}};
+      }
+
+      .bleed {
+        padding: 3mm;
+      }
+
+      .logo {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 210pt;
+        height: 63pt;
+        margin: 30pt 0 0 28pt;
+      }
+
+      .monash.showLogo-primary .logo {
+        background-image: url('{{{account.logos.mu-logo}}}');
+      }
+
+      .monash.showLogo-reversed .logo {
+        background-image: url('{{{account.logos.mu-logo-reversed}}}');
+      }
+
+      .college.showLogo-primary .logo {
+        background-image: url('{{{account.logos.mc-logo}}}');
+      }
+
+      .college.showLogo-reversed .logo {
+        background-image: url('{{{account.logos.mc-logo-reversed}}}');
+      }
+
+      .content-container {
+        position: absolute;
+        top: 120pt;
+        left: 45pt;
+        right: 45pt;
+        bottom: 50pt;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .headline-overflow-container {
+        max-height: 246pt;
+      }
+
+      .subheading-overflow-container {
+        max-height: 135pt;
+      }
+
+      .subheading-container {
+        margin-top: 21pt;
+      }
+
+      .content-container h1 {
+        /*   color: white;*/
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 82pt;
+        line-height: 81pt;
+      }
+
+      .content-container h2 {
+        /*   color: white;*/
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 42pt;
+        line-height: 44pt;
+        font-weight: 300;
+      }
+
+      .arrow {
+        width: 235pt;
+        height: 180pt;
+        transform: rotate(-90deg);
+        margin-top: 51pt;
+      }
+
+      .arrow:not(.no-access) .no-access-symbol { display: none; }
+
+      .arrow.top { transform: rotate(-90deg); }
+      .arrow.top-left { transform: rotate(-135deg); }
+      .arrow.left { transform: rotate(180deg); }
+      .arrow.bottom-left { transform: rotate(135deg); }
+      .arrow.bottom { transform: rotate(90deg); }
+      .arrow.bottom-right { transform: rotate(45deg); }
+      .arrow.right { transform: rotate(0deg); }
+      .arrow.top-right { transform: rotate(-45deg); }
+      .arrow.no-access {
+        transform: initial;
+        width: 280pt;
+        height: 280pt;
+        order: -1;
+        margin-top: 0;
+        margin-bottom: 50pt;
+      }
+      .arrow.no-access .arrow-symbol { display: none; }
+
+      .CRICOS {
+        position: absolute;
+        bottom: 18pt;
+        left: 25pt;
+        font-size: 7pt;
+        color: #ffffff;
+        opacity: 0.7;
+      }
+
+      /* QUOTE OVERFLOW */
+      .overflow {
+        border: 2px dashed red;
+        position: relative; }
+      .overflow h1, .overflow h2, .overflow p, .overflow h6, .overflow li { color: red !important; }
+      .overflow::before {
+        content: '-';
+        position: absolute;
+        z-index: 5;
+        top: 0.5em;
+        right: -8px;
+        height: 15px;
+        width: 15px;
+        border: 1px solid red;
+        color: red;
+        padding: 2px;
+        box-sizing: border-box;
+        font-size: 23px;
+        text-align: center;
+        line-height: 14px;
+        background-color: white; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is too much text in this input. Please remove the excess';
+        position: absolute;
+        top: 1.6em;
+        right: -10px;
+        background-color: black;
+        color: white;
+        border-radius: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 1em;
+        text-align: center;
+        width: 10em;
+      }
+      .overflow .quote h1, .overflow .quote-author, .overflow .quote-author-position {
+        color: red !important; }
+
+      @media print {
+        .overflow.overflow {
+          background-color: rgba(255, 0, 0, 0.8);
+          position: relative;
+          border: initial; }
+        .overflow h2, .overflow p, .overflow h6 { color: initial; }
+        .overflow::before {
+          content: '';
+          display: none; }
+        .overflow:after {
+          display: block;
+          content: 'There is overset content in this column. Please remove it';
+          position: absolute;
+          top: 0em;
+          left: 0em;
+          right: 0em;
+          color: white;
+          border-radius: 2px;
+          padding: 5px;
+          box-sizing: border-box;
+          font-size: 0.5em;
+          font-weight: 400;
+          line-height: 1em;
+          text-align: center;
+        }
+      }
+
+      @media (min-aspect-ratio: 4/3) {
+        .hide-crop .page {
+          height: calc(100vh - 1px) !important;
+        }
+
+        .logo {
+          width: 253pt;
+          height: 80pt;
+        }
+
+        .content-container {
+          flex-direction: row;
+          justify-content: space-between;
+          top: 132pt;
+          left: 40pt;
+          right: 45pt;
+          bottom: 55pt;
+        }
+
+        .content-container h1 {
+          text-align: left;
+        }
+
+        .content-container h2 {
+          text-align: left;
+          font-size: 38pt;
+        }
+
+        .arrow {
+          width: 451pt;
+          margin-top: 0;
+        }
+
+        .CRICOS {
+          bottom: 21pt;
+          left: 42pt;
+        }
+
+        .arrow.no-access {
+          transform: initial;
+          width: 455pt;
+          height: 455pt;
+          order: 1;
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+
+        .text-container {
+          width: 840pt;
+        }
+      }
+
+      /*----------------------*\
+      GENERIC THEME COLOURS
+      \*----------------------*/
+      /* Art, Design and Architecture */
+      .mada-background {
+        background-color: #c00095;
+      }
+
+      .mada-background.reverse {
+        --global-text-color: #c00095;
+      }
+
+      /* Arts */
+      .arts-background {
+        background-color: #ff0026;
+      }
+
+      .arts-background.reverse {
+        --global-text-color: #ff0026;
+      }      
+      /* Monash Business School */
+      .mbs-background {
+        background-color: #fc6228;
+      }
+
+      .mbs-background.reverse {
+        --global-text-color: #fc6228;
+      }
+      /* Education */
+      .education-background {
+        background-color: #8177b4;
+      }
+
+      .education-background.reverse {
+        --global-text-color: #8177b4;
+      }
+      /* Engineering */
+      .engineering-background {
+        background-color: #000000;
+      }
+
+      .engineering-background.reverse {
+        --global-text-color: #000000;
+      }
+      /* Information Technology */
+      .it-background {
+        background-color: #00ac3e;
+      }   
+
+      .it-background.reverse {
+        --global-text-color: #00ac3e;
+      }
+
+      /* Law */
+      .law-background {
+        background-color: #829350;
+      }
+      .law-background.reverse {
+        --global-text-color: #829350;
+      }
+      /* Medicine, Nursing and Health Sciences */
+      .mnhs-background {
+        background-color: #c800d9;
+      }
+
+      .mnhs-background.reverse {
+        --global-text-color: #c800d9;
+      }
+      /* Pharmacy */
+      .pharmacy-background {
+        background-color: #ee64a4;
+      }
+      .pharmacy-background.reverse {
+        --global-text-color: #ee64a4;
+      }
+      /* Science */
+      .science-background {
+        background-color: #006DAE;
+      }
+
+      .science-background.reverse {
+        --global-text-color: #006DAE;
+      }
+      /* Generic Areas */
+      .generic-background {
+        background-color: #969696;
+      }
+      .generic-background.reverse {
+        --global-text-color: #969696;
+      }
+
+      /*----------------------*\
+      COLLEGE THEME COLOURS
+      \*----------------------*/
+      .college-red-background {
+        background-color: #ff0026;
+      }
+      .college-red-background.reverse {
+        --global-text-color: #ff0026;
+      }
+
+      .college-orange-background {
+        background-color: #fc6228;
+      }
+      .college-orange-background.reverse {
+        --global-text-color: #fc6228;
+      }
+
+      .college-yellow-background {
+        background-color: #fdb525;
+      }
+      .college-yellow-background.reverse {
+        --global-text-color: #fdb525;
+      }
+
+      .college-green-background {
+        background-color: #00ac3e;
+      }
+      .college-green-background.reverse {
+        --global-text-color: #00ac3e;
+      }
+
+      .college-blue-background {
+        background-color: #009fd9;
+      }
+      .college-blue-background.reverse {
+        --global-text-color: #009fd9;
+      }
+
+      .college-pink-background {
+        background-color: #ee64a4;
+      }
+      .college-pink-background.reverse {
+        --global-text-color: #ee64a4;
+      }
+
+      .college-ruby-background {
+        background-color: #829350;
+      }
+      .college-ruby-background.reverse {
+        --global-text-color: #829350;
+      }
+
+      .theme-two .page { background-color: black !important; }
+
+      .page {
+        color: var(--global-text-color);
+      }
+
+      .reverse {
+        --global-text-color: {{{account.colors.monash-blue}}};
+      }
+
+      .page.reverse  {
+        background-color: white;
+        color: var(--global-text-color);
+      }
+
+      .page.reverse polygon {
+        fill: var(--global-text-color);
+      }
+
+    </style>
+  </head>
+  <body style="background: white" class="{{{ blue-black-college-theme }}}">
+
+    <div class="page {{{ directional-signage-generic-background-colour }}}-background {{{ direction-signage-college-background-colour }}}-background {{{directional-signage-basic-background-colour}}}-background
+                {{{ logo-choice }}}{{^logo-choice}}monash{{/logo-choice}} showLogo-{{ logo-colour }}{{^logo-colour}}primary{{/logo-colour}}
+                {{MNS_reverse-variation}}">
+      <div class="bleed">
+        <div class="logo"></div>
+        <div class="content-container">
+          <div class="text-container">
+            {{#headline}}
+            <div class="headline-container">
+              <div class="headline-overflow-container">
+                <div class="headline-overflow">
+                  <h1>{{{ headline }}}</h1>    
+                </div>  
+              </div>
+            </div>
+            {{/headline}}
+            {{#subheading}}
+            <div class="subheading-container">
+              <div class="subheading-overflow-container">
+                <div class="subheading-overflow">
+                  <h2>{{{ subheading }}}</h2>
+                </div>  
+              </div>
+            </div>
+            {{/subheading}}
+          </div>
+          <div class="arrow {{{ directional-signage-arrow-position }}}">
+            <svg class="arrow-symbol" width="100%" height="100%" viewBox="0 0 304 222" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <polygon fill="#FEFEFE" points="139.972 0 217.815 84.267 0 84.267 0 134.736 219.245 134.736 140.082 221.597 202.475 221.597 304.023 109.11 200.901 0"></polygon> </g> </svg>
+
+            <svg class="no-access-symbol" width="100%" height="100%" viewBox="0 0 378 378" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="no-access"> <circle id="Oval" fill="#FF002C" cx="189" cy="189" r="189"></circle> <rect id="Rectangle" fill="#FFFFFF" x="31" y="164" width="316" height="51"></rect> </g> </g> </svg>
+          </div>
+        </div><!--content-container-->
+
+        <div class="CRICOS">CRICOS provider: Monash University 00008C<br><span style="display: {{{ hide-college-text }}};">Monash College Pty Ltd 01857J.</span></div>
+      </div><!--bleed-->
+    </div><!--page-->
+
+    <script> 
+      function loop() {
+        checkHeight($(".headline-overflow"));
+        checkHeight($(".subheading-overflow"));
+      } setInterval(loop, 2000);
+
+      function checkHeight(element) {
+        var $height = element.height();
+        var $parentHeight = element.parent().height();
+
+        if ($height > $parentHeight) {
+          element.parent().parent().addClass('overflow');
+        } else {
+          element.parent().parent().removeClass('overflow');
+        }
+      }
+
+      window.showCrop = {{show-crop}};
+
+      if (window.showCrop === true) {
+        document.body.className += ' ' + 'show-crop';
+      } else {
+        document.body.className += ' ' + 'hide-crop';
+      }
+    </script>
+    <script src="main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="prefixfree.js"></script>
+  </body>
+</html>
