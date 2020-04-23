@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  
+  <style>
+    .test-background-image {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/bddf4d5fef372457faa2cb2e6a27ef48/Screen%20Shot%202017-07-31%20at%203.18.42%20pm.png');
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      opacity: 0.6;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    
+    .show-crop-marks .test-background-image {
+      top: 34pt;
+      left: 34pt;
+      right: 34pt;
+      bottom: 34pt;
+    }
+    
+    .header-background-image {
+      background-image: url('{{{ header-background }}}');
+    }
+    
+    .signature {
+      background-image: url('{{{ signature }}}')
+    }
+    .header-background-image { background-color: {{{ cover-theme-colour }}} !important; }
+  </style>
+</head>
+<body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}} {{college-pattern}}">
+  {{#spreadsheet.certificates}}
+  <div class="page">
+    <!--<div class="test-background-image"></div>-->
+    
+    <div class="document">
+      <div class="content">
+        <div class="blue-line"></div>
+
+        <div class="row-container">
+          <div class="row header">
+            <div class="header-background-image"></div>
+
+              <div class="col-container">
+                <div class="col">
+                  <div class="row-lockup">
+                    <div class="logo"><img src="{{{account.logos.mc-logo-reversed}}}"></div><!--logo-->
+                  </div><!--row-1-->
+
+                  <div class="js-headlines"></div>
+                  
+                </div> <!--col-1-->
+
+                <div class="col">
+                  <div class="college-m"></div>
+                </div><!--col-2-->
+              </div><!--col-container-->
+            </div><!--row header-->
+
+          <div class="row text">
+            
+            
+            <div class="cert-title-overflow-container"><div class="cert-title-overflow"><h1 class="js-certification-title"></h1></div></div>
+            
+            
+            <div class="name-container">
+              <div class="js-cert-wording"></div>
+   			  
+              <div class="name-overflow-container">
+                <div class="name-overflow">
+                  <h2>{{{ first-name }}}&nbsp;{{{ last-name }}}</h2>
+                </div>
+              </div>
+              
+            </div><!--name-container-->
+            
+            {{#certification}}
+            <div class="qualification-container">
+              <h6>{{{ qualifications-prefix }}}</h6>
+              
+  			  <div class="qualification-overflow-container">
+                <div class="qualification-overflow">
+                  <p>{{{ certification }}}</p>
+                </div>
+              </div>
+              
+            </div><!--qualification-->
+            {{/certification}}
+            
+            <div class="signature"></div>
+            
+            <div class="js-chancellor-details"></div>
+            
+            <div class="js-disclaimer-details"></div>
+            
+            <div class="js-cricos cricos"></div>
+            
+            <div class="js-logos"></div>
+            
+          </div><!--text-->
+        </div><!--row-container-->
+
+    </div><!--content-->
+    </div><!--document-->
+
+  </div><!--page-->
+  {{/spreadsheet.certificates}}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  <script>smartquotes();</script>
+  <script>
+   function loop() {
+      checkHeight($(".headline-overflow"));
+      checkHeight($(".cert-title-overflow"));
+	  checkHeight($(".chancellor-details-overflow"));
+    } setInterval(loop, 500);
+
+    function checkHeight(element) {
+      var height = element.height()
+      var $parent = element.parent();
+      var parentHeight = $parent.height();
+
+      if (height > parentHeight) {
+        $parent.addClass('overflow');
+      } else {
+        $parent.removeClass('overflow');
+      }
+    }
+  </script>
+  
+  <script>   
+    // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+    // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+    // At least Safari 3+: "[object HTMLElementConstructor]"
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+    // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+    // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+    // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+    // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+    if (isOpera == true) {
+      $('body').addClass('-js-opera-browser');
+    } if (isFirefox == true) {
+      $('body').addClass('-js-firefox-browser');
+    } if (isSafari == true) {
+      $('body').addClass('-js-safari-browser');
+    } if (isIE == true) {
+      $('body').addClass('-js-ie-browser');
+    } if (isEdge == true) {
+      $('body').addClass('-js-edge-browser');
+    } if (isChrome == true) {
+      $('body').addClass('-js-chrome-browser');
+    } if (isBlink == true) {
+      $('body').addClass('-js-blink-browser');
+    }
+    
+     // ADDING CERTIFICATION  TITLE
+     var jsHeadline = document.getElementsByClassName('js-certification-title');
+     for ( i = 0 ; i < jsHeadline.length ; i++ ) {
+       jsHeadline[i].innerHTML = '{{{ certification-title }}}{{^certification-title}}Certificate of Achievement{{/certification-title}}'
+     };
+    
+    // ADDING GLOBAL HEADLINES
+     var jsHeadline = document.getElementsByClassName('js-headlines');
+     for ( i = 0 ; i < jsHeadline.length ; i++ ) {
+       jsHeadline[i].innerHTML = '<div class="headlines"> {{#monash-faculty}} <div class="headline"> <div class="headline-overflow-container"> <div class="headline-overflow"> {{{ monash-faculty }}} </div> </div> </div> {{/monash-faculty}} </div><!--headlines-->'
+     };
+    
+    // ADDING GLOBAL CHANCELLOR DETAILS
+     var chancellorDetails = document.getElementsByClassName('js-chancellor-details');
+     for ( i = 0 ; i < chancellorDetails.length ; i++ ) {
+       chancellorDetails[i].innerHTML = '<div class="chancellor-details-overflow-container"> <div class="chancellor-details-overflow"> <p>{{{ chancellor-name }}}</p> <p>{{{ chancellor-position }}}</p> <p>{{{ chancellor-patronage }}}</p> <p class="cert-period">{{{certification-period}}}</p> </div> </div>'
+     };
+    
+   // ADDING GLOBAL DISCLAIMER DETAILS
+    var disclaimerDetails = document.getElementsByClassName('js-disclaimer-details');
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];;
+    var date = new Date();
+
+    for ( i = 0 ; i < disclaimerDetails.length ; i++ ) {
+      disclaimerDetails[i].innerHTML = '<div class="disclaimer-details"><p>Monash College</p><p>{{{ address }}}</p><p>Telephone {{{ telephone }}} Website monashcollege.edu.au/{{{ website-url }}}</p></p>';
+    };
+
+    // ADDING CRICOS
+    var cricos = document.getElementsByClassName('js-cricos');
+    for ( i = 0 ; i < cricos.length ; i++ ) {
+      cricos[i].innerHTML = '<p class="CRICOS">CRICOS provider: Monash University 00008C.</p><p>Monash College Pty Ltd 01857J.</p>'
+    };
+    
+     // ADDING GLOBAL LOGOS
+     var logos = document.getElementsByClassName('js-logos');
+     for ( i = 0 ; i < logos.length ; i++ ) {
+       logos[i].innerHTML = '<div class="logos">{{#collection.logos}}<img class="footer-logo" src="{{{ logo }}}" alt="logo">{{/collection.logos}}</div>'
+     };
+    
+      // ADDING CERT WORDING
+     var certWording = document.getElementsByClassName('js-cert-wording');
+     for ( i = 0 ; i < certWording.length ; i++ ) {
+       certWording[i].innerHTML = '<h6>{{{ certification-wording }}}</h6>'
+     };
+  </script>
+</body>
+</html>
