@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css" rel="stylesheet">    
+    <script src="tinycolor.js"></script>
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <style>
+
+      .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/cb17b150474d68ab79eb52a21c65e4f5/Screen%20Shot%202017-09-20%20at%209.37.18%20am.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      .overflow{border:1px dashed red;position:relative}.overflow::before,.overflow:hover:after{position:absolute;right:5px;box-sizing:border-box}.overflow h1,.overflow h2,.overflow h3,.overflow h4,.overflow h5,.overflow h6,.overflow li,.overflow p{color:red!important}.overflow::before{content:'+';z-index:5;top:5px;height:15px;width:15px;border:1px solid red;color:red;padding:2px 2px 2px 3px;font-size:13px;line-height:8px;background-color:#fff;text-align:center}.overflow:hover:before{background-color:red;color:#fff}.overflow:after{display:none}.overflow:hover:after{display:block;content:'There is overset content in this column. Please remove it';top:25px;background-color:#000;color:#fff;border-radius:2px;padding:5px;font-size:11px;font-weight:400;line-height:1.1em;text-align:right;width:15em}
+
+      html {
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Helvetica Neue Cond', helvetica, arial, sans-serif;
+        background-color: #fff;
+      }
+
+      strong { font-weight: 500; }
+
+      h1, h2, h3, h4, h5, h6 { margin: 0; line-height: 1.2em; }
+
+      /* Page 1 */
+
+      .page-1 .logo { position: absolute; top: 0.6em; left: 0.7em; width: 3.8em; }
+      .page-1 .logo img { width: 100%; }
+
+      .showLogo-primary .logo-reversed{
+        display: none;
+      }
+
+      .showLogo-reversed .logo-blue{
+        display: none;
+      }
+
+      .page-1 .header-position { position: absolute; left: 0.8em; width: 8em; z-index: 1; bottom: 15.5em;  }
+      .page-1 .header-position h2 { color: #fff; font-size: 0.77em; line-height: 1em; text-transform: uppercase; font-weight: bold; }   
+
+      .page-1 .subheader-position { position: absolute; top: 5.6em; left: 0.8em; width: 6.6em; max-height: 8.5em; z-index: 1; }
+      .page-1 .subheader-overflow h1 { margin: 0 0 0.3em 0; color: #216299; font-size: 0.45em; font-weight: bold; line-height: 1.2em; }
+
+      .page-1 .subheader-overflow h2 {
+        margin: 0 0 0.4em 0; color: #000; font-size: 0.32em;
+        font-weight: 300; font-family: 'Helvetica Neue LT Std';
+      }
+
+      .page-1 .subheader-overflow p { 
+        margin: 0 0 1em 0; color: #000; font-size: 0.24em;
+        font-weight: 300; font-family: 'Helvetica Neue LT Std'; line-height: 1.3em;
+      }  
+
+      .page-1 .image-1 {
+        position: absolute; top: 0; left: 0; right: 0; height: 4.9em; z-index: -2;
+        background-size: cover; background-repeat: no-repeat; background-position: center center;
+      }
+
+      .page-1 .image-2 {
+        position: absolute; bottom: 0; left: 0; width: 8.3em; height: 5.45em; z-index: -5;
+        background-size: cover; background-repeat: no-repeat; background-position: center center;
+      }
+
+      .page-1 .monash-m { position: absolute; top: 0; right: 0.7em; width: 2.1em; z-index: -1; mix-blend-mode: soft-light; }
+      .page-1 .monash-m img { width: 100%; }
+
+      .page-1 .table-positions { position: absolute; top: 5.6em; left: 8.7em; width: 5em; height: 13.6em; overflow: hidden; }
+      .page-1 .table-1-position, .page-1 .table-2-position { width: 5em; }
+
+      .page-1 .table-1-header { position: relative; }
+      .page-1 .table-1-header h1 { color: #216299; border-bottom: 5px solid #fff; font-size: 0.75em; font-weight: bold; }
+      .page-1 .table-1-header h2 { color: #000; margin: 0.8em 0; font-size: 0.27em; font-weight: bold; }
+
+      .page-1 .shape-1 {
+        position: absolute; top: 0; bottom: 0; right: 0; height: 100%; width: 7.1em; background-color: #C7C8CA; z-index: -3;
+        -webkit-clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%); clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
+      }
+
+      .page-1 .shape-2 {
+        position: absolute; top: 0; bottom: 0; right: 0.13em; height: 100%; width: 7.1em; background-color: #fff; z-index: -4;
+        -webkit-clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%); clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
+      }
+
+      .page-1 .table-1-spreadsheet .col-wrap { display: flex; border-bottom: 1px solid #fff; padding: 0.05em 0 0.02em 0; }
+      .page-1 .table-1-spreadsheet .col-wrap:first-of-type { border-top: 1px solid #fff; }
+      .page-1 .table-1-spreadsheet .col-one { width: 10%; margin: 0; }
+      .page-1 .table-1-spreadsheet .col-two { width: 90%; margin: 0;  }
+
+      .page-1 .table-1-spreadsheet .col-one p { font-size: 0.23em; font-weight: bold; }
+      .page-1 .table-1-spreadsheet .col-two p { font-size: 0.23em; font-weight: 500; }
+
+      .page-1 .table-2-position { margin: 1em 0 0 0; }
+
+      .page-1 .table-2-header h1 { color: #216299; border-bottom: 1px solid #fff; font-size: 0.5em; font-weight: bold; }
+
+      .page-1 .table-2-spreadsheet .col-wrap { border-bottom: 1px solid #fff; padding: 0.05em 0 0.02em 0 }
+      .page-1 .table-2-spreadsheet .col-one { width: 100%; padding: 0.1em 0 0 0; }
+      .page-1 .table-2-spreadsheet .col-two { width: 100%; padding: 0 0 0.1em 0;  }
+
+      .page-1 .table-2-spreadsheet .col-one p { font-size: 0.22em; font-weight: bold; }
+      .page-1 .table-2-spreadsheet .col-two p { font-size: 0.17em; font-weight: 500; }   
+
+      .page-1 .table-label { position: absolute; bottom: 0.4em; left: 8.7em; width: 4em; }
+      .page-1 .table-label p { font-size: 0.15em; }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="page page-1">
+      <div class="bleed">
+
+        <div class="logo logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+          <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+          <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+        </div>
+
+        <div class="header-position">
+          <div class="header-overflow">
+            <h2>
+              <div style="font-size:{{MNH_heading-size}}%; line-height: 1em;" data-limit="2">
+                {{{ header }}}
+              </div>
+            </h2>
+          </div><!--header-overflow-->
+        </div><!--header-position-->
+
+        <div class="subheader-position">
+          <div class="subheader-overflow check-overflow">
+            {{{ body }}}
+          </div><!--subheader-overflow-->
+        </div><!--subheader-position-->
+
+        <div class="monash-m">
+          <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/c7e5f5832e1234e6172a7a7173defc8c/m.svg">
+        </div><!--monash-m-->
+
+        <div class="image-1" style="background-image: url({{{ image-1 }}})">
+        </div><!--image-1-->
+
+        <div class="image-2" style="background-image: url({{{ image-2 }}})">
+        </div><!--image-2-->
+
+        <div class="table-positions">
+          <div class="table-positions-overflow check-overflow">
+            <div class="table-1-position">
+              <div class="table-1-header">
+                <h1>{{{ table-1-title }}}<img style="position: absolute; right: 0.5em; bottom: 1.15em;" src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/00a7587743d8f4ae9c7b403d47752924/global-1.svg"></h1>
+                <h2>{{{ table-1-subheader }}}</h2>
+              </div><!--table-1-header-->
+              <div class="table-1-spreadsheet">
+                {{#spreadsheet.table-1}}
+                <div class="col-wrap">
+                  <div class="col-one">
+                    <p>{{{ col-one }}}</p>
+                  </div><!--col-one-->
+                  <div class="col-two">
+                    <p>{{{ col-two }}}</p>
+                  </div><!--col-two-->
+                </div><!--col-wrap-->
+                {{/spreadsheet.table-1}}
+              </div><!--table-1-spreadsheet-->
+            </div><!--table-1-position-->
+            <div class="table-2-position">
+              <div class="table-2-header">
+                <h1>{{{ table-2-title }}}</h1>
+              </div><!--table-2-header-->
+              <div class="table-2-spreadsheet">
+                {{#spreadsheet.table-2}}
+                <div class="col-wrap">
+                  <div class="col-one">
+                    <p>{{{ row-one }}}</p>
+                  </div><!--col-one-->
+                  <div class="col-two">
+                    <p style="line-height: 1.3; padding-top: 0.7em">{{{ row-two }}}</p>
+                  </div><!--col-two-->
+                </div><!--col-wrap-->
+                {{/spreadsheet.table-2}}
+              </div><!--table-1-spreadsheet-->
+            </div><!--table-1-position-->
+          </div><!--table-positions-overflow-->
+        </div><!--table-positions-->
+
+        <div class="table-label">
+          <p>{{{ statistics }}}</p>
+        </div><!--table-label-->
+
+        <div class="shape-1"></div>
+        <div class="shape-2"></div>
+
+      </div><!--bleed-->
+    </div><!--page-1-->
+
+    <script>
+
+      window.showCrop = {{show-crop}};
+
+    </script>
+    <script src="main.js"></script>
+    <script src="prefixfree.js"></script>
+    <script>
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+      window.onload = function() {
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];;
+        var date = new Date();
+
+        document.getElementById('date').innerHTML = months[date.getMonth()] + ' ' + date.getFullYear();
+      };
+
+      /*
+      *  Include this Snippet to Enforce Text lockups and line limits
+      *  NOTES 
+      *   - This requires base.css as it utilises overflow clss styles.
+      *   - Your element must have an explicit line-heights set
+      */
+      function checkLimitedText() {
+        // Grab all elements with line limits
+        document.querySelectorAll('[data-limit]')
+          .forEach(function (e) {
+          // Check the line limit set    
+          const limit = e.getAttribute('data-limit');
+          // Count the amount of lines currently in the element
+          const lines = countElementLines(e); 
+          if (lines > limit) {
+            e.classList.add("overflow");
+          } 
+          else {
+            e.classList.remove("overflow");
+          }
+        }
+                  );
+      }
+      // Calculates the amount lines in a node
+      // based on the css line-height value
+      function countElementLines(e) {
+        const height = e.clientHeight;
+        const lineHeight = parseFloat(window.getComputedStyle(e).getPropertyValue('line-height'));
+        const lines = Math.ceil(height / lineHeight);
+        return lines;
+      }
+      setInterval(checkLimitedText, 1000);      
+
+    </script>
+  </body>
+</html>
