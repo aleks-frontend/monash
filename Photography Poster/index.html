@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html data-sign="OSZ">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="placeholder-controller.css">
+
+    <style> 
+
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/monash-helvetica-neue/stylesheet.css');
+      /* @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css'); */
+
+      html {
+        font-family: 'Helvetica Neue LT Std Condensed';
+        font-size: 11pt;
+        color: #fff;
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }    
+
+      .reposition-fix {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .fit {
+        display: flex;
+        flex-direction: column;
+        padding: 44pt 58pt 77pt 38pt;
+        padding: 44pt 50pt 114px 50pt;
+        background:{{account.colors.monash-blue}}; 
+      }
+
+      .gray .fit {
+        background: #989796;
+      }
+
+      .logo {
+        position: relative;
+        max-width: 273pt;
+      }
+
+      .heading {
+        position: relative;
+        font-family: 'Helvetica Neue LT Std Condensed';
+        font-size: 100pt;
+        line-height: 1;
+        font-weight: 600;       
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        margin-top: 15pt;
+        margin-bottom: 30pt;     
+      }
+
+      .heading h1 {
+        font-size: {{{MN_heading-size-pp}}}%;
+        line-height: 1em;
+      }
+
+      .content {
+        position: relative;
+        /*  margin-bottom: 51pt;*/
+        /*   padding-right: 111pt;*/
+      }
+
+      .content li{
+        list-style-type: disc;
+        margin-left: 26pt;
+      }
+
+      .content--primary {
+        font-family: 'Helvetica Neue LT Std Condensed';
+        line-height: 1.3em;
+        font-weight: 300;
+        flex: 1;
+        font-size: 30.8pt;
+      }
+
+      .content--primary h1 {
+        font-size: 40pt;
+      }
+
+      .content--primary h2 {
+        font-size: 38pt;
+      }
+
+      .content--primary h3 {
+        font-size: 36pt;
+      }
+      .content--primary h1, .content--primary h2, .content--primary h3 {
+        margin-bottom: 15pt;
+      }
+
+      .content--primary p {
+        font-size: 30pt;
+      }
+
+      .content--secondary {
+        font-size: 22.3pt;
+        margin-top: 14pt;
+      }
+
+      .image {
+        position: relative;
+        height: 307pt;
+        width: 762pt;
+        width: 100%;
+        overflow: hidden;
+        object-fit: contain;
+      }
+
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle }}{{^placeholder-toggle}}hide{{/placeholder-toggle}} {{MN_theme--pp}}{{^MN_theme--pp}}blue{{/MN_theme--pp}}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      {{#placeholder-image-1}}
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      {{/placeholder-image-1}}
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <div class="container fit" >
+          <div class="logoContainer">
+            <img src="{{account.logos.mu-logo-reversed}}" class="logo" alt="logo">
+          </div>
+          {{ #MN_heading--pp }}
+          <div class="heading" data-max-line="2">
+            {{{MN_heading--pp}}}
+          </div><!--heading -->
+          {{ /MN_heading--pp }}
+
+          {{ #MN_body-copy--pp }}
+          <div class="content content--primary">
+            <div data-max-height="dynamic">
+              {{{MN_body-copy--pp}}}
+            </div>
+          </div><!--content--primary-->
+          {{ /MN_body-copy--pp }}
+
+          {{ #MN_image--pp }}
+          <div class="image">
+            <div class="reposition-fix">
+              {{{MN_image--pp}}}
+            </div>
+          </div><!--image-->
+          {{ /MN_image--pp}}
+
+          {{ #MN_footer--pp}}
+          <div class="content content--secondary" data-max-line="3">
+            {{{MN_footer--pp}}}
+          </div><!--content--secondary-->
+          {{ /MN_footer--pp }}
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};                                      
+    </script>
+    <script src="main.js"></script>   
+    <script src="prefixfree.js"></script>
+    <script src="placeholder-controller.js"></script>
+    <script src="char-limit.js"></script>
+    <script src="check-export-mode.js"></script>
+    <script src="check-height.js"></script>    
+    <script src="max-line-check.js"></script>    
+    <script src="max-height-check.js"></script>    
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.3.min.js" type="text/javascript"></script>
+    <script>
+
+      // Fix for the resizable background images - fullscreen and digital vairaitons only
+      function checkCrop() {
+        if (window.showCrop === true) {
+        } else {
+          [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+            el.parentNode.style.left = '0';
+            el.parentNode.style.right = '0';
+            el.parentNode.style.top = '0';
+            el.parentNode.style.bottom = '0';
+            el.parentNode.style.width = '100%';
+            el.parentNode.style.height = '100%';
+          });
+        }
+      }
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          checkHeight(document.getElementsByClassName('check-overflow')); 
+          maxLineCheck(); 
+          maxHeightCheck(); 
+        });
+      });    
+
+      const maxLineChecks = document.querySelectorAll('[data-max-line]');
+      const maxHeightChecks = document.querySelectorAll('[data-max-height]');
+      const checkOverflows = document.querySelectorAll('.check-overflow');
+
+      if ( maxLineChecks.length !== 0) {
+        maxLineChecks.forEach(maxLineCheck => {
+          overflowObserver.observe(maxLineCheck, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });        
+        });
+      }
+
+      if ( maxHeightChecks.length !== 0) {
+        maxHeightChecks.forEach(maxHeightCheck => {
+          overflowObserver.observe(maxHeightCheck, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });        
+        });
+      }      
+
+      if ( checkOverflows.length !== 0) {      
+        checkOverflows.forEach(checkOverflow => {
+          overflowObserver.observe(checkOverflow, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });        
+        });      
+      }
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        checkHeight(document.getElementsByClassName('check-overflow')); 
+        maxLineCheck(); 
+        maxHeightCheck();         
+      });
+
+      placeholderController();
+      checkCrop();  
+      checkExport(); 
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      /*
+      TextFit.fit({
+        selector: '.textFit'
+      });      
+      */
+
+    </script>
+
+
+  </body>
+</html>
