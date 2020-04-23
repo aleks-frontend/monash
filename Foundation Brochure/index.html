@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html data-sign="OSZ">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/HelveticaNeue/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/HelveticaNeueCond/stylesheet.css');           
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Helvetica%20Neue%20Condensed%20LT/stylesheet.css');
+
+      /* inputs order
+      {{show-crop}}
+      {{placeholder-opacity}}
+      {{placeholder-image-1}}
+      {{placeholder-toggle-new}}
+      {{placeholder-validation}}
+      {{{MH_table-heading-1--fbr}}}
+      {{{MH_table-heading-2--fbr}}}
+      {{{MH_table-heading-3--fbr}}}
+      {{{MH_table-heading-4--fbr}}}
+      {{{MH_table-heading-5--fbr}}}
+      {{{MH_table-heading-6--fbr}}}
+      {{#spreadsheet.MH_table--fbr}}{{/spreadsheet.MH_table--fbr}}
+      {{{MH_terms--fbr}}}
+      */
+
+      :root {
+        --white: #fff;
+        --black: #020202;
+        --grey: #808285;
+        --light-grey: #6f6e6c;
+        --orange: {{{account.colors.pop-orange}}};
+        --light-orange: #fef6e9;
+      }
+
+      html {
+        font-family: 'Helvetica Neue Condensed LT Std';
+        font-size: 11pt;
+        color: var(--black);
+        word-break: break-word;
+      }   
+
+      .fit {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 33pt;
+      }
+
+      .header {
+        position: relative;
+        height: 140pt;
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }
+
+      .backgroundImage img {
+        height: 100%;
+      }
+
+      .body {
+        flex: 1;
+        padding: 10pt 38pt 0pt 45pt;
+      }
+
+      .table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      .table__row:nth-child(even) {
+        background-color: var(--light-orange);
+      }
+
+      .table__cell {
+        max-width: 130pt;
+        min-width: 32pt;
+        padding: 5.8pt 5pt;
+        font-size: 8pt;
+        line-height: 1.2em;
+        border-left: 0.7pt solid var(--light-grey);
+      }
+
+      .table__cell:first-child{
+        padding-left: 8.2pt;
+        padding-right: 4.2pt;
+        font-size: 9.5pt;
+        font-weight: bold;
+        line-height: 1.1em;
+        border-left: none;
+      }
+
+      .table__cell:nth-child(2) {
+        border-left: 1.5pt solid var(--orange);
+      }
+
+      .table__cell--header {
+        padding: 4pt 3pt 3pt;
+        border-bottom: 0.7pt solid var(--light-grey);
+        line-height: 1.1em;
+      }
+
+      .table__cell--header:first-child {
+        color: var(--white);
+        background-color: var(--black);
+      }
+
+      .footer {
+        max-height: 148pt;
+        padding: 7.5pt 38pt 0pt 45pt;
+      }
+
+      .terms {
+        max-height: 146pt;
+        font-size: 6.43pt;
+        font-family: 'Helvetica Neue';
+        font-weight: 300;
+        line-height: 1.3em; 
+        color: var(--grey);
+      }
+
+      /* Helper classes */
+      .u-hide { display: none; }
+      .u-center { text-align: center; }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      /* semicolonBreakReplace() function related styling */
+      .semicolonBreakReplaceMaster { display: none; }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+    </div><!-- end placeholderMaster -->
+    <div class="semicolonBreakReplaceMaster">
+      {{#spreadsheet.MH_table--fbr}}
+      <div class="semicolonBreakReplaceMaster__item js-semicolonBreakReplace-src">{{column-1}}</div>
+      <div class="semicolonBreakReplaceMaster__item js-semicolonBreakReplace-src">{{column-2}}</div>
+      <div class="semicolonBreakReplaceMaster__item js-semicolonBreakReplace-src">{{column-3}}</div>
+      <div class="semicolonBreakReplaceMaster__item js-semicolonBreakReplace-src">{{column-4}}</div>
+      <div class="semicolonBreakReplaceMaster__item js-semicolonBreakReplace-src">{{column-5}}</div>
+      <div class="semicolonBreakReplaceMaster__item js-semicolonBreakReplace-src">{{column-6}}</div>
+      {{/spreadsheet.MH_table--fbr}}
+    </div><!-- end semicolonBreakReplaceMaster -->
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+          <div class="header">
+            <div class="backgroundImage">
+              <img src="https://files.outfit.io/media_library_items/140619/Foundation%2520Brochure%2520part%2520of%2520background%2520-.svg" />
+            </div><!--backgroundImage-->
+          </div> <!--header-->
+          <div class="body">
+            <div class="body__inner" data-max-height="dynamic">
+              <table class="table">
+                <tr class="table__row table__row--header">
+                  <th class="table__cell table__cell--header">{{{MH_table-heading-1--fbr}}}</th> <!--table__cell--header-->
+                  <th class="table__cell table__cell--header">{{{MH_table-heading-2--fbr}}}</th> <!--table__cell--header-->
+                  <th class="table__cell table__cell--header">{{{MH_table-heading-3--fbr}}}</th> <!--table__cell--header-->
+                  <th class="table__cell table__cell--header">{{{MH_table-heading-4--fbr}}}</th> <!--table__cell--header-->
+                  <th class="table__cell table__cell--header">{{{MH_table-heading-5--fbr}}}</th> <!--table__cell--header-->
+                  <th class="table__cell table__cell--header">{{{MH_table-heading-6--fbr}}}</th> <!--table__cell--header-->
+                </tr> <!--table__row--header-->
+                {{#spreadsheet.MH_table--fbr}}
+                <tr class="table__row table__row--body">
+                  <td class="table__cell table__cell--body js-semicolonBreakReplace-target">{{column-1}}</td> <!--table__cell--header-->
+                  <td class="table__cell table__cell--body u-center js-semicolonBreakReplace-target">{{column-2}}</td> <!--table__cell--header-->
+                  <td class="table__cell table__cell--body u-center js-semicolonBreakReplace-target">{{column-3}}</td> <!--table__cell--header-->
+                  <td class="table__cell table__cell--body u-center js-semicolonBreakReplace-target">{{column-4}}</td> <!--table__cell--header-->
+                  <td class="table__cell table__cell--body js-semicolonBreakReplace-target">{{column-5}}</td> <!--table__cell--header-->
+                  <td class="table__cell table__cell--body column-six js-semicolonBreakReplace-target">{{column-6}}</td> <!--table__cell--header-->
+                </tr> <!--table__row--header-->
+                {{/spreadsheet.MH_table--fbr}}
+              </table> <!--table-->
+            </div> <!--body__inner-->
+          </div> <!--body-->
+          <div class="footer">
+            {{#MH_terms--fbr}}
+            <div class="terms" data-max-height="css">{{{MH_terms--fbr}}}</div> <!--terms-->
+            {{/MH_terms--fbr}}
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="js/dynamic-inject.js"></script>
+    <script src="js/text-fit-min.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+      {{ #placeholder-toggle-new }}document.body.classList.add("u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}}"); {{ /placeholder-toggle-new }}
+      {{ #placeholder-validation }}document.body.classList.add("placeholder__validation--{{placeholder-validation}}"){{ /placeholder-validation }}
+    </script>
+    <script>
+
+      console.clear();
+
+      function semicolonBreakReplace() {
+        const sources = document.querySelectorAll('.js-semicolonBreakReplace-src');
+        const targets = document.querySelectorAll('.js-semicolonBreakReplace-target');
+
+        sources.forEach((source, index) => {
+          const formated = source.innerText.replace(/;/gi, '<br>');
+          targets[index].innerHTML = formated;
+        })
+      }            
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+          hideEmptyTitles();
+        });
+      });
+
+      const injectObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectDynamicContent();
+        });
+      });      
+
+      const semicolonBreakReplaceObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          semicolonBreakReplace();
+        });
+      });            
+
+      const injectSources = document.querySelectorAll('[data-target-id]');
+      const semicolonBreakReplaceMaster = document.querySelector('.semicolonBreakReplaceMaster');
+
+      semicolonBreakReplaceObserver.observe(semicolonBreakReplaceMaster, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      if ( injectSources.length > 0 ) {
+        injectSources.forEach(src => {
+          injectObserver.observe(src, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });            
+        });
+      }       
+
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+        injectDynamicContent();
+        hideEmptyTitles();
+        semicolonBreakReplace();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+
+    </script>
+
+
+  </body>
+</html>
