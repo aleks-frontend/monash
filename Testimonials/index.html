@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html data-sign="OSZ">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css');
+
+      :root {
+        --primary-blue: #009fd9;
+        --secondary-blue: {{{account.colors.pop-blue}}};
+        --red: #ff0026;
+        --orange: #fc6228;
+        --yellow: #fdb525;
+        --green: #00ac3e;
+        --pink: #ee64a4;
+        --black: #020202;
+        --white: #ffffff;
+        --primary-font: 'Helvetica Neue LT Std';
+        --secondary-font: 'Helvetica Neue Cond';
+      }
+
+
+      html {
+        font-family: var(--primary-font);
+        font-size: 11pt;
+        color: #020202;
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }      
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--white);
+      }
+
+      .header {
+        position: relative;
+        display: flex;
+        height: 5.76rem;
+        font-family: var(--secondary-font);
+        text-transform: uppercase;
+        color: var(--white);
+      }
+
+      .header__main {
+        display: flex;
+        flex-direction: column;
+        width: 11.1rem;
+        justify-content: space-between;
+        padding: 0.7rem 0.65rem 0.51rem 0.51rem;
+      }
+
+      .header__main--blue-theme-colour-t  {
+        background-color: var(--primary-blue);
+      }
+
+      .header__main--red-theme-colour-t {
+        background-color: var(--red);
+      }
+
+      .header__main--yellow-theme-colour-t {
+        background-color: var(--yellow);
+      }
+
+      .header__main--orange-theme-colour-t {
+        background-color: var(--orange);
+      }
+
+      .header__main--pink-theme-colour-t {
+        background-color: var(--pink);
+      }
+
+      .header__main--green-theme-colour-t {
+        background-color: var(--green);
+      }
+
+      .logo {
+        width: 3.33rem;
+      }
+
+      .heading {
+        font-size: 0.37rem;
+        width: 4rem;
+        margin-left: 0.23rem;
+        margin-bottom: 0.08rem;
+      }
+
+      .subheading {
+        font-size: 0.586em;
+        width: 6rem;
+        margin-bottom: -0.04rem;
+        margin-left: 0.23rem;
+      }
+
+
+      .header__side {
+        position: absolute;
+        right: 0.65rem;
+        top: -0.001rem;
+        height: 6rem;
+        width: 3.22rem;
+      }
+
+      .collegePattern {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
+
+      .body {
+        display: flex;
+        font-family: var(--secondary-font);
+        flex: 1;
+        margin: 0.53rem 0.62rem 0rem 0.7rem;
+      }
+
+      .body__main {
+        width: 9.26rem;
+      }
+
+      .student {
+        border-top: 2px solid var(--black);
+        border-bottom: 2px solid var(--black);
+        text-transform: uppercase;
+        font-weight: 500;
+        padding-top: 0.44rem;
+        padding-bottom: 0.46rem;
+      }
+
+      .student__name {
+        font-size: 0.53rem;
+      }
+
+      .student__location {
+        font-size: 0.37rem;
+        margin-bottom: 0.17rem;
+      }
+
+      .student__faculty {
+        font-size: 0.332rem;;
+        color: {{theme-colour-t}};
+      }
+
+      .student__faculty--blue-theme-colour-t  {
+        color: var(--primary-blue);
+      }
+
+      .student__faculty--red-theme-colour-t {
+        color: var(--red);
+      }
+
+      .student__faculty--yellow-theme-colour-t {
+        color: var(--yellow);
+      }
+
+      .student__faculty--orange-theme-colour-t {
+        color: var(--orange);
+      }
+
+      .student__faculty--pink-theme-colour-t {
+        color: var(--pink);
+      }
+
+      .student__faculty--green-theme-colour-t {
+        color: var(--green);
+      }
+
+
+      .content {
+        margin-left: 0.01rem;
+        line-height: 1.3;
+      }
+
+      .content h1 { 
+        font-size: 0.58rem;
+        font-weight: bold;
+      }
+
+      .content h2 { font-size: 0.43rem; }
+      .content p { font-size: 0.29rem; }
+
+      .content__title {
+        font-size: 0.21rem;
+        margin-bottom: 0.17rem;
+        margin-left: 0.01rem;
+        margin-top: 0.42rem;
+      }
+
+      .body__side {
+        position: relative;
+        width: 3.43rem;
+        margin: 0rem 0rem 0rem 0.28rem;
+      }
+
+      .studentImage {
+        position: relative;
+        height: 4.7rem;
+        width: 3.43rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .website {
+        font-family: var(--primary-font);
+        font-size: 0.29rem;
+        font-weight: 900;
+        position: relative;
+      }
+
+      .footer {
+        height: 0.9rem;
+        margin-left: 0.7rem;
+      }
+
+      .footer__text {
+        font-size: 0.0725rem;
+        width: 3rem;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+
+          <div class="header">
+            <div class="header__main header__main--{{#theme-colour-t}}{{ theme-colour-t }}-theme-colour-t{{/theme-colour-t}}{{^theme-colour-t}}blue-theme-colour-t{{/theme-colour-t}}">
+              {{ #MNS_monash-logo-colour-t }}
+              <img class="logo" src="{{{ MNS_monash-logo-colour-t }}}">
+              {{ /MNS_monash-logo-colour-t }}
+              <div class="header__text">
+                <div class="heading" data-max-line="3">{{{ MNS_heading-t }}}</div> <!--heading-->
+                <div class="subheading" data-max-line="3">{{{ MNS_subheaading-t }}}</div> <!--subheading-->
+              </div> <!--header__text-->
+            </div> <!--header__main-->
+            <div class="header__side">
+              {{ #MNS_college-pattern-t }}
+              <img class="collegePattern" src="{{{ MNS_college-pattern-t }}}"> <!--collagePattern-->
+              {{ /MNS_college-pattern-t }}
+            </div> <!--header__side-->
+          </div> <!--header-->
+
+          <div class="body">
+            <div class="body__main">
+              <div class="student">
+                <div class="student__name" data-max-line="1">{{{ MNS_student-name-t }}}</div> <!--student__name-->
+                <div class="student__location" data-max-line="1">{{{ MNS_student-location-t }}}</div> <!--student__location-->
+                <div class="student__faculty student__faculty--{{#theme-colour-t}}{{ theme-colour-t }}-theme-colour-t{{/theme-colour-t}}{{^theme-colour-t}}blue-theme-colour-t{{/theme-colour-t}}" data-max-line="2">
+                  {{{ MNS_student-faculty-t }}}
+                </div> <!--student__faculty-->
+              </div> <!--student-->
+              <div class="content__title" data-max-line='2'>{{{ MNS_student-quote-title-t }}}</div> <!--content__title-->
+              <div class="content" data-max-height="525">{{{ MNS_student-about-text-t }}}</div> <!--content-->
+            </div> <!--body__main-->
+            <div class="body__side">
+              {{ #MNS_student-image-t }}
+              <div class="studentImage">
+                <div class="reposition-fix">
+                  {{{ MNS_student-image-t }}}
+                </div><!-- end reposition-fix -->
+              </div><!--studentImage-->
+              {{ /MNS_student-image-t }}
+              <div class="website" data-max-line="1"> {{{ MNS_website-t }}}</div> <!--website-->
+            </div> <!--body__side-->
+          </div> <!--body-->
+
+          <div class="footer">
+            <div class="footer__text" data-max-line="1"> Produced by: {{{ MNS_produced-by-t }}}</div> <!--cricos-->
+            <div class="footer__text" data-max-line="1"> CRICOS provider: {{{ MNS_cricos-t }}}</div> <!--cricos-->
+          </div> <!--footer-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+        });
+      });
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+      function detectSystem() {
+        const isMac = window.navigator.appVersion.includes('Mac');
+        if ( isMac ) document.body.classList.add('is-mac');
+      }
+
+      detectSystem();      
+
+    </script>
+
+
+  </body>
+</html>
