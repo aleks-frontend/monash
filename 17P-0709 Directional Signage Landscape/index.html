@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css" rel="stylesheet">    
+    <script src="tinycolor.js"></script>
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <style>
+      .page {height: calc(100vh - 1px) !important;}
+      
+      .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/fb2eddba1745251fb6b66e2ee12433f0/Screen%20Shot%202017-09-27%20at%208.45.04%20am.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+      
+      .overflow{border:1px dashed red;position:relative}.overflow::before,.overflow:hover:after{position:absolute;right:5px;box-sizing:border-box}.overflow h1,.overflow h2,.overflow h3,.overflow h4,.overflow h5,.overflow h6,.overflow li,.overflow p{color:red!important}.overflow::before{content:'+';z-index:5;top:5px;height:15px;width:15px;border:1px solid red;color:red;padding:2px 2px 2px 3px;font-size:13px;line-height:8px;background-color:#fff;text-align:center}.overflow:hover:before{background-color:red;color:#fff}.overflow:after{display:none}.overflow:hover:after{display:block;content:'There is overset content in this column. Please remove it';top:25px;background-color:#000;color:#fff;border-radius:2px;padding:5px;font-size:11px;font-weight:400;line-height:1.1em;text-align:right;width:15em}
+
+      html {
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Helvetica Neue Cond', helvetica, arial, sans-serif;
+        background-color: #fff;
+      }
+      
+      strong { font-weight: bold; }
+      
+      h1, h2, h3, h4, h5, h6 { margin: 0; line-height: 1.2em; }
+      
+      ul {
+        padding: 0.2em 0;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+      }
+      
+      li {
+        margin: 0;
+        list-style: none;
+        font-size: 0.25em;
+      }
+
+      li:before {
+        content: "■";
+        font-size: 20px;
+        vertical-align: middle;
+        line-height: 20px;
+        margin: 0 0.7em 0 0;
+      }
+
+      /* Page 1 */
+
+      .page-1 .logo { position: absolute; top: 1em; left: 0.8em; width: 5em; }
+      .page-1 .logo img { width: 100%; }
+
+      .showLogo-primary .logo-reversed{
+        display: none;
+      }
+
+      .showLogo-reversed .logo-blue{
+        display: none;
+      }
+
+      .page-1 .image-1 { position: absolute; top: 0; left: 0; right: 0; height: 8.85em; z-index: -2; background-size: cover; background-repeat: no-repeat; background-position: center center; }
+
+      .page-1 .header-position { position: absolute; left: 0.9em; top: 3.7em; max-height: 3.65em; width: 17.3em; z-index: 1; }
+      .page-1 .header-position h2 { color: #fff; font-size: 1.37em; line-height: 1em; text-transform: uppercase; font-weight: bold; }   
+
+      .page-1 .header-1-position { position: absolute; left: 0.9em; top: 6.25em; max-height: 3.65em; width: 11em; z-index: 1; }
+      .page-1 .header-1-position h2 { color: #fff; font-size: 1.17em; line-height: 1em; font-weight: bold; }        
+      
+      .page-1 .subheader-position { position: absolute; top: 6.9em; left: 1em; width: 12.5em; max-height: 1.3em; z-index: 1; }
+      
+      .page-1 .subheader-overflow h2 { margin: 0 0 0.4em 0; color: #fff; font-size: 0.5em; font-weight: bold; }
+      
+      .page-1 .monash-m { position: absolute; top: 0; right: 0.5em; width: 3.79em; z-index: -1; mix-blend-mode: soft-light; }
+      .page-1 .monash-m img { width: 100%; }
+      
+      .page-1 .columns-position { display: flex; justify-content: space-between; position: absolute; top: 9.4em; left: 0.8em; width: 12.5em; }
+      
+      .page-1 .column-1-position, .page-1 .column-2-position, .page-1 .column-3-position { width: 31.7%; }
+      .page-1 .column-1-position, .page-1 .column-2-position { height: 9.4em; overflow: hidden; }
+      .page-1 .column-3-position { height: 7.8em; overflow: hidden; }
+
+      .page-1 .column-1-position h2, .page-1 .column-2-position h2, .page-1 .column-3-position h2 { margin: 0 0 0.6em 0; font-size: 0.32em; font-weight: bold; text-transform: uppercase; }
+      .page-1 .column-1-position p, .page-1 .column-2-position p, .page-1 .column-3-position p { margin: 0 0 0.6em 0; font-family: 'Helvetica Neue LT Std'; font-size: 0.25em; }
+      
+      .page-1 .column-1-position ul, .page-1 .column-2-position ul, .page-1 .column-3-position ul {
+        margin: 0 0 0.3em 0; font-family: 'Helvetica Neue LT Std'; list-style-type: none;
+      }
+      
+      .page-1 .column-1-position ol, .page-1 .column-2-position ol, .page-1 .column-3-position ol { margin: 0 0 0.6em 0; padding: 0 0 0 2em; font-family: 'Helvetica Neue LT Std'; font-size: 0.25em; }
+
+      .page-1 .column-1-position h3, .page-1 .column-2-position h3, .page-1 .column-3-position h3 { margin: 0 0 0.4em 0; font-family: 'Helvetica Neue LT Std'; font-size: 0.2em; font-weight: normal; }
+      .page-1 .column-1-position img, .page-1 .column-2-position img, .page-1 .column-3-position img { width: 100%; }
+      
+      .page-1 .details { position: absolute; bottom: 1.3em; left: 0.6em; width: 4.1em; max-height: 3.7em; padding: 0.3em; color: #fff; background-color: #939598; }
+      .page-1 .details h2 { color: #fff; margin: 0 0 0.5em 0; font-size: 0.3em; font-weight: bold; }
+      .page-1 .details p {  color: #fff; font-family: 'Helvetica Neue LT Std'; font-size: 0.22em; line-height: 1.3em; }
+      
+      .page-1 .website { position: absolute; left: 0.8em; bottom: 0.6em; }
+      .page-1 .website p {  color: #000; font-family: 'Helvetica Neue LT Std'; font-size: 0.22em; font-weight: bold; }
+      
+      .page-1 .cricos { position: absolute; right: 0.67em; bottom: 0.6em; }
+      .page-1 .cricos p {  color: #A6A7A7; font-family: 'Helvetica Neue LT Std'; font-size: 0.14em; line-height: 1.3em; }
+      
+      .page-1 .arrow-position {display: flex; align-items: center; justify-content: center; position: absolute; bottom: 0; left: 0; right: 0; height: 7.25em; }
+      .page-1 .arrow { width: 7em; margin: 0 auto; }
+      
+      .up-right .arrow { transform: scaleX(-1)rotate(-180deg); }
+      .down-left .arrow { transform: scaleX(-1); }
+      .up-left .arrow { transform: rotate(-180deg); }
+      .down-right .arrow { transform: rotate(0deg); }
+      .left-arrow .arrow { transform: rotate(180deg); }
+      .bottom-arrow .arrow { transform: rotate(90deg); }
+      .top-arrow .arrow { transform: rotate(-90deg); }
+      .northeast-arrow .arrow { transform: rotate(-45deg); }
+      .southeast-arrow .arrow { transform: rotate(45deg); }
+      .southwest-arrow .arrow { transform: rotate(135deg); }
+      .northwest-arrow .arrow { transform: rotate(-135deg); }
+      
+      .img-overlay {
+         position: absolute; top: 0; left: 0; right: 0; height: 8.85em;
+      }
+      
+      
+      .mkt-theme-one .img-overlay { background-color: #009fd9; opacity: 0.7; }
+      .mkt-theme-two .img-overlay { background-color: #00ac3e; opacity: 0.7; }
+      .mkt-theme-three .img-overlay { background-color: #8177b4; opacity: 0.7; }
+      .mkt-theme-four .img-overlay { background-color: #fc6228; opacity: 0.7; }
+      .mkt-theme-five .img-overlay { background-color: #ff0026; opacity: 0.7; }  
+            
+      .mkt-theme-one #Combined-Shape { fill: #009fd9; }
+      .mkt-theme-two #Combined-Shape { fill: #00ac3e; }
+      .mkt-theme-three #Combined-Shape { fill: #8177b4; }
+      .mkt-theme-four #Combined-Shape { fill: #fc6228; }
+      .mkt-theme-five #Combined-Shape { fill: #ff0026; }  
+            
+      .page-1 .monash-m {
+        mix-blend-mode: unset;
+        opacity: 0.4;
+      }
+    </style>
+  </head>
+  <body class="{{ theme-mkt }}">
+
+    <div class="page page-1 {{{ arrow-position }}}">
+      <div class="bleed">
+
+        <div class="logo logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+          <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+          <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+        </div>
+
+        <div class="monash-m">
+          <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/c7e5f5832e1234e6172a7a7173defc8c/m.svg">
+        </div><!--monash-m-->
+        
+        <div class="img-overlay"></div>
+        
+        {{#image-1}}
+        <div class="image-1" style="background-image: url({{{ image-1 }}})"></div><!--image-1-->
+        {{/image-1}}
+        {{^image-1}}
+        <div class="image-1" style="background-image: url({{{ image-mkt-nm }}})"></div><!--image-1-->
+        {{/image-1}}
+        
+        <div class="header-position">
+          <div class="header-overflow check-overflow">
+            <h2>{{{ header }}}</h2>
+          </div><!--header-overflow-->
+        </div><!--header-position-->
+        
+        <div class="subheader-position">
+          <div class="subheader-overflow check-overflow">
+            <h2>{{{ subheader }}}</h2>
+          </div><!--subheader-overflow-->
+        </div><!--subheader-position-->
+        
+        <div class="arrow-position">
+          <div class="arrow">
+            <svg width="100%" height="100%" viewBox="0 0 335 276" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+              <desc>Created with Sketch.</desc>
+              <defs></defs>
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Combined-Shape" fill-rule="nonzero" fill="#049FDB">
+                  <path d="M292.654013,148.6588 L0.0004,148.6588 L0.0004,127.0238 L292.71292,127.0238 L184.808455,15.9096188 L201.191545,-0.000218751233 L335.064304,137.854707 L200.469543,276.000986 L184.112457,260.064414 L292.654013,148.6588 Z"></path>
+                </g>
+              </g>
+            </svg>
+          </div><!--arrow-->
+        </div><!--arrow-position-->
+        
+        <div class="cricos"><p>{{{ cricos }}}</p></div><!--cricos-->
+        
+        
+      </div><!--bleed-->
+    </div><!--page-1-->
+    
+    <script>
+    
+    window.showCrop = {{show-crop}};
+    
+  </script>
+  <script src="main.js"></script>
+  <script src="prefixfree.js"></script>
+  <script>
+    
+    function loop() {
+      checkHeight(document.getElementsByClassName('check-overflow'));
+
+    } setInterval(loop, 500);
+
+    function checkHeight(element) {
+      for (i = 0 ; i < element.length ; i++ ) {
+        var currentElement = element[i];
+        var height         = currentElement.offsetHeight;
+        var parent         = currentElement.parentNode;
+        var parentHeight   = parent.offsetHeight;
+
+        if (height > parentHeight) {
+          parent.classList.add('overflow');
+        } else {
+          parent.classList.remove('overflow');
+        }
+
+        if ((currentElement).parentNode.classList.contains('overflow')) {
+          document.body.classList.add('overflow-true');
+        } else {
+          document.body.classList.remove('overflow-true'); 
+        }
+      }
+    }
+    
+    window.onload = function() {
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];;
+        var date = new Date();
+
+        document.getElementById('date').innerHTML = months[date.getMonth()] + ' ' + date.getFullYear();
+    };
+    
+    </script>
+  </body>
+</html>
