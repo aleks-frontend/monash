@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html data-sign="OSM">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <style>
+      /*
+      {{show-crop}}
+      {{MN_layout--st}}
+      {{MN_theme-choice--st}}
+      {{MN_background-image--social}}
+      {{MN_background-colour--st}}
+      {{MN_m-overlay-color--st}}
+      {{MN_m-overlay-color-opacity--st}}
+      {{MH_m-image--st}}
+      {{MN_heading--st}}
+      {{MN_call-to-action--st}}
+      */
+
+
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/HelveticaNeue/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css');
+
+
+      :root {
+        --white: #fff;
+        --black: #000;
+        --pop-ruby: {{{account.colors.pop-ruby}}};
+        --pop-pink: {{{account.colors.pop-pink}}};
+        --pop-fuchsia: {{{account.colors.pop-fuchsia}}};
+        --pop-green: {{{account.colors.pop-green}}};
+        --pop-red: {{{account.colors.pop-red}}};
+        --pop-orange:{{{account.colors.pop-orange}}};
+        --pop-blue:{{{account.colors.pop-blue}}};
+        
+        --dynamic-text-color: var(--white);
+      }
+      
+      .theme--dark {
+        --dynamic-text-color: var(--black);
+      }
+      
+      .theme--light {
+        --dynamic-text-color: var(--white);
+      }
+
+      .backgroundColour--ruby {
+        --dynamic-backgroundColour: var(--pop-ruby);
+      }
+
+      .backgroundColour--pink {
+        --dynamic-backgroundColour: var(--pop-pink);
+      }
+
+      .backgroundColour--fuchsia {
+        --dynamic-backgroundColour: var(--pop-fuchsia);
+      }
+
+      .backgroundColour--green {
+        --dynamic-backgroundColour: var(--pop-green);
+      }
+
+      .backgroundColour--red {
+        --dynamic-backgroundColour: var(--pop-red);
+      }
+
+      .backgroundColour--orange {
+        --dynamic-backgroundColour: var(--pop-orange);
+      }
+
+      .backgroundColour--blue {
+        --dynamic-backgroundColour: var(--pop-blue);
+      }
+
+      .ctaColour--ruby {
+        --dynamic-ctaColour: var(--pop-ruby);
+      }
+
+      .ctaColour--pink {
+        --dynamic-ctaColour: var(--pop-pink);
+      }
+
+      .ctaColour--fuchsia {
+        --dynamic-ctaColour: var(--pop-fuchsia);
+      }
+
+      .ctaColour--green {
+        --dynamic-ctaColour: var(--pop-green);
+      }
+
+      .ctaColour--red {
+        --dynamic-ctaColour: var(--pop-red);
+      }
+
+      .ctaColour--orange {
+        --dynamic-ctaColour: var(--pop-orange);
+      }
+
+      .ctaColour--blue {
+        --dynamic-ctaColour: var(--pop-blue);
+      }
+      
+      
+
+      html {
+        font-family: 'Helvetica Neue Cond';
+        word-break: break-word;
+      }
+      
+      .fit {
+        display: flex;
+        top: 3mm;
+        right: 3mm;
+        bottom: 3mm;
+        left: 3mm;
+        background-color: var(--dynamic-backgroundColour);
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }      
+
+      /* Helper classes */
+      .u-hide { display: none; }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      
+
+      .background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .section {
+        position: relative;
+      }
+
+      .section--left {
+        width: 391pt;
+      }
+
+      .layout--instagram .section--left {
+        width: 334pt;
+      }
+
+      .layout--instagram.theme--mu-logo .section--left {
+        width: 352pt;
+      }
+
+      .layout--linkedIn .section--left {
+        width: 141pt;
+      }
+
+      .section--right {
+        flex: 1;
+        padding: 56pt 191pt 56pt 125pt;
+      }
+
+      .layout--instagram .section--right {
+        padding: 29pt 70pt 37pt 50pt;
+      }
+
+      .layout--linkedIn .section--right {
+        padding: 24pt 191pt 56pt 100pt;
+      }
+
+      .layout--facebook.theme--mu-logo .section--right {
+        padding: 62pt 191pt 56pt 90pt;
+      }
+
+      .image {
+        position: absolute;
+        left: -126pt;
+        max-width: unset;
+        height: 104%;
+      }
+
+      .layout--linkedIn .image {
+        left: -41pt;
+      }
+
+      .layout--instagram .image {
+        left: -96pt;
+      }
+      
+      .theme--mu-logo .image { display: none; }
+
+      .logo {
+        display: none;
+        width: 389pt;
+        margin-bottom: 159pt;  
+      }
+
+      .theme--dark .logo--primary,
+      .theme--light .logo--secondary {
+        display: block;
+      }
+
+      .layout--linkedIn .logo {
+        width: 192pt;
+        margin-bottom: 30pt;
+      }
+
+      .layout--instagram .logo {
+        width: 200pt;
+        margin-bottom: 134pt;
+      }
+
+      .layout--instagram.theme--mu-logo .logo {
+        width: 199pt;
+      }
+
+      .heading {
+        margin-bottom: 27pt;
+        margin-left: 8pt;
+        color: var(--dynamic-text-color);
+      }
+
+      .layout--linkedIn .heading {
+        margin-bottom: 17pt;
+      }
+
+      .heading h1 {
+        margin-bottom: 6pt;
+        font-size: 1.01rem;
+        line-height: 1.2em;
+      }
+
+      .layout--linkedIn .heading h1 {
+        margin-bottom: 3pt;
+      }
+
+      .heading h1:last-child {
+        margin-bottom: 0;
+      }
+
+      .heading p {
+        font-size: 0.89rem;
+        line-height: 1.2em;
+      }
+
+      .cta {
+        display: inline-block;
+        margin-left: 8pt;
+        padding: 0.38rem 0.51rem;
+        font-family: 'Helvetica Neue';
+        font-size: 0.55rem;
+        font-weight: normal;
+        line-height: 1.2em;
+        color: var(--dynamic-text-color);
+        background-color: var(--dynamic-ctaColour);
+      }
+      
+      .shape {
+        width: 100%;
+        height: 100%;
+        clip-path: polygon(0% 100%, 25.2% 100%, 25.2% 57%, 33% 100%, 67% 100%, 74.8% 57%, 74.8% 100%, 100% 100%, 100% 0%, 57.8% 0%, 50% 33.5%, 42.2% 0%, 0% 0%);
+
+        {{^MH_m-image--st}}
+        background-color: {{MN_m-overlay-color--st}};
+        opacity: {{MN_m-overlay-color-opacity--st}};
+        {{/MH_m-image--st}}
+
+        {{#MH_m-image--st}}
+        background-image: url('{{{MH_m-image--st}}}');
+        z-index: 1;
+        background-size: cover;
+        background-position: center;
+        {{/MH_m-image--st}}
+      }
+      
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" data-crop="cc"
+        class="layout--{{{MN_layout--st}}}{{^MN_layout--st}}facebook{{/MN_layout--st}}
+               theme--{{{MN_theme-choice--st}}}{{^MN_theme-choice--st}}light{{/MN_theme-choice--st}}
+               backgroundColour--{{{MN_background-colour--st}}}
+               ctaColour--{{{MN_call-to-action-button-colour--st}}}{{^MN_call-to-action-button-colour--st}}blue{{/MN_call-to-action-button-colour--st}}">
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+          <div class="backgroundImage">
+            <div class="reposition-fix">{{{MN_background-image--social}}}</div><!--reposition-fix-->
+          </div><!--backgroundImage-->
+          <div class="section section--left">
+             <div class="shape"></div><!--shape-->
+          </div><!--section-->
+          <div class="section section--right">
+            <img class="logo logo--primary" src="{{{account.logos.mu-logo-transparent}}}"><!--logo-->
+            <img class="logo logo--secondary" src="{{{account.logos.mu-logo-reversed}}}"><!--logo-->
+            <div class="heading" data-max-height="5.2" data-max-height-unit="rem">{{{MN_heading--st}}}</div><!--heading-->
+            {{#MN_call-to-action--st}}
+            <div class="cta"><div class="cta__inner" data-max-line="1">{{{MN_call-to-action--st}}}</div></div><!--cta-->
+            {{/MN_call-to-action--st}}
+          </div><!--section-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="js/dynamic-inject.js"></script>
+    <script src="js/text-fit-min.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+    </script>
+    <script>
+
+      console.clear();
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+          hideEmptyTitles();
+        });
+      });
+
+      const injectObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectDynamicContent();
+        });
+      });      
+
+      const injectSources = document.querySelectorAll('[data-target-id]');
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      if ( injectSources.length > 0 ) {
+        injectSources.forEach(src => {
+          injectObserver.observe(src, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });            
+        });
+      }    
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+        injectDynamicContent();
+        hideEmptyTitles();
+      });
+
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+
+    </script>
+
+
+  </body>
+</html>
