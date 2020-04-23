@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+
+    <style>
+      .entity-visible.monash-faculty {
+        display: block;
+      }
+
+      .entity-hidden.monash-faculty {
+        display: none;
+      }
+      .go8-logo.hide {
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}} back-{{postcard-back-type}}">
+    <div class="page">
+      <div class="background">
+        <div class="background-image" style="background-image: url({{background-image}})"></div>
+
+      </div>
+
+      <div class="document">
+        <div class="content">
+          <div class="blue-line"></div>
+          <div class="line"></div>
+
+          <div class="row-container">
+            <div class="row logos">
+              <div class="logo">
+                <img src="assets/images/monash-logo.svg">
+              </div><!--logo-->
+              <div class="monash-faculty {{entity-visibility}}">{{{ team.stacked-faculty-name }}}</div>
+            </div><!--row 1-->
+
+            <div class="row">
+              <div class="col-container">
+                <div class="col text-column">
+                  {{#header-background}}<div class="column-background-image" style="background-image: url('{{header-background}}')"></div>{{/header-background}}
+                  {{#header-background-mentoring}}<div class="column-background-image" style="background-image: url('{{header-background-mentoring}}')"></div>{{/header-background-mentoring}}
+                  {{#header-background-peerMentoring}}<div class="column-background-image" style="background-image: url('{{header-background-peerMentoring}}')"></div>{{/header-background-peerMentoring}}
+                  
+
+                  <div class="text-content">
+                    {{#headline}}<div class="headline"><div>{{{headline}}}</div></div>{{/headline}}
+                    {{#subheading}}<div class="subheading"><div><h5>{{{subheading}}}</h5></div></div>{{/subheading}}
+                  </div><!--text-content-->
+                </div><!--col 1-->
+                <div class="col">
+                  <div class="clip" style="background-image: url('{{mnhs-image}}{{M-generic}}{{M-graduate-education}}{{M-education}}{{M-innovation}}{{M-pharmacy}}{{M-OLT}}{{M-MADA}}{{M-BDI}}{{M-MSDI}}{{M-Law}}{{ header-background-peer-mentoring }}{{ header-background-monash-mentoring }}')"></div>
+                </div><!--col 2-->
+              </div><!--col-container-->
+            </div><!-- row 2 -->
+          </div><!--row-container-->
+        </div><!--content-->
+      </div><!--document-->
+
+    </div><!--page-->
+
+    <div class="page {{{ hide-page-two }}} page-2 layout-1 {{group-of-eight-logo-visibility}}-go8">
+      <div class="background">
+        <div class="background-image" style="background-image: url({{background-image}})"></div>
+      </div>
+
+      <div class="document">
+        <div class="content">
+          <div class="blue-line"></div>
+          <div class="line"></div>
+
+          <div class="row-container">
+            <div class="row">
+              <div class="col-container">
+
+                <div class="col content-1">
+                  <div class="col-content-1">{{{column-1-content}}}</div>
+                </div><!--col 1-->
+
+                <div class="col content-2">
+                  <div class="col-content-2">{{{column-2-content}}}</div>
+                </div><!--col 2-->
+
+                <div class="col">
+                  <div class="quote-container">
+                    <div class="quote-overflow">
+                      <div class="quote">{{{column-3-quote}}}</div>  
+                      <div class="quote-author">{{{quote-author}}}</div>
+                      <div class="quote-author-position">{{{quote-author-position}}}</div>
+                    </div><!--quote overflow-->
+                  </div><!--quote-container-->
+
+                  <div class="footnotes">
+                    {{#cricos}}<div class="cricos">CRICOS provider: Monash University {{{cricos}}}</div>{{/cricos}}
+                    <!-- BD - Removed by request of Katherine Bancroft 19/02/2019 via Intercom (approved by Bek) <div class="cricos">Produced by: {{{team.faculty-name}}} <span id="date"></span></div> -->
+                  </div>
+
+                </div><!--col 3-->
+
+              </div><!--col-container-->
+            </div><!-- row 1 -->
+          </div><!--row-container-->
+
+          <div class="footer">
+            <img class="go8-logo {{group-of-eight-logo-visibility}}" src="assets/images/go8.svg">
+            <div class="backgrounds">
+              {{#column-background-image}}<div class="footer-background-1" style="background-image: url('{{column-background-image}}')"></div>{{/column-background-image}}              
+              {{#column-background-image-peer-mentoring}}<div class="footer-background-1" style="background-image: url('{{column-background-image-peer-mentoring}}')"></div>{{/column-background-image-peer-mentoring}}
+              {{#column-background-image-monash-mentoring}}<div class="footer-background-1" style="background-image: url('{{column-background-image-monash-mentoring}}')"></div>{{/column-background-image-monash-mentoring}}
+            </div><!--backgrounds-->
+          </div><!--footer-->
+        </div><!--content-->
+      </div><!--document-->
+
+    </div><!--page--> 
+
+    <div class="page {{{ hide-page-two }}} page-2 layout-2">
+      <div class="background">
+        <div class="background-image" style="background-image: url({{background-image}})"></div>
+      </div>
+
+      <div class="document">
+        <div class="content">
+          <div class="blue-line"></div>
+          <div class="line"></div>
+
+          <div class="row-container">
+            <div class="row">
+              <div class="col-container">
+
+                <div class="col">
+                  <div class="col-content-3">{{{column-1-content}}}</div>
+                </div><!--col 1-->
+
+                <div class="col">
+                  <div class="col-content-4">{{{column-2-content}}}</div>
+                </div><!--col 2-->
+
+                <div class="col">
+                  <div class="quote-container">
+                    <div>
+                      <div class="event-details">
+                        <h2>{{{event-date}}}</h2>
+                        <p><strong>{{{event-title}}}</strong></p>
+                        <p>{{{event-time}}}</p>
+                      </div>
+                      <div class="contact-details">
+                        <h2>Contact</h2>
+                        <div class="event-address">{{{event-address}}}</div>
+                        {{#phone-number}}<p>Tel: {{{phone-number}}}</p>{{/phone-number}}
+                        {{#email-address}}<p>Email: {{{email-address}}}</p>{{/email-address}}
+                      </div>
+                      <p class="website"><strong>{{{website}}}</strong></p>    
+                    </div>
+                  </div><!--quote-container-->
+                </div><!--col 3-->
+              </div><!--col-container-->
+            </div><!-- row 1 -->
+          </div><!--row-container-->
+
+          <div class="footer">
+            <div class="col-container">
+              <div class="col">
+                <div class="footer-logos">
+                  <!--<img class="footer-logo-lockup" src="sponsor-logo-lockup">-->
+                </div>
+              </div><!--col 1-->
+
+              <div class="col">
+                <div class="footnotes">
+                  {{#cricos}}<div class="cricos">CRICOS provider: Monash University {{{cricos}}}</div>{{/cricos}}
+                  <!-- BD - Removed by request of Katherine Bancroft 19/02/2019 via Intercom (approved by Bek) <div class="cricos">Produced by: {{{team.faculty-name}}} <span id="date"></span></div> -->
+                </div>
+              </div><!--col 2-->
+            </div><!--col-container-->
+
+            <img class="go8-logo {{group-of-eight-logo-visibility}}" style="position: absolute; bottom: 0; left: 0; max-width: 1.4em; width: 100%;" src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/6d501d3066f12a4866346a3a39729007/group-eight.svg">
+
+          </div><!--footer-->
+        </div><!--content-->
+      </div><!--document-->
+
+    </div><!--page--> 
+
+    <!--<div id="modal">
+    <div id="modal_content">
+      <h1>This Browser <span style="font-weight: 500;">does not</span> support the necessary componenets to preview the correct <span style="font-weight: 500;">M's</span>. While the preview may appear slightly broken, the export work perfectly. </h1>
+      <h2>For an optimal editng experience please use either <a href="https://www.google.com.au/chrome/browser/desktop/">Google Chrome</a> or <a href="https://support.apple.com/en_AU/downloads/safari">Safari</a>.</h2> 
+      <a class="button" href="#" title="Close">✖ Close</a>  
+    </div>
+  </div> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/main.js"></script>
+    <script>
+
+
+      // DATE TIME STAMP
+      window.onload = function() {
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];;
+        var date = new Date();
+
+        document.getElementById('date').innerHTML = months[date.getMonth()] + ' ' + date.getFullYear();
+      };
+    </script>
+    <script>
+      function loop() {
+        smartquotes()
+        checkHeight($(".headline div"), 65);
+        checkHeight($(".subheading div"), 65);
+        checkHeight($(".col-content-1"), 265);
+        checkHeight($(".col-content-2"), 265);
+        checkHeight($(".col-content-3"), 265);
+        checkHeight($(".col-content-4"), 265);
+        checkHeight($(".quote-overflow"), 215);
+      } setInterval(loop, 300);
+
+      function checkHeight(element, maxHeight) {
+        let $height = element.height();
+        if ($height >= maxHeight) {
+          element.parent().addClass('overflow');
+        } else {
+          element.parent().removeClass('overflow');
+        }
+      }
+    </script>
+
+    <script>
+      // Opera 8.0+
+      var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+      // Firefox 1.0+
+      var isFirefox = typeof InstallTrigger !== 'undefined';
+      // At least Safari 3+: "[object HTMLElementConstructor]"
+      var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+      // Internet Explorer 6-11
+      var isIE = /*@cc_on!@*/false || !!document.documentMode;
+      // Edge 20+
+      var isEdge = !isIE && !!window.StyleMedia;
+      // Chrome 1+
+      var isChrome = !!window.chrome && !!window.chrome.webstore;
+      // Blink engine detection
+      var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+      if (isOpera == true) {
+        $('body').addClass('-js-opera-browser');
+      } if (isFirefox == true) {
+        $('body').addClass('-js-firefox-browser');
+      } if (isSafari == true) {
+        $('body').addClass('-js-safari-browser');
+      } if (isIE == true) {
+        $('body').addClass('-js-ie-browser');
+      } if (isEdge == true) {
+        $('body').addClass('-js-edge-browser');
+      } if (isChrome == true) {
+        $('body').addClass('-js-chrome-browser');
+      } if (isBlink == true) {
+        $('body').addClass('-js-blink-browser');
+      }
+
+      $('#modal').on('click','a',function(event){
+        event.preventDefault();
+        $('div#modal').fadeOut('slow');
+        $('h1,h2,p').removeClass('blured_text');  
+      });
+
+    </script>
+  </body>
+</html>
