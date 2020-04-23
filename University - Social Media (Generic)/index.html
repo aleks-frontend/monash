@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+
+    <style>
+
+      .clip-mask {
+        background-color: {{{ pop-color }}};
+      }
+
+      .test-background-image {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/5223462e9f45fcc6911c233556f5cd76/17P-0492-T2---3-Minute-Thesis-Web-Banner-with-text.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+        opacity: 0.6;
+      }
+
+      .logo {
+        background-image: url('assets/images/monash-logo.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        width: 6.1rem;
+        height: 1.7rem;
+        DISPLAY: NONE;
+      }
+
+      .clip-mask, .logo { z-index: 99999; }
+      .overlay { position: absolute; top: 0; bottom: 0; left: 0; right: 0; opacity: 0.7; z-index: 1; }
+      .mkt-theme-one .overlay { background-color: #009fd9; }
+      .mkt-theme-two .overlay { background-color: #00ac3e; }
+      .mkt-theme-three .overlay { background-color: #8177b4; }
+      .mkt-theme-four .overlay { background-color: #fc6228; }
+      .mkt-theme-five .overlay { background-color: #ff0026; }
+
+      .mkt-theme-one .clip-mask { background-color: #009fd9 !important; }
+      .mkt-theme-two .clip-mask { background-color: #00ac3e !important; }
+      .mkt-theme-three .clip-mask { background-color: #8177b4 !important; }
+      .mkt-theme-four .clip-mask { background-color: #fc6228 !important; }
+      .mkt-theme-five .clip-mask { background-color: #ff0026 !important; }  
+
+      .customer-background-image {
+        display: none;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+      }
+
+      .backgroundImage--original .customer-background-image--original,
+      .backgroundImage--peerMentoring .customer-background-image--peerMentoring,
+      .backgroundImage--mentoring .customer-background-image--mentoring {
+        display: block;
+      }
+
+      sup, sub {
+        position: relative;
+        left: 0.2em;
+        display: inline-block;      
+        font-size: 0.35em;  
+        line-height: 0;        
+      }
+      sup { top: -0.45em; }
+      sub { bottom: 0.45em; }
+
+    </style>
+
+  </head>
+  <body class="{{m-position}} {{hide-page-content}} {{theme-mkt}} backgroundImage--{{MCH_background-layout--usm}}{{^MCH_background-layout--usm}}original{{/MCH_background-layout--usm}}">
+    <div class="page {{show-facebook-twenty-percent-grid}}"> 
+      <!--<div class="test-background-image"></div>-->
+      <div class="document">
+        <div class="overlay"></div>
+        <div class="customer-background-image customer-background-image--original">
+          {{#custom-background-image}}{{{custom-background-image}}}{{/custom-background-image}}          
+          {{^custom-background-image}}<span></span>{{{ image-mkt }}}{{/custom-background-image}} <!--original image input-->
+        </div>
+
+        <div class="customer-background-image customer-background-image--peerMentoring">       
+          {{{ image-mkt--peer-mentoring }}}
+        </div>
+
+        <div class="customer-background-image customer-background-image--mentoring">    
+          {{{ image-mkt-monash-mentoring }}}
+        </div>
+
+        <div class="content">
+          <div class="logo"></div>
+          <div class="copy-container">
+            <div class="copy-overflow-container">
+              <div class="copy-inner-container">
+                <h1 class="header">{{{ header }}}</h1><!--header-->
+                <h2 class="subheader">{{{ subheader }}}</h2><!--call-to-action-->
+              </div><!--copy-inner-container-->
+            </div><!--copy-overflow-container-->
+          </div><!--copy-container-->
+        </div><!--content-->
+
+        <div class="clip-container">
+          <div class="clip-mask" style="opacity: {{{m-opacity}}};"></div><!--clip-mask-->
+          <div class="clip-modal">Note: The preview of the M in this browser is broken and not reflective of what will be exported. Please use Chrome or Safari if you want a correct preview.</div><!--clip-modal-->
+        </div><!--clip-container-->
+
+      </div><!--document-->
+    </div><!--page-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/main.js"></script>
+    <script>smartquotes();</script>
+    <script>
+
+      //show or hide the facebook 20% grid 
+      var showGrid = {{show-facebook-twenty-percent-grid}} {{^show-facebook-twenty-percent-grid}}false{{/show-facebook-twenty-percent-grid}};
+
+                                                                                                        // Opera 8.0+
+                                                                                                        var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+                                                                                                        // Firefox 1.0+
+                                                                                                        var isFirefox = typeof InstallTrigger !== 'undefined';
+                                                                                                        // At least Safari 3+: "[object HTMLElementConstructor]"
+                                                                                                        var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+                                                                                                        // Internet Explorer 6-11
+                                                                                                        var isIE = /*@cc_on!@*/false || !!document.documentMode;
+                                                                                                        // Edge 20+
+                                                                                                        var isEdge = !isIE && !!window.StyleMedia;
+                                                                                                        // Chrome 1+
+                                                                                                        var isChrome = !!window.chrome && !!window.chrome.webstore;
+                                                                                                        // Blink engine detection
+                                                                                                        var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+                                                                                                        if (isOpera == true) {
+                                                                                                          $('body').addClass('-js-opera-browser');
+                                                                                                        } if (isFirefox == true) {
+                                                                                                          $('body').addClass('-js-firefox-browser');
+                                                                                                        } if (isSafari == true) {
+                                                                                                          $('body').addClass('-js-safari-browser');
+                                                                                                        } if (isIE == true) {
+                                                                                                          $('body').addClass('-js-ie-browser');
+                                                                                                        } if (isEdge == true) {
+                                                                                                          $('body').addClass('-js-edge-browser');
+                                                                                                        } if (isChrome == true) {
+                                                                                                          $('body').addClass('-js-chrome-browser');
+                                                                                                        } if (isBlink == true) {
+                                                                                                          $('body').addClass('-js-blink-browser');
+                                                                                                        }
+
+                                                                                                        function loop() {
+                                                                                                          checkHeight(document.getElementsByClassName('copy-inner-container'));
+
+                                                                                                        } setInterval(loop, 500);
+
+                                                                                                        function checkHeight(element) {
+                                                                                                          for (i = 0 ; i < element.length ; i++ ) {
+                                                                                                            var currentElement = element[i];
+                                                                                                            var height         = currentElement.offsetHeight;
+                                                                                                            var parent         = currentElement.parentNode;
+                                                                                                            var parentHeight   = parent.offsetHeight;
+
+                                                                                                            if (height > parentHeight) {
+                                                                                                              parent.classList.add('overflow');
+                                                                                                            } else {
+                                                                                                              parent.classList.remove('overflow');
+                                                                                                            }
+
+                                                                                                            if ((currentElement).parentNode.classList.contains('overflow')) {
+                                                                                                              document.body.classList.add('overflow-true');
+                                                                                                            } else {
+                                                                                                              document.body.classList.remove('overflow-true'); 
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+
+    </script>
+
+
+  </body>
+</html>
