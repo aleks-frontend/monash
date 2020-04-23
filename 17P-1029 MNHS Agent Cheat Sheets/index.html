@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css" rel="stylesheet">    
+    <script src="tinycolor.js"></script>
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <style>
+
+      .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/ce3bb71d22faa870ade1a19bcbb90a68/Screen%20Shot%202017-12-27%20at%2011.41.12%20am.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+        pointer-events: none;
+      }
+
+      .overflow{border:1px dashed red;position:relative}.overflow::before,.overflow:hover:after{position:absolute;right:5px;box-sizing:border-box}.overflow h1,.overflow h2,.overflow h3,.overflow h4,.overflow h5,.overflow h6,.overflow li,.overflow p{color:red!important}.overflow::before{content:'+';z-index:5;top:5px;height:15px;width:15px;border:1px solid red;color:red;padding:2px 2px 2px 3px;font-size:13px;line-height:8px;background-color:#fff;text-align:center}.overflow:hover:before{background-color:red;color:#fff}.overflow:after{display:none}.overflow:hover:after{display:block;content:'There is overset content in this column. Please remove it';top:25px;background-color:#000;color:#fff;border-radius:2px;padding:5px;font-size:11px;font-weight:400;line-height:1.1em;text-align:right;width:15em}
+
+      html {
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Helvetica Neue Cond', helvetica, arial, sans-serif;
+        background-color: #fff;
+      }
+
+      strong { font-weight: bold; }
+
+      h1, h2, h3, h4, h5, h6 { margin: 0; line-height: 1.2em; }
+
+      ul {
+        padding: 0.2em 0;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+      }
+
+      li {
+        margin: 0;
+        list-style: none;
+        font-size: 0.25em;
+      }
+
+      li:before {
+        content: "■";
+        font-size: 20px;
+        vertical-align: middle;
+        line-height: 20px;
+        margin: 0 0.7em 0 0;
+      }
+
+      /* Page 1 */
+
+      .page-1 .logo { position: absolute; top: 0.6em; left: 0.6em; width: 3.4em; }
+      .page-1 .logo img { width: 100%; }
+
+      .showLogo-primary .logo-reversed{
+        display: none;
+      }
+
+      .showLogo-reversed .logo-blue{
+        display: none;
+      }
+
+      .page-1 .image-1 { position: absolute; top: 0; left: 0; right: 0; height: 5.9em; z-index: -2; background-size: cover; background-repeat: no-repeat; background-position: center center; }
+
+      .page-1 .header-position { position: absolute; left: 0.7em; bottom: 14.6em; max-height: 2.45em; width: 11em; z-index: 1; }
+      .page-1 .header-position h2 { color: #fff; font-size: 0.77em; line-height: 1em; text-transform: uppercase; }   
+
+      .page-1 .header-1-position { position: absolute; left: 0.8em; top: 6.25em; max-height: 1em; width: 11em; z-index: 1; }
+      .page-1 .header-1-position h2 { color: #fff; font-size: 0.36em; line-height: 1em; font-weight: bold; }        
+
+      .page-1 .subheader-position { position: absolute; top: 7.9em; left: 0.8em; width: 12.5em; max-height: 1.3em; z-index: 1; }
+
+      .page-1 .subheader-overflow h2 { margin: 0 0 0.4em 0; color: #1CA0D8; font-size: 0.32em; font-family: 'Helvetica Neue LT Std'; }
+
+      .page-1 .monash-m { position: absolute; top: 0; right: 0.7em; width: 2.525em; z-index: -1; mix-blend-mode: soft-light; }
+      .page-1 .monash-m img { width: 100%; }
+
+      .page-1 .department-position { position: absolute; right: 12em; top: 2em; width: 8em; font-size: 0.3em; color: white; text-transform: uppercase; }
+
+      .page-1 .content-position { display: flex; flex-direction: column; position: absolute; width: 100%; padding: 0.55em 0.65em 0.5em 0.65em; top: 5.9em; height: calc(100% - 5.9em); z-index: 1; }
+
+      .page-1 .hero-points-position { width: 100%; height: 2.8em; border-top: 1px solid #AAA; padding: 0.5em 0 0 0; }
+      .page-1 .hero-points-position h3 { color: {{{account.colors.monash-blue}}}; font-size: 0.4em; line-height: 1.4em; text-transform: uppercase; }
+
+      .page-1 .columns-position { flex: 1 0 0; display: flex; align-items: flex-start; justify-content: space-between; line-height: 0.4em; font-size: 0.9em; color: {{{account.colors.monash-blue}}}; margin-top: 0.4em; }
+
+      .page-1 .column-1-position { height: 96%; flex: 1 0 0; overflow: hidden; margin-right: 0.4em; }
+      .page-1 .column-2-position { height:12.1em; width: 31.2%; overflow: hidden; font-size: 0.8em; line-height: 0.4em; color: black; display: flex; flex-direction: column; justify-content: space-between; }
+      .page-1 .column-3-position { height: 96%; width: 18%; overflow: hidden; margin-left: 0.4em; }
+
+      .page-1 .columns-position h2 { margin: 0 0 0.6em 0; font-size: 0.23em; letter-spacing: 0.1em; color: #888; text-transform: uppercase; border-top: 1px solid #CCC; padding-top: 0.5em; }
+      .page-1 .columns-position p { margin: 0 0 0.4em 0; font-size: 0.25em; }
+      .page-1 .columns-position p strong { font-size: 1.08em; }
+
+      .column-1-overflow { display: flex; flex-direction: column; justify-content: space-between; min-height: 100%; }
+
+      .page-1 .columns-position ul { border: none; margin: 0 0 0.3em 0; padding: 0.1em; list-style-type: none; }
+
+      .page-1 .columns-position ol { margin: 0 0 0.6em 0; padding: 0 0 0 2em; }
+
+      .page-1 .columns-position h3 { font-size: 0.25em; font-weight: bold; }
+      .page-1 .columns-position img { width: 100%; }
+
+
+      .page-1 .column-2-position p { margin: 0; }
+      .page-1 .column-2-position .quote { font-style: italic; margin-bottom: 1em; }
+      .page-1 .column-2-position .name { font-weight: bold; }
+      .page-1 .column-2-position .quote-box { background: rgba(231, 231, 232, 1); padding: 0.5em 0.4em; flex: 1 1 0; }
+      .page-1 .column-2-position .quote-image { background-size: cover; background-position: center; background-repeat: no-repeat; width: 100%; flex: 1 1 0; }
+
+      .page-1 .column-3-position h3 { font-size: 0.37em; font-weight: 100; text-transform: uppercase; margin: 0.2em 0; }
+      .page-1 .column-3-group:last-child h3 { font-size: 0.25em; word-wrap: break-word; text-transform: initial;}
+      .page-1 .column-3-group:last-child { margin-bottom: 0; }
+      .page-1 .column-3-group { margin-bottom: 0.7em; }
+
+      .page-1 .footer-position { display: flex; align-items: flex-end; align-content: flex-end; justify-content: space-between; }
+      .page-1 .footer-position .go8-logo { width: 1.5em; height: 0.8em; }
+      .page-1 .footer-position .disclaimer { font-size: 0.2em; line-height: 1.2em; max-width: 375px; }
+      .page-1 .footer-position .disclaimer p { color: #888; font-size: 0.9em; }
+      .page-1 .footer-position .disclaimer__heading { color: {{{account.colors.monash-blue}}}; margin-bottom: 0.2em; }
+
+      table {
+        font-size: 6pt;
+        line-height: 8pt;
+        width: 100%;
+      }
+
+      table th {
+        background-color: {{{account.colors.monash-blue}}};
+        color: white;
+        padding: 5pt;
+      }
+
+      table td {
+        background-color: #E7E7E8;
+        color: #58595B;
+        padding: 7pt 5pt 7pt 5pt;
+      }
+
+      tr td:nth-child(even), tr th:nth-child(even) {
+        border-left: 1px solid #58595B;
+        border-right: 1px solid #58595B;
+      }
+
+      table tr {
+        border-bottom: 1px solid #58595B;
+      }
+      
+      tr.no-col-1-heading.no-col-2-heading {
+        display: none;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="page page-1">
+      <div class="bleed">
+        <!--<div class="placeholder"></div>-->
+
+        <div class="logo logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+          <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+          <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+        </div>
+
+        <div class="monash-m">
+          <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/c7e5f5832e1234e6172a7a7173defc8c/m.svg">
+        </div><!--monash-m-->
+
+        <div class="image-1" style="background-image: url({{{ image-1 }}})">
+        </div><!--image-1-->
+
+        <div class="department-position">
+          <h2>{{{team.stacked-faculty-name}}}</h2>
+        </div>
+
+        <div class="header-position">
+          <div class="header-overflow">
+            <h2>{{{ header }}}</h2>
+          </div><!--header-overflow-->
+        </div><!--header-position-->
+
+        <div class="content-position">
+          <div class="hero-points-position">
+            <div class="hero-points-overflow check-overflow">
+              <h3>{{{ hero-points }}}</h3>
+            </div><!--hero-points-overflow-->
+          </div><!--hero-points-position-->
+
+          <div class="columns-position">
+
+            <div class="column-1-position">
+              <div class="column-1-overflow check-overflow">
+                <div class="column-1-group">
+                  <h2>Entry Requirements</h2>
+                  {{{ entry-requirements }}}
+                </div>
+
+                <div class="column-1-group">
+                  <div class="heading" data-max-line="1"> <h2> {{{MON_heading--macs}}} </h2> </div>
+                  {{{ english-bridging-information }}}
+                </div>
+
+                <div class="column-1-group">
+                  <h2>Career Pathways</h2>
+                  {{{ career-pathways-information }}}
+                </div>
+              </div><!--column-1-overflow-->
+            </div><!--column-1-position-->
+
+            {{#collection.hero-block}}
+
+            {{#block.quote-block}}
+            <div class="column-2-position">
+              <div class="quote-box">
+                <div class="quote-box-overflow-container" style="max-height: 323px;">
+                  <div class="quote-box-overflow">
+                    <p class="quote">"{{{ quote }}}"</p>
+
+                    <p class="name">{{{ name }}}</p>
+                    <p class="title">{{{ title }}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="quote-image" style="background-image: url('{{{ image }}}')"></div>
+            </div><!--column-2-position-->
+            {{/block.quote-block}}
+
+            {{#block.table-block}}
+            <div class="column-2-position">
+              <div class="column-2-overflow check-overflow">
+
+                <div class="hero-table">
+                  <h2>Scores you need if you studied overseas</h2>
+                  <table>
+                    <tr class="{{^column-1-heading}}no-col-1-heading{{/column-1-heading}} {{^column-2-heading}}no-col-2-heading{{/column-2-heading}}">
+                      <th>{{{ column-1-heading }}}</th>
+                      <th>{{{ column-2-heading }}}</th>
+                    </tr>
+                    {{#spreadsheet.hero-table}}
+                    <tr> 
+                      <td>{{{ column-1 }}}</td>
+                      <td>{{{ column-2 }}}</td>
+                    </tr>
+                    {{/spreadsheet.hero-table}}
+                  </table>
+                </div>
+
+              </div><!--column-2-overflow-->
+            </div><!--column-2-position-->
+            {{/block.table-block}}
+
+            {{/collection.hero-block}}
+
+            <div class="column-3-position">
+              <div class="column-3-overflow check-overflow">
+                {{#spreadsheet.course-information}}
+                <div class="column-3-group">
+                  <h2>{{ heading }}</h2>
+                  <h3>{{ content }}</h3>
+                </div>
+                {{/spreadsheet.course-information}}
+              </div><!--column-3-overflow-->
+            </div><!--column-3-position-->
+
+          </div><!--columns-position-->
+
+          <div class="footer-position">
+            <div class="go8-logo">
+              <img src="{{{account.logos.go8-logo}}}" />
+            </div>
+            <div class="disclaimer">
+              <div class="disclaimer__heading" data-max-line="1">
+                {{subject-to-availability-label}}
+              </div><!-- end disclaimer__heading -->
+              <p>
+                Please check the Monash University website for updates (monash.edu).
+                <br/>
+                All information reflects prescriptions, policy and practice in force at time of publication. <span id="date"></span>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div><!--bleed-->
+    </div><!--page-1-->
+
+    <script>
+
+      window.showCrop = {{show-crop}};
+
+    </script>
+    <script src="main.js"></script>
+    <script src="prefixfree.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script>
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('header-overflow'));
+        checkHeight(document.getElementsByClassName('hero-points-overflow'));
+        checkHeight(document.getElementsByClassName('column-1-overflow'));
+        checkHeight(document.getElementsByClassName('column-2-overflow'));
+        checkHeight(document.getElementsByClassName('column-3-overflow'));
+        checkHeight(document.getElementsByClassName('quote-box-overflow'));
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true');
+          }
+        }
+      }
+
+      window.onload = function() {
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];;
+        var date = new Date();
+
+        document.getElementById('date').innerHTML = months[date.getMonth()] + ' ' + date.getFullYear();
+      };
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+        });
+      });
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+      });
+
+    </script>
+  </body>
+</html>
