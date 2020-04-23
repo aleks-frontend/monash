@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html async>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      @import "https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css";
+      .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/1404b7507d7e32f3f47f4e5cbb39e169/Screen%20Shot%202018-04-05%20at%2011.43.44%20am.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      .overflow {
+        border: 1px dashed red;
+      }
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4, 
+      .overflow h5, 
+      .overflow h6, 
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 5px;
+        right: 5px;
+        height: 15px;
+        width: 15px;
+        border: 1px solid red;
+        color: red;
+        padding: 2px 2px 2px 3px;
+        box-sizing: border-box;
+        font-size: 13px;
+        text-align: center;
+        line-height: 8px;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is overset content in this column. Please remove it';
+        position: absolute;
+        top: 25px;
+        right: 5px;
+        background-color: black;
+        color: white;
+        border-radius: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+
+      root {
+        --header-style: rgba(255,255,255,1)
+      }
+
+      .white {
+        --header-style: rgba(255,255,255,1);
+      }
+
+      .black {
+        --header-style: rgba(2,2,2,1);
+      }
+
+      .transparent {
+        --header-style: rgba(255,255,255,1);
+      }
+
+      body { margin: 0; padding: 0; font-family: 'Helvetica Neue Cond'; }
+      .textbox {
+        position: absolute;
+        z-index: 1;
+        bottom: 50px;
+        left: 50px;
+        width: 735px;
+      }
+      h1 { 
+        color: var(--header-style); 
+        margin: 0; 
+        padding: 0;  
+        font-size: 76pt;    
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      h2 { 
+        color: var(--header-style); 
+        margin: 0; 
+        padding: 0; 
+        font-size: 76pt;      
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .logo {
+        display: none;
+        position: absolute;
+        z-index: 1;
+        width: 311px;
+        right: 0;
+        top: 5px;
+        padding: 37px;
+      }
+
+      .transparent .logo--reversed {
+        display: block;
+      }
+
+      .white .logo--reversed {
+        display: block;
+      }     
+
+      .black .logo--normal {
+        display: block;
+      }      
+
+      .header-background-image { position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-size: cover; background-position: center; background-repeat: no-repeat; }
+      
+            /*Data Futures Styling*/
+      .data-futures-enabled .header-background-image{
+        background-color: #EFEFEE;
+      }
+      
+      .data-futures-enabled .logo{
+        right: unset;
+        left: 0;
+      }
+      
+      .data-futures-enabled .textbox{
+        width: 540px;
+        bottom: 20px;
+      }
+      
+      .data-futures-artwork, .data-futures-label { display: none;	}
+      .data-futures-enabled .data-futures-artwork{
+        display: block;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        height: 100%;
+        width: 50%;
+        background-image: url(https://files.outfit.io/media_library_items/181751/20A-09401%2520DATA%2520FUTURES%2520OUTFIT%2520EDM%2520HEADER%2520600x200%25202-01.svg);
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: contain;
+      }
+      
+      .data-futures-enabled h1{ width: 530px;  bottom: 20px; }
+      .data-futures-enabled .data-futures-label{
+        position: absolute;
+        right: 11.8em;
+        top: 0;
+        width: 100px;
+        height: 100px;
+        display: block;
+        font-size: 1.4em;
+      }
+
+    </style>
+  </head>
+  <body class="{{header-and-footer-style}}{{^header-and-footer-style}}white{{/header-and-footer-style}} {{data-future-design-enabled}}">
+    <div class="page">
+      <div class="document">
+        <div class="content">
+          <div class="header-background-image" style="background-image: url('{{header-background}}')"></div>
+          <div class="textbox" style="line-height: 1em;" data-limit="19">
+            {{#gmail-edm-banner-header}}
+            <h1>
+              <div style="font-size:{{MNH_heading-size_edmapi}}%; line-height: 0.85em;" data-limit="2">
+                {{{gmail-edm-banner-header}}}
+              </div>
+            </h1>
+            {{/gmail-edm-banner-header}}
+            {{#gmail-edm-banner-subheader}}
+            <h2>
+              <div style="font-size:{{MNH_subheading-size_edmapi}}%; line-height: 0.80em;" data-limit="1">
+                {{{gmail-edm-banner-subheader}}}
+              </div>
+            </h2>
+            {{/gmail-edm-banner-subheader}}
+          </div>
+          <img class="logo logo--reversed" src="{{{account.logos.mu-logo-reversed}}}" />
+          <img class="logo logo--normal" src="{{{account.logos.mu-logo-transparent}}}" />
+          <div class="data-futures-artwork"></div>
+          <div class="data-futures-label"></div>
+        </div><!--content-->
+      </div><!--document-->
+    </div><!--page-->
+  </body>
+  <script>
+    /*
+      *  Include this Snippet to Enforce Text lockups and line limits
+      *  NOTES 
+      *   - This requires base.css as it utilises overflow clss styles.
+      *   - Your element must have an explicit line-heights set
+      */
+    function checkLimitedText() {
+      // Grab all elements with line limits
+      document.querySelectorAll('[data-limit]')
+        .forEach(function (e) {
+        // Check the line limit set    
+        const limit = e.getAttribute('data-limit');
+        // Count the amount of lines currently in the element
+        const lines = countElementLines(e); 
+        if (lines > limit) {
+          e.classList.add("overflow");
+        } 
+        else {
+          e.classList.remove("overflow");
+        }
+      }
+                );
+    }
+    // Calculates the amount lines in a node
+    // based on the css line-height value
+    function countElementLines(e) {
+      const height = e.clientHeight;
+      const lineHeight = parseFloat(window.getComputedStyle(e).getPropertyValue('line-height'));
+      const lines = Math.ceil(height / lineHeight);
+      return lines;
+    }
+    setInterval(checkLimitedText, 1000);
+    setTimeout(function() {
+      document.dispatchEvent(new Event('printready'));
+    }, 1500);
+  </script>
+</html>
