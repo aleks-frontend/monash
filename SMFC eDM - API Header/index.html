@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      @import "https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css";
+      .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/1404b7507d7e32f3f47f4e5cbb39e169/Screen%20Shot%202018-04-05%20at%2011.43.44%20am.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+            
+      .overflow {
+        border: 1px dashed red;
+        position: relative; }
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4, 
+      .overflow h5, 
+      .overflow h6, 
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 5px;
+        right: 5px;
+        height: 15px;
+        width: 15px;
+        border: 1px solid red;
+        color: red;
+        padding: 2px 2px 2px 3px;
+        box-sizing: border-box;
+        font-size: 13px;
+        text-align: center;
+        line-height: 8px;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is overset content in this column. Please remove it';
+        position: absolute;
+        top: 25px;
+        right: 5px;
+        background-color: #020202;
+        color: white;
+        border-radius: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+      
+      body { margin: 0; padding: 0; font-family: 'Helvetica Neue Cond'; }
+      h1 { color: white; margin: 0; padding: 0; font-size: 4em; font-weight: normal; }
+      
+      .headline { position: absolute; top: 8.1em; left: 17em; }
+      .col { position: relative; }
+      .header-background-image { position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-size: cover; background-position: center; background-repeat: no-repeat; }
+
+      .clip {
+        -webkit-clip-path: polygon(0% 0%, 0% 100%, 26.6% 100%, 27.6% 58%, 36% 100%, 64% 100%, 73% 59%, 73% 100%, 100% 100%, 100% 0%, 56% 0%, 50% 33%, 43% 0);
+        clip-path: polygon(0% 0%, 0% 100%, 26.6% 100%, 27.6% 58%, 36% 100%, 64% 100%, 73% 59%, 73% 100%, 100% 100%, 100% 0%, 56% 0%, 50% 33%, 43% 0);
+        background-size: cover;
+        background-position: 50% 50%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 3.1em;
+        width: 10.8em;
+        height: 100%;
+        background-color: rgba(255,255,255,0.5);
+      }  
+      
+      .text{
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 46px !important;
+        line-height: 115% !important;
+        color: #ffffff;
+        font-weight: bold !important;
+        text-transform: uppercase;
+        width: 78%;
+        height: 100vh;
+        display: flex;
+        margin-left: 5.64em;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+      }
+      
+      
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="document">
+        <div class="content">
+          <div class="header-background-image" style="background-image: url('{{header-background}}')"></div>
+          <div class="clip" style="background-image: url('{{M-generic}}'"></div>
+          <div class="text">{{{ smfc-headline }}}</div>
+        </div><!--content-->
+      </div><!--document-->
+    </div><!--page-->
+  </body>
+  <script>
+    function loop() {
+      checkHeight(document.getElementsByClassName('check-overflow'));
+
+    } setInterval(loop, 500);
+
+    function checkHeight(element) {
+      for (i = 0 ; i < element.length ; i++ ) {
+        var currentElement = element[i];
+        var height         = currentElement.offsetHeight;
+        var parent         = currentElement.parentNode;
+        var parentHeight   = parent.offsetHeight;
+
+        if (height > parentHeight) {
+          parent.classList.add('overflow');
+        } else {
+          parent.classList.remove('overflow');
+        }
+
+        if ((currentElement).parentNode.classList.contains('overflow')) {
+          document.body.classList.add('overflow-true');
+        } else {
+          document.body.classList.remove('overflow-true'); 
+        }
+      }
+    }
+
+    //--------------------------- crop and bleed -----------------------------------
+
+    Array.prototype.slice.call(document.querySelectorAll('.page'))
+      .forEach(function(page){
+      var parser = new DOMParser();
+      page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw';
+
+      //var cropString = '<div class="crop-marks"><div class="crop top-left"> <div class="bottom"></div> <div class="right"></div> </div> <div class="crop top-right"> <div class="bottom"></div> <div class="left"></div> </div> <div class="crop bottom-right"> <div class="top"></div> <div class="left"></div> </div> <div class="crop bottom-left"> <div class="top"></div> <div class="right"></div> </div></div>'
+
+      var cropString = (
+        '<div class="crop-marks">' + 
+        '<img style="position: absolute; top: 0; left: 0;" src="crop.svg">' + 
+        '<img style="transform: rotate(90deg); position: absolute; top: 0; right: 0;" src="crop.svg">' + 
+        '<img style="transform: rotate(180deg); position: absolute; bottom: 0; right: 0;" src="crop.svg">' + 
+        '<img style="transform: rotate(270deg); position: absolute; bottom: 0; left: 0;" src="crop.svg">' + 
+        '</div>'
+      )
+
+      var cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+      !!window.showCrop && page.insertBefore(cropNode, null);
+    });
+
+    Array.prototype.slice.call(document.querySelectorAll('.bleed'))
+      .forEach(function(bleed){
+      bleed.style.cssText = !!window.showCrop ?
+        'position: absolute; top: 4.41mm; right: 4.41mm; bottom: 4.41mm; left: 4.41mm;'
+      :
+      'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm'
+    });
+
+    //--------------------------- scalable text -----------------------------------
+
+    window.addEventListener("resize", setSize);
+    function setSize(){
+      var vw   = (showCrop ? window.innerWidth : window.innerWidth + 56) / 100
+      var vh   = (showCrop ? window.innerHeight : window.innerHeight + 56) / 100
+      var vmin = Math.min(vw, vh)
+      var vmax = Math.max(vw, vh)
+      document.documentElement.style.fontSize = ((vmin * 2) + (vmax * 1.4) + (vh * 2)) + "px";
+    };
+
+    setSize();
+  </script>
+</html>
