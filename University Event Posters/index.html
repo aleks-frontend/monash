@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+
+    <style type="text/css">
+      .mkt-theme-one .school p strong, .mkt-theme-one h2, .mkt-theme-one h3 { color: #009fd9; }
+      .mkt-theme-two .school p strong, .mkt-theme-two h2, .mkt-theme-two h3 { color: #00ac3e; }
+      .mkt-theme-three .school p strong, .mkt-theme-three h2, .mkt-theme-three h3 { color: #8177b4; }
+      .mkt-theme-four .school p strong, .mkt-theme-four h2, .mkt-theme-four h3 { color: #fc6228; }
+      .mkt-theme-five .school p strong, .mkt-theme-five h2, .mkt-theme-five h3 { color: #ff0026; } 
+
+      .m-clip-color-overlay {
+        -webkit-clip-path: polygon(0% 0%, 0% 100%, 26.6% 100%, 27.6% 58%, 36% 100%, 64% 100%, 73% 59%, 73% 100%, 100% 100%, 100% 0%, 56% 0%, 50% 33%, 43% 0);
+        clip-path: polygon(0% 0%, 0% 100%, 26.6% 100%, 27.6% 58%, 36% 100%, 64% 100%, 73% 59%, 73% 100%, 100% 100%, 100% 0%, 56% 0%, 50% 33%, 43% 0);
+        background-size: cover;
+        background-position: 50% 50%;
+        position: absolute;
+        bottom: -2.6rem;
+        right: 0;
+        width: 11rem;
+        height: 28rem;
+        z-index: 10;
+      }
+
+      .mkt-theme-one .m-clip-color-overlay { background-color: #009fd9; opacity: 0.7; }
+      .mkt-theme-two .m-clip-color-overlay { background-color: #00ac3e; opacity: 0.7; }
+      .mkt-theme-three .m-clip-color-overlay { background-color: #8177b4; opacity: 0.7; }
+      .mkt-theme-four .m-clip-color-overlay { background-color: #fc6228; opacity: 0.7; }
+      .mkt-theme-five .m-clip-color-overlay { background-color: #ff0026; opacity: 0.7; } 
+
+      .mbs { display: flex; height: 0.5em; margin: 0; position: absolute; bottom: 0; }
+      .mbs img { height: 100%; }
+
+      sup, sub {
+        position: relative;
+        left: 0.2em;
+        display: inline-block;
+        font-size: 0.5em;
+        line-height: 0;
+      }
+      sup { top: -0.25em; }      
+      sub { bottom: 0.25em; }
+      
+      .background						{		background-color: #F5F5F5;																				}
+      .data-futures-name{	display: none;	}
+      .data-futures-enabled .data-futures-name {display: block;}
+      .data-futures-enabled.bee .clip 	{		background-image: url('https://files.outfit.io/media_library_items/181619/Bee.png') !important;			}
+      .data-futures-enabled.dna .clip 	{		background-image: url('https://files.outfit.io/media_library_items/181620/DNA.png') !important;			}
+      .data-futures-enabled.flag .clip 	{		background-image: url('https://files.outfit.io/media_library_items/181618/Flag.png') !important;		}
+      .data-futures-enabled .team-name {display: none;}
+    </style>
+  </head>
+  <body class="{{theme-mkt}} {{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}} {{data-future-design-enabled}} {{data-future-design-option}}">
+
+    <div class="page">
+      <div class="background">
+        {{#background-image}}<div class="background-image" style="margin: 0.6em; background-image: url({{background-image}})"></div>{{/background-image}}
+        <!--{{#background-image-peer-mentoring}} <div class="background-image" style="margin: 0.6em; background-image: url({{background-image-peer-mentoring}})"></div>{{/background-image-peer-mentoring}}
+        {{#background-image-monash-mentoring}}<div class="background-image" style="margin: 0.6em; background-image: url({{background-image-monash-mentoring}})"></div>{{/background-image-monash-mentoring}}-->
+      </div>
+
+      <div class="document">
+
+        <div class="content">
+          <div class="line"></div>        
+          <div class="col-container">
+            <div class="col">
+              <div class="logo">
+                <img class="logo-std" src="assets/images/monash-logo.svg">
+              </div><!--logo-->
+
+              <div class="text-content-container">
+                <div class="text-content">
+                  {{#level-1-heading}}<div class="level-1"><h1>{{{level-1-heading}}}</h1></div>{{/level-1-heading}}
+                  {{#level-2-heading}}<div class="level-2"><h2>{{{level-2-heading}}}</h2></div>{{/level-2-heading}}
+                  {{#level-3-heading}}<div class="level-3"><h3>{{{level-3-heading}}}</h3></div>{{/level-3-heading}}
+                  {{#level-4-heading}}<div class="level-4"><h4>{{{level-4-heading}}}</h4></div>{{/level-4-heading}}
+                  {{#level-5-heading}}<div class="level-5"><h5>{{{level-5-heading}}}</h5></div>{{/level-5-heading}}
+                  {{#level-6-heading}}<div class="level-6"><h6>{{{level-6-heading}}}</h6></div>{{/level-6-heading}}
+                  {{#level-7-heading}}<div class="level-7"><p>{{{level-7-heading}}}</p></div>{{/level-7-heading}}
+                </div><!--text-content-->
+              </div>
+
+              {{#footnotes}}<div class="footnotes {{{ team.stacked-faculty-name }}}">{{{footnotes}}}</div>{{/footnotes}}
+
+              <div class="{{{ cricos-visibility }}}-cricos">
+                {{#cricos}}<div class="cricos {{{ team.stacked-faculty-name }}}">{{{cricos}}}</div>{{/cricos}}
+              </div>
+
+              <img class="go8-logo campaign-hide {{{ team.stacked-faculty-name }}} {{group-of-eight-logo-visibility}}" src="assets/images/go8.svg">  
+              <img class="mbs" src="{{{ mbs }}}">
+
+            </div><!--col 1-->
+
+            <div class="col">
+              <img class="go8-logo campaign-show {{{ team.stacked-faculty-name }}} {{group-of-eight-logo-visibility}}" src="assets/images/go8.svg">  
+              <div class="school campaign-hide {{{ team.stacked-faculty-name }}} " style="display: {{{faculty-name-display}}}">
+                <p class="team-name">{{{ team.stacked-faculty-name }}}</p>
+                <p class="data-futures-name"><span style="color: {{{account.colors.monash-blue}}}">MONASH</span><br>DATA<br>FUTURES</p>
+              </div>
+              
+              <div class="m-clip-color-overlay"></div>
+              <div class="clip" style="background-image: url('{{mnhs-image}}{{image-mkt-nm}}{{M-generic}}{{ M-graduate-education }}{{M-education}}{{M-innovation}}{{M-pharmacy}}{{M-OLT}}{{M-MADA}}{{M-BDI}}{{M-MSDI}}{{M-Law}}{{background-image-peer-mentoring}}{{background-image-monash-mentoring}}')"></div>
+            </div><!--col 2-->
+          </div><!--col-container-->
+        </div><!--content-->
+      </div><!--document-->
+
+    </div><!--page--> 
+
+    <div id="modal">
+      <div id="modal_content">
+        <h1>This Browser <span style="font-weight: 500;">does not</span> support the necessary componenets to preview the correct <span style="font-weight: 500;">M's</span>. While the preview may appear slightly broken, the export work perfectly. </h1>
+        <h2>For an optimal editng experience please use either <a href="https://www.google.com.au/chrome/browser/desktop/">Google Chrome</a> or <a href="https://support.apple.com/en_AU/downloads/safari">Safari</a>.</h2> 
+        <a class="button" href="#" title="Close">✖ Close</a>  
+      </div>
+    </div> 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/main.js"></script>
+    <script>smartquotes();</script>
+    <script>
+      // Opera 8.0+
+      var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+      // Firefox 1.0+
+      var isFirefox = typeof InstallTrigger !== 'undefined';
+      // At least Safari 3+: "[object HTMLElementConstructor]"
+      var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+      // Internet Explorer 6-11
+      var isIE = /*@cc_on!@*/false || !!document.documentMode;
+      // Edge 20+
+      var isEdge = !isIE && !!window.StyleMedia;
+      // Chrome 1+
+      var isChrome = !!window.chrome && !!window.chrome.webstore;
+      // Blink engine detection
+      var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+      if (isOpera == true) {
+        $('body').addClass('-js-opera-browser');
+      } if (isFirefox == true) {
+        $('body').addClass('-js-firefox-browser');
+      } if (isSafari == true) {
+        $('body').addClass('-js-safari-browser');
+      } if (isIE == true) {
+        $('body').addClass('-js-ie-browser');
+      } if (isEdge == true) {
+        $('body').addClass('-js-edge-browser');
+      } if (isChrome == true) {
+        $('body').addClass('-js-chrome-browser');
+      } if (isBlink == true) {
+        $('body').addClass('-js-blink-browser');
+      }
+
+      $('#modal').on('click','a',function(event){
+        event.preventDefault();
+        $('div#modal').fadeOut('slow');
+        $('h1,h2,p').removeClass('blured_text');  
+      });
+
+    </script>
+
+    <script>
+      function loop() {
+        checkHeight($(".text-content"));
+      } setInterval(loop, 2000);
+
+      function checkHeight(element) {
+        var $height = element.height();
+        var $parent = element.parent();
+        var $parentHeight = $parent.height();
+
+        if ($height > $parentHeight) {
+          $parent.addClass('overflow');
+        } else {
+          $parent.removeClass('overflow');
+        }
+      }
+    </script>
+  </body>
+</html>
