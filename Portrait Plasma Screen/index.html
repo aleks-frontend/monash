@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html data-sign="OSM">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/HelveticaNeue/stylesheet.css');
+ 
+      :root {
+        --white: #fff;
+      }
+
+      html {
+        font-family: 'Helvetica Neue Cond';
+        font-size: 11pt;
+        color: #020202;
+        word-break: break-word;
+      }
+
+      strong {
+        font-family: 'Helvetica Neue Cond';
+        font-weight: bold;
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }      
+
+      /* Helper classes */
+      .u-hide { display: none; }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        padding: 64pt 79pt 85pt 51pt;
+      }
+
+
+      .monash-m {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 602pt;
+        height: 100%;
+        background-image: url(https://files.outfit.io/media_library_items/84292/M%2520Session%2520poster.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+
+
+      .header {
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        height: 485pt;
+      }
+
+      .logo {
+        max-width: 221pt;
+      }
+
+      .body {
+        flex: 1;
+      }
+
+      .subheading {
+        position: relative;
+        margin-bottom: 0;
+        font-size: 79pt;
+        font-weight: 900;
+        font-family: 'Helvetica Neue';
+        text-transform: uppercase;
+        color: var(--white);
+      }
+
+      .heading {
+        position: relative;
+        margin-bottom: 34pt;
+        font-size: 225pt;
+        font-family: 'Helvetica Neue';
+        text-transform: uppercase;
+        color: var(--white);
+        font-weight: 900;
+      }
+
+      .details {
+        position: relative;
+        font-family: 'Helvetica Neue Light Cond';
+        font-size: 36pt;
+        line-height: 1.13em;
+        text-transform: uppercase;
+        color: var(--white);
+        letter-spacing: 3pt;
+        padding-left: 10pt;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+          <div class="backgroundImage"><div class="reposition-fix">{{{MH_background-image--mpst}}}</div></div><!--backgroundImage-->
+          <div class="monash-m"></div><!--monash-m-->
+          <div class="header">
+            <img class="logo" src="{{{account.logos.mu-logo-reversed}}}">
+          </div><!--header-->
+          <div class="body">
+            {{#MH_subheading--mpst}}
+            <div class="subheading"><div style=" font-size:{{{MH_subheading-font-size--mpst}}}%; line-height:0.93em; letter-spacing: 0.1rem" data-max-line="2">{{{MH_subheading--mpst}}}</div></div><!--subheading-->
+            {{/MH_subheading--mpst}}
+            {{#MH_heading--mpst}}
+            <div class="heading"><div style=" font-size:{{{MH_heading-font-size--mpst}}}%; line-height: 0.85em; letter-spacing: 0.15rem" data-max-line="2">{{{MH_heading--mpst}}}</div></div><!--heading-->
+            {{/MH_heading--mpst}}
+            <div class="details" data-max-line="6">{{{MH_details--mpst}}}</div><!--details-->
+          </div><!--body-->
+          
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="js/dynamic-inject.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+        });
+      });
+      
+      const injectObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectDynamicContent();
+        });
+      });      
+      
+      const injectSources = document.querySelectorAll('[data-target-id]');
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+      
+      if ( injectSources.length > 0 ) {
+        injectSources.forEach(src => {
+          injectObserver.observe(src, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });            
+        });
+      }    
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+        injectDynamicContent();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+      
+      function detectSystem() {
+        const isMac = window.navigator.appVersion.includes('Mac');
+		if ( isMac ) document.body.classList.add('is-mac');
+      }
+
+      detectSystem();
+
+    </script>
+
+
+  </body>
+</html>
