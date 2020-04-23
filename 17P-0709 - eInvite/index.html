@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html async>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/minireset.css">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <link rel="stylesheet" href="assets/stylesheets/crop.css">
+  </head>
+  <style>
+
+    @import "https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css";
+    @import "https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css";
+
+    body{
+      color: #000000;
+    }
+
+    .test-background-image {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/6185a254a0bdc07485add00902d33d77/17P-0709%20T2%20-%20F1_eVite.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.7;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    .show-crop-marks .test-background-image {
+      top: 0.5in;
+      left: 0.5in;
+      right: 0.5in;
+      bottom: 0.5in;
+    }
+
+    .img-overlay {
+      width: calc(100% + 2.2rem);
+      height: calc(100% + 1.1rem);
+      position: absolute;
+      top: -1.1rem;
+      bottom: 0;
+      left: -1.1rem;
+      right: -1.1rem;
+      z-index: 1; 
+    }
+
+    .mkt-theme-one .img-overlay { background-color: #009fd9; opacity: 0.7; }
+    .mkt-theme-two .img-overlay { background-color: #00ac3e; opacity: 0.7; }
+    .mkt-theme-three .img-overlay { background-color: #8177b4; opacity: 0.7; }
+    .mkt-theme-four .img-overlay { background-color: #fc6228; opacity: 0.7; }
+    .mkt-theme-five .img-overlay { background-color: #ff0026; opacity: 0.7; }  
+
+    .mkt-theme-one #Combined-Shape { fill: #009fd9; }
+    .mkt-theme-two #Combined-Shape { fill: #00ac3e; }
+    .mkt-theme-three #Combined-Shape { fill: #8177b4; }
+    .mkt-theme-four #Combined-Shape { fill: #fc6228; }
+    .mkt-theme-five #Combined-Shape { fill: #ff0026; }  
+
+    .mkt-theme-one .hero-text h2 { color: #009fd9; }
+    .mkt-theme-two .hero-text h2 { color: #00ac3e; }
+    .mkt-theme-three .hero-text h2 { color: #8177b4; }
+    .mkt-theme-four .hero-text h2 { color: #fc6228; }
+    .mkt-theme-five .hero-text h2 { color: #ff0026; }  
+
+    .mkt-theme-one .hero-text h2 { color: #009fd9; }
+    .mkt-theme-two .hero-text h2 { color: #00ac3e; }
+    .mkt-theme-three .hero-text h2 { color: #8177b4; }
+    .mkt-theme-four .hero-text h2 { color: #fc6228; }
+    .mkt-theme-five .hero-text h2 { color: #ff0026; }  
+
+    .showLogo-primary .logo-reversed{
+      display: none;
+    }
+
+    .showLogo-reversed .logo-blue{
+      display: none;
+    }
+
+    .left-body-copy-container,
+    .left-footer-container,
+    .quote-container {
+      position: relative;
+    }
+    
+    .data-futures-enabled .img-overlay{
+      background-color: #EFEFEE;
+    }
+    
+    .data-futures-enabled h1{
+      color: #000000;
+    }
+
+    .data-futures-enabled .logo{
+      z-index: 2;
+    }
+    
+    .data-futures-m, .data-futures-label{
+      display: none;
+    }
+    
+    .data-futures-enabled .data-futures-m{
+      display: block;
+      background-size: auto 100%;
+      background-position: right;
+      background-repeat: no-repeat;
+      position: absolute;
+      bottom: 0;
+      width: 53%;
+      right: -9pt;
+      background-image: url(https://files.outfit.io/media_library_items/181740/20A-09401%2520DATA%2520FUTURES%2520OUTFIT%2520EINVITE%2520212x69%25202-01.svg);
+      z-index: 2;
+      height: calc(97% + 18.5px);
+      top: -11px;
+    }
+    
+    .show-crop-marks.data-futures-enabled .data-futures-m{
+      top: -7pt;
+      height: calc(97% + 1.07rem);
+    }
+    
+    .data-futures-enabled .headlines{
+      width: 260pt;
+    }
+    
+    .data-futures-enabled .data-futures-label { display: block; position: absolute; text-transform: uppercase; top: 1.5em; right: 15.5em; z-index: 10; } .data-futures-enabled .data-futures-label p { color: #020202; font-family: 'Helvetica Neue Cond'; font-size: 15px; font-weight: 500; line-height: 1.2em; }
+    
+    .show-crop-marks.data-futures-enabled .data-futures-label{
+      right: 16.8em;
+    }
+
+  </style>
+  <body class="{{theme-mkt}}  {{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}} {{data-future-design-enabled}}">
+
+    <div class="page {{{ theme-colour }}}">
+      <!--<div class="test-background-image"></div>-->
+      <div class="document">
+        <div class="content">
+
+          <div class="row-container">
+            <div class="row header">
+              <div class="img-overlay"></div>
+
+              {{#background-image}}
+              <div class="header-background-image" style="background-image: url({{{ background-image }}});"></div>
+              {{/background-image}}
+              {{^background-image}}
+              <div class="header-background-image" style="background-image: url({{{ image-mkt-nm }}});"></div>
+              {{/background-image}}
+
+
+              <div class="logo logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+                <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+                <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+              </div>
+              <div class="data-futures-label"><p><span style="color: {{{account.colors.monash-blue}}};">MONASH</span><br>DATA<br>FUTURES</p></div>
+
+              <div style="z-index: 10;" class="headlines">
+                {{#headline}}
+                <div class="headline" data-max-height="100">
+                  {{{headline}}}
+                </div>
+                {{/headline}}
+              </div><!--headlines-->
+
+              <div class="clip" style="background-image: url('{{M-generic}}')"></div>
+              <div class="data-futures-m"></div>
+            </div><!--row header-->
+
+            <div class="row text">
+              <div class="hero-text-container">
+                <div class="hero-text-overflow">
+                  <div class="hero-text">
+                    <h2>{{{ hero-text }}}</h2>
+                  </div><!--hero-text-->
+                </div>
+              </div><!--hero-text-container-->
+
+              <div class="column-left-body-copy"><!--#collection.supporting-logos.length--logos-visible--/collection.supporting-logos.length-->
+                <div class="left-body-copy-container">
+                  <div class="left-copy">
+
+                    {{{ body-copy }}}
+                  </div>
+                </div><!--left-body-copy-container-->
+
+                <div class="left-footer-container">
+                  <div class="left-footer">
+                    <p><strong>FOR MORE INFORMATION</strong></p>
+                    <p><strong>email:&nbsp;</strong>{{{ email }}}<br><strong>visit:&nbsp;</strong>{{{ url }}}</p>
+                  </div><!--left-footer-->
+                </div><!--left-footer-container-->
+
+                <!--#collection.supporting-logos.length
+              <div class="supporting-logos-container">
+                <h6>A partnership between:</h6>
+                <div class="supporting-logos">
+                  <img src="assets/images/monash-logo-reverse.svg"/>
+                  <div class="divider"></div>
+
+                  #collection.supporting-logos
+                    <img src="--supporting-logo--"/>
+                    <div class="divider"></div>
+                  /collection.supporting-logos
+
+                </div><!--supporting-logos-->
+                <!--</div><!--supporting-logos-container-->
+                <!--/collection.supporting-logos.length-->
+              </div><!--column-left-body-copy-->
+
+              <div class="col table">
+                <div class="quote-container">
+                  <div>
+                    <div class="table-container">
+                      {{#event-date}}
+                      <div class="table-row">
+                        <div class="heading">DATE:</div>
+                        <div class="cell">{{{ event-date }}}</div>
+                      </div><!--row-->
+                      {{/event-date}}
+                      {{#event-time}}
+                      <div class="table-row">
+                        <div class="heading">TIME:</div>
+                        <div class="cell">{{{ event-time }}}</div>
+                      </div><!--row-->
+                      {{/event-time}}
+                      {{#event-venue}}
+                      <div class="table-row">
+                        <div class="heading">VENUE:</div>
+                        <div class="cell">{{{ event-venue }}}</div>
+                      </div><!--row-->
+                      {{/event-venue}}
+                      {{#event-dress}}
+                      <div class="table-row">
+                        <div class="heading">DRESS:</div>
+                        <div class="cell">{{{ event-dress }}}</div>
+                      </div><!--row-->
+                      {{/event-dress}}
+                      {{#event-cost}}
+                      <div class="table-row">
+                        <div class="heading">COST:</div>
+                        <div class="cell">{{{ event-cost }}}</div>
+                      </div><!--row-->
+                      {{/event-cost}}
+                      {{#event-rsvp}}
+                      <div class="table-row">
+                        <div class="heading">RSVP:</div>
+                        <div class="cell">{{{ event-rsvp }}}</div>
+                      </div><!--row-->
+                      {{/event-rsvp}}
+                      {{#event-register}}
+                      <div class="table-row">
+                        <div class="heading">REGISTER:</div>
+                        <div class="cell">{{{ event-register }}}</div>
+                      </div><!--row-->
+                      {{/event-register}}
+                    </div><!--table-->
+                  </div>
+                </div><!--quote-container-->
+              </div><!--col 3-->
+            </div><!--text-->
+          </div><!--row-container-->
+          <div class="cricos">CRICOS provider: Monash University 00008C.<br>Monash College 01857J.</div><!--cricos-->
+
+        </div><!--content-->
+      </div><!--document-->
+
+    </div><!--page-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/main.js"></script>
+    <script>smartquotes();</script>
+    <script>
+      function maxLineCheck(orientation = 'portrait') {
+        const textBlocks = document.querySelectorAll('[data-max-line]');
+
+        textBlocks.forEach(block => {
+          const computedStyle = window.getComputedStyle(block);
+          // Checking if line-height is not set and has a normal value set by default
+          const isNormal = computedStyle.getPropertyValue('line-height') == 'normal';
+          // Getting the font-size of an element that will help us calculate the line-height
+          // if the line-height is set to 'normal'
+          const fontSize = parseFloat(computedStyle.getPropertyValue('font-size'));
+          // If line-height is normal, we multiply the element's font-size with 1.14
+          if ( isNormal ) block.style.lineHeight = (fontSize * 1.14) + 'px';
+          const lineHeight = parseFloat(computedStyle.getPropertyValue('line-height'));
+          const blockHeight = block.scrollHeight;
+          // Getting the data-max-line attribute value (max number of lines allowed)
+          const maxLineAlt = block.dataset.maxLineAlt || block.dataset.maxLine;
+          const maxLine = (orientation == 'portrait') ? block.dataset.maxLine : maxLineAlt;
+          // Setting the element's max-height 
+          const limitHeight = (lineHeight * maxLine) + (lineHeight / 2);
+
+          block.style.maxHeight = limitHeight + 'px';
+          ( blockHeight > limitHeight ) ? block.classList.add('overflow') : block.classList.remove('overflow');
+        });
+      }
+      function maxHeightCheck(variation = 'primary') {
+        const textBlocks = document.querySelectorAll('[data-max-height]');
+
+        textBlocks.forEach(block => {
+          const dynamicCheck = block.dataset.maxHeight == 'dynamic' || block.dataset.maxHeightDynamic == 'true';
+          if ( dynamicCheck ) dynamicAssign(block);
+
+          const cssCheck = block.dataset.maxHeight == 'css';
+          const bodyComputedStyle = window.getComputedStyle(document.body);
+          const blockHeight = block.scrollHeight;
+          const unit = block.dataset.maxHeightUnit || 'px';
+          const maxHeightAlt = block.dataset.maxHeightAlt || block.dataset.maxHeight;
+          let maxHeight = (variation == 'primary') ? block.dataset.maxHeight : maxHeightAlt;    
+
+          if ( cssCheck ) {
+            const computedBlockStyle = window.getComputedStyle(block);
+            maxHeight = parseInt(computedBlockStyle.maxHeight);
+          } else {
+            // Setting the element's max-height
+            block.style.maxHeight = maxHeight + unit;
+
+            // Recalculating maxHeight in case 'rem' is set as a unit
+            if ( unit == 'rem' ) maxHeight = maxHeight * parseFloat(bodyComputedStyle.fontSize);      
+          }
+
+          // Adding an 'overflow' class to an element if it's offset height exceedes the max-line-height
+          ( blockHeight > maxHeight ) ? block.classList.add('overflow') : block.classList.remove('overflow');
+        });
+      }
+
+
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          //charLimit();
+        });
+      });
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+    </script>
+
+    <script>
+      /* CHECK ON LIs */
+
+      setInterval(function(){
+        if(jQuery('.highlight-copy ul > li').length > 4)
+          jQuery('.highlight-copy').addClass('error');
+        else
+          jQuery('.highlight-copy').removeClass('error');
+      }, 2000);
+    </script>
+    <script type="text/javascript">
+      // Add many fallbacks for Print Ready
+      document.addEventListener('DOMContentLoaded', function(event) {
+      });
+
+      setTimeout(function() {
+        document.dispatchEvent(new Event('printready'));
+      }, 1500);
+
+      document.dispatchEvent(new Event('printready'));
+    </script>
+
+  </body>
+</html>
