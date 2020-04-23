@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  
+  <style>
+    .test-background-image {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/38882c91f0b4d3a70e418309bb3acac0/Certificate.jpg');
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      opacity: 0.6;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    
+    .show-crop-marks .test-background-image {
+      top: 34pt;
+      left: 34pt;
+      right: 34pt;
+      bottom: 34pt;
+    }
+    
+    .header-background-image {
+      background-image: url('{{{ header-background }}}');
+    }
+    
+    .signature {
+      background-image: url('{{{ signature }}}')
+    }
+    
+    .clip {
+      background-image: url('{{{M-generic}}}{{{M-campaigns}}}{{{M-graduate-education}}}{{{M-education}}}{{{M-innovation}}}{{{M-pharmacy}}}{{M-OLT}}{{M-MADA}}{{{M-MNHS}}}') !important;
+    }
+    
+    .mbs { display: flex; position: absolute; left: 82pt; bottom: 80pt; height: 0.5em; }
+    .mbs img { height: 100%; }
+    
+    .mbs-faculty {
+      position: absolute;
+      right: 12.6em;
+      top: 2.8em;
+      z-index: 99999;
+    }
+    .faculty-lockup {
+      font-size: 0.4em;
+      text-transform: uppercase;
+      line-height: 1.03em;
+      color: #fff;
+      margin: 0.7rem 0 0;
+      
+      {{#faculty-name-display}}
+        display: {{{ faculty-name-display }}};
+      {{/faculty-name-display}}
+      {{^faculty-name-display}}
+        display: none;
+      {{/faculty-name-display}}
+    }
+
+
+  </style>
+</head>
+<body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}} {{^M-graduate-education}}{{/M-graduate-education}} ">
+  <!-- {{header-background-monash-mentoring}} -->
+  <!-- {{header-background-peer-mentoring}} -->
+  {{#spreadsheet.certificates}}
+  <div class="page">
+    <!--<div class="test-background-image"></div>-->
+    <div class="document">
+      <div class="content">
+        <div class="blue-line"></div>
+        <div class="line"></div>
+        
+        <div class="mbs-faculty"></div>
+
+        <div class="row-container">
+          <div class="row header">
+           <div class="header-background-image"></div>
+            {{#header-background-peer-mentoring}}<div class="header-background-image" style="background-image: url({{header-background-peer-mentoring}})"></div>{{/header-background-peer-mentoring}}
+            {{#header-background-monash-mentoring}}<div class="header-background-image" style="background-image: url({{header-background-monash-mentoring}})"></div>{{/header-background-monash-mentoring}}
+              <div class="col-container">
+                <div class="col">
+                  <div class="row-lockup">
+                    <div class="logo logoContainer">
+                        <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+                      <!-- <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo"> -->
+                    </div>
+                    <div class="faculty-lockup">{{{team.stacked-faculty-name}}}</div>
+                  </div><!--row-1-->
+
+                  <div class="js-headlines"></div>
+                  
+                </div> <!--col-1-->
+
+                <div class="col">
+                  <div class="clip"></div>
+                  <div class="clip-image" style="background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/8af7f72763e9390e315837f653f25353/monash-m.png')"></div>
+                </div><!--col-2-->
+              </div><!--col-container-->
+            </div><!--row header-->
+
+          <div class="row text">
+            
+            
+            <div class="js-cert-title"></div>
+            
+            
+            <div class="name-container">
+              <div class="js-cert-wording"></div>
+   			  
+              <div class="name-overflow-container">
+                <div class="name-overflow">
+                  <h2>{{{ first-name }}}&nbsp;{{{ last-name }}}</h2>
+                </div>
+              </div>
+              
+            </div><!--name-container-->
+            
+            {{#certification}}
+            <div class="qualification-container">
+              <h6>FOR {{{ certification }}}</h6>
+              
+  			  <!--<div class="qualification-overflow-container">
+                <div class="qualification-overflow">
+                  <p></p>
+                </div>
+              </div>-->
+              
+            </div><!--qualification-->
+            {{/certification}}
+            
+            <div class="signature"></div>
+            
+            <div class="js-chancellor-details"></div>
+            
+            
+            <div class="js-disclaimer-details">
+              
+            </div>
+            <div id="date"><p class="CRICOS"></p></div>
+            
+            <div class="js-logos"></div>
+            
+            <div class="mbs"></div>
+            
+          </div><!--text-->
+        </div><!--row-container-->
+
+    </div><!--content-->
+    </div><!--document-->
+
+  </div><!--page-->
+  {{/spreadsheet.certificates}}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  <script>smartquotes();</script>
+  <script>
+   function loop() {
+      checkHeight($(".headline-overflow"));
+      checkHeight($(".cert-title-overflow"));
+	  checkHeight($(".chancellor-details-overflow"));
+    } setInterval(loop, 500);
+
+    function checkHeight(element) {
+      var height = element.height()
+      var $parent = element.parent();
+      var parentHeight = $parent.height();
+
+      if (height > parentHeight) {
+        $parent.addClass('overflow');
+      } else {
+        $parent.removeClass('overflow');
+      }
+    }
+  </script>
+  
+  <script>   
+    // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+    // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+    // At least Safari 3+: "[object HTMLElementConstructor]"
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+    // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+    // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+    // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+    // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+    if (isOpera == true) {
+      $('body').addClass('-js-opera-browser');
+    } if (isFirefox == true) {
+      $('body').addClass('-js-firefox-browser');
+    } if (isSafari == true) {
+      $('body').addClass('-js-safari-browser');
+    } if (isIE == true) {
+      $('body').addClass('-js-ie-browser');
+    } if (isEdge == true) {
+      $('body').addClass('-js-edge-browser');
+    } if (isChrome == true) {
+      $('body').addClass('-js-chrome-browser');
+    } if (isBlink == true) {
+      $('body').addClass('-js-blink-browser');
+    }
+   
+    
+    // ADDING GLOBAL HEADLINES
+     var jsHeadline = document.getElementsByClassName('js-headlines');
+     for ( i = 0 ; i < jsHeadline.length ; i++ ) {
+       jsHeadline[i].innerHTML = '<div class="headlines"> {{#monash-faculty}} <div class="headline"> <div class="headline-overflow-container"> <div class="headline-overflow"> {{{ monash-faculty }}} </div> </div> </div> {{/monash-faculty}} </div><!--headlines-->'
+     };
+    
+    // ADDING GLOBAL CERT TITLES
+     var certTitle = document.getElementsByClassName('js-cert-title');
+     for ( i = 0 ; i < certTitle.length ; i++ ) {
+       certTitle[i].innerHTML = '<div class="cert-title-overflow-container"><div class="cert-title-overflow"><h1>{{{ certificate-title }}}</h1></div></div>'
+     };
+    
+    // ADDING GLOBAL CHANCELLOR DETAILS
+     var chancellorDetails = document.getElementsByClassName('js-chancellor-details');
+     for ( i = 0 ; i < chancellorDetails.length ; i++ ) {
+       chancellorDetails[i].innerHTML = '<div class="chancellor-details-overflow-container"> <div class="chancellor-details-overflow"> <p>{{{ chancellor-name }}}</p> <p>{{{ chancellor-position }}}</p> <p>{{{ chancellor-patronage }}}</p> <p class="cert-period">{{{certification-period}}}</p> <div style="width: 80%; overflow: hidden;"><p>{{{mentoringAddress}}}</p><p>{{{mentoringTelephone}}}</p><p>{{{mentoringWebsite}}}</p></div></div> </div>'
+     };
+    
+    // ADDING GLOBAL DISCLAIMER DETAILS
+    var disclaimerDetails = document.getElementsByClassName('js-disclaimer-details');
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];;
+    var date = new Date();
+
+     for ( i = 0 ; i < disclaimerDetails.length ; i++ ) {
+       var disclaimerData = '<div class="disclaimer-details"><p>{{{team.faculty-name}}}, Monash University</p></div><p class="CRICOS">CRICOS provider: Monash University 00008C. '
+       var dateData = months[date.getMonth()] + ' ' + date.getFullYear();
+       disclaimerDetails[i].innerHTML = disclaimerData + dateData + '</p>';
+     };
+    
+        // ADDING GLOBAL LOGOS
+     var logos = document.getElementsByClassName('js-logos');
+     for ( i = 0 ; i < logos.length ; i++ ) {
+       logos[i].innerHTML = '<div class="logos">{{#collection.logos}}<img class="footer-logo" src="{{{ logo }}}" alt="logo">{{/collection.logos}}</div>'
+     };
+    
+      // ADDING CERT WORDING
+     var certWording = document.getElementsByClassName('js-cert-wording');
+     for ( i = 0 ; i < certWording.length ; i++ ) {
+       certWording[i].innerHTML = '<h6>{{{ certification-wording }}}</h6>'
+     };
+    
+      // ADDING MBS
+     var mbs = document.getElementsByClassName('mbs');
+     for ( i = 0 ; i < mbs.length ; i++ ) {
+       mbs[i].innerHTML = '<img src="{{{ mbs }}}">'
+     };
+  </script>
+</body>
+</html>
