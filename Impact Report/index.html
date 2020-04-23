@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html data-sign="OSM">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/HelveticaNeue/stylesheet.css');
+
+      :root {
+        --pink: {{{account.colors.pop-pink}}};
+        --green: {{{account.colors.pop-green}}};
+        --blue: {{{account.colors.pop-blue}}};
+      }
+
+      .theme--pink {
+        --dynamic-colour: var(--pink);
+      }
+
+      .theme--green {
+        --dynamic-colour: var(--green);
+      }
+
+      .theme--blue {
+        --dynamic-colour: var(--blue);
+      }
+
+
+      html {
+        font-family: 'Helvetica Neue Cond';
+        font-size: 11pt;
+        color: #020202;
+        word-break: break-word;
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }      
+
+      /* Helper classes */
+      .u-hide { display: none; }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .fit {
+        display: flex;
+        flex-direction: column;
+        padding: 55pt 38pt 37pt 36pt;
+      }
+
+      .header {
+        margin-bottom: 53pt;
+        padding: 0 11pt;
+        font-size: 0;
+      }
+
+      .header--alt {
+        margin-bottom: 58pt;
+      }
+
+      .logo {
+        width: 141.2pt;
+      }
+
+      .body {
+        flex: 1;
+        padding: 0pt 14pt;
+      }
+
+      .heading {
+        margin-bottom: 21pt;
+      }
+
+      .heading h1 {
+        margin-bottom: 30pt;
+        font-size: 47.7pt;
+        font-weight: bold;
+        line-height: 1em;
+        text-transform: uppercase;
+      }
+
+      .subheading {
+        font-size: 20pt;
+      }
+
+      .subheading h2 {
+        /*margin-bottom: 15pt;*/
+        margin-bottom: 7pt;
+        font-size: 20pt;
+        font-weight: bold;
+        text-transform: uppercase;
+        line-height: 1.2em;
+      }
+
+      .heading h1:last-child,
+      .subheading h2:last-child {
+        margin-bottom: 0;
+      }
+
+      .contact {
+        font-size: 20.6pt;
+      }
+
+      .contact__label {
+        margin-bottom: 5.3pt;
+        font-family: 'Helvetica Neue';
+        font-size: 9.3pt;
+        line-height: 1.2em;
+        letter-spacing: -0.3pt;
+      }
+
+      .contact__value p {
+        margin-bottom: 5.3pt;
+        font-family: 'Helvetica Neue';
+        font-size: 8.6pt;
+        line-height: 1.7em;
+      }
+
+      .contact__value p:last-child {
+        margin-bottom: 0;
+      }
+
+      .contact__value p strong {
+        font-weight: bold;
+        letter-spacing: 1pt;
+      }
+
+      .footer {
+        position: relative;
+      }
+
+      .footer--primary {
+        display: flex;
+        align-items: flex-end;
+        height: 435pt;
+        padding: 0pt 26pt 21pt 26pt;
+      }
+
+      .footer--secondary {
+        padding: 0pt 10pt 23.4pt 10pt;
+      }
+
+      .footer__info {
+        font-size: 6.3pt;
+        line-height: 1.32em;
+      }
+
+      .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      .copy {
+        font-weight: bold;
+        font-size: 24.4pt;
+        line-height: 0.9em;
+      }
+
+      .copy--primary {
+        text-transform: uppercase;
+      }
+
+      .copy--primary .tinymce_style--dark {
+        color: var(--dynamic-colour);
+      }
+
+      .copy--secondary {
+        margin-bottom: 33.4pt;
+        font-size: 20.6pt;
+      }
+
+      .copy--secondary h3 {
+        margin-bottom: 32pt;
+        font-family: 'Helvetica Neue Light Cond';
+        font-size: 20.6pt;
+        font-weight: 300;
+        text-transform: uppercase;
+        line-height: 1.2em;
+      }
+
+      .copy--secondary p {
+        margin-bottom: 15pt;
+        font-family: 'Helvetica Neue';
+        font-size: 9.3pt;
+        font-weight: normal;
+        line-height: 1.6em;
+        letter-spacing: -0.25pt;
+      }
+
+      .copy--secondary h3:last-child,
+      .copy--secondary p:last-child {
+        margin-bottom: 0;
+      }
+
+      .cricos {
+        margin-top: 3pt;
+        font-size: 6.4pt;
+        line-height: 1.2em;
+      }
+      
+      .tinymce_style--light{
+        color: white;
+      }
+
+
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}hide{{/placeholder-toggle-new}}
+                                         theme--{{{MH_theme--ir}}}{{^MH_theme--ir}}pink{{/MH_theme--ir}}
+                                         " data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-2 }}"></div>
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+
+          <div class="header">
+            <img class="logo" src="{{{account.logos.mu-logo-transparent}}}">
+          </div><!--header-->
+          <div class="body">
+            {{#MH_heading--ir}}
+            <div class="heading u-heading-patch" data-max-height="210">{{{MH_heading--ir}}}</div><!--heading-->
+            {{/MH_heading--ir}}
+            {{#MH_subheading--ir}}
+            <div class="subheading u-heading-patch" data-max-height="74">{{{MH_subheading--ir}}}</div><!--subheading-->
+            {{/MH_subheading--ir}}
+          </div><!--body-->
+          <div class="footer footer--primary">
+            <div class="background"><div class="reposition-fix">{{{MH_background--ir}}}</div></div><!--background-->
+            <div class="copy copy--primary" data-max-line="2">{{{MH_copy--ir}}}</div><!--copy-->
+          </div><!--footer-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+
+          <div class="header header--alt">
+            <img class="logo" src="{{{account.logos.mu-logo-transparent}}}">
+          </div><!--header-->
+          <div class="body">
+            <div class="backBodyWrapper" data-max-height="700">
+              {{#MH_back-copy--ir}}
+              <div class="copy copy--secondary">{{{MH_back-copy--ir}}}</div><!--copy-->
+              {{/MH_back-copy--ir}}
+              <div class="contact">
+                {{#MH_back-contact--ir}}
+                <div class="contact__label">For more information, contact:</div><!--contact__label-->
+                {{/MH_back-contact--ir}}
+                <div class="contact__value">{{{MH_back-contact--ir}}}</div><!--contact__value-->
+              </div><!--contact-->
+            </div>
+          </div><!--body-->
+          <div class="footer footer--secondary">
+            <div class="footer__info">The information in this brochure was correct at the time of publication (<span class="timeOfPub"></span>).<br>
+            Monash University reserves the right to alter this information should the need arise.<br>
+              You should always check with the relevant faculty office when considering a course.<br>
+              Produced by Strategic Marketing and Communications, Monash University Job {{#metadata}}{{export_id}}{{/metadata}}{{^metadata}}XXXXX{{/metadata}}.
+            </div><!--footer__info-->
+            <div class="cricos">{{{account.snippets.college-cricos}}}</div><!--cricos-->
+          </div><!--footer-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="js/dynamic-inject.js"></script>
+    <script src="js/text-fit-min.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+      
+      var date = new Date();
+      var year = date.getFullYear();
+      var month = date.getMonth();
+      
+      var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      month = months[month]; 
+      document.getElementsByClassName("timeOfPub")[0].innerHTML = month + " " + year;
+
+      
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+          hideEmptyTitles();
+        });
+      });
+      
+      const injectObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectDynamicContent();
+        });
+      });      
+      
+      const injectSources = document.querySelectorAll('[data-target-id]');
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+      
+      if ( injectSources.length > 0 ) {
+        injectSources.forEach(src => {
+          injectObserver.observe(src, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });            
+        });
+      }    
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+        injectDynamicContent();
+        hideEmptyTitles();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+
+    </script>
+
+
+  </body>
+</html>
