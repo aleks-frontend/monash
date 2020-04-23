@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css" rel="stylesheet">     <link rel="stylesheet" type="text/css" href="minireset.css">
+
+    
+    
+    <!--<script src="tinycolor.js"></script>-->
+    <!--<link rel="stylesheet" type="text/css" href="crop.css">-->
+    <style>
+      .overflow{border:1px dashed red;position:relative}.overflow::before,.overflow:hover:after{position:absolute;right:5px;box-sizing:border-box}.overflow h1,.overflow h2,.overflow h3,.overflow h4,.overflow h5,.overflow h6,.overflow li,.overflow p{color:red!important}.overflow::before{content:'+';z-index:5;top:5px;height:15px;width:15px;border:1px solid red;color:red;padding:2px 2px 2px 3px;font-size:13px;line-height:8px;background-color:#fff;text-align:center}.overflow:hover:before{background-color:red;color:#fff}.overflow:after{display:none}.overflow:hover:after{display:block;content:'There is overset content in this column. Please remove it';top:25px;background-color:#020202;color:#fff;border-radius:2px;padding:5px;font-size:11px;font-weight:400;line-height:1.1em;text-align:right;width:15em}
+
+      
+      
+      html {
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Helvetica Neue Cond', helvetica, arial, sans-serif;
+        background-color: #fff;
+      }
+
+      h1, h2, h3, h4, h5, h6 { margin: 0; line-height: 1.2em; }
+      .pages .page:last-child {
+        height: calc(297mm - 1px);
+      }
+      .page { 
+        position: relative; 
+        height: 297mm;
+        width: 210mm;
+      }
+      .printcode { position: absolute; bottom: 20px; right: 20px; }
+      .printcode p { font-size: 10px; opacity: 0.6; }
+      .nametags { 
+        display: flex; 
+        flex-flow: row wrap;
+        width: 100%; 
+        padding: 11mm 17mm 11mm 13mm;
+      }
+      .card { position: relative; width: 89.9mm; height: 55mm; border: 1px solid #ddd; }
+      .header {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+		align-items: stretch;
+        height: 72px;
+        
+        {{#image}}
+          background-image: url('{{{image}}}');
+        {{/image}}
+        {{^image}}
+          background-image: url('{{{image-mkt-nm}}}');
+        {{/image}}
+          
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .logo { 
+        width: 120px; 
+        top: 0; 
+        margin: 16px 0 0 15px;
+        display: flex;
+        position: relative;
+        z-index: 1;
+      }
+      .logo img { width: 100%; }
+
+      .monash-m { 
+        padding: 0 14px 0 0; 
+        height: 100%; 
+        width: calc(8mm + 14px);
+        mix-blend-mode: soft-light; 
+      }
+      .monash-m img { height: 100%; }
+      .spreadsheet { 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center; 
+        height: calc(100% - 72px);
+      }
+      .names {
+        text-align: center; 
+      }
+      .names h2 { font-size: 14px; font-family: 'Helvetica Neue LT Std'; font-weight: 300; }
+      .firstPosition{
+        font-size: 19px;
+        line-height: 25px;
+        text-transform: uppercase;
+        font-family: 'Helvetica Neue Cond', helvetica, arial, sans-serif;
+      }
+      
+      .text-wrap { display: inline-block; width: 300px; white-space: nowrap; }
+      .text { display: inline-block; white-space: nowrap; font-size: 28px; text-transform: uppercase; }
+      
+      .img-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 19mm;
+        z-index: 0;
+      }
+      
+      .mkt-theme-one .img-overlay { background-color: #009fd9; opacity: 0.7; }
+      .mkt-theme-two .img-overlay { background-color: #00ac3e; opacity: 0.7; }
+      .mkt-theme-three .img-overlay { background-color: #8177b4; opacity: 0.7; }
+      .mkt-theme-four .img-overlay { background-color: #fc6228; opacity: 0.7; }
+      .mkt-theme-five .img-overlay { background-color: #ff0026; opacity: 0.7; }  
+
+      .showLogo-primary .logo-reversed{
+          display: none;
+      }
+
+      .showLogo-reversed .logo-blue{
+          display: none;
+      }
+      
+    </style>
+  </head>
+  <body class="{{ theme-mkt }} showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+    <div class="template" style="display: none">
+
+      <div class="page">
+        <div class="nametags">
+        </div><!--nametags-->
+        <div class="printcode"><p>Order Code: 86860019</p></div>
+      </div><!--page-->
+
+    </div>
+    
+    <div class="pages"></div>
+
+    {{#spreadsheet.names}}
+    <div class="card">
+      <div class="header">
+        <div class="logo logoContainer">
+            <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+            <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+        </div>
+        <div class="monash-m">
+          <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/c7e5f5832e1234e6172a7a7173defc8c/m.svg">
+        </div><!--monash-m-->
+        <div class="img-overlay"></div>
+	</div>      
+      <div class="spreadsheet">
+        <div class="names">
+          <div class="text-wrap">
+            <div class="text name">
+              <h1>
+                <script>
+                  if(!('{{first-name}}' == "-")){
+                    document.write("{{first-name}} ");
+                  }
+                   if(!('{{last-name}}' == "-")){
+                    document.write("{{last-name}}");
+                  }
+             	</script>
+              </h1>
+            </div>
+            
+          </div>
+          <h2>
+            <script>
+              if(!('{{ position }}' == "-")){
+                document.write("{{position}}");
+              }
+            </script>
+          </h2>
+        </div><!--names-->
+      </div><!--text-->
+    </div>  
+    {{/spreadsheet.names}}
+    
+    {{#spreadsheet.namesV2}}
+    <div class="card">
+      <div class="header">
+        <div class="logo logoContainer">
+            <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+            <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+        </div>
+        <div class="monash-m">
+          <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/c7e5f5832e1234e6172a7a7173defc8c/m.svg">
+        </div><!--monash-m-->
+        <div class="img-overlay"></div>
+	</div>      
+      <div class="spreadsheet">
+        <div class="names">
+          <div class="text-wrap">
+            <div class="text name">
+              <h1>
+                <script>
+                  if(!('{{first-name}}' == "-")){
+                    document.write("{{first-name}} ");
+                  }
+                   if(!('{{last-name}}' == "-")){
+                    document.write("{{last-name}}");
+                  }
+             	</script>
+              </h1>
+            </div>
+            
+          </div>
+          <h2>
+            <script>
+              if(!('{{ position }}' == "-") {{#position}}&& true{{/position}}){
+                document.write("<div class='firstPosition'>{{position}}</div>");
+              }
+              
+              if(!('{{ position2 }}' == "-") {{#position2}}&& true{{/position2}}){
+                document.write("<div class='secondPosition'>{{position2}}</div>");
+              }
+              
+              if(!('{{ position3 }}' == "-") {{#position3}}&& true{{/position3}}){
+                document.write("<div class='thirdPosition'>{{position3}}</div>");
+              }
+            </script>
+          </h2>
+        </div><!--names-->
+      </div><!--text-->
+    </div>  
+    {{/spreadsheet.namesV2}}
+    <script>
+
+      window.showCrop = {{show-crop}};
+
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <!--<script src="main.js"></script>-->
+    <script src="prefixfree.js"></script>
+    <script>
+      // FIT TEXT FUNC
+      $(document).ready(function(){
+
+        var els = $('.text');
+
+        for(var i = 0; i < els.length; ++i) {
+          while($(els[i]).width() > $(els[i]).parent().width()) {
+            var size = parseInt($(els[i]).css('font-size')); 
+            $(els[i]).css('font-size', size - 1); 
+          }
+        }
+      });
+      
+      loopThroughPages()
+
+      function loopThroughPages() {
+
+        var pages = document.querySelector('.pages');
+        var pageTemplate = document.querySelector('.template .page');
+        var entries = Array.prototype.slice.call(document.querySelectorAll('.card'));
+
+        pages.insertBefore(pageTemplate.cloneNode(true), null);
+
+        // item count to decide when to add a new page
+        var itemCount = 0;
+
+        // so we know which page to append to
+
+        entries.forEach(function(entry) {
+
+          if (itemCount < 10 ) {
+            var allPages = document.querySelectorAll('.pages .page')
+            allPages[allPages.length - 1].querySelector('.nametags').insertBefore(entry, null)
+
+            itemCount++
+          }
+
+          else {
+
+            // add a new page
+            pages.insertBefore(pageTemplate.cloneNode(true), null);
+
+            var allPages = document.querySelectorAll('.pages .page')
+            allPages[allPages.length - 1].querySelector('.nametags').insertBefore(entry, null)
+
+            // reset count
+            itemCount = 1 
+          }
+        })
+
+      }
+    </script>
+
+  </body>
+</html>
