@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  <style>
+    .test-background-image-one,
+    .test-background-image-two {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0.5in;
+      left: 0.5in;
+      right: 0.5in;
+      bottom: 0.5in;
+      opacity: 0.3;
+      z-index: 100;
+    }
+    
+    .test-background-image-one {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/dbbcaa5b9fadc95a5d637166f6f92118/MNHS%20Course%20Flyer%20-%20p1.png');
+    }
+    
+    .test-background-image-two {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/43979a6f8bcca45ad2e81ebf674de125/MNHS%20Course%20Flyer%20-%20p2.png');
+    }
+    
+    .col-two-third {
+      flex: 1 0 70%;
+    }
+    
+    .col-one-third {
+      flex: 0 1 30%;
+      max-width: 30%;
+    }
+    
+    .bs-bb { box-sizing: border-box; }
+    
+    /* Course Table Purple */
+    
+    .purple th {
+      color: #fff;
+      background-color: #726DA1;
+    }
+    
+    .purple tr {
+      background-color: #D6D6D0;
+    }
+    
+    .purple p {
+      background-color: #B4B2CD;
+    }
+    
+    /* Course Table Blue */
+    
+    .blue th {
+      color: #fff;
+      background-color: #2C94C4;
+    }
+    
+    .blue tr {
+      background-color: #D6D6D0;
+    }
+    
+    .blue p {
+      background-color: #A7D5E0;
+    }
+    
+    /* Course Table Green */
+    
+    .green th {
+      color: #000;
+      background-color: #C2CF9C;
+    }
+    
+    .green tr {
+      background-color: #D6D6D0;
+    }
+    
+    .green p {
+      background-color: #C2CF9C;
+    }
+    
+    .courseCricos.error {
+      color: red;
+      position: relative;
+    }
+    .courseCricos.error:after {
+      content: "Too many digits in your course code";
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(-125%);
+      border: 1px solid red;
+      padding: 0.1rem;
+      white-space: nowrap;
+    }
+    
+    .showLogo-primary .logo-reversed{
+        display: none;
+    }
+
+    .showLogo-reversed .logo-blue{
+        display: none;
+    }
+    
+    .monash-faculty.FN-toggle-hide{
+      display:none;
+    }
+  </style>
+</head>
+  
+<body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+  <div class="page">
+    <!--<div class="test-background-image-one"></div>-->
+    <div class="background">
+      <div class="background-image" style="margin: 0.5em; background-image: url({{background-image}})"></div>
+    </div>
+
+    <div class="document">
+      <div class="content">
+        <div class="blue-line"></div>
+        <div class="line"></div>
+
+        <div class="row-container">
+          <div class="row header">
+            <div class="header-background-image" style="background-image: url('{{header-background}}')"></div>
+
+              <div class="col-container">
+                <div class="col">
+                  <div class="row-lockup">
+                    <div class="logo logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+                        <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+                        <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+                    </div>
+
+                    <div class="monash-faculty FN-toggle-{{{FN-toggle}}}">{{{team.stacked-faculty-name}}}</div>
+                  </div><!--row-1-->
+
+                  <div class="headlines">
+                    {{#headline}}
+                      <div class="headline">
+                        <div class="headline-overflow-container">
+                          <div class="headline-overflow">
+                            {{{headline}}}
+                          </div>
+                        </div> 
+                      </div>
+                    {{/headline}}
+                  </div><!--headlines-->
+                </div> <!--col-1-->
+
+                <div class="col">
+                  <div class="clip" style="background-image: url('{{M-generic}}')"></div>
+                </div><!--col-2-->
+              </div><!--col-container-->
+            </div><!--row header-->
+
+          <div class="row text">
+            <div class="subheadline-1-overflow-container">
+              <div class="subheadline-1-overflow">
+                <h2 class="subheadline subheadline-1">{{{sub-headline-text}}}</h2>
+              </div><!--end subheadline-overflow-->
+            </div><!--end subheadline-overflow-container-->
+            <div class="col-container">
+              <div class="col-two-third">
+              	<div class="hero-text">
+                  <div class="hero-text-overflow-container">
+                    <div class="hero-text-overflow">
+                      <div class="hero-text color-80">{{{intro-text}}}</div>    
+                    </div>
+                  </div>
+                </div><!--hero-text-->
+                
+                <div class="col-two-third-inner">
+                  <div class="col" data-max-height="235">
+                    <div class="col-1-overflow-container">
+                      <div class="col-overflow col-1-overflow">
+                        <div class="col-1-text fz-paragraph light lh-135em m0">{{{column-1-text}}}</div>
+                      </div>
+                    </div>
+                  </div><!--col-1-->
+
+                  <div class="col">
+                    <strong class="course-list-heading">In the {{{course-name}}} you will:</strong>
+                    <div class="col-2-overflow-container">
+                      <div class="col-2-text col-overflow col-2-overflow lh-13">
+                        {{{column-2-course-list}}}
+                      </div>
+                    </div>
+                  </div><!--col-2-->
+                </div><!--col-two-third-inner-->
+                <div class="course-structure-headline-container">
+                  <div class="subheadline-2-overflow-container">
+                    <div class="subheadline-2-overflow">
+                      <h2 class="subheadline subheadline-2">{{{course-structure-headline-text}}}</h2>
+                    </div>
+                  </div>
+                  <div class="course-structure-diagram-image" style="background-image: url({{course-structure-diagram-image}}); background-position: 0 {{{course-structure-image-position}}}%"></div>
+                  {{#collection.course-structure-table.length}}
+                  <div class="{{#course-structure-table-theme }} {{{ course-structure-table-theme }}} {{/course-structure-table-theme}} course-structure-table">
+                    <table>
+                      <tbody>
+                        {{#collection.course-structure-table}}
+                        <tr>
+                          {{#course-structure-header-one}}<th>{{{ course-structure-header-one }}}</th>{{/course-structure-header-one}}
+                          {{#course-structure-header-two}}<th>{{{ course-structure-header-two }}}</th>{{/course-structure-header-two}}
+                          {{#course-structure-header-three}}<th>{{{ course-structure-header-three }}}</th>{{/course-structure-header-three}}
+                          {{#course-structure-header-four}}<th>{{{ course-structure-header-four }}}</th>{{/course-structure-header-four}}
+                          {{#course-structure-header-five}}<th>{{{ course-structure-header-five }}}</th>{{/course-structure-header-five}}
+                          {{#course-structure-header-six}}<th>{{{ course-structure-header-six }}}</th>{{/course-structure-header-six}}
+                        </tr>
+                        <tr>
+                          {{#course-structure-copy-one}}<td>{{{ course-structure-copy-one }}}</td>{{/course-structure-copy-one}}
+                          {{#course-structure-copy-two}}<td>{{{ course-structure-copy-two }}}</td>{{/course-structure-copy-two}}
+                          {{#course-structure-copy-three}}<td>{{{ course-structure-copy-three }}}</td>{{/course-structure-copy-three}}
+                          {{#course-structure-copy-four}}<td>{{{ course-structure-copy-four }}}</td>{{/course-structure-copy-four}}
+                          {{#course-structure-copy-five}}<td>{{{ course-structure-copy-five }}}</td>{{/course-structure-copy-five}}
+                          {{#course-structure-copy-six}}<td>{{{ course-structure-copy-six }}}</td>{{/course-structure-copy-six}}
+                        </tr>
+                        {{/collection.course-structure-table}}
+                      </tbody>
+                    </table><!--course-structure-table-->
+                    {{#course-structure-table-text}}
+                    <p class="course-structure-table-text">
+                      {{#course-structure-table-text}}{{{ course-structure-table-text }}}{{/course-structure-table-text}}
+                    </p>                  
+                    {{/course-structure-table-text}}
+                  </div>
+                  {{/collection.course-structure-table.length}}
+                  
+                  {{#course-structure-paragraph-text}}
+                  <div class="course-structure-paragraph-overflow-container">
+                    <div class="course-structure-paragraph-overflow">
+                      <p class="course-structure-paragraph-text">{{{course-structure-paragraph-text}}}</p>
+                    </div>
+                  </div>
+                  {{/course-structure-paragraph-text}}
+                </div>
+              </div><!--col-two-third-->
+             
+              <div class="col-one-third bs-bb">
+                <div class="col bs-bb">
+                  <div class="course-details-overflow-container">
+                    <div class="course-details-overflow">
+                      <div class="sidebar-section-container">
+                        <h4 class="sidebar-heading m0">Course code</h4>
+                        <p class="sidebar-content-text m0">{{{course-code}}}</p>
+                      </div>
+                      <div class="sidebar-section-container">
+                        <h4 class="sidebar-heading m0">Study mode</h4>
+                        <p class="sidebar-content-text m0">{{{study-mode}}}</p>
+                      </div>
+                      <div class="sidebar-section-container">
+                        <h4 class="sidebar-heading m0">Intakes</h4>
+                        <div class="course-intake m0">{{{course-intake}}}</div>
+                      </div>
+                      <div class="sidebar-section-container">
+                        <h4 class="sidebar-heading m0">Durations</h4>
+                        <div class="course-duration m0">{{{course-duration}}}</div>
+                      </div>
+                   </div>
+                  </div><!--course-details-overflow-container-->
+                  <div class="course-testimonials-overflow-container" data-max-height="500">
+                    <div class="course-testimonials-overflow">
+                      <div class="course-testimonials-profile-image" style="background-image: url({{testimonials-image}})"></div>
+                      {{#testimonials-quote}}<p class="course-testimonials-quote">{{{testimonials-quote}}}</p>{{/testimonials-quote}}
+                      {{#testimonials-name}}<p class="course-testimonials-name">{{{testimonials-name}}}</p>{{/testimonials-name}}
+                      {{#testimonials-position}}<p class="course-testimonials-position">{{{testimonials-position}}}</p>{{/testimonials-position}}
+                    </div>
+                  </div><!--course-testimonials-overflow-container-->
+                </div><!--col-3-->
+              </div><!--col-one-third-->          
+            </div><!--col-container-->
+
+            <div class="footer">
+              <img class="go8-logo" src="assets/images/go8.svg"/>
+            </div><!--footer-->
+
+          </div><!--text-->
+        </div><!--row-container-->
+
+    </div><!--content-->
+    </div><!--document-->
+
+  </div><!--page-->
+  
+  
+    <div class="page page-2"><!-- Page 2 -->
+      <!--<div class="test-background-image-two"></div>-->
+      <div class="document">
+        <div class="content">
+          <div class="blue-line"></div>
+          <div class="line"></div>
+          <div class="row-container">
+            <div class="row header">
+              <div class="header-background-image page-2-header-background-image" style="background-image: url('{{page-2-header-background}}'); background-position: 0 {{{page-2-header-background-position}}}%"></div><!--end header image-->
+            </div>
+            <div class="row text">
+              <div class="col-container">
+                <div class="col-two-third">
+                  <div class="col-two-third-inner">
+                    <div class="page-2-col-overflow-container col">
+                      <div class="page-2-col-1-overflow">
+                        <div class="page-2-col-1">
+                          {{{page-2-column-1}}}
+                        </div><!--page 2 col-1-->  
+                      </div><!--end page-2-col-overflow-->
+                    </div><!--end page-2-col-overflow-container-->
+
+                    <div class="page-2-col-overflow-container col">
+                      <div class="page-2-col-2-overflow">
+                        <div class="page-2-col-2">
+                          {{{page-2-column-2}}}
+                        </div><!--page 2 col-2-->  
+                      </div><!--end page-2-col-overflow-->
+                    </div><!--end page-2-col-overflow-container-->
+                  </div><!--end col-two-third-inner-->
+
+                  <div class="col-full learn-more">
+                    <div class="col-full-inner">
+                      <div class="learn-more-heading">Learn More</div>
+                      <div class="learn-more-text-overflow-container">
+                        <div class="learn-more-text-overflow">
+                          <div class="learn-more-text">{{{learn-more-text}}}</div>
+                        </div>
+                      </div>
+                      <div class="learn-more-heading future-student-enquiries">Future student enquiries</div>
+                      <div class="learn-more-text"><strong class="mr05em inline-block ff-standard">T</strong><p class="m0 inline-block">{{{contact-number}}}</p></div>
+                      <div class="learn-more-text"><strong class="mr05em inline-block ff-standard">E</strong><p class="m0 inline-block">{{{contact-email}}}</p></div>
+                      <div class="learn-more-link"><a href="{{{contact-website}}}">{{{contact-website}}}</a></div>
+                      <div class="learn-more-qr-code" style="background-image: url({{qr-code}})"></div>
+                    </div>
+                  </div><!--end col-full-->
+
+                  <div class="col-full foot-note">
+                    <div class="col-full-inner">
+                      <div class="foot-note-text">
+                        Monash University reserves the right to alter information, procedures, fees and regulations contained in this document. Please check the Monash University website for updates (monash.edu). All information reflects prescriptions, policy and practice in force at time of publication. CRICOS provider: Monash University 00008C {{#cricos-course-code}}CRICOS course code: <span class="courseCricos">{{{cricos-course-code}}}</span>{{/cricos-course-code}} Produced by: Monash {{{team.faculty-name}}}, <span id="date"></span>. 
+                      </div>
+                    </div>
+                  </div><!--end col-full-->
+
+                </div><!--end col two third-->
+
+                <div class="col-one-third">
+                  <div class="col">
+                    <div class="course-testimonials-overflow-container course-testimonials-2-overflow-container">
+                      <div class="course-testimonials-overflow course-testimonials-2-overflow">
+                        <div class="course-testimonials-profile-image" style="background-image: url({{testimonials-image-2}})"></div><!--end testimonial image-->
+                        <p class="course-testimonials-quote">{{{testimonials-quote-2}}}</p>
+                        <p class="course-testimonials-name">{{{testimonials-name-2}}}</p>
+                        <p class="course-testimonials-position">{{{testimonials-position-2}}}</p>
+                      </div><!--end course-testimonials-overflow-->
+                    </div><!--end course-testimonials-overflow-container-->
+                    
+                    <div class="follow-us">
+                      <div class="subheading">Follow us</div>
+                      {{#collection.social-icons}}
+                        <div class="social-wrapper">
+                          <div class="social-icon">
+                            {{{ icon }}}
+                          </div>
+                          <div class="social-handle">{{{handle}}}</div>
+                        </div>
+                      {{/collection.social-icons}}
+                    </div><!--end follow-us-->
+                  </div><!--end col-->
+                </div><!--end col one third-->
+
+              </div><!--end col-container-->
+            </div><!--end row text-->
+          </div><!--end row-container-->
+        </div><!--end content-->
+      </div><!--end document-->
+    </div><!-- Page 2 -->
+    
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/templateStarter/v1.1/char-limit.js" type="text/javascript"></script>
+  <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/templateStarter/v1.1/max-height-check.js" type="text/javascript"></script>
+  <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/templateStarter/v1.1/max-line-check.js" type="text/javascript"></script>
+  <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/templateStarter/v1.1/overflows.js" type="text/javascript"></script>
+  <script>smartquotes();</script>
+  <script>
+     // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+        // At least Safari 3+: "[object HTMLElementConstructor]"
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+        // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+        // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+        // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+    if (isOpera == true) {
+      $('body').addClass('-js-opera-browser');
+    } if (isFirefox == true) {
+      $('body').addClass('-js-firefox-browser');
+    } if (isSafari == true) {
+      $('body').addClass('-js-safari-browser');
+    } if (isIE == true) {
+      $('body').addClass('-js-ie-browser');
+    } if (isEdge == true) {
+      $('body').addClass('-js-edge-browser');
+    } if (isChrome == true) {
+      $('body').addClass('-js-chrome-browser');
+    } if (isBlink == true) {
+      $('body').addClass('-js-blink-browser');
+    }
+    
+    $('#modal').on('click','a',function(event){
+      event.preventDefault();
+      $('div#modal').fadeOut('slow');
+      $('h1,h2,p').removeClass('blured_text');  
+    });
+        
+    function loop() {
+      checkHeight($(".headline-overflow"), 145);
+      checkHeight($(".subheadline-1-overflow"), 25);
+      checkHeight($(".hero-text-overflow"), 100);
+      checkHeight($(".col-2-overflow"), 170);
+      checkHeight($(".subheadline-2-overflow"), 25);
+      checkHeight($(".course-structure-paragraph-overflow"), 85);
+      checkHeight($(".course-details-overflow"), 205);
+      checkHeight($(".course-testimonials-2-overflow"), 450);
+      checkHeight($(".page-2-col-1-overflow"), 405);
+      checkHeight($(".page-2-col-2-overflow"), 405);
+      checkHeight($(".learn-more-text-overflow"), 55);
+      checkCode();
+    } setInterval(loop, 1000);
+    
+    function checkCode() {
+      // CRICOS Course Code 7 Digit Testing
+      var courseCricos = document.querySelector(".courseCricos");
+      
+	  if(courseCricos == null) { return }
+      var tokenValue = courseCricos.querySelectorAll(".token-value");
+      
+      if(tokenValue.length != 0) {
+        courseCricos = tokenValue.item(0);
+      }
+      var code = courseCricos.innerHTML;
+      if(code.length > 7) {
+          // Check Token Again
+          if(tokenValue.length != 0) {
+            courseCricos.parentNode.classList.add("error");  
+          }
+          else {
+            courseCricos.classList.add("error");
+          }
+      }
+      else {
+          // Check Token Again
+          if(tokenValue.length != 0) {
+            courseCricos.parentNode.classList.remove("error");  
+          }
+          else {
+            courseCricos.classList.remove("error");
+          }
+      }      
+    }
+    
+    function checkHeight(element, maxHeight) {
+      var $height = element.height();
+      
+      if ($height > maxHeight) {
+        element.parent().addClass('overflow');
+      } else {
+        element.parent().removeClass('overflow');
+      }
+    }
+    
+    if ($('td:nth-child(5)').length > 0) {
+      $('table').addClass('table-font-size');
+      $('th').addClass('table-th-padding');
+      $('td').addClass('table-td-padding');
+    }
+
+    if ($('td').length > 0) {
+      $('.course-structure-diagram-image').css('display', 'none');
+    }
+        
+  </script>
+  
+  <script>
+    /* CHECK ON LIs */
+    
+    setInterval(function(){
+    if(jQuery('.col-2-overflow ul > li').length > 4)
+        jQuery('.col-2-overflow').addClass('error');
+    else
+        jQuery('.col-2-overflow').removeClass('error');
+}, 2000);
+  </script>
+  
+     <script>
+    // DATE TIME STAMP
+    window.onload = function() {
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];;
+        var date = new Date();
+
+        document.getElementById('date').innerHTML = months[date.getMonth()] + ' ' + date.getFullYear();
+    };
+  </script>
+</body>
+</html>
