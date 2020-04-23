@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+</head>
+<body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+  <div class="page">
+    <div class="background">
+      <div class="background-image" style="margin: 0.5em; background-image: url({{background-image}})"></div>
+    </div>
+
+    <div class="document">
+      <div class="content">
+        <div class="blue-line"></div>
+        <div class="line"></div>
+
+        <div class="row-container">
+          <div class="row header">
+            <div class="header-background-image" style="background-image: url('{{header-background}}');"></div>
+
+              <div class="col-container">
+                <div class="col">
+                  <div class="row-lockup">
+                    <div class="logo logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+                        <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+                        <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+                    </div>
+                    <div class="monash-faculty" style="display: {{{ faculty-name-display }}};">{{{team.stacked-faculty-name}}}</div>
+                  </div><!--row-1-->
+
+                  <div class="headlines">
+                    {{#headline}}
+                      <div class="headline">
+                        <div class="headline-overflow-container">
+                          <div class="headline-overflow">
+                            {{{headline}}}
+                          </div>
+                        </div> 
+                      </div>
+                    {{/headline}}
+                  </div><!--headlines-->
+                </div> <!--col-1-->
+
+                <div class="col">
+                  <div class="clip" style="background-image: url('{{mnhs-image}}{{M-generic}}{{ M-graduate-education }}{{M-education}}{{M-innovation}}{{M-pharmacy}}{{M-OLT}}{{M-MADA}}{{M-BDI}}{{M-MSDI}}{{M-Law}}')"></div>
+                </div><!--col-2-->
+              </div><!--col-container-->
+            </div><!--row header-->
+
+          <div class="row text">
+            
+            <div class="hero-text">
+              <div class="hero-text-overflow-container">
+                <div class="hero-text-overflow">
+              	  <div>{{{introduction-copy}}}</div>    
+                </div>
+              </div>
+            </div>
+           
+
+            <div class="col-container">
+              <div class="col">
+                <div class="col-overflow-container">
+                  <div class="col-overflow col-1-overflow">
+                    {{#highlight-copy}}
+                      <div class="highlight-copy">{{{highlight-copy}}}</div><!--highlight-copy-->
+                    {{/highlight-copy}}
+                    
+                    {{{column-1-content}}}
+                  </div>
+                </div>
+              </div><!--col-1-->
+
+              <div class="col">
+                <div class="col-overflow-container">
+                  <div class="col-overflow col-2-overflow">
+                    {{{column-2-content}}}
+                  </div>
+                </div>
+              </div><!--col-2-->
+
+              <div class="col">
+                <div class="col-overflow-container">
+                  <div class="col-overflow col-3-overflow">
+                    {{#collection.column-3-figures}}
+                     <div class="fig-container">
+                       <img src="{{figure}}">
+                       {{#figure-caption}}<p>{{{figure-caption}}}</p>{{/figure-caption}}
+                    </div><!--figure-container-->
+                   {{/collection.column-3-figures}}
+                    
+                    {{{column-3-content}}}
+
+                    
+                      <div class="references {{^references}}no-references{{/references}}">
+                        <p style="font-weight: 700;">References</p>
+                        {{{references}}}</div><!--references-->
+                   
+                 </div>
+                </div>
+                <div class="contact">
+                  <h5>Contact Us</h5>
+                  {{#name}}<p>{{{name}}}</p>{{/name}}
+                  {{#position}}<p>{{{position}}}</p>{{/position}}
+                  {{#faculty}}<p>{{{faculty}}}</p>{{/faculty}}
+                  {{#phone-number}}<p>T: {{{phone-number}}}</p>{{/phone-number}}
+                  {{#email-address}}<p>E: {{{email-address}}}</p>{{/email-address}}
+                  <p style="word-wrap: break-word;">{{{ website-url }}}</p>
+                </div><!--contact-->
+              </div><!--col-3-->
+            </div><!--col-container-->
+
+            <div class="footer">
+              <img class="go8-logo" src="assets/images/go8.svg">
+              
+              <div class="footnotes">
+                {{#cricos}}<div class="cricos">CRICOS provider: Monash University {{{cricos}}}</div>{{/cricos}}  
+                <div class="cricos">Produced by: Monash {{{team.faculty-name}}}, <span id="date"></span></div>
+              </div>
+            </div><!--footer-->
+
+          </div><!--text-->
+        </div><!--row-container-->
+
+    </div><!--content-->
+    </div><!--document-->
+
+  </div><!--page-->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  <script>smartquotes();</script>
+  <script>
+    function loop() {
+      checkHeight($(".headline-overflow"));
+      checkHeight($(".subheading-overflow"));
+      checkHeight($(".hero-text-overflow"));
+      checkHeight($(".col-1-overflow"));
+      checkHeight($(".col-2-overflow"));
+      checkHeight($(".col-3-overflow"));
+    } setInterval(loop, 2000);
+
+    function checkHeight(element) {
+      var $height = element.height();
+      var $parentHeight = element.parent().height();
+      
+      if ($height > $parentHeight) {
+        element.parent().parent().addClass('overflow');
+      } else {
+        element.parent().parent().removeClass('overflow');
+      }
+    }
+  </script>
+  
+  <script>
+    /* CHECK ON LIs */
+    
+    setInterval(function(){
+    if(jQuery('.highlight-copy ul > li').length > 6)
+        jQuery('.highlight-copy').addClass('error');
+    else
+        jQuery('.highlight-copy').removeClass('error');
+}, 2000);
+  </script>
+  
+     <script>
+    // DATE TIME STAMP
+    window.onload = function() {
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];;
+        var date = new Date();
+
+        document.getElementById('date').innerHTML = months[date.getMonth()] + ' ' + date.getFullYear();
+    };
+       
+     // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+        // At least Safari 3+: "[object HTMLElementConstructor]"
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+        // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+        // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+        // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+    if (isOpera == true) {
+      $('body').addClass('-js-opera-browser');
+    } if (isFirefox == true) {
+      $('body').addClass('-js-firefox-browser');
+    } if (isSafari == true) {
+      $('body').addClass('-js-safari-browser');
+    } if (isIE == true) {
+      $('body').addClass('-js-ie-browser');
+    } if (isEdge == true) {
+      $('body').addClass('-js-edge-browser');
+    } if (isChrome == true) {
+      $('body').addClass('-js-chrome-browser');
+    } if (isBlink == true) {
+      $('body').addClass('-js-blink-browser');
+    }
+    
+    $('#modal').on('click','a',function(event){
+      event.preventDefault();
+      $('div#modal').fadeOut('slow');
+      $('h1,h2,p').removeClass('blured_text');  
+    });
+    
+  </script>
+</body>
+</html>
