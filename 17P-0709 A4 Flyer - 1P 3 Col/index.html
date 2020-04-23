@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css" rel="stylesheet">    
+    <script src="tinycolor.js"></script>
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <style>
+
+      .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/92bca71bcbd2d3a6812a3065e250ab22/Screen%20Shot%202017-09-21%20at%203.05.13%20pm.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      overflow * { 
+        color: inherit !important; 
+      }
+
+      .overflow {
+        border: none;
+        box-shadow: 0 0 0 0.0362rem red;
+        background: rgba(255, 0, 0, 0.4);
+        position: relative;
+        z-index: 999;}
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4, 
+      .overflow h5, 
+      .overflow h6, 
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 0;
+        right: 0;
+        height: 1em;
+        width: 1em;
+        max-height: 100%;
+        color: red;
+        padding: 0;
+        box-sizing: border-box;
+        font-size: 0.8em;
+        text-align: center;
+        line-height: 1em;
+        background-color: white;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'Max number of lines exceeded!';
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: black;
+        color: white;
+        border-radius: 0;
+        padding: 0 1.5em 0 0.5em;
+        box-sizing: border-box;
+        max-height: 100%;
+        font-size: 0.8em;
+        font-weight: 400;
+        text-align: right;
+        line-height: 1em;
+        z-index: 2;
+      }
+
+      .overflow[data-max-height]:hover:after {
+        content: 'Max height exceeded!';  
+      }
+
+      .overflow[data-char-limit]:hover:after {
+        content: 'Character limit exceeded';        
+      }
+
+      .overflow .token-value.token-empty {
+        display: none;
+      }
+
+      /* Small fix that prevents Superscript and Subscript from breaking the element's line-height */
+      sup,
+      sub {
+        vertical-align: baseline;
+        position: relative;
+        top: -0.4em;        
+        line-height: 1em;
+      }
+
+      sub {
+        top: 0.4em;
+      }   
+
+      /* Hiding Placeholder Elements on Export */
+      .is-export-mode .placeholder__container,
+      .is-export-mode .placeholder__trigger {
+        display: none;
+      }     
+
+
+      html {
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Helvetica Neue Cond', helvetica, arial, sans-serif;
+        background-color: #fff;
+      }
+
+      strong { font-weight: bold; }
+
+      h1, h2, h3, h4, h5, h6 { margin: 0; line-height: 1.2em; }
+
+      /* Page 1 */
+
+      .page-1 .logo { position: absolute; top: 0.75rem; left: 0.75rem; width: 3.6rem; }
+      .page-1 .logo img { width: 100%; }
+
+      .showLogo-primary .logo-reversed{
+        display: none;
+      }
+
+      .showLogo-reversed .logo-blue{
+        display: none;
+      }
+
+      .page-1 .image-1 { position: absolute; top: 0; left: 0; right: 0; height: 4.5em; z-index: -2; background-size: cover; background-repeat: no-repeat; background-position: center center; }
+
+      .page-1 .header-position { position: absolute; left: 0.8rem;/* top: 2.5em;*/ max-height: 1.55rem; width: 11rem; z-index: 1; bottom: 16rem;}
+      .page-1 .header-position h2 { color: #fff; font-size: 0.77rem; line-height: 1em; text-transform: uppercase; font-weight: bold; }   
+
+      .page-1 .subheader-position { position: absolute; top: 5rem; left: 0.8rem; width: 12rem; max-height: 1.7rem; z-index: 1; }
+
+      .page-1 .subheader-position h2 { margin: 0 0 0.4em 0; color: #1CA0D8; font-size: 0.32rem; font-family: 'Helvetica Neue LT Std'; }
+
+      .page-1 .monash-m { position: absolute; top: 0; right: 0.6rem; width: 1.93rem; z-index: -1; opacity: 0.5; }
+      .page-1 .monash-m img { width: 100%; }
+
+      .page-1 .columns-position { display: flex; justify-content: space-between; position: absolute; top: 7rem; left: 0.8rem; width: 12.7rem; height: 14rem; }
+
+      .page-1 .column-1-position, .page-1 .column-2-position, .page-1 .column-3-position { width: 31.7%; position: relative; 
+        align-self: flex-start; }
+      .page-1 .column-1-position { height: 12rem; overflow: hidden; }
+      .page-1 .column-2-position { height: 12rem; overflow: hidden; }
+      .page-1 .column-3-position { height: 7.8rem; overflow: hidden; }
+
+      .page-1 .column-1-position h2, .page-1 .column-2-position h2, .page-1 .column-3-position h2 { margin: 0 0 0.6em 0; font-size: 0.32rem; font-weight: bold; text-transform: uppercase; }
+      .page-1 .column-1-position p, .page-1 .column-2-position p, .page-1 .column-3-position p { margin: 0 0 0.6em 0; font-family: 'Helvetica Neue LT Std'; font-size: 0.25rem; }
+
+      .page-1 .column-1-position ul, .page-1 .column-2-position ul, .page-1 .column-3-position ul {
+        margin: 0 0 0.6em 0; padding: 0 0 0 0.4rem; font-family: 'Helvetica Neue LT Std'; font-size: 0.25rem; list-style-type: square;
+      }
+
+      .page-1 .column-1-position ol, .page-1 .column-2-position ol, .page-1 .column-3-position ol { margin: 0 0 0.6em 0; padding: 0 0 0 2rem; font-family: 'Helvetica Neue LT Std'; font-size: 0.25rem; }
+
+      .page-1 .column-1-position h3, .page-1 .column-2-position h3, .page-1 .column-3-position h3 { margin: 0 0 0.4em 0; font-family: 'Helvetica Neue LT Std'; font-size: 0.2rem; font-weight: normal; }
+      .page-1 .column-1-position img, .page-1 .column-2-position img, .page-1 .column-3-position img { width: 100%; }
+
+      .page-1 .details { position: absolute; bottom: 1.3rem; left: 9.46rem; width: 4.1rem; max-height: 3.7rem; padding: 0.3rem; color: #fff; background-color: #939598; }
+      .page-1 .details h2 { color: #fff; margin: 0 0 0.5em 0; font-size: 0.3rem; font-weight: bold; }
+      .page-1 .details p {  color: #fff; font-family: 'Helvetica Neue LT Std'; font-size: 0.22rem; line-height: 1.3em; }
+
+      .page-1 .website { position: absolute; left: 0.8rem; bottom: 0.6rem; }
+      .page-1 .website p {  color: #020202; font-family: 'Helvetica Neue LT Std'; font-size: 0.22rem; font-weight: bold; }
+
+      .page-1 .cricos { position: absolute; left: 9.46rem; bottom: 0.6rem; }
+      .page-1 .cricos p {  color: #A6A7A7; font-family: 'Helvetica Neue LT Std'; font-size: 0.14rem; line-height: 1.3em; }
+
+      .website { display: flex; flex-direction: column; }
+      .mbs { display: flex; height: 0.5rem; margin: 0 0 0.2em 0; }
+
+      .page-1 .column-1-position h2:last-child, .page-1 .column-2-position h2:last-child, .page-1 .column-3-position h2:last-child,
+      .page-1 .column-1-position p:last-child, .page-1 .column-2-position p:last-child, .page-1 .column-3-position p:last-child, 
+      .page-1 .column-1-position ul:last-child, .page-1 .column-2-position ul:last-child, .page-1 .column-3-position ul:last-child, 
+      .page-1 .column-1-position ol:last-child, .page-1 .column-2-position ol:last-child, .page-1 .column-3-position ol:last-child,
+      .page-1 .column-1-position h3:last-child, .page-1 .column-2-position h3:last-child, .page-1 .column-3-position h3:last-child,
+      .page-1 .details h2:last-child, .page-1 .subheader-position h2:last-child { 
+        margin-bottom: 0;
+      }
+
+      .mbs img { height: 100%; }
+
+      .page-1 .subheader-position h2 { margin: 0 0 0.4rem 0;}
+
+      .faculty {
+        position: absolute;
+        right: 7.3em;
+        top: 2.08em;
+        font-size: 0.36em;
+        text-transform: uppercase;
+        line-height: 1.03em;
+        color: #fff;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="page page-1">
+      <div class="bleed">
+
+        <div class="logo logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+          <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+          <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+        </div>
+
+        <div class="faculty">{{{ mbs-faculty }}}</div>
+
+        <div class="monash-m">
+          <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/c7e5f5832e1234e6172a7a7173defc8c/m.svg">
+        </div><!--monash-m-->
+
+        <div class="image-1" style="background-image: url({{^image-1}} {{mnhs-image}} {{/ image-1 }} {{{ image-1 }}})">
+        </div><!--image-1-->
+
+        <div class="header-position" data-max-height="css">
+          <h2>
+
+            <div style="font-size:{{MNH_heading-size}}%; line-height: 1em;">
+              {{{ header }}}
+            </div>
+
+          </h2>
+        </div><!--header-position-->
+
+        <div class="subheader-position" data-max-height="css">
+          <h2>{{{ subheader }}}</h2>
+        </div><!--subheader-position-->
+
+        <div class="columns-position">
+
+          <div class="column-1-position">
+            <div data-max-height="dynamic">
+              {{{ column-1 }}}
+            </div> <!-- dynamic -->
+          </div><!--column-1-position-->
+
+          <div class="column-2-position">
+            <div data-max-height="dynamic">
+              {{{ column-2 }}}
+            </div> <!-- dynamic -->
+          </div><!--column-2-position-->
+
+          <div class="column-3-position">
+            <div data-max-height="dynamic">
+              {{{ column-3 }}}
+            </div> <!-- dynamic -->
+          </div><!--column-3-position-->
+
+        </div><!--columns-position-->
+
+        <div class="details" data-max-height="css"><h2>{{{ details-header }}}</h2><p>{{{ details }}}</p></div><!--details-->
+        <div class="website"><div class="mbs"><img src="{{{ mbs }}}"></div><p>{{{ website }}}</p></div><!--website-->
+        <div class="cricos"><p>{{{ cricos }}}</p></div><!--cricos-->
+
+
+      </div><!--bleed-->
+    </div><!--page-1-->
+
+    <script>
+
+      window.showCrop = {{show-crop}};
+
+    </script>
+    <script src="main.js"></script>
+    <script src="prefixfree.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script>
+      document.fonts.ready.then(() => {
+        maxHeightCheck();
+      });
+      
+      setInterval(() => {
+        maxHeightCheck();
+      }, 1000);
+
+    </script>
+  </body>
+</html>
