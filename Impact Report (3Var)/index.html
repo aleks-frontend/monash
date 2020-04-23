@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html data-sign="OSZ" async>
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/HelveticaNeue/stylesheet.css');
+
+      /* Input Order
+
+      {{show-crop}}
+      {{{ document_description }}}
+      {{{ document_name }}}
+      {{#collection.MON_front-page--ir3}}{{/collection.MON_front-page--ir3}}
+      {{ #collection.pages }}
+      {{#block.financial-summary-page}}{{/block.financial-summary-page}}
+      {{#block.body-copy-page}} 
+      {{{ layout_name }}}
+      {{body-copy--ir3}}
+      {{hero-image-ir3}}
+      {{hero-image-caption-ir3}}}
+      {{/block.body-copy-page}}
+      {{#block.customisable-page}} 
+      {{{ layout_name }}}
+      {{#collection.column-collection-ir3}}{{/collection.column-collection-ir3}}
+      {{hero-image-ir3}}
+      {{hero-image-caption-ir3}}}
+      {{/block.customisable-page}}
+      {{ #block.page_layout_1 }} 
+      {{ /block.page_layout_1 }} 
+      {{ #block.page_layout_2 }} 
+      {{ /block.page_layout_2 }} 
+      {{ #block.page_layout_3 }} 
+      {{{ layout_name }}}
+      {{{ layout_3_intro }}}
+      {{{ layout_3_left_column }}}
+      {{{ layout_3_right_column }}}
+      {{{ layout_3_right_quote }}}
+      {{hero-image-ir3}}
+      {{hero-image-caption-ir3}}}"
+      {{ /block.page_layout_3 }} 
+      {{ #block.page_layout_4 }} 
+      {{ /block.page_layout_4 }} 
+      {{ #block.page_layout_blank }}
+      {{ /block.page_layout_blank }}
+      {{#block.full-image-page}} 
+      {{/block.full-image-page}} 
+      {{ /collection.pages }} 
+      {{#collection.MON_back-page--ir3}}{{/collection.MON_back-page--ir3}}
+
+      */
+
+      :root {
+        --pink: {{{account.colors.pop-pink}}};
+        --green: {{{account.colors.pop-green}}};
+        --blue: {{{account.colors.pop-blue}}};
+        --monash-blue: {{{account.colors.monash-blue}}};
+        --gray: #211f20;
+        --gray-primary: #3d3e3a;
+        --gray-secondary: #6e6e6e;
+        --white: #fff;
+        --black: #020202;
+        --dark: #aaa;
+        --cyan: #0ff;
+        --gutter: 14mm;
+        --header-margin: 20mm;
+        --font-size-s: 9pt;
+        --font-size-m: 11pt;
+        --font-size-l: 13pt;
+        --margin-s: 0.4em;
+        --margin-m: 1.5em;
+        --margin-l: 3em;
+        --font-family: 'Helvetica Neue Condensed', helvetica, arial, sans-serif;
+      }
+
+      .sloganColour--pink {
+        --dynamic-colour: var(--pink);
+      }
+
+      .sloganColour--green {
+        --dynamic-colour: var(--green);
+      }
+
+      .sloganColour--blue {
+        --dynamic-colour: var(--blue);
+      }
+
+      html {
+        font-family: 'Helvetica Neue Cond';
+        color: var(--black);
+        word-break: break-word;
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }    
+
+      /* Internal pages Addition */
+      .bleed-inner { padding: 3mm; }
+      .page { background: var(--white); height: 100%; width: 100%; overflow: hidden; }
+      .page-inner { 
+        font-size: var(--font-size-m);
+        display: flex; flex-direction: column; padding: var(--gutter); }
+
+      .page-inner *, 
+      .page-inner *:before, 
+      .page-inner *:after {
+        font-size: 1em;
+      }
+
+      .page-content { overflow: hidden; flex: 1;}
+
+      /*** Copy **/
+      .copy h1, .copy h2, .copy h3  { margin: var(--margin-m) 0 var(--margin-s) 0; font-weight: 500;  }
+      .copy h1:first-child, .copy h2:first-child, .copy h3:first-child { margin-top: 0; }
+      .copy h1 { text-transform: uppercase; letter-spacing: 0.12em; }
+      .copy h2 { text-transform: uppercase; letter-spacing: 0.12em; font-size: var(--font-size-s); }
+      .copy h3, .copy h4, .copy h5, .copy h6 { font-size: var(--font-size-s); }
+      .copy p, .copy ul, .copy ol { margin: var(--margin-s) 0; }
+      .copy ul, .copy ol { list-style: none; }
+      .copy li:before { content: '>'; position: absolute; top: 0; left: 0; }
+      .copy li { padding-left: 1.5em; position: relative; margin-bottom: 0.1em; }
+      /** Header **/
+      .page-header { display: flex; justify-content: space-between; margin-bottom: var(--header-margin); line-height: 1.2; }
+      /* .fit--bodyCopy .page-header { margin-bottom: 21.5pt; }  */
+      .fit--bodyCopy .page-header { margin-bottom: 30.5pt; }
+      /* .fit--financial .page-header { margin-bottom: 76pt; } */
+      .fit--financial .page-header { margin-bottom: 85pt; }
+      .page-header-logo { width: 36mm; }
+      /* .fit--bodyCopy .page-header-logo,
+      .fit--financial .page-header-logo { 
+      width: 139.2pt; 
+      } */
+      .description { display: flex; max-width: 50%; flex-direction: column; }
+      [data-page-layout]:nth-of-type(even) .page-header-logo { display: none; }
+      /** Front Page **/
+      .front-page .page-inner { justify-content: space-between; padding-bottom: 0; }
+      .front-page-header div { margin-left: 69%; }
+      .front-page-header-logo { display: block; width: 50mm; }
+      .front-content { display: flex; align-items: center; justify-content: space-between; }
+      .front-content-text { flex: 0 0 30%; }
+      .front-content-text h1 { margin-top: 0; margin-bottom: var(--margin-m); line-height: 1.4; }
+      .front-content-text h1 p { margin: 0; }
+      .front-content-text h1:last-of-type { margin-bottom: 0; }
+      .front-content-m-wrap { position: relative; flex: 0 0 55%; }
+      .front-content-m {
+        -webkit-clip-path: polygon(0% 0%, 0% 100%, 26.6% 100%, 27.6% 58%, 36% 100%, 64% 100%, 73% 59%, 73% 100%, 100% 100%, 100% 0%, 56% 0%, 50% 33%, 43% 0);
+        clip-path: polygon(0% 0%, 0% 100%, 26.6% 100%, 27.6% 58%, 36% 100%, 64% 100%, 73% 59%, 73% 100%, 100% 100%, 100% 0%, 56% 0%, 50% 33%, 43% 0); background: var(--black); padding-bottom: 254%; height: 0;
+      }
+      /*** Back Page **/
+      .back-page-header-logo { display: block; width: 50mm; }
+      .back-content { width: 80mm; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+      .back-content-contact { margin-top: 2.5em; }
+      .back-content-contact h2 { font-weight: 500; margin-bottom: var(--margin-s); }
+      .back-content-contact p { margin-top: 0; margin-bottom: 0; }
+      p.back-content-contact-meta { margin-top: var(--margin-s); }
+      .back-content-url { font-weight: 500; margin-bottom: var(--margin-l); }
+      /** Type **/
+      blockquote,
+      .quote { font-size: var(--font-size-l); border-top: 1px solid var(--dark); border-bottom: 1px solid var(--dark); padding: var(--margin-m) var(--margin-s) var(--margin-m) 0; margin-top: var(--margin-l); }
+      strong { font-weight: bold; }
+      .font-weight-light { font-weight: 300 !important; }
+      .font-weight-bold { font-weight: bold !important; }
+      .uppercase { text-transform: uppercase; letter-spacing: 0.12em; }
+      .font-size-s { font-size: var(--font-size-s); }
+      /** Images **/
+      .image { position: relative; background: #ccc; }
+      .caption { margin: calc(var(--margin-s) * 1.5) 0 0 0; font-size: var(--font-size-s); }
+      /** Page Style 1 **/
+      .style-1-page .image { min-height: 200pt;  }
+      .style-1-page .bodyCopy { margin-top: var(--margin-l); padding-right: calc(var(--gutter) * 2);  }
+      /** Page Style 2 **/
+      .style-2-page .page-content-inner { display: flex; }
+      .style-2-page .image-item { margin-bottom: var(--margin-l); }
+      .style-2-page .image { padding-bottom: 133%; }
+      .style-2-page .page-content-left { flex: 0 0 65%; padding-right: calc(var(--gutter) * 2);  }
+      .style-2-page .page-content-right { flex: 1; }
+      /** Page Style 3 **/
+      .style-3-page .page-content { display: flex; flex-wrap: wrap; }
+      .style-3-page .page-content-top { flex: 0 0 100%; margin-bottom: var(--gutter);  }
+      .style-3-page .page-content-left { flex: 0 0 50%; padding-right: calc(var(--gutter) / 2);  }
+      .style-3-page .page-content-right { flex: 0 0 50%; padding-left: calc(var(--gutter) / 2); }
+      /** Page Style 4 **/
+      .style-4-page .page-content-inner { display: flex; }
+      .style-4-page .page-content-left { flex: 0 0 50%; padding-right: calc(var(--gutter) / 2);  }
+      .style-4-page .page-content-right { flex: 0 0 50%; padding-left: calc(var(--gutter) / 2); }
+      .profile { display: flex; flex-direction: column-reverse; }
+      .profile-headshot { width: 60%; }
+      .profile-headshot-inner { padding-bottom: 133%; }
+      .profile-name { margin-top: var(--margin-s); margin-bottom: 0 !important; }
+      .profile-faculty { text-transform: uppercase; letter-spacing: 0.12em; margin-top: 0 !important; }
+      .profile-copy { margin-top: var(--margin-l); }
+
+      /** Warning **/
+      .page-number-warning { display: none; position: fixed; top: 10mm; left: 50%; right: 10mm; padding: 6mm; font-weight: 500; z-index: 999; background: red; }
+      .page-number-warning.hide { display: none !important; }
+      .page-number-warning.show { display: block !important; }
+
+      /** Blank **/
+      .blank-page-message { display: none; }
+      @media screen {
+        .blank-page-message { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 16pt; font-weight: 500; }
+      }
+
+      /* End of Internal pages Addition */
+
+      .fit {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .fit--frontPage {
+        padding: 37pt;
+      }
+
+      .fit--backPage {
+        padding: 57pt 341pt 62.3pt 51.5pt;
+      }
+
+      .fit--frontPage.headerSelection--bottom-black  {
+        padding-top: 51.7pt;
+      }
+
+      .fit--financial {
+        padding: 57pt 51.3pt;
+        color: var(--gray-primary);
+      }
+
+      .fit--bodyCopy,
+      .fit--custom {
+        padding: 46pt 50pt 61pt 51.5pt;
+      }
+
+      .header--frontPage {
+        position: relative;
+        height: 105pt;
+      }
+
+      .header--backPage {
+        margin-bottom: 64pt;
+        padding-left: 1.3pt;
+        font-size: 0;
+      }
+
+      .headerSelection--bottom-black .header--frontPage {
+        height: 50pt;
+      }
+
+      .header--financial {
+        margin-bottom: 76pt;
+        font-size: 0;
+      }
+
+      .header--bodyCopy {
+        margin-bottom: 21.5pt;
+        font-size: 0;
+      }
+
+      .headerSelection--top-black .solidSection--primary,
+      .headerSelection--bottom-black .solidSection--secondary {
+        background: var(--gray);
+      }
+
+      .solidSection {
+        position: relative;
+        display: none;
+        padding: 34pt 25.1pt 26pt 25.3pt;
+      }
+
+      .headerSelection--top-black .solidSection--primary,
+      .headerSelection--top-transparent .solidSection--primary,
+      .headerSelection--bottom-black .solidSection--primary,
+      .headerSelection--bottom-black .solidSection--secondary {
+        display: flex;
+      }
+
+      .solidSection--primary {
+        justify-content: space-between;
+        max-height: 107pt;
+      }
+
+      .solidSection--secondary {
+        max-height: 84pt;
+        justify-content: flex-end;
+      }
+
+      .headerSelection--bottom-black .solidSection--primary {
+        justify-content: flex-start;
+        padding: 0;
+      }
+
+      .headerSelection--bottom-black .solidSection--secondary {
+        justify-content: flex-end;
+        padding: 24pt 25.1pt 18pt 25.3pt;
+      }
+
+
+      .logo--primary,
+      .logo--secondary {
+        display: none;
+        width: 158.2pt;
+      }
+
+      .logo--backPage {
+        width: 134pt;
+      }
+
+      .headerSelection--bottom-black .logo {
+        align-self: flex-start;
+      }
+
+      .headerSelection--bottom-black .logo,
+      .logo--financial,
+      .logo--bodyCopy {
+        width: 139.2pt;
+      }
+
+      .headerSelection--top-black .logo--primary,
+      .headerSelection--top-transparent .logo--secondary,
+      .headerSelection--bottom-black .logo--secondary {
+        display: block;
+      }
+
+      .slogan {
+        display: none;
+        text-transform: uppercase;
+      }
+
+      .headerSelection--top-black .slogan--primary,
+      .headerSelection--top-transparent .slogan--primary,
+      .headerSelection--bottom-black .slogan--secondary {
+        display: block;
+      }
+
+      .slogan__item {
+        font-size: 24.4pt;
+        font-weight: bold;
+        line-height: 0.9em;
+      }
+
+      .headerSelection--top-black .slogan--primary,
+      .headerSelection--bottom-black .slogan--secondary{
+        color: var(--white);
+      }
+
+      .headerSelection--top-transparent .slogan--primary {
+        color: var(--black);
+      }
+
+      .slogan__item--secondary {
+        color: var(--dynamic-colour);
+      }
+
+      .body {
+        flex: 1;
+      }
+
+      .body--frontPage {
+        padding: 47pt 0pt 35pt 26pt;
+      }
+
+      .headerSelection--bottom-black .body {
+        padding: 17pt 8pt 32pt;
+      }
+
+      .body--frontPage {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .body--financial {
+        padding-right: 115.7pt;
+      }
+
+      .style-3-page .page-content,
+      .body--bodyCopy,
+      .body--custom {
+        flex: none;
+      }
+
+      .body--bodyCopy,
+      .body--custom {
+        max-height: 900px;
+      }
+
+      .style-3-page .page-content {
+        max-height: 920px;
+      }
+
+      .style-3-page .page-content.withHeroImage,
+      .body--bodyCopy.withHeroImage,
+      .body--custom.withHeroImage {
+        margin-bottom: 35pt;
+        max-height: 635px;
+      }
+
+      .heading {
+        margin-bottom: 21pt;
+        font-size: 47.3pt;
+        font-weight: bold;
+        line-height: 1em;
+        text-transform: uppercase;
+      }
+
+      .subheading{
+        font-size: 20pt;
+        font-weight: bold;
+        text-transform: uppercase;
+        line-height: 1.2em;
+      }
+
+      .hero__container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      .hero__container--primary {
+        height: 381pt;
+      }
+
+      .headerSelection--bottom-black .hero__container--primary{
+        height: 450pt;
+      } 
+
+      .hero__container--secondary {
+        flex: 1;
+        min-height: 150pt;
+      }
+
+      .hero {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+
+      .headerSelection--bottom-black .hero {
+        height: 368pt;
+      }
+
+      .hero__container--secondary .hero {
+        position: relative;
+      }
+
+      .copy--backPage {
+        margin-bottom: 32pt;
+      }
+
+      .copy--backPage h3 {
+        margin-bottom: 31.4pt;
+        font-family: 'Helvetica Neue Light Cond';
+        font-size: 20.5pt;
+        font-weight: 300;
+        text-transform: uppercase;
+        line-height: 1.2em;
+      }
+
+      .copy--backPage p {
+        margin-bottom: 15pt;
+        font-family: 'Helvetica Neue';
+        font-size: 9.23pt;
+        font-weight: normal;
+        line-height: 1.5em;
+        letter-spacing: -0.25pt;
+      }
+
+      .copy--backPage h3:last-child,
+      .copy--backPage p:last-child {
+        margin-bottom: 0;
+      }
+
+
+      .bodyCopy h1 {
+        margin-bottom: 0.42em;
+        font-size: 30.5pt;
+        line-height: 1em;
+      }
+
+      .bodyCopy h2 {
+        margin-bottom: 0.42em;
+        font-size: 20.4pt;
+        line-height: 1em;
+      }
+
+      .bodyCopy h3 {
+        margin-top: 13pt;
+        margin-bottom: 7pt;
+        font-size: 15.1pt;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: var(--monash-blue);
+      }
+
+      .bodyCopy h3:first-child {
+        margin-top: 0pt;
+      }
+
+      .bodyCopy p {
+        margin-bottom: 6.4pt;
+        font-size: 12.13pt;
+        line-height: 1.2em;
+      }
+
+      .bodyCopy a {
+        margin-bottom: 6.4pt;
+        font-size: 11.73pt;
+        line-height: 1.2em;
+        color: var(--monash-blue);
+      }
+
+      .bodyCopy p strong{
+        font-size: 12.26pt;
+      }
+
+      .bodyCopy ul {
+        margin-bottom: 12pt;
+        padding-left: 12pt;
+        list-style-type: disc;
+      }
+
+      .bodyCopy li {
+        margin-bottom: 6.4pt;
+        font-size: 12.13pt;
+        line-height: 1.2em;
+      }
+
+      .disclamer {
+        font-size: 6.22pt;
+        line-height: 1.4em;
+      }
+
+      .bodyCopy h1:last-child,
+      .bodyCopy h2:last-child,
+      .bodyCopy h3:last-child,
+      .bodyCopy p:last-child,
+      .bodyCopy ul:last-child, 
+      .bodyCopy li:last-child,
+      .bodyCopy a:last-child {
+        margin-bottom: 0;
+      }
+
+      .cricos {
+        margin-top: 2.8pt;
+        font-size: 6.3pt;
+        line-height: 1.2em;
+      }
+
+      .contact {
+        margin-bottom: 15pt;
+      }
+
+      .contact__heading {
+        margin-bottom: 6pt;
+        font-family: 'Helvetica Neue';
+        font-size: 9.3pt;
+        font-weight: normal;
+        line-height: 1.5em;
+        letter-spacing: -0.25pt;
+      }
+
+      .contact__text {
+        margin-bottom: 2pt;
+        font-family: 'Helvetica Neue';
+        font-size: 9.3pt;
+        font-weight: normal;
+        line-height: 1.3em;
+        letter-spacing: -0.25pt;
+        color: var(--gray-secondary);
+      }
+
+      .contact__text--bold {
+        margin-bottom: 2pt;
+        font-family: 'Helvetica Neue';
+        font-size: 11.3pt;
+        font-weight: bold;
+        line-height: 1em;
+      }
+
+      .contact:last-child,
+      .contact__text:last-child, 
+      .contact__heading:last-child {
+        margin-bottom: 0pt;
+      }
+
+      .title {
+        margin-bottom: 23.5pt;
+        font-size: 25.4pt;
+        font-weight: bold;
+        line-height: 1.1em;
+        text-transform: uppercase;
+      }
+
+      .table {
+        margin-bottom: 25.6pt;
+      }
+
+      .table:last-child {
+        margin-bottom: 0;
+      }
+
+      .table__title {
+        padding: 0pt 0pt 1.5pt 4pt;
+        font-size: 12.1pt;
+        font-weight: bold;
+        text-transform: uppercase;
+        line-height: 1.2em;
+        border-bottom: 1pt solid var(--gray);
+      }
+
+      .table__item {
+        display: flex;
+        padding: 5pt 4.5pt 1.5pt;
+        border-bottom: 1pt solid var(--black);
+      }
+
+      .table__item--yes {
+        border-bottom: 1.3pt solid var(--black);
+        border-top: 0.7pt solid var(--black);
+      }
+
+      token-value + .table__item--yes {
+        border-top: 0;
+      }
+
+      .table__description {
+        flex: 1;
+        padding-right: 10pt; 
+        font-size: 11pt;
+        letter-spacing: 0.27pt;
+        line-height: 1.2em;
+      }
+
+      .table__item--yes .table__description {
+        font-weight: bold;
+      }
+
+      .table__price {
+        width: 84pt;
+        flex-shrink: 0;
+        font-size: 11.6pt;
+        line-height: 1.2em;
+      }
+
+      .table__item--yes .table__price {
+        font-size: 11.5pt;
+        font-weight: bold;
+      }
+
+      .column__container {
+        display: flex;
+        margin-left: -23pt;
+      }
+
+      .column {
+        flex: 1;
+      }
+
+      .column__inner {
+        margin-left: 23pt;
+      }
+
+      .body--custom .image__container {
+        margin-bottom: 15pt;
+      }
+
+      .body--custom .image__container--primary,
+      .body--custom.withHeroImage .image__container--secondary {
+        display: none;
+      }
+
+      .body--custom.withHeroImage .image__container--primary {
+        display: block;
+      }
+
+      .image--custom {
+        height: 100%;
+        width: 100%;
+      }
+
+
+      /* Helper classes */
+      .u-hide { display: none; }
+      .style-3-page .page-content.u-hide { display: none; }
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .master {
+        display: none;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" data-crop="{{show-crop}}">
+
+    <div class="master">
+      <div class="js-inject-src" data-target-id="logo-primary" data-is-image="true">{{{account.logos.mu-logo-reversed}}}</div>
+      <div class="js-inject-src" data-target-id="logo-secondary" data-is-image="true">{{{account.logos.mu-logo-secondary}}}</div>
+    </div> <!--master-->
+
+    <div data-page-header style="display: none!important;">
+      <div><img src="{{{account.logos.mu-logo}}}" class="page-header-logo" /></div>
+      <div class="description">
+        <div class="font-weight-bold uppercase font-size-s" style="line-height: 1.2em;" data-max-line="2">{{{ document_description }}}</div>
+        <div class="uppercase font-size-s">{{{ document_name }}}</div>
+      </div>
+    </div>
+
+    {{#collection.MON_front-page--ir3}}
+    <div class="page">
+
+      <div class="bleed">
+        <div class="container fit fit--frontPage headerSelection--{{{header-selection}}}{{^header-selection}}top-black{{/header-selection}} sloganColour--{{{slogan-colour}}}{{^slogan-colour}}blue{{/slogan-colour}}">
+          <div class="header header--frontPage">
+            <div class="solidSection solidSection--primary">
+              <img class="logo logo--primary" src="#" data-target="logo-primary"/>
+              <img class="logo logo--secondary" src="#" data-target="logo-secondary"/>
+              <div class="slogan slogan--primary">
+                <div class="slogan__item slogan__item--primary">Change it.</div> <!--slogan__item--primary-->
+                <div class="slogan__item slogan__item--secondary">For Good.</div> <!--slogan__item--secondary-->
+              </div> <!--slogan--primary-->
+            </div> <!--solidSection--primary-->
+          </div> <!--header-->
+          <div class="body body--frontPage">
+            <div class="body__inner body__inner--frontPage" data-max-height="dynamic">
+              {{#headline-ir3}}
+              <div class="heading" data-max-line="4">{{{headline-ir3}}}</div> <!--heading-->
+              {{/headline-ir3}}
+              {{#subheadline-ir3}}
+              <div class="subheading" data-max-line="4">{{{subheadline-ir3}}}</div> <!--subheading-->
+              {{/subheadline-ir3}}
+            </div> <!--body__inner-->
+          </div> <!--body-->
+          <div class="hero__container hero__container--primary">
+            <div class="hero"><div class="reposition-fix">{{{front-page-image}}}</div></div> <!--hero-->
+            <div class="solidSection solidSection--secondary">
+              <div class="slogan slogan--secondary">
+                <div class="slogan__item slogan__item--primary">Change it.</div> <!--slogan__item--primary-->
+                <div class="slogan__item slogan__item--secondary">For Good.</div> <!--slogan__item--secondary-->
+              </div> <!--slogan--secondary-->
+            </div> <!--solidSection--primary-->
+          </div> <!--hero__container-->
+        </div><!--container fit-->
+      </div><!--bleed-->
+
+    </div><!--page-->
+    {{/collection.MON_front-page--ir3}}
+
+    {{ #collection.pages }}    
+    {{#block.financial-summary-page}} 
+    <div class="page"  data-page-layout="{{{ layout_name }}}">
+
+      <div class="bleed">
+        <div class="container fit fit--financial">
+          <div class="page-header"></div>
+          <div class="body body--financial">
+            <div class="body__inner body__inner--financial" data-max-height="dynamic">
+              {{#title--ir3}}
+              <div class="title" data-max-line="1">{{{title--ir3}}}</div> <!--title-->
+              {{/title--ir3}}
+              {{#collection.data--ir3}} 
+              {{#block.spreadsheet--ir3}} 
+              <div class="table">                
+                {{#spreadsheet-title}}
+                <div class="table__title" data-max-line="1">{{{spreadsheet-title}}}</div> <!--table__title-->
+                {{/spreadsheet-title}}
+                {{#spreadsheet.spreadsheet-values}}
+                <div class="table__item" data-highlight-row="{{{row-highlight}}}{{^row-highlight}}no{{/row-highlight}}">
+                  <div class="table__description" data-max-line="1">{{{description}}}</div> <!--table__description-->
+                  <div class="table__price" data-max-line="1">{{{price}}}</div> <!--table__price-->
+                </div> <!--table__item-->
+                {{/spreadsheet.spreadsheet-values}}
+              </div> <!--table-->
+              {{/block.spreadsheet--ir3}} 
+              {{/collection.data--ir3}}    
+            </div> <!--body__inner-->
+          </div> <!--body-->
+        </div><!--container fit-->
+      </div><!--bleed-->
+
+    </div><!--page-->
+    {{/block.financial-summary-page}}
+
+    {{#block.body-copy-page}} 
+    <div class="page"  data-page-layout="{{{ layout_name }}}">
+
+      <div class="bleed">
+        <div class="container fit fit--bodyCopy">
+          <div class="page-header"></div>
+          <div class="body body--bodyCopy {{#hero-image-ir3}}withHeroImage{{/hero-image-ir3}} u-heading-patch" data-max-height="css">
+            {{#body-copy--ir3}}
+            <div class="copy__container">
+              <div class="bodyCopy u-heading-patch">{{{body-copy--ir3}}}</div> <!--copy-->
+            </div> <!--copy__container-->
+            {{/body-copy--ir3}}
+          </div> <!--body-->
+          {{#hero-image-ir3}}
+          <div class="hero__container hero__container--secondary">
+            <div class="hero"><div class="reposition-fix">{{{hero-image-ir3}}}</div></div> <!--hero-->
+            {{#hero-image-caption-ir3}}
+            <div class="caption">{{{hero-image-caption-ir3}}}</div> <!--caption-->
+            {{/hero-image-caption-ir3}}
+          </div> <!--hero__container-->
+          {{/hero-image-ir3}}
+        </div><!--container fit-->
+      </div><!--bleed-->
+
+    </div><!--page-->
+    {{/block.body-copy-page}} 
+    {{#block.customisable-page}} 
+    <div class="page" data-page-layout="{{{ layout_name }}}"> 
+
+      <div class="bleed">
+        <div class="container fit fit--custom">
+          <div class="page-header"></div>
+          <div class="body body--custom {{#hero-image-ir3}}withHeroImage{{/hero-image-ir3}} u-heading-patch" data-max-height="css">
+            <div class="column__container">
+              {{#collection.column-collection-ir3}} 
+              {{#block.column-ir3}} 
+              <div class="column">
+                <div class="column__inner">
+                  {{#collection.column-items-ir3}} 
+                  {{#block.column-image-ir3}}
+                  {{#column-image}}
+                  <div class="image__container image__container--primary" style="height: calc((630px / 95) * {{{column-image-size}}}{{^column-image-size}}50{{/column-image-size}})">
+                    <div class="image image--custom"><div class="reposition-fix">{{{column-image}}}</div></div> <!--image-->
+                  </div> <!--image__container-->
+                  <div class="image__container image__container--secondary" style="height: calc((880px / 95) * {{{column-image-size}}}{{^column-image-size}}50{{/column-image-size}})">
+                    <div class="image image--custom"><div class="reposition-fix">{{{column-image}}}</div></div> <!--image-->
+                  </div> <!--image__container-->
+                  {{/column-image}}
+                  {{/block.column-image-ir3}}
+                  {{#block.copy-ir3}}
+                  {{#body-copy--ir3}}
+                  <div class="copy__container">
+                    <div class="bodyCopy u-heading-patch">{{{body-copy--ir3}}}</div> <!--copy-->
+                  </div> <!--copy__container-->
+                  {{/body-copy--ir3}}
+                  {{/block.copy-ir3}}
+                  {{#block.quote-ir3}}
+                  {{#quote--ir3}}
+                  <div class="quote">{{{quote--ir3}}}</div> <!--copy-->
+                  {{/quote--ir3}}
+                  {{/block.quote-ir3}}
+                  {{/collection.column-items-ir3}} 
+                </div> <!--column__inner-->
+              </div> <!--column-->
+              {{/block.column-ir3}} 
+              {{/collection.column-collection-ir3}} 
+            </div> <!--column__container-->
+          </div> <!--body-->
+          {{#hero-image-ir3}}
+          <div class="hero__container hero__container--secondary">
+            <div class="hero"><div class="reposition-fix">{{{hero-image-ir3}}}</div></div> <!--hero-->
+            {{#hero-image-caption-ir3}}
+            <div class="caption">{{{hero-image-caption-ir3}}}</div> <!--caption-->
+            {{/hero-image-caption-ir3}}
+          </div> <!--hero__container-->
+          {{/hero-image-ir3}}
+        </div><!--container fit-->
+      </div><!--bleed-->
+    </div><!--page-->
+    {{/block.customisable-page}} 
+    {{ #block.page_layout_1 }} 
+    <div class="page style-1-page" data-page-layout="{{{ layout_name }}}">
+      <div class="bleed">
+        <div class="bleed-inner">
+          <div class="page-inner fit">
+            <div class="page-header"></div>
+            <div class="page-content">
+              <div class="page-content-inner" data-max-height="dynamic">
+                <div class="image" style="height: calc((915px / 100) * {{{column-image-size}}}{{^column-image-size}}50{{/column-image-size}})">
+                  <div class="reposition-fix">{{{ layout_1_image }}}</div>
+                </div>
+                <p class="caption">{{{ layout_1_caption }}}</p>
+                <div class="bodyCopy">
+                  {{{ layout_1_copy }}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ /block.page_layout_1 }} 
+    {{ #block.page_layout_2 }} 
+    <div class="page style-2-page" data-page-layout="{{{ layout_name }}}">
+      <div class="bleed">
+        <div class="bleed-inner">
+          <div class="page-inner fit">
+            <div class="page-header"></div>
+            <div class="page-content">
+              <div class="page-content-inner" data-max-height="dynamic">
+                <div class="page-content-left">
+                  <div class="bodyCopy">
+                    {{{ layout_2_copy }}}
+                  </div>
+                </div>
+                <div class="page-content-right">
+                  {{#layout_2_image_1}}
+                  <div class="image-item">
+                    <div class="image"><div class="reposition-fix">{{{ layout_2_image_1 }}}</div></div>
+                    <p class="caption">{{{ layout_2_caption_1 }}}</p>
+                  </div>
+                  {{/layout_2_image_1}}
+                  {{#layout_2_image_2}}
+                  <div class="image-item">
+                    <div class="image"><div class="reposition-fix">{{{ layout_2_image_2 }}}</div></div>
+                    <p class="caption">{{{ layout_2_caption_2 }}}</p>
+                  </div>
+                  {{/layout_2_image_2}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ /block.page_layout_2 }} 
+    {{ #block.page_layout_3 }} 
+
+    <div class="page style-3-page" data-page-layout="{{{ layout_name }}}">
+
+      <div class="bleed">
+        <div class="bleed-inner">
+          <div class="page-inner fit">
+            <div class="page-header"></div>
+            <div class="page-content {{#hero-image-ir3}}withHeroImage{{/hero-image-ir3}} u-heading-patch" data-max-height="css">
+              <div class="page-content-top bodyCopy">
+                {{{ layout_3_intro }}}
+              </div>
+              <div class="page-content-left bodyCopy">
+                {{{ layout_3_left_column }}}
+              </div>
+              <div class="page-content-right bodyCopy">
+                {{{ layout_3_right_column }}}
+                {{ #layout_3_right_quote }}
+                <blockquote>
+                  {{{ layout_3_right_quote }}}
+                </blockquote>
+                {{ /layout_3_right_quote }}
+              </div>
+            </div>
+            {{#hero-image-ir3}}
+            <div class="hero__container hero__container--secondary">
+              <div class="hero"><div class="reposition-fix">{{{hero-image-ir3}}}</div></div> <!--hero-->
+              {{#hero-image-caption-ir3}}
+              <div class="caption">{{{hero-image-caption-ir3}}}</div> <!--caption-->
+              {{/hero-image-caption-ir3}}
+            </div> <!--hero__container-->
+            {{/hero-image-ir3}}
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ /block.page_layout_3 }} 
+    {{ #block.page_layout_4 }} 
+    <div class="page style-4-page" data-page-layout="{{{ layout_name }}}">
+      <div class="bleed">
+        <div class="bleed-inner">
+          <div class="page-inner fit">
+            <div class="page-header"></div>
+            <div class="page-content">
+              <div class="page-content-inner" data-max-height="dynamic">
+                <div class="page-content-left">
+                  <div class="profile bodyCopy">
+                    <div class="profile-copy">{{{ copy_1 }}}</div>
+                    <div>
+                      <div class="profile-headshot">
+                        <div class="profile-headshot-inner image">
+                          <div class="reposition-fix">{{{ headshot_1 }}}</div>
+                        </div>
+                      </div>
+                      <h1 class="profile-name font-weight-bold">
+                        {{{ title_1 }}}<br>
+                        {{{ name_1 }}}
+                      </h1>
+                      <p class="profile-faculty">{{{ faculty_1 }}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="page-content-right">
+                  <div class="profile bodyCopy">
+                    <div class="profile-copy">{{{ copy_2 }}}</div>
+                    <div>
+                      <div class="profile-headshot">
+                        <div class="profile-headshot-inner image">
+                          <div class="reposition-fix">{{{ headshot_2 }}}</div>
+                        </div>
+                      </div>
+                      <h1 class="profile-name font-weight-bold">
+                        {{{ title_2 }}}<br>
+                        {{{ name_2 }}}
+                      </h1>
+                      <p class="profile-faculty">{{{ faculty_2 }}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ /block.page_layout_4 }}
+    {{ #block.page_layout_blank }} 
+    <div class="page" data-page-layout>
+      <div class="bleed">
+        <div class="bleed-inner">
+          <div class="blank-page-message">
+            <span>This page has been intentionally left blank</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ /block.page_layout_blank }}
+    {{#block.full-image-page}} 
+    <div class="page">
+
+      <div class="bleed">
+        <div class="container fit fit--fullImage">
+          <div class="backgroundImage">
+            <div class="reposition-fix">{{{full-image}}}</div><!--reposition-fix-->
+          </div><!--backgroundImage-->
+        </div><!--fit--fullImage-->
+      </div><!--bleed-->
+    </div><!--page-->
+    {{/block.full-image-page}}
+
+    {{ /collection.pages }}
+
+
+    {{#collection.MON_back-page--ir3}}
+    <div class="page">
+
+      <div class="bleed">
+        <div class="container fit fit--backPage">
+          <div class="header header--backPage">
+            <img class="logo logo--backPage" src="#" data-target="logo-secondary"/>
+          </div> <!--header-->
+          <div class="body body--backPage">
+            <div class="body__inner body__inner--frontPage" data-max-height="dynamic">
+              {{#headline-ir3}}
+              <div class="bodyCopy copy--backPage u-heading-patch" data-max-height="190">{{{headline-ir3}}}</div> <!--copy-->
+              {{/headline-ir3}}
+              {{#collection.MON_contacts--ir3}}
+              <div class="contact">
+                {{#title2-ir3}}
+                <div class="contact__heading" data-max-line="1">{{{title2-ir3}}}</div> <!--contact__heading-->
+                {{/title2-ir3}}
+                {{#block.contact}}
+                {{#spreadsheet.data}}
+                {{#name}}
+                <div class="contact__text contact__text--bold" data-max-line="1">{{{name}}}</div> <!--contact__text-->
+                {{/name}}
+                {{#role}}
+                <div class="contact__text" data-max-line="1">{{{role}}}</div> <!--contact__text-->
+                {{/role}}
+                {{/spreadsheet.data}}
+                {{#faculty-ir3}}
+                <div class="contact__text" data-max-line="1">{{{faculty-ir3}}}</div> <!--contact__text-->
+                {{/faculty-ir3}}
+                {{#spreadsheet.data}}
+                {{#phone}}
+                <div class="contact__text" data-max-line="1">T: {{{phone}}}</div> <!--contact__text-->
+                {{/phone}}
+                {{#mobile}}
+                <div class="contact__text" data-max-line="1">M: {{{mobile}}}</div> <!--contact__text-->
+                {{/mobile}}
+                {{#email}}
+                <div class="contact__text" data-max-line="1">E: {{{email}}}</div> <!--contact__text-->
+                {{/email}}
+                {{/spreadsheet.data}}
+                {{/block.contact}}
+              </div> <!--contact-->
+              {{/collection.MON_contacts--ir3}}
+            </div> <!--body__inner-->
+          </div> <!--body-->
+          <div class="footer footer--backPage">
+            <div class="disclamer disclamer--backPage" data-max-line="4"></div> <!--disclamer-->
+            <div class="cricos cricos--backPage" data-max-line="1"></div> <!--cricos-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+      </div><!--bleed-->
+
+    </div><!--page-->
+    {{/collection.MON_back-page--ir3}}
+
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="js/dynamic-inject.js"></script>
+    <script src="js/text-fit-min.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      console.clear();
+
+
+      function replaceDisclaimer(){
+        //backticks are used so that when there is an "enter-key press" the data doesn't error out
+        var disclaimerVariable = `{{{disclamer-ir3}}}`;
+        var disclaimerInject = document.querySelector(".disclamer--backPage");
+        console.log("disclaimerInject");
+        disclaimerInject.innerText = disclaimerVariable;
+      }
+
+      replaceDisclaimer();
+
+      function replaceCricos(){
+        //backticks are used so that when there is an "enter-key press" the data doesn't error out
+        var cricosVariable = `{{{cricos-ir3}}}`;
+        var cricosInject = document.querySelector(".cricos--backPage");
+        cricosInject.innerText = cricosVariable;
+      }
+
+      replaceCricos();
+
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+          hideEmptyTitles();
+        });
+      });
+
+      const injectObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectDynamicContent();
+        });
+      });      
+
+      const injectSources = document.querySelectorAll('[data-target-id]');
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      if ( injectSources.length > 0 ) {
+        injectSources.forEach(src => {
+          injectObserver.observe(src, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });            
+        });
+      }    
+
+      var insertPageHeaderIntoLayouts = function() {
+        var pageHeader = document.querySelector('[data-page-header]'); 
+        var pageHeaderHTML = pageHeader.innerHTML;
+        var pageLayouts = document.querySelectorAll('[data-page-layout]');
+        console.log(pageLayouts);
+        for (i=0;i<pageLayouts.length;i++){
+          var currentPage = pageLayouts[i];
+          var pageHeader = currentPage.querySelector('.page-header');
+          if (pageHeader && !pageHeader.hasChildNodes()) {
+            pageHeader.innerHTML = pageHeaderHTML;
+          }
+        }
+      }; 
+
+      insertPageHeaderIntoLayouts();
+
+
+      function insertRowHighlight() {
+        const tableItem = document.querySelectorAll('.table__item');
+        tableItem.forEach(item => {
+          if(item.getAttribute('data-highlight-row').toLowerCase() === 'yes') {
+            item.classList.add('table__item--yes');
+          }
+        });
+      };
+
+      insertRowHighlight();
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+        injectDynamicContent();
+        hideEmptyTitles();
+      });
+
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+
+    </script>
+    <script>
+      // Add many fallbacks for Print Ready
+      document.addEventListener('DOMContentLoaded', function(event) {
+        document.dispatchEvent(new Event('printready'));
+      });
+
+      setTimeout(function() {
+        document.dispatchEvent(new Event('printready'));
+      }, 500);
+
+      document.dispatchEvent(new Event('printready'));
+    </script>
+
+
+  </body>
+</html>
