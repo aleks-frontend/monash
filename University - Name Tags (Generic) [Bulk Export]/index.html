@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+
+    <style>
+      .test-background-image {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/412f7ce6c143f78cfeb5c25627c4128f/Name-Tag-90x57mm.jpg');
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+        opacity: 0.6;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      .show-crop-marks .test-background-image {
+        top: 0.48in;
+        left: 0.48in;
+        right: 0.48in;
+        bottom: 0.48in;
+      }
+
+      .header-background-image {
+        background-image: url('{{{header-background}}}');
+      }
+      
+      .logo, .clip { z-index: 10; }
+
+      .clip {
+        background-image: url('{{{M-generic}}}{{{M-graduate-education}}}{{{M-education}}}{{{M-pharmacy}}}{{{M-innovation}}}{{M-OLT}}{{M-MADA}}');
+      }
+      .mkt-theme-one .header-overlay { background-color: #009fd9; z-index: 1; opacity: 0.7; position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
+      .mkt-theme-two .header-overlay { background-color: #00ac3e; z-index: 1; opacity: 0.7; position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
+      .mkt-theme-three .header-overlay { background-color: #8177b4; z-index: 1; opacity: 0.7; position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
+      .mkt-theme-four .header-overlay { background-color: #fc6228; z-index: 1; opacity: 0.7; position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
+      .mkt-theme-five .header-overlay { background-color: #ff0026; z-index: 1; opacity: 0.7; position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
+      
+      .mkt-theme-one .header-background-image { background-color: #009fd9; }
+      .mkt-theme-two .header-background-image { background-color: #00ac3e; }
+      .mkt-theme-three .header-background-image { background-color: #8177b4; }
+      .mkt-theme-four .header-background-image { background-color: #fc6228; }
+      .mkt-theme-five .header-background-image { background-color: #ff0026; } 
+
+      .mkt-theme-one h1, .mkt-theme-one p { color: #009fd9; }
+      .mkt-theme-two h1, .mkt-theme-two p { color: #00ac3e; }
+      .mkt-theme-three h1, .mkt-theme-three p { color: #8177b4; }
+      .mkt-theme-four h1, .mkt-theme-four p { color: #fc6228; }
+      .mkt-theme-five h1, .mkt-theme-five p { color: #ff0026; }     
+      
+      .logo {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 30pt;
+      }
+
+      .showLogo-primary .logo-reversed{
+        display: none;
+      }
+
+      .showLogo-reversed .logo-blue{
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="{{theme-mkt}} {{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+
+    {{#spreadsheet.name-tags}}
+    <div class="page">
+      <!--<div class="test-background-image"></div>-->
+
+      <div class="document">
+        <div class="content">
+          <div class="blue-line"></div>
+          <div class="line"></div>
+
+          <div class="row header">
+
+            <div class="m1"></div>
+
+            <div class="logo logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+              <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+              <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+            </div>
+            <div class="clip"></div>
+          </div><!--row header-->
+
+          <div class="clip-modal">Note: The preview of the M in this browser is broken and not reflective of what will be exported. Please use Chrome or Safari if you want a correct preview.</div>
+
+          <div class="row text">
+            <div class="js-fittext"><h1> {{{ first-name}}} {{{ last-name }}} </h1></div>
+            <p>{{{ title-position }}}</p>
+          </div><!--text-->
+
+        </div><!--content-->
+      </div><!--document-->
+
+    </div><!--page-->
+    {{/spreadsheet.name-tags}}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/main.js"></script>
+    <script>smartquotes();</script>
+    <script>
+      $('.logo').addClass('{{ logo-colour }}{{^logo-colour}}reversed{{/logo-colour}}');
+      
+      // FIT TEXT FUNC
+      $(document).ready(function(){
+        var els = $('.js-fittext h1');
+
+        for(var i = 0; i < els.length; ++i) {
+          while($(els[i]).width() > $(els[i]).parent().width()) {
+            var size = parseInt($(els[i]).css('font-size')); 
+            $(els[i]).css('font-size', size - 1); 
+          }
+        }
+      });
+
+      // Opera 8.0+
+      var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+      // Firefox 1.0+
+      var isFirefox = typeof InstallTrigger !== 'undefined';
+      // At least Safari 3+: "[object HTMLElementConstructor]"
+      var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+      // Internet Explorer 6-11
+      var isIE = /*@cc_on!@*/false || !!document.documentMode;
+      // Edge 20+
+      var isEdge = !isIE && !!window.StyleMedia;
+      // Chrome 1+
+      var isChrome = !!window.chrome && !!window.chrome.webstore;
+      // Blink engine detection
+      var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+      if (isOpera == true) {
+        $('body').addClass('-js-opera-browser');
+      } if (isFirefox == true) {
+        $('body').addClass('-js-firefox-browser');
+      } if (isSafari == true) {
+        $('body').addClass('-js-safari-browser');
+      } if (isIE == true) {
+        $('body').addClass('-js-ie-browser');
+      } if (isEdge == true) {
+        $('body').addClass('-js-edge-browser');
+      } if (isChrome == true) {
+        $('body').addClass('-js-chrome-browser');
+      } if (isBlink == true) {
+        $('body').addClass('-js-blink-browser');
+      }
+
+      $('.clip').mouseover(function () {
+        $('.clip-modal').addClass('show-modal');      
+      });
+      $('.clip').mouseout(function () {
+        $('.clip-modal').removeClass('show-modal');      
+      });
+      
+     var m1 = document.getElementsByClassName('m1');
+     for ( i = 0 ; i < m1.length ; i++ ) {
+       m1[i].innerHTML = '{{#image-mkt-nm}}<div class="header-overlay"></div><div class="header-background-image" style="background-image: url({{{ image-mkt-nm }}});"></div>{{/image-mkt-nm}}{{^image-mkt-nm}}<div class="header-background-image"></div>{{/image-mkt-nm}}'
+     };
+      
+    </script>
+  </body>
+</html>
