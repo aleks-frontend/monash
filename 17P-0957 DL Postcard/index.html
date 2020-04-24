@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/monash-helvetica-neue/stylesheet.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <style>
+
+      .overflow {
+        border: 1px dashed red;
+        position: relative; }
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4, 
+      .overflow h5, 
+      .overflow h6, 
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 5px;
+        right: 5px;
+        height: 15px;
+        width: 15px;
+        border: 1px solid red;
+        color: red;
+        padding: 2px 2px 2px 3px;
+        box-sizing: border-box;
+        font-size: 13px;
+        text-align: center;
+        line-height: 8px;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is overset content in this column. Please remove it';
+        position: absolute;
+        top: 25px;
+        right: 5px;
+        background-color: black;
+        color: white;
+        border-radius: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+
+      * {
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body { font-family: 'Helvetica Neue Condensed'; }
+
+      h1, h2, h3, h4, h5, h6 { font-weight: 600; font-family: 'Helvetica Neue Condensed'; }
+
+      .logo { position: absolute; top: 1.2em; left: 1em; width: 5em; z-index: 1; } .logo img { width: 100%; }
+      .showLogo-primary .logo-reversed{
+        display: none;
+      }
+
+      .showLogo-reversed .logo-blue{
+        display: none;
+      }
+      .m { position: absolute; top: 0; bottom: 0; right: 0.1em; z-index: 1; } .m img { height: 104.1%; }
+      .page.two .m { position: absolute; top: 0; bottom: 0; right: 0.8em; z-index: 1; }
+      .image { position: absolute; top: 0; bottom: 0; right: 0.8em; width: 10em; z-index: 1; background-size: cover; background-repeat: no-repeat; background-position: center; }
+
+      .main { display: flex; flex-direction: column; height: 100%; width: 21.05em; background-color: {{{ cover-theme-colour }}}; padding: calc(3mm + 4.5em) 5em calc(3mm + 0.4em) calc(3mm + 0.8em); }
+      .page.two .main { background: none; padding: calc(3mm + 4em) 5em calc(3mm + 0.4em) calc(3mm + 0.8em); }
+
+      @media print { .true .page { height: calc(100vh - 3px) !important; } }
+
+      .headline h1 { color: white; font-size: 1.4em; font-weight: 500; line-height: 1em; text-transform: uppercase; }
+      .information { margin: 0.3em 0 0 0; }
+      .information h2 { color: white; font-size: 0.6em; }
+      .information p { color: white; font-size: 0.55em; font-weight: 300; }
+      .information span { color: white; font-size: 0.5em; font-weight: 600; }
+
+      .highlight-copy { width: 14em; }
+      .highlight-copy h1 { color: {{{ cover-theme-colour }}}; font-size: 0.7em; font-weight: 600; line-height: 1em; }
+
+      .columns { display: flex; justify-content: space-between; margin: 1em 0 0 0; }
+      .column h2 { color: {{{ cover-theme-colour }}}; font-size: 0.55em; }
+      .column p { color: black; font-size: 0.35em; font-weight: 300; }
+      .column span { color: black; font-size: 0.5em; font-weight: 600; }   
+      
+      .college-m {
+        position: absolute; top: 0; bottom: 0; right: 0.6em; width: 7.4em; height: 100%;
+        background-repeat: no-repeat;
+        background-size: 103%;
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/14ba8c7c9376cc2a3b2147f6705a463f/mc-pattern-1.svg');
+      }
+      
+      .pattern-2 .college-m {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/f5c8ecedbc743a7b9a3bf5d1dda50ae3/college-m-patternAsset%201.svg'); }
+      .pattern-3 .college-m {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/8b23f5c2b36c749f46ea572e8e685310/college-m-patternAsset%202.svg'); }
+      .pattern-4 .college-m {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/283c676efe260e0f7124088a4a268107/college-m-patternAsset%203.svg'); }
+      .pattern-5 .college-m {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/b24658260269fd204c9e09608a8c0565/college-mAsset%201%404x.png'); }
+      
+    </style>
+  </head>
+  <body style="background: white" class="{{{ college-pattern }}} {{{ show-crop }}}">
+
+    <div class="page one">
+      <div class="bleed">
+        <div class="main">
+
+          <div class="logo logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+            <img src="{{account.logos.mc-logo-reversed}}" class="logo-reversed" alt="logo">
+            <img src="{{account.logos.mc-logo}}" class="logo-blue" alt="logo">
+          </div>
+          <div class="college-m"></div>
+
+          <div class="headline">
+            <div style="max-height: 2.8em;">
+              <div class="check-overflow">
+                {{{ headline }}}
+              </div>
+            </div>
+          </div><!--headline-->
+          <div class="information">
+            <div style="max-height: 5.2em;">
+              <div class="check-overflow">
+                <h2>{{{ information-header }}}</h2>
+                <p>{{{ information }}}</p>
+                <span>{{{ website }}}</span>
+              </div>
+            </div>
+          </div><!--information-->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="page two">
+      <div class="bleed">
+        <div class="main">
+
+          <div class="logo"><img src="{{{account.logos.mc-logo}}}"></div>
+
+          <div class="highlight-copy">
+            <div style="max-height: 2.2em;">
+              <div class="check-overflow">
+                <h1>{{{ highlight-copy-1 }}}</h1>
+              </div>
+            </div>
+          </div><!--highlight-copy-->
+
+          {{#image}}
+          <div class="columns" style="width: 14em;">
+
+            <div class="column" style="width: 7em;">
+              <div class="copy-heading">
+                <div style="max-height: 1.3em;">
+                  <div class="check-overflow">
+                    <h2>{{{ copy-heading }}}</h2>
+                  </div>
+                </div>
+              </div><!--copy-heading-->
+              <div class="body-copy">
+                <div style="max-height: 4.7em;">
+                  <div class="check-overflow">
+                    {{{ body-copy-1 }}}
+                  </div>
+                </div>
+              </div><!--body-copy-->
+            </div><!--column-->
+
+            <div class="column" style="width: 6em;">
+              <div class="contact-details">
+                <div style="max-height: 5.3em;">
+                  <div class="check-overflow">
+                    <h2 style="font-weight: 400;">{{{ contact-header }}}</h2>
+                    <p style="color: #585858; letter-spacing: 0.02em; font-weight: 500; line-height: 1.2em;">{{{ contact-name }}}</p>
+                    <p style="color: #585858; letter-spacing: 0.02em; font-weight: 500; line-height: 1.2em;">{{{ position-title }}}</p>
+                    <p style="color: #585858; letter-spacing: 0.02em; font-weight: 500; line-height: 1.2em;">T: {{{ telephone }}}</p>
+                    <p style="color: #585858; letter-spacing: 0.02em; font-weight: 500; line-height: 1.2em;">E: {{{ email }}}</p>
+                    <p style="margin: 0.8em 0 0 0;">{{{ contact-disclaimer }}}</p>
+                  </div>
+                </div>
+              </div><!--contact-details-->
+            </div><!--column-->
+
+          </div><!--columns-->
+          <div class="image" style="background-image: url({{{ image }}});"></div>
+          {{/image}}
+
+          {{^image}}          
+          <div class="columns" style="width: 18em;">
+
+            <div class="column" style="width: 5.5em;">
+              <div class="copy-heading">
+                <div style="max-height: 1.3em;">
+                  <div class="check-overflow">
+                    <h2>{{{ copy-heading }}}</h2>
+                  </div>
+                </div>
+              </div><!--copy-heading-->
+              <div class="body-copy">
+                <div style="max-height: 4.7em;">
+                  <div class="check-overflow {{{body-copy-1}}} {{{body-copy-2}}}">
+                    {{{ body-copy-1 }}}
+                  </div>
+                </div>
+              </div><!--body-copy-->
+            </div><!--column-->
+
+            <div class="column" style="width: 5.5em;">
+              <div class="body-copy">
+                <div style="max-height: 5.3em;">
+                  <div class="check-overflow">
+                    {{{ body-copy-2 }}}
+                  </div>
+                </div>
+              </div><!--body-copy-->
+            </div><!--column-->
+
+            <div class="column" style="width: 5.5em;">
+              <div class="contact-details">
+                <div style="max-height: 5.3em;">
+                  <div class="check-overflow">
+                    <h2 style="font-weight: 400;">{{{ contact-header }}}</h2>
+                    <p>{{{ contact-details }}}</p>
+                    <p style="margin: 0.8em 0 0 0;">{{{ contact-disclaimer }}}</p>
+                  </div>
+                </div>
+              </div><!--contact-details-->
+            </div><!--column-->
+
+          </div><!--columns-->
+          <div class="college-m"></div>
+          {{/image}}
+
+        </div>
+      </div>
+    </div>
+    <script>
+      window.showCrop = {{show-crop}};
+    </script>
+    <script src="main.js"></script>
+    <script src="prefixfree.js"></script>
+    <script>
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
