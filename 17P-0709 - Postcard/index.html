@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css" rel="stylesheet">    
+    <script src="tinycolor.js"></script>
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <style>
+      
+      .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/6f02d711cb73f5f39681ec0817c44c49/Screen%20Shot%202017-09-14%20at%203.01.22%20pm.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+      
+      .overflow{border:1px dashed red;position:relative}.overflow::before,.overflow:hover:after{position:absolute;right:5px;box-sizing:border-box}.overflow h1,.overflow h2,.overflow h3,.overflow h4,.overflow h5,.overflow h6,.overflow li,.overflow p{color:red!important}.overflow::before{content:'+';z-index:5;top:5px;height:15px;width:15px;border:1px solid red;color:red;padding:2px 2px 2px 3px;font-size:13px;line-height:8px;background-color:#fff;text-align:center}.overflow:hover:before{background-color:red;color:#fff}.overflow:after{display:none}.overflow:hover:after{display:block;content:'There is overset content in this column. Please remove it';top:25px;background-color:#000;color:#fff;border-radius:2px;padding:5px;font-size:11px;font-weight:400;line-height:1.1em;text-align:right;width:15em}
+
+      html {
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Helvetica Neue Cond', helvetica, arial, sans-serif;
+        background-color: #fff;
+      }
+      
+      .page-1 .column-one-overflow h2, .page-2 .faculty-details h2, .page-2 .faculty-details h3 {
+        color: {{{ pop-colour }}} !important;
+      }
+      
+      .page-2 .column-one-back {
+        background-color: {{{ pop-colour }}} !important;
+      }
+      
+      
+      h1, h2, h3, h4, h5, h6 { margin: 0; line-height: 1.2em; }
+
+      /* Page 1 */
+
+      .page-1 .logo-1 { position: absolute; top: 1.2em; left: 12.3em; width: 6.1em; }
+      .page-1 .logo-1 img { width: 100%; }
+
+      .showLogo-primary .logo-reversed{
+        display: none;
+      }
+
+      .showLogo-reversed .logo-blue{
+        display: none;
+      }
+
+      .page-1 .header-position { position: absolute; left: 4.9em; top: 5em; max-height: 4.2em; overflow: hidden; z-index: 10; }
+      .page-1 .header-position h1 { color: #fff; font-size: 1em; line-height: 1em; z-index: 2; font-weight: bold; }
+
+      .page-1 .column-one-position { 
+        position: absolute; top: 5.6em; left: 12.2em; width: 9em;
+        max-height: 7em; overflow: hidden;
+      }
+
+      .page-1 .column-one-overflow h2 { color: #8075B1; margin: 0 0 0.4em 0; font-size: 0.65em; font-weight: bold; }
+      .page-1 .column-one-overflow p { margin: 0 0 0.8em 0; font-size: 0.6em; line-height: 1.1em; }
+      .page-1 .column-one-overflow strong { font-weight: 500 !important; }
+
+      .image-1 {
+        background-position: center; background-size: cover; background-repeat: no-repeat; 
+        position: absolute; top: 0; bottom: 0; left: 0; width: 11.1em; z-index: -1; overflow: hidden;
+      }
+      
+      .monash-m { position: absolute; top: 0; bottom: 0; left: 4.5em; width: 6.6em; z-index: 10; mix-blend-mode: soft-light;}
+      
+      .page-1 .footer {
+        position: absolute;
+        right: 90px;
+        bottom: 20px;
+        height: 1em;
+      }
+      
+      .page-1 .footer img {
+        height: 100%;
+      }
+      
+      .go8-logo {
+        position: absolute;
+        width: 63px;
+        bottom: 0px;
+        left: 0px;
+      }
+
+      .go8-logo-show .go8-logo{
+        display: block;
+      }
+
+      .go8-logo-hide .go8-logo{
+        display: none;
+      }
+
+      .layout-one .go8-logo .go8-logo-black{ display: none; }
+
+      .layout-two .go8-logo .go8-logo-black{ display: block; }
+      
+      /* Page 2 */
+      
+      .page-2 .column-one-back {
+        position: absolute; top: 0; bottom: 0; left: 0; width: 49.1%; height: 100%; background-color: #8075B1; z-index: -1;
+      }
+      
+      .page-2 .header-position { position: absolute; left: 4.9em; top: 5.2em; max-height: 4.2em; overflow: hidden; z-index: 2; }
+      .page-2 .header-position h1 { color: #fff; font-size: 1em; line-height: 1em; z-index: 2; }
+            
+      .page-2 .column-one-position { 
+        position: absolute; top: 1.5em; left: 1.2em; width: 8.6em;
+        max-height: 7em; color: #fff; overflow: hidden;
+      }
+            
+      .page-2 .column-one-overflow h2 { color: #fff; margin: 0 0 0.4em 0; font-size: 0.5em; font-weight: bold; }
+      .page-2 .column-one-overflow p { margin: 0 0 0.8em 0; font-size: 0.5em; line-height: 1.2em; }
+      .page-2 .column-one-overflow strong { font-weight: normal !important; }
+      
+      .page-2 .column-two-position { 
+        position: absolute; top: 1.5em; left: 11.7em; width: 9.5em;
+        max-height: 2.5em; color: #000; overflow: hidden;
+      }
+            
+      .page-2 .column-two-overflow h2 { color: #fff; margin: 0 0 0.4em 0; font-size: 0.5em; font-weight: bold; }
+      .page-2 .column-two-overflow p { margin: 0 0 0.8em 0; font-size: 0.45em; line-height: 1.2em; }
+      .page-2 .column-two-overflow strong { font-weight: normal !important; }
+      
+      .page-2 .details { position: absolute; top: 8.3em; left: 1.2em; width: 9.5em; max-height: 5em; overflow: hidden; }
+      .page-2 .website { position: absolute; top: 12em; left: 1.2em; width: 9.5em; }
+      .page-2 .cricos { position: absolute; bottom: 1em; left: 1.2em; width: 9.5em; }      
+            
+      .page-2 .details p, .page-2 .website p, .page-2 .cricos p { color: #fff; font-size: 0.4em; }
+      
+      .page-2 .details p { font-size: 0.45em; line-height: 1.4em; }
+      .page-2 .website p { font-size: 0.48em; font-weight: bold; }
+      .page-2 .cricos p { font-family: 'Helvetica Neue LT Std'; font-size: 0.35em; }
+      
+      .page-2 .faculty-details { position: absolute; top: 4em; left: 11.7em; width: 10.5em; }
+      .page-2 .faculty-content { font-size: 0.4em; }
+      
+      .page-2 .faculty-cols { display: flex; margin: -0.3em 0 0 0; }
+      
+      .page-2 .circle { width: 10px; height: 10px; margin: 0 0.7em 0 0; border: 1px solid #000; }
+      
+      .page-2 .col-left { width: 65%; }
+      .page-2 .col-right { width: 25%; }
+      
+      .page-2 .col-left p, .page-2 .col-left p { padding: 0.6em 0 0 0; font-size: 0.95em; text-transform: uppercase; }
+      .page-2 .col-wrap { display: flex; padding: 0.9em 0 0 0; font-size: 0.85em; text-transform: uppercase; }  
+      
+      .page-2 .circle { width: 10px; height: 10px; border-radius: 50%; border: 1px solid #000; }
+      
+      .page-2 .faculty-details h2 { padding: 0.6em 0 0 0; border-top: 1px solid #000; color: #8075B1; font-weight: bold; text-transform: uppercase; }
+      .page-2 .faculty-details h3 { margin: 2.2em 0 0 0; border-top: 1px solid #000; color: #8075B1; padding: 0.6em 0 0 0; font-size: 0.8em; font-weight: normal; text-transform: uppercase; }
+      
+      .overlay { position: absolute; top: 0; bottom: 0; left: 0; width: 11.1em; z-index: 4; opacity: 0.7; }
+      
+      .mkt-theme-one .overlay { background-color: #009fd9; }
+      .mkt-theme-two .overlay { background-color: #00ac3e; }
+      .mkt-theme-three .overlay { background-color: #8177b4; }
+      .mkt-theme-four .overlay { background-color: #fc6228; }
+      .mkt-theme-five .overlay { background-color: #ff0026; }
+      
+      .mkt-theme-one .column-one-back { background-color: #009fd9; }
+      .mkt-theme-two .column-one-back { background-color: #00ac3e; }
+      .mkt-theme-three .column-one-back { background-color: #8177b4; }
+      .mkt-theme-four .column-one-back { background-color: #fc6228; }
+      .mkt-theme-five .column-one-back { background-color: #ff0026; }
+      
+      .mkt-theme-one .faculty-details h2, .mkt-theme-one .faculty-details h3,  .mkt-theme-one .column-one-overflow h2 { color: #009fd9; }
+      .mkt-theme-two .faculty-details h2, .mkt-theme-two .faculty-details h3,  .mkt-theme-two .column-one-overflow h2 { color: #00ac3e; }
+      .mkt-theme-three .faculty-details h2, .mkt-theme-three .faculty-details h3, .mkt-theme-three .column-one-overflow h2 { color: #8177b4; }
+      .mkt-theme-four .faculty-details h2, .mkt-theme-four .faculty-details h3, .mkt-theme-four .column-one-overflow h2 { color: #fc6228; }
+      .mkt-theme-five .faculty-details h2, .mkt-theme-five .faculty-details h3, .mkt-theme-five .column-one-overflow h2 { color: #ff0026; } 
+      
+    </style>
+  </head>
+  <body class="{{theme-mkt}} {{go8-logo-visibility-poster}}">
+    
+    <div class="page page-1">
+      <div class="bleed">
+
+        <div class="logo-1 logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+          <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+          <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+        </div>
+
+        <div class="header-position">
+          <div class="header-overflow check-overflow">
+            <h1>{{{ header }}}</h1>
+          </div><!--header-overflow-->
+        </div><!--header-position-->
+
+        <div class="monash-m">
+          <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/c7e5f5832e1234e6172a7a7173defc8c/m.svg">
+        </div><!--monash-m-->
+
+        <div class="column-one-position">
+          <div class="column-one-overflow check-overflow">
+            {{{ page-1-column-1 }}}
+          </div><!--column-one-overflow-->
+        </div><!--column-one-position-->
+        
+        <div class="overlay"></div>
+
+        {{#image-1}}
+        <div class="image-1" style="background-image: url({{{ image-1 }}});"></div>
+        {{/image-1}}
+        {{^image-1}}
+        <div class="image-1" style="background-image: url({{{ image-mkt-nm }}});"></div>
+		{{/image-1}}
+        
+        
+        
+		<div class="footer">
+           <div class="go8-logo">
+                 <img class="go8-logo-black" src="assets/images/go8_blk.svg">
+           </div>
+        </div> <!---footer--->
+
+      </div><!--bleed-->
+    </div><!--page-1-->
+
+    <div class="page page-2">
+      <div class="bleed">
+        
+        <div class="column-one-back"></div>
+
+        <div class="column-one-position">
+          <div class="column-one-overflow check-overflow">
+            {{{ page-2-column-1-m }}}
+          </div><!--column-one-overflow-->
+        </div><!--column-one-position-->
+        
+        <div class="column-two-position">
+          <div class="column-two-overflow check-overflow">
+            {{{ page-2-column-2-m }}}
+          </div><!--column-one-overflow-->
+        </div><!--column-one-position-->
+        
+        <div class="faculty-details">
+          <div class="faculty-content">
+          <h2>Circle area of study you are interested in</h2>
+          <div class="faculty-cols">
+            <div class="col-left">
+              <div class="col-wrap"><span><div class="circle"></div></span>Art, Design & Architecture</div>
+              <div class="col-wrap"><span><div class="circle"></div></span>Business & Economics</div>
+              <div class="col-wrap"><span><div class="circle"></div></span>Information Technology</div>
+              <div class="col-wrap"><span><div class="circle"></div></span>Medicine, Nursing & Health Science</div>
+              <div class="col-wrap"><span><div class="circle"></div></span>Pharmacy & Pharmaceutical Science</div>
+            </div>
+            <div class="col-right">
+              <div class="col-wrap"><span><div class="circle"></div></span>Arts</div>
+              <div class="col-wrap"><span><div class="circle"></div></span>Education</div>
+              <div class="col-wrap"><span><div class="circle"></div></span>Engineering</div>
+              <div class="col-wrap"><span><div class="circle"></div></span>Law</div>
+              <div class="col-wrap"><span><div class="circle"></div></span>Science</div>
+            </div>
+          </div>
+          <h3>Name</h3>
+          <h3>Email</h3>
+          <h3>Comments/Questions</h3>
+          </div>
+        </div>
+        
+        <div class="details">
+          <div class="details-overflow check-overflow">
+          	{{#details}}<p>{{{ details }}}</p>{{/details}}
+            {{#name}}<p>{{{ name }}}</p>{{/name}}
+            {{#email}}<p><span style="font-weight: bold;">E:</span>{{{ email }}}</p>{{/email}}
+            {{#phone}}<p><span style="font-weight: bold;">P:</span>{{{ phone }}}</p>{{/phone}}
+            {{#website}}<p style="margin: 1em 0 0 0; font-weight: bold;">{{{ website }}}</p>{{/website}}
+          </div>
+        </div>
+        <div class="cricos"><p>{{{ cricos }}}</p></div>
+
+      </div><!--bleed-->
+    </div><!--page-2-->
+
+    <script>
+
+      window.showCrop = {{show-crop}};
+
+    </script>
+    <script src="main.js"></script>
+    <script src="prefixfree.js"></script>
+    <script>
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+    </script>
+  </body>
+</html>
