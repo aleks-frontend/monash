@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/monash-helvetica-neue/stylesheet.css');
+
+      html {
+        font-family: 'Helvetica Neue Condensed';
+        font-size: 11pt;
+      }
+      
+      body { color: #020202; }
+
+      .overflow {
+        border: 3px dashed red !important;
+        position: relative; }
+      .overflow h1,
+      .overflow h2,
+      .overflow h3,
+      .overflow h4,
+      .overflow h5,
+      .overflow h6,
+      .overflow p,
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: ‘+’;
+        position: absolute;
+        z-index: 5;
+        top: 5x;   
+        right: 5px;   
+        height: 55px;   
+        width: 55px;    
+        border: 1px solid red;
+        color: red;
+        padding: 2px 2px 2px 3px;
+        box-sizing: border-box;
+        font-size: 40px;   
+        text-align: center;
+        line-height: 8px;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: ‘There is overset content in this column. Please remove it’;
+        position: absolute;
+        top: 65px;  
+        right: 5px;
+        background-color: #020202;
+        color: white;
+        border-radius: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 40px;   
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+
+      .placeholder {
+        position: absolute;
+        top: 3mm;
+        left: 3mm;
+        right: 3mm;
+        bottom: 3mm;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 100;
+        pointer-events: none;
+        opacity: 0.3;
+      }
+
+      .placeholder--1 {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/d02ed46c341fe744d3714db03ba79ae9/placeholder-1.png);
+      }
+
+      .placeholder--2 {
+        background-image: url(https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/a4e1b7b2be33fff9a865bb9851c4db7d/placeholder-2.png);
+      }
+
+      a {
+        color: #006cad;
+        text-decoration: none;
+        word-break: break-all;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header {
+        position: relative;
+        display: flex;
+        flex-basis: 269px;
+        justify-content: space-between;
+        flex-direction: column;
+        padding: 40px 300px 21px 34px;  
+        overflow: hidden;    
+      }
+
+      .heroImage {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;    
+      }
+
+      .clipPath {
+        position: absolute;
+        right: 39px;
+        bottom: 0;
+        width: 115px;
+        top: 0;
+        clip-path: polygon(0 0, 43% 0%, 50% 35.4%,57% 0%, 100% 0%,100% 100%, 73% 100%, 73% 61%, 65% 100%, 36% 100%, 28% 61%, 27% 100%, 0% 100%);
+        background: white;
+        opacity: 0.4;      
+      }
+
+      .headline {
+        line-height: 1.1em;
+        padding-left: 8px;
+        text-transform: uppercase;
+        font-size: 32.5px;
+        color: #fff;      
+      }
+
+      .logo {
+        width: 206px;
+      }
+
+      .body {
+        flex-grow: 1;      
+        padding: 24px 36px 20px 39px;
+      }
+
+      .heroCopy {
+        margin-bottom: 23px;
+        padding-left: 2px;
+        font-size: 19.8px;
+        line-height: 1.2;      
+      }
+
+      .columns {
+        column-count: 2;
+        column-fill: auto;
+        column-gap: 13px;
+        height: 651px;
+      }   
+
+      .columns__inner > *:first-child {
+        margin-top: -3px;
+      }
+
+      .introductionColumn {
+        margin-bottom: 20px;
+      }
+
+      .introductionColumn h3 {
+        margin-bottom: 10px;
+        font-size: 20.5px;        
+        line-height: 1.1em;
+        color: #7669bb;
+      }
+
+      .introductionColumn h4 {
+        margin-bottom: 8px;
+        font-size: 14.9px;
+        font-family: 'Helvetica Neue LT Std';
+      }
+
+      .introductionColumn h5 {
+        margin-bottom: 7px;
+        font-size: 11.7px;
+        font-family: 'Helvetica Neue LT Std';
+        line-height: 1.25;       
+      }
+
+      .introductionColumn p {
+        margin-bottom: 14px;
+        font-size: 12px;               
+        line-height: 1.25;
+        font-family: 'Helvetica Neue LT Std';
+        color: #020202;
+      }
+
+      .table {
+        width: 100%;
+        font-size: 13px;
+      }
+
+      .tableContainer {
+        margin-bottom: 20px;
+      }
+      
+      .tableContainer::last-child {
+        margin-bottom: 0;
+      }
+
+      .tableContainer + .tableContainer {
+        margin-top: -21px;
+      }
+
+      th, td {
+        border: 1px solid #d2d3d5;
+        border-collapse: collapse;
+      }
+
+      th {
+        color: #006cad;
+        border-color: #006cad;
+        padding: 2px 5px 2px 0;
+        font-size: 11.7px;
+      }
+
+      td {
+        font-size: 11.3px;
+        padding: 3px 5px 3px 0;
+        vertical-align: top;
+      }
+
+      th:first-child,
+      td:first-child {
+        border-left: none;
+      }
+
+      th:last-child,
+      td:last-child {
+        border-right: none;
+      }
+
+      .table__heading {
+        margin-top: 6px;
+        margin-bottom: 10px;
+        word-spacing: -1px;
+        font-family: 'Helvetica Neue LT Std';        
+        font-size: 12.4px;
+      }
+
+      .table__heading h3 {
+        margin-top: 10px;
+        font-size: 15px; 
+      }
+
+      .table__heading h4 {
+        margin-bottom: 8px;
+        font-size: 12.4px;       
+      }
+
+      .table__heading h5 {
+        margin-bottom: 7px;
+        font-size: 11.3px;       
+      }
+
+      .table__heading p {
+        font-size: 15.1px;
+      }
+
+      .table__footer {
+        margin-top: 13px;
+        font-family: 'Helvetica Neue LT Std';
+      }
+
+      .table__footer p {
+        margin-bottom: 8px;
+        font-size: 11.7px;      
+      }
+
+      .table__footer h6 {
+        margin-bottom: 9px;
+        font-size: 9.2px;
+        line-height: 1.2;       
+      }
+
+      .table__footer p:last-child,
+      .table__footer h6:last-child {
+        margin-bottom: 0;
+      }      
+
+      .textBlock {
+        margin-bottom: 19px;
+      }
+      
+      .textBlock:last-child {
+        margin-bottom: 0;
+      }
+
+      .textBlock__headline {
+        font-family: 'Helvetica Neue LT Std';
+        margin-bottom: 5px;
+      }
+
+      .textBlock__headline h3 {
+        font-size: 14.8px;
+        color: #7669bb;  
+         margin-bottom: 8px;
+      }
+
+      .textBlock__headline h4 {
+        font-size: 13.2px;
+         margin-bottom: 6px;
+      }
+
+      .textBlock__headline h5 {
+        font-size: 11.6px;
+        margin-bottom: 5px;
+      }
+
+      .textBlock__text {
+        font-family: "Helvetica Neue LT Std";
+        margin-bottom: 5px;
+      }
+
+      .textBlock__text p {
+        margin-bottom: 5px;
+        font-size: 11.8px;
+        line-height: 1.29;        
+      } 
+
+      ul {
+        padding-left: 14px;
+        margin-bottom: 5px;
+      }
+
+      li {
+        position: relative;        
+        padding-left: 3px;
+        line-height: 1.6;
+        font-size: 11.7px;
+      }
+
+      li::before {
+        content: '';
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        left: -14px;
+        top: 5px;
+        background: #918f8f;       
+      }
+
+      .footer {
+        display: flex;
+        flex-basis: 80px;              
+        justify-content: space-between;
+        padding: 0px 41px 36px 39px;
+      }
+
+      .logo2 {
+        width: 95px;
+      }
+
+      .date {            
+        width: 360px;
+        margin-bottom: 2px;
+        align-self: flex-end;
+        text-align: right;
+        color: #006cad;
+        font-weight: bold;        
+      }   
+
+      .date h4 {
+        font-size: 14.9px;
+      }
+
+      .date h5  {
+        font-size: 11.6px;
+      }
+
+      .date h3  {
+        font-size: 16.4px;
+      }
+
+      .date p {
+        font-size: 14.3px;
+      }
+
+      /* page 2 */
+
+      .body--secondary {
+        position: relative;
+        padding: 45px 36px 13px 39px;
+      }
+
+      .columns-secondary {
+        height: 1006px;
+        padding-top: 3px;        
+      }
+
+      .textBlock--secondary {
+        margin-bottom: 23px;
+      }     
+
+      .textBlock__headline--secondary h3 {
+        font-family: 'Helvetica Neue Condensed';
+        font-size: 20.3px;
+      }
+
+      .textBlock__headline--secondary h4 {
+        font-size: 14.9px;
+      }
+
+      .textBlock__headline--secondary h5 {
+        font-size: 11.7px;
+      } 
+
+      .table--secondary {
+        margin-bottom: 20px;
+        font-size: 11.4px;
+        line-height: 1.3;        
+      }
+
+      .table--secondary td {
+        padding: 3px 5px 3px 0;   
+      }
+
+      .table--secondary tr {
+        font-size: 11.4px;
+      } 
+
+      .contactBox {        
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 356px;
+        height: 377px;
+        bottom: 14px;
+        right: 40px;
+        background: #f0efef;
+        padding: 24px 27px 37px;
+        font-family: "Helvetica Neue LT Std";     
+      }
+
+      .contactBox__top h3 {
+        margin-bottom: 10px; 
+        font-family: 'Helvetica Neue Condensed';
+        font-size: 20.2px;      
+        color: #7669bb;
+      }
+
+      .contactBox__top h4 {
+        margin-bottom: 6px;
+        font-size: 14.8px;      
+      }
+
+      .contactBox__top h5 {
+        font-size: 12.3px;
+      }
+
+      .contactBox__top p {
+        margin-bottom: 6px;
+        font-size: 11.9px;
+        line-height: 1.25;       
+      }
+
+      .social__heading {
+        margin-bottom: 14px;
+        font-size: 14.7px;      
+      } 
+
+      h3:first-child,
+      h4:first-child,
+      h5:first-child,
+      p:first-child {
+        margin-top: 0;
+      }
+
+      .social {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .social a {
+        font-size: 12px;
+        color: #020202;  
+      }
+
+      .social__item {
+        display: flex;
+        margin-bottom: 4px;
+      }
+
+      .social__item:last-child {
+        margin-bottom: 0px;
+      }
+
+      .social__icon {
+        width: 13px;
+        height: 13px;
+        margin-right: 7px;
+        margin-left: 0px;   
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .social__icon--facebook {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/2d43c5d91c3d0867804e4325120f0166/fb.svg');
+      }
+
+      .social__icon--twitter {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/475eb6714eea9846eaae4b7a92457e60/twitter.svg');
+      }
+
+      .social__icon--youtube {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/5df81c0b4faf8a39f57e08b733e3918e/youtube.svg');
+      }
+
+      .tableWrapper {
+        display: flex;
+        margin-left: -15px;
+        margin-bottom: 20px;
+      }
+
+      .tableContainer--2 {
+        width: 40%;
+        flex: 1;
+        padding-left: 15px;     
+      }
+
+      .footer--secondary {
+        justify-content: flex-end;
+        align-items: flex-end;
+        padding: 0px 41px 40px 39px;
+      }
+
+      .disclaimer {
+        font-size: 8.3px;
+        color: #939598;
+      }
+      
+      .showLogo-primary .logo-reversed{
+          display: none;
+      }
+
+      .showLogo-reversed .logo-blue{
+          display: none;
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white">    
+
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <!--<div class="placeholder placeholder--1"></div>-->
+
+        <div class="container fit">
+
+          <div class="header">
+            <div class="heroImage">{{{ INT_hero-image }}}</div>
+              <div class="logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+                  <img src="{{account.logos.mu-logo-reversed}}" class="logo logo-reversed" alt="logo">
+                  <img src="{{account.logos.mu-logo}}" class="logo logo-blue" alt="logo">
+              </div>
+            <div class="headline">
+              <div style="max-height: 3.5em">
+                <div class="check-overflow">{{{ INT_headline-main }}}</div>
+              </div>
+            </div><!--headline-->
+            <div class="clipPath"></div>
+          </div><!--header-->
+          <div class="body">
+            <div class="heroCopy">
+              <div style="max-height: 3.8em">
+                <div class="check-overflow"> {{{ INT_hero-copy }}}</div>
+              </div>
+            </div><!--heroCopy-->
+            <div class="columns">
+              <div style="max-height: 1310px; border: 3px dashed transparent;">
+                <div class="check-overflow">
+                  <div class="introductionColumn" style="margin-top: -3px;">{{{ INT_introduction-column-copy }}}</div><!--introductionColumn-->
+                  {{ #collection.INT_first-page-sections }}
+                  {{ #block.INT_table-block }}
+                  <div class="tableContainer">
+                    <div class="table__heading">{{{ INT_headline }}}</div><!--table__heading-->
+                    <table class="table">
+                      {{#INT_table-heading}}
+                      <tr>
+                        <th colspan="2"> {{ INT_table-heading }} </th>
+                      </tr>
+                      {{/INT_table-heading}}
+                      {{#spreadsheet.INT_table}}
+                      <tr>
+                        <td style="width: 85px;">{{{ INT_col-1 }}}</td>
+                        <td style="padding-left: 4px;">{{{ INT_col-2 }}}</td>                    
+                      </tr>
+                      {{/spreadsheet.INT_table}}
+                    </table>
+                    {{#INT_table-footer-text}}<div class="table__footer">{{{ INT_table-footer-text }}}</div><!--table__footer-->{{/INT_table-footer-text}}
+                  </div><!--tableContainer-->
+                  {{ /block.INT_table-block }}
+                  {{ #block.INT_text-block }}             
+                  <div class="textBlock">
+                    {{#INT_headline}}<div class="textBlock__headline">{{{ INT_headline }}}</div><!--textBlock--> {{/INT_headline}}
+                    <div class="textBlock__text">{{{ INT_copy }}}</div><!--textBlock-->
+                  </div>            
+                  {{ /block.INT_text-block }}
+                  {{ /collection.INT_first-page-sections }}
+                </div><!-- end check-overflow -->   
+              </div><!-- end max-height -->
+            </div><!--columns-->
+          </div><!--body-->
+          <div class="footer">
+            <img src="https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/00f3dcc9f4e522e6fdabbacacf3db447/go8.svg" class="logo2"><!--logo-->
+            <div class="date">{{{ INT_state-date }}}</div><!--date-->
+          </div><!--footer-->   
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <div class="page">
+
+      <div class="bleed center-children">
+
+        <!--<div class="placeholder placeholder--2"></div>-->
+
+        <div class="container fit">
+
+          <div class="body body--secondary">
+            <div class="columns columns-secondary">
+              <div style="max-height: 1596px; border: 3px solid transparent;">
+                <div class="check-overflow columns__inner">
+                  {{ #collection.INT_second-page-sections }}
+                  {{ #block.INT_text-block }}           
+                  <div class="textBlock textBlock--secondary">
+                    {{#INT_headline}}<div class="textBlock__headline textBlock__headline--secondary">{{{ INT_headline }}}</div><!--textBlock--> {{/INT_headline}}
+                    <div class="textBlock__text textBlock__text--secondary">{{{ INT_copy }}}</div><!--textBlock-->
+                  </div>          
+                  {{ /block.INT_text-block }}             
+                  {{ #block.INT_table-1-block }}
+                  <div class="tableContainer">
+                    {{#INT_headline}}<div class="table__heading">{{{ INT_headline }}}</div><!--table__heading-->{{/INT_headline}}
+                    <table class="table table--secondary">
+                      {{#INT_table-heading-1}}
+                      <tr>
+                        <th style="padding-left: 8px;"> {{{ INT_table-heading-1 }}} </th>
+                        <th style="padding-left: 6px;"> {{{ INT_table-heading-2 }}} </th>
+                      </tr>
+                      {{/INT_table-heading-1}}                  
+                      {{#spreadsheet.INT_table}}
+                      <tr>
+                        <td style="width: 192px; padding-left: 8px;">{{{ INT_col-1 }}}</td>
+                        <td style="padding-left: 6px;">{{{ INT_col-2 }}}</td>                    
+                      </tr>
+                      {{/spreadsheet.INT_table}}                  
+                    </table>
+                    {{#INT_table-footer-text}}<div class="table__footer">{{{ INT_table-footer-text }}}</div><!--table__footer-->{{/INT_table-footer-text}}
+                  </div><!--tableContainer-->          
+                  {{ /block.INT_table-1-block }} 
+                  {{ #block.INT_table-2-block }}
+                  <div class="tableWrapper">
+                    {{#collection.INT_double-table}}
+                    {{#block.INT_table}}
+                    <div class="tableContainer--2">
+                      {{#INT_headline-text}}<div class="table__heading">{{{ INT_headline-text }}}</div><!--table__heading-->{{/INT_headline-text}}
+                      <table class="table table--third">
+                        {{#INT_table-heading-1}}
+                        <tr>
+                          <th style="padding-left: 8px;"> {{{ INT_table-heading-1 }}} </th>
+                          <th style="padding-left: 8px;"> {{{ INT_table-heading-2 }}} </th>
+                        </tr>
+                        {{/INT_table-heading-1}}                  
+                        {{#spreadsheet.INT_table}}
+                        <tr>
+                          <td style="padding-left: 8px;">{{{ INT_col-1 }}}</td>
+                          <td style="padding-left: 8px;">{{{ INT_col-2 }}}</td>                    
+                        </tr>
+                        {{/spreadsheet.INT_table}}     
+                      </table>
+                    </div><!--tableContainer--2--> 
+                    {{/block.INT_table}}
+                    {{/collection.INT_double-table}}
+                  </div><!--tableWrapper--> 
+                  {{ /block.INT_table-2-block }} 
+                  {{ /collection.INT_second-page-sections }}
+                </div><!-- end check-overflow -->
+              </div> <!-- end max-height -->                  
+            </div><!--columns-->  
+            <div class="contactBox">
+              <div class="contactBox__top">{{{ INT_contact-box-copy }}}</div><!--contactBox__top-->
+              <div class="contactBox__bottom">
+                <div class="social__heading">Monash on social media</div><!--social__heading-->
+                <div class="social">
+                  {{#collection.INT_social_links}}
+                  {{#block.INT_facebook}}
+                  <div class="social__item">
+                    <div class="social__icon social__icon--facebook"></div> 
+                    <a href="https://{{ INT_link }}" class="social__link" target="_blank">{{{ INT_link }}}</a><!--social__link-->     
+                  </div><!--social__item-->
+                  {{/block.INT_facebook}}
+                  {{#block.INT_twitter}}
+                  <div class="social__item">
+                    <div class="social__icon social__icon--twitter"></div> 
+                    <a href="https://{{ INT_link }}" class="social__link" target="_blank">{{{ INT_link }}}</a><!--social__link-->     
+                  </div><!--social__item-->
+                  {{/block.INT_twitter}}
+                  {{#block.INT_youtube}}
+                  <div class="social__item">
+                    <div class="social__icon social__icon--youtube"></div> 
+                    <a href="https://{{ INT_link }}" class="social__link" target="_blank">{{{ INT_link }}}</a><!--social__link-->     
+                  </div><!--social__item-->
+                  {{/block.INT_youtube}}
+                  {{/collection.INT_social_links}}                      
+                </div><!--social-->
+              </div><!--contactBox__bottom-->
+            </div><!--contactBox-->            
+          </div><!--body-->
+          <div class="footer footer--secondary">
+            <div class="disclaimer">{{{ INT_disclaimer-text }}}</div><!--disclaimer-->
+          </div><!--footer-->
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+
+                                                         if (window.showCrop) {
+                                                           document.querySelector('body').classList.add('show-crop');
+                                                         } else {
+                                                           document.querySelector('body').classList.add('hide-crop');
+                                                         }                                               
+    </script>
+
+    <script src="main.js"></script>   
+    <script src="prefixfree.js"></script>
+
+    <script>
+
+      // Check Overflow function
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          console.log(parentHeight);
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }   
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+      } setInterval(loop, 1000);  
+
+      // Fix for the resizable background images - fullscreen and digital vairaitons only
+      function checkCrop() {
+        if ({{show-crop}} === true) {
+        } else {
+          [].forEach.call(document.querySelectorAll('.outfit-resizable-background'), function (el) {
+            el.parentNode.style.left = '0';
+            el.parentNode.style.right = '0';
+            el.parentNode.style.top = '0';
+            el.parentNode.style.bottom = '0';
+            el.parentNode.style.width = '100%';
+            el.parentNode.style.height = '100%';
+          });
+        }
+      }
+      checkCrop();      
+
+    </script>
+
+
+  </body>
+</html>
