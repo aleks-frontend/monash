@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <style>
+
+      * {
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4e392bbdb5059edf950d958c502ad7d1/18P-0053%20MC%20English%20Program%20Posters%20-%20A3%20-%20Outfit%20templates_Page_01.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      .overflow {
+        border: 1px dashed red;
+        position: relative; }
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4, 
+      .overflow h5, 
+      .overflow h6, 
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 5px;
+        right: 5px;
+        height: 15px;
+        width: 15px;
+        border: 1px solid red;
+        color: red;
+        padding: 2px 2px 2px 3px;
+        box-sizing: border-box;
+        font-size: 13px;
+        text-align: center;
+        line-height: 8px;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is overset content in this column. Please remove it';
+        position: absolute;
+        top: 25px;
+        right: 5px;
+        background-color: black;
+        color: white;
+        border-radius: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 1.1em;
+        text-align: right;
+        width: 15em;
+      }
+
+      body {
+        font-family: 'Helvetica Neue Cond', helvetica, arial, sans-serif;
+        line-height: 0.8em;
+      }
+
+      h1, h2, h3, h4, h5, h6 { color: {{{ cover-theme-colour }}}; font-family: 'Helvetica Neue Cond'; font-weight: bold; }
+      p { font-size: 0.4em; }
+
+      h1 { font-size: 1em; }
+      h2 { font-size: 0.8em; }
+      h3 { font-size: 0.7em; }
+      h4 { font-size: 065em; }
+      h5 { font-size: 0.5em; }
+      h6 { font-size: 0.4em; }
+
+      .logo { position: absolute; top: 0.8em; left: 0.6em; width: 3.9em; }
+      .logo img { width: 100%; }
+      .showLogo-primary .logo-reversed {
+        display: none;
+      }
+
+      .showLogo-reversed .logo-blue {
+        display: none;
+      }
+
+      .top { position: absolute; top: 2.35em; left: 0.7em; right: 4.6em; height: 8.75em; background-color: {{{ cover-theme-colour }}}; background-size: cover; background-position: center; background-repeat: no-repeat; }
+      .inner { position: relative; height: 100%; }
+
+      .text { position: absolute; top: 11.8em; left: 1.2em; right: 5.4em; color: white; }
+      .text h1 { font-size: 1.05em; font-weight: 400; text-transform: uppercase; line-height: 1em; }
+      .text h2 { color: black; margin: 0.2em 0 0 0; font-size: 0.5em; font-weight: 400; line-height: 1.2em; }
+      .text p { color: black; margin: 0.2em 0 0 0; font-size: 0.35em; font-weight: 400; line-height: 1.4em; }
+
+      .details { position: absolute; top: 11.8em; left: 9.85em; right: 0.75em; }
+      .details h3 { padding: 0.3em 0 0 0; border-top: 1px solid {{{ cover-theme-colour }}}; font-size: 0.3em; font-weight: 500; line-height: 1.4em; }
+      .details p { margin: 0 0 0.5em 0; font-size: 0.25em; font-weight: 500; line-height: 1.2em; }
+      
+      .hide { display: none; }
+      .show { display: block; }
+
+      .cricos { position: absolute; bottom: 0.5em; left: 1.2em; right: 4.6em; border-top: 1px solid #A5A5A5; padding: 0.1em 0 0 0; }
+      .cricos p { margin: 0 5em 0 0; color: #A5A5A5; line-height: 1.4em; font-size: 0.12em; font-weight: 400; }
+      
+      .college-m {
+        position: absolute; top: 2.35em; right: 0.7em; width: 4.81em; height: 9.7em;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/14ba8c7c9376cc2a3b2147f6705a463f/mc-pattern-1.svg');
+      }
+      
+      .pattern-2 .college-m {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/f5c8ecedbc743a7b9a3bf5d1dda50ae3/college-m-patternAsset%201.svg'); }
+      .pattern-3 .college-m {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/8b23f5c2b36c749f46ea572e8e685310/college-m-patternAsset%202.svg'); }
+      .pattern-4 .college-m {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/283c676efe260e0f7124088a4a268107/college-m-patternAsset%203.svg'); }
+      .pattern-5 .college-m {
+        width: 4.84em;
+        background-image: url('https://files.outfit.io/media_library_items/65025/college_M_yellow_large__.png'); }
+
+    </style>
+  </head>
+  <body style="background: white" class="{{college-pattern}}">
+
+    <div class="page">
+      <div class="bleed">
+
+        <div class="logo logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+          <img src="{{account.logos.mc-logo-reversed}}" class="logo-reversed" alt="logo">
+          <img src="{{account.logos.mc-logo}}" class="logo-blue" alt="logo">
+        </div>
+
+        <div class="top" style="background-image: url({{hero-image}});"></div>
+        <div class="college-m"></div>
+
+        <div class="text">
+          <div style="max-height: 7em;">
+            <div class="check-overflow">
+              <h1>{{{ header }}}</h1>
+              <h2>{{{ subheader }}}</h2>
+              <p>{{{ copy-blank }}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="details">
+          <div style="max-height: 7.4em;">
+            <div class="check-overflow">
+              <h3>LOCATION:</h3>
+              <p>{{{ location }}}</p>
+              <h3>DATE:</h3>
+              <p>{{{ date }}}</p>
+              <h3>TIME:</h3>
+              <p>{{{ time }}}</p>
+              <h3>COST:</h3>
+              <p>{{{ cost }}}</p>
+              <h3>CONTACT:</h3>
+              {{{ contact }}}
+              <h3>REGISTER:</h3>
+              <p><strong>{{{ register-email }}}</strong></p>
+              {{{ register-copy }}}
+            </div>
+          </div>
+        </div>
+
+        <div class="cricos"><p>{{{ disclaimer }}} <br><br>{{{account.snippets.college-cricos}}}</p></div>
+
+      </div>
+    </div>
+
+    <script>
+
+      window.showCrop = {{show-crop}};
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+    </script>
+    <script src="main.js"></script>
+    <script src="prefixfree.js"></script>
+  </body>
+</html>
