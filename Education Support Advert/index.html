@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  
+  <style>
+    .test-background-image {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/6beb336b8dc1e190a7c541e8fa76c271/Screen%20Shot%202017-04-03%20at%2012.30.40%20PM.png');
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      z-index: 100;
+      opacity: 0.7;
+    }
+
+    .showLogo-primary .logo-reversed{
+      display: none;
+    }
+
+    .showLogo-reversed .logo-blue{
+      display: none;
+    }
+    
+  </style>
+</head>
+<body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}" style="font-size: {{{ font-size-slider }}}em;">
+  <!--<div class="test-background-image"></div>-->
+  <div class="border" style="border: 1px solid black;"></div>
+  
+  <div class="page">
+    <div class="background">
+      <div class="background-image" style="margin: 0.5em; background-image: url({{background-image}})"></div>
+    </div><!--background-->
+
+    <div class="document">
+      <div class="content">
+
+
+        <div class="row-container">
+          <div class="row header">
+            <div class="header-background-image" style="background-image: url('{{header-background}}')"></div>
+
+            <div class="headline-overflow-container">
+              <div class="headline-overflow">
+                {{{headline}}}
+              </div>
+            </div>
+            
+            <div class="clip">
+				<img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/f8ca0c041dd06b8a8530b09d65bc952e/monash-m.svg">
+            </div>
+
+            </div><!--row header-->
+
+          <div class="row text">
+            <div class="body-overflow-container">
+              <div class="body-container">
+                
+                <div>
+                  {{{ ad-hero-copy }}}
+                </div>
+                
+                <div class="flex-cols">
+                  {{#collection.support-short-course}}
+                    <div class="course-container">
+                      <h2>{{{ course-headline }}}</h2>
+                      {{ #commencement-date }}<p><span>Commencing: </span>{{{ commencement-date }}}</p>{{ /commencement-date }}
+                      {{ #duration }}<p><span>Duration: </span>{{{ duration }}}</p>{{ /duration }}
+                      {{ #venue }}<p><span>Venue: </span>{{{ venue }}}</p>{{ /venue }}
+                      {{ #short-course-contact }}<p><span>Contact: </span>{{{ short-course-contact }}}</p>{{ /short-course-contact }}
+                    </div>
+                  {{/collection.support-short-course}}
+                </div>
+                
+                {{#more-info-url}}
+                <div class="more-info-url-container">
+                  <p>For more information, visit: <span>{{{more-info-url}}}</span></p>
+                </div>
+                {{/more-info-url}}
+                
+                <div class="ad-footer-copy">
+                  {{{ ad-footer-copy }}}
+                  {{#cricos}}<div class="cricos">CRICOS provider: Monash University {{{cricos}}}</div>{{/cricos}}  
+                </div>
+
+              </div>
+            </div>   
+
+            <div class="footer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">            
+              <div class="logo logo-reversed" style="background-image: url('{{account.logos.mu-logo-reversed}}')"></div>
+              <div class="logo logo-blue" style="background-image: url('{{account.logos.mu-logo}}')"></div>                          
+            </div><!--footer-->
+
+          </div><!--text-->
+        </div><!--row-container-->
+
+      </div><!--content-->
+    </div><!--document-->
+
+  </div><!--page-->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  <script>smartquotes();</script>
+  <script>
+    function loop() {
+      checkHeight($(".headline-overflow"), 135);
+      checkHeight($(".body-container"), 135);
+    } setInterval(loop, 2000);
+
+    function checkHeight(element, maxHeight) {
+      var $height = element.height();
+      var $parentHeight = element.parent().height();
+      
+      if ($height > $parentHeight) {
+        element.parent().addClass('overflow');
+      } else {
+        element.parent().removeClass('overflow');
+      }
+    }
+  </script>
+  
+  <script>
+    /* CHECK ON LIs */
+    
+    setInterval(function(){
+    if(jQuery('.highlight-copy ul > li').length > 4)
+        jQuery('.highlight-copy').addClass('error');
+    else
+        jQuery('.highlight-copy').removeClass('error');
+}, 2000);
+  </script>
+  
+     <script>
+       
+        // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+        // At least Safari 3+: "[object HTMLElementConstructor]"
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+        // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+        // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+        // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+    if (isOpera == true) {
+      $('body').addClass('-js-opera-browser');
+    } if (isFirefox == true) {
+      $('body').addClass('-js-firefox-browser');
+    } if (isSafari == true) {
+      $('body').addClass('-js-safari-browser');
+    } if (isIE == true) {
+      $('body').addClass('-js-ie-browser');
+    } if (isEdge == true) {
+      $('body').addClass('-js-edge-browser');
+    } if (isChrome == true) {
+      $('body').addClass('-js-chrome-browser');
+    } if (isBlink == true) {
+      $('body').addClass('-js-blink-browser');
+    }
+    
+    $('#modal').on('click','a',function(event){
+      event.preventDefault();
+      $('div#modal').fadeOut('slow');
+      $('h1,h2,p').removeClass('blured_text');  
+    });
+    
+  </script>
+</body>
+</html>
+
+
+
