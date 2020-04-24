@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html async>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/monash-fonts/HelveticaNeue/stylesheet.css" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css" rel="stylesheet">  
+    
+    <script src="tinycolor.js"></script>
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <style>
+
+      .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/83e4b937cded26b472fdfd950aeedbec/Screen%20Shot%202017-09-26%20at%2012.05.56%20pm.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      .overflow{border:1px dashed red;position:relative}.overflow::before,.overflow:hover:after{position:absolute;right:5px;box-sizing:border-box}.overflow h1,.overflow h2,.overflow h3,.overflow h4,.overflow h5,.overflow h6,.overflow li,.overflow p{color:red!important}.overflow::before{content:'+';z-index:5;top:5px;height:15px;width:15px;border:1px solid red;color:red;padding:2px 2px 2px 3px;font-size:13px;line-height:8px;background-color:#fff;text-align:center}.overflow:hover:before{background-color:red;color:#fff}.overflow:after{display:none}.overflow:hover:after{display:block;content:'There is overset content in this column. Please remove it';top:25px;background-color:#020202;color:#fff;border-radius:2px;padding:5px;font-size:11px;font-weight:400;line-height:1.1em;text-align:right;width:15em}
+
+      html {
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Helvetica Neue Condensed', helvetica, arial, sans-serif;
+        font-weight: normal;
+        background-color: #fff;
+      }
+
+      strong { font-weight: bold; }
+
+      h1, h2, h3, h4, h5, h6 { margin: 0; line-height: 1.2em; }
+
+      /* Page 1 */
+
+      .page-1 .logo { position: absolute; top: 0.35em; left: 0.4em; width: 3.6em; }
+      .page-1 .logo img { width: 100%; }
+
+      .page-1 .image-main { height: 4.5em; position: relative; }
+
+      .page-1 .image-1 { position: absolute; top: 0; left: 0; right: 0; height: 4.5em; z-index: -2; background-size: cover; background-repeat: no-repeat; background-position: center center; }
+
+      .page-1 .header-position { position: absolute; left: 0.8em; bottom: 0.2em; max-height: 2.2em; width: 11em; z-index: 99999; }
+      .page-1 .header-position h2 { color: #fff; font-size: 0.67em; line-height: 1em; text-transform: uppercase; font-weight: normal; }   
+
+      .page-1 .subheader-position { position: absolute; top: 6.35em; left: 0.8em; width: 12.7em; max-height: 1.8em; z-index: 1; }
+
+      .page-1 .subheader-overflow h2 { margin: 0 0 0.4em 0; font-size: 0.72em; }
+
+      .page-1 .monash-m { position: absolute; top: 0; right: 0.6em; width: 1.93em; z-index: -1; opacity: 0.55; }
+
+      @media print {
+        .page-1 .monash-m {
+          top: initial;
+          bottom: 230.3mm;
+        }
+
+        .show-crop .page-1 .monash-m {
+          top: 0;
+          bottom: initial;
+        }
+      }
+
+      .page-1 .monash-m img { width: 100%; }
+
+      .page-1 .columns-position { position: absolute; top: 7em; left: 0.8em; height: 7.6rem; width: 10rem; }
+      .page-1 .column-1-position, .page-1 .column-2-position, .page-1 .column-3-position { width: 31.7%; }
+      .page-1 .column-1-position, .page-1 .column-2-position { height: 12em; overflow: hidden; }
+      .page-1 .column-3-position { height: 7.8em; overflow: hidden; }
+
+      .page-1 .column-1-position h2, .page-1 .column-2-position h2, .page-1 .column-3-position h2 { margin: 0 0 0.6em 0; font-size: 0.32em; font-weight: bold; text-transform: uppercase; }
+      .page-1 .column-1-position p, .page-1 .column-2-position p, .page-1 .column-3-position p { margin: 0 0 0.6em 0; font-family: 'Helvetica Neue LT Std'; font-size: 0.25em; }
+
+      .page-1 .column-1-position ul, .page-1 .column-2-position ul, .page-1 .column-3-position ul {
+        margin: 0 0 0.6em 0; padding: 0 0 0 2em; font-family: 'Helvetica Neue LT Std'; font-size: 0.25em; list-style-type: square;
+      }
+
+      .page-1 .column-1-position ol, .page-1 .column-2-position ol, .page-1 .column-3-position ol { margin: 0 0 0.6em 0; padding: 0 0 0 2em; font-family: 'Helvetica Neue LT Std'; font-size: 0.25em; }
+
+      .page-1 .column-1-position h3, .page-1 .column-2-position h3, .page-1 .column-3-position h3 { margin: 0 0 0.4em 0; font-family: 'Helvetica Neue LT Std'; font-size: 0.2em; font-weight: normal; }
+      .page-1 .column-1-position img, .page-1 .column-2-position img, .page-1 .column-3-position img { width: 100%; }
+
+      .page-1 .website { position: absolute; left: 0.8em; bottom: 0.6em; }
+      .page-1 .website p {  color: #020202; font-family: 'Helvetica Neue LT Std'; font-size: 0.22em; font-weight: bold; }
+
+      .page-1 .cricos { position: absolute; left: 0.8em; bottom: 0.5em; }
+      .page-1 .cricos p {  color: #A6A7A7; font-family: 'Helvetica Neue LT Std'; font-size: 0.14em; line-height: 1.3em; }
+
+      .page-1 .name p { display: block; margin: 5.9em 0 0 0; font-size: 0.27em;}
+      /*.page-1 .js-fittext p { width: 17em; font-size: 0.6em; margin: 0.5em 0 0 0; border-bottom: 1px solid #020202; }*/
+
+
+      .page-1 .details span { display: block; margin: 2em 0 0 0; font-size: 0.27em; }
+      .page-1 .details p { display: block; margin: 0.4em 0 0 0; font-size: 0.27em; line-height: 1.2em; }
+
+      .page-1 .details { width: 8em; }
+
+      .page-1 .details-js-wrap { max-height: 1.7em; overflow: hidden; }
+
+      .page-1 .signature-1 { position: absolute; top: 16em; left: 0.8em; }
+      .page-1 .signature-2 { position: absolute; top: 16em; left: 6em; }
+
+      .page-1 .signature-1 p, .page-1 .signature-2 p { font-size: 0.27em; line-height: 1.3em; }
+      .page-1 .signature-1 strong, .page-1 .signature-2 strong { margin: 0 0 1em 0; }
+
+      .page-1 .signature-1-image img { width: 100%; }
+      .page-1 .signature-2-image img { width: 100%; }
+
+      .page-1 .signature-1-image { position: absolute; bottom: 4em; left: 0.8em; max-width: 3.8em; }
+      .page-1 .signature-2-image { position: absolute; bottom: 4em; left: 6em; max-width: 3.8em; }
+
+      .page-1 .js-fittext-wrap { 
+        margin-top: 1em;
+        height: 0.9rem;
+        width: 570px;
+        font-size: 45.5px;
+        border-bottom: 1px solid #020202; 
+      }
+
+      .page-1 .textFit {  
+        font-size: 1em;
+        margin: 0; 
+        width: 570px;
+        height: 0.9rem;
+      }
+
+      .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4.5em;
+        opacity: 0.7;
+      }
+
+      .mkt-theme-one .image-overlay { background-color: #009fd9; }
+      .mkt-theme-two .image-overlay { background-color: #00ac3e; }
+      .mkt-theme-three .image-overlay { background-color: #8177b4; }
+      .mkt-theme-four .image-overlay { background-color: #fc6228; }
+      .mkt-theme-five .image-overlay { background-color: #ff0026; } 
+
+      .monash-faculty {
+        font-size: 0.35em;
+        text-transform: uppercase;
+        line-height: 1.03em;
+        min-width: 17%;
+        max-width: 30%;
+        margin-top: 0.1em;
+        color: #fff;
+        position: absolute;
+        top: 1.4em;
+        right: 7.2em;
+
+        {{#faculty-name-display}}
+        display: {{{ faculty-name-display }}};
+        {{/faculty-name-display}}
+        {{^faculty-name-display}}
+        display: none;
+        {{/faculty-name-display}}
+      }
+      .monash-faculty span {
+        color: #3b9dd9;
+      }
+
+      .showLogo-primary .logo-reversed{
+        display: none;
+      }
+
+      .showLogo-reversed .logo-blue{
+        display: none;
+      }
+
+    </style>
+  </head>
+  <body class="{{{ theme-mkt }}} showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+
+    {{#spreadsheet.cert-name}}
+
+    <div class="page page-1">
+      <div class="bleed">
+
+        <div class="logo logoContainer" style="z-index: 9999; margin-top: 10pt; margin-left: 10pt;">
+          <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+          <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+        </div>
+
+        <div class="monash-faculty">{{{team.stacked-faculty-name}}}{{^team.stacked-faculty-name}}Faculty<br>Name<br>Here{{/team.stacked-faculty-name}}</div>
+
+        <div class="monash-m" style="z-index: 9999;">
+          <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/c7e5f5832e1234e6172a7a7173defc8c/m.svg">
+        </div><!--monash-m-->
+
+        <div class="image-overlay"></div>
+        <div class="image-main">       
+        </div>
+
+        <div class="subheader-position">
+          <div class="subheader-overflow check-overflow">
+            <h2 class="subheader">{{{ header }}}</h2>
+          </div><!--subheader-overflow-->
+        </div><!--subheader-position-->
+
+        <div class="columns-position">
+          <div class="name">
+            <!-- Injected Dynamically -->
+          </div><!--name-->
+          
+          <div class="js-fittext-wrap">
+            <div style='line-height: 1.1em;' class="textFit">{{{ name }}} {{{ surname }}}</div>    
+          </div><!--js-fittext-wrap-->
+          <div class="details">
+            <span>FOR</span>
+            <div class="details-js-wrap">
+              <p class="details-js check-overflow"></p>
+            </div>
+            <div style="display: flex; justify-content: space-between; width: 3em; margin: 0.5em 0 0 0;" class="semester"></div>
+            <p style="margin: 1em 0 0 0;" class="destination"></p>            
+          </div><!--details-->
+        </div><!--columns-position-->
+
+        <div class="signature-1-image"></div>
+        <div class="signature-1">
+          <p class="signature1details"></p>
+        </div><!--signature-1-->
+
+        <div class="signature-2-image"></div>
+        <div class="signature-2">
+          <p class="signature2details"></p>
+        </div><!--signature-2-->
+
+        <div class="cricos"><p></p></div><!--cricos-->
+
+      </div><!--bleed-->
+    </div><!--page-1-->
+
+    {{/spreadsheet.cert-name}}
+
+    <script>
+
+      window.showCrop = {{show-crop}};
+
+      if (showCrop === true) {
+        document.body.classList.add('show-crop')
+      } else {
+        document.body.classList.add('hide-crop')
+      }
+
+    </script>
+    <script src="main.js"></script>
+    <script src="prefixfree.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/text-fit-min.js"></script>
+    <script src="textfit.js"></script>
+    <script>
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+      /*window.onload = function() {
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];;
+        var date = new Date();
+
+        document.getElementById('date').innerHTML = ' ' + months[date.getMonth()] + ' ' + date.getFullYear();
+      };*/
+
+      var imagemain = document.getElementsByClassName('image-main');
+      for ( i = 0 ; i < imagemain.length ; i++ ) {
+        imagemain[i].innerHTML = `{{#image-1}}<div class='image-1' style='background-image: url({{{ image-1 }}})'><div class='header-position'><div style="max-height: 1.4em;"><div class="check-overflow"><h2 class='header'>{{{hero-headline}}}</h2></div></div></div></div></div>{{/image-1}}{{^image-1}}<div class='image-1' style='background-image: url({{{ image-mkt-nm }}})'><div class='header-position'><h2 class='header'>{{{hero-headline}}}</h2></div></div></div>{{/image-1}}`
+      };
+
+      /*var subheader = document.getElementsByClassName('subheader');
+     for ( i = 0 ; i < subheader.length ; i++ ) {
+       subheader[i].innerHTML = "{{{ header }}}";
+     };
+    */
+      var details = document.getElementsByClassName('details-js');
+      for ( i = 0 ; i < details.length ; i++ ) {
+        details[i].innerHTML = '{{{ details }}}'
+      };
+
+      var semester = document.getElementsByClassName('semester');
+      for ( i = 0 ; i < semester.length ; i++ ) {
+        semester[i].innerHTML = "<p>{{{date}}}</p>"
+      };
+
+      var destination = document.getElementsByClassName('destination');
+      for ( i = 0 ; i < destination.length ; i++ ) {
+        destination[i].innerHTML = '{{{ destination }}}'
+      };
+
+      var signature1 = document.getElementsByClassName('signature-1-image');
+      for ( i = 0 ; i < signature1.length ; i++ ) {
+        signature1[i].innerHTML = '<img src="{{{ signature-1 }}}">'
+      };  
+
+      var signature1details = document.getElementsByClassName('signature1details');
+      for ( i = 0 ; i < signature1details.length ; i++ ) {
+        signature1details[i].innerHTML = '{{{ signature-1-details }}}'
+      }; 
+
+      var signature2 = document.getElementsByClassName('signature-2-image');
+      for ( i = 0 ; i < signature2.length ; i++ ) {
+        signature2[i].innerHTML = '<img src="{{{ signature-2 }}}">'
+      };     
+
+      var signature2details = document.getElementsByClassName('signature2details');
+      for ( i = 0 ; i < signature2details.length ; i++ ) {
+        signature2details[i].innerHTML = '{{{ signature-2-details }}}'
+      }; 
+
+      var cricos = document.getElementsByClassName('cricos');
+      for ( i = 0 ; i < cricos.length ; i++ ) {
+        cricos[i].innerHTML = '<p>{{{ cricos }}}</p>'
+      };
+
+      var certTagline = document.querySelectorAll(".name");
+      for ( i = 0 ; i < certTagline.length ; i++ ) {
+        certTagline.item(i).innerHTML = '<p>{{{ cert-tagline }}}</p>';
+      };
+
+
+      // FIT TEXT FUNC
+
+      var els = $('.js-fittext');
+
+      for(var i = 0; i < els.length; ++i) {
+        while($(els[i]).width() > $(els[i]).parent().width()) {
+          var size = parseInt($(els[i]).css('font-size')); 
+          $(els[i]).css('font-size', size - 1); 
+        }
+      }
+      document.fonts.ready.then(() => {
+        // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+        let textfitItems = document.querySelectorAll(".textFit");
+        textfitItems.forEach(el =>{
+          textFit(el, {detectMultiLine: false});
+        });
+      });
+    </script>
+
+    <script type="text/javascript">
+      // Add many fallbacks for Print Ready
+      document.addEventListener('DOMContentLoaded', function(event) {
+        document.dispatchEvent(new Event('printready'));
+      });
+
+      setTimeout(function() {
+        document.dispatchEvent(new Event('printready'));
+      }, 2500);
+
+      document.dispatchEvent(new Event('printready'));
+    </script>    
+  </body>
+</html>
