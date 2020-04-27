@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css" rel="stylesheet">
+    <script src="tinycolor.js"></script>
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <style>
+
+      .placeholder {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        z-index: 100;
+        pointer-events: none;
+      }
+
+      .placeholder1{
+        opacity: 0;
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/816f3f6f4044a1352c8628b21357668e/18P-0742_Portrait_Plasma_Screens_-_Outfit.jpg');
+      }
+
+      .overflow {
+        border: 0.0362rem dashed red !important;
+        position: relative; }
+      .overflow h1, 
+      .overflow h2, 
+      .overflow h3, 
+      .overflow h4, 
+      .overflow h5, 
+      .overflow h6, 
+      .overflow p, 
+      .overflow li { color: red !important; }
+      .overflow::before {
+        content: '+';
+        position: absolute;
+        z-index: 5;
+        top: 0.1rem;
+        right: 0.1rem;
+        height: .3107rem;
+        width: .3107rem;
+        border: 0.01rem solid red;
+        color: red;
+        padding: 0.01rem 0.01rem 0.01rem 0.0155rem;
+        box-sizing: border-box;
+        font-size: 0.2279rem;
+        text-align: center;
+        line-height: .2693rem;
+        background-color: white;
+        text-align: center; }
+      .overflow:hover:before {
+        background-color: red;
+        color: white; }
+      .overflow:after {
+        display: none; }
+      .overflow:hover:after {
+        display: block;
+        content: 'There is overset content in this column. Please remove it';
+        position: absolute;
+        top: 0.5rem;
+        right:  0.1rem;
+        background-color: #020202;
+        color: white;
+        border-radius: 0.01rem;
+        padding: 0.2rem 0.2rem;        
+        box-sizing: border-box;
+        font-size: 0.35rem;
+        font-weight: 400;     
+        text-align: right;
+        width: 6rem;
+      }
+
+      * { 
+        color: white; 
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Helvetica Neue Cond';
+      }
+
+      .logo { 
+        position: absolute; 
+        top: 1.4em; 
+        left: 1em; 
+        width: 4.1em; 
+        z-index: 4; 
+      } 
+
+      .logo img { 
+        width: 100%; 
+      }
+
+      .text { 
+        position: absolute; 
+        top: 3.5em; 
+        left: 1em; 
+        right: 8em; 
+        z-index: 4; 
+      }
+     
+      .text .subheader{
+        padding-right: 7rem;
+      }
+
+      .subheader { 
+        font-size: 0.57em;
+      }
+      
+      .subheader p {
+        font-size: 1em;
+      }
+      
+      .image { 
+        position: absolute; 
+        top: 0;
+        bottom: 0;
+        left: 0; 
+        right: 0; 
+        z-index: -1; 
+      }
+
+      .overlay { 
+        opacity: 0.7;
+        background: linear-gradient(270deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 40%, rgba(255,255,255,0) 100%);
+        position: absolute; 
+        top: 0;
+        bottom: 0; 
+        left: -22em; 
+        right: 0; 
+        mix-blend-mode: multiply; 
+        z-index: 3;
+      }
+
+      h1 {
+        margin-bottom: 0.2em;
+        font-size: 0.92em; 
+        text-transform: uppercase;         
+      }
+
+      h2 {
+        font-weight: 300;
+        line-height: 1.3;
+      }
+
+      p { 
+        margin-bottom: 0.4em;
+        font-size: 0.57em;      
+        font-weight: 300;
+        line-height: 1.3;
+      }
+      
+      .subheader p:last-child {
+        margin-bottom: 0;
+      }      
+
+      .clip-2 { 
+        clip-path: polygon(0% 0%, 0% 100%, 26.6% 100%, 27.6% 58%, 36% 100%, 64% 100%, 73% 59%, 73% 100%, 100% 100%, 100% 0%, 56% 0%, 50% 33%, 43% 0); 
+        z-index: 4;
+        background-size: cover;
+        background-position: 50% 50%;
+        position: absolute;
+        bottom: 0; 
+        left: 0.95em;
+        width: 38%; 
+        height: 50%;
+        opacity: 1;
+        background-image: url({{{ image }}}); 
+        background-repeat: no-repeat;
+      }
+
+      .dynamic-overflow {
+        max-height: 8.8em;
+        border: 0.0362rem dashed transparent;
+      }
+      
+      .full-overflow {
+        max-height: 9.1em;
+      }
+ 
+      @media (max-height: 1080px) {
+
+     .clip-2 {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: auto;
+          right: 0.6em;
+          width: 24%;
+          height: 100%;
+        }
+
+        .overlay { 
+          background: linear-gradient(270deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, rgba(255,255,255,0) 100%); 
+          transform: scaleX(-1);
+          right: -35em; 
+          left: 0; 
+        }       
+      }
+
+      @media (width:2160px) and (height: 4320px){
+
+        .logo {
+          top: 1.43em;
+          left: 0.73em;
+          width: 3.55em;
+        }
+
+        .text {
+          top: 3.7441em;
+          left: 0.8234em;
+          right: 1em;
+        }  
+
+        h1 {
+          font-size: 1.0202em;
+        }
+
+        h2 {
+          font-size: 0.94em;
+        }
+
+        .clip-2 {
+          clip-path: polygon(0% 0%, 0% 100%, 29.3% 100%, 29.3% 58%, 37.1% 100%, 65.9% 100%, 73.7% 58%, 73.7% 100%, 100% 100%,
+            100% 0%, 57.7% 0%, 51.4% 34%, 44.9% 0);
+          z-index: 4;  
+          bottom: 0;
+          left: 0.84em;
+          width: 43.6%;
+          height: 50.7%;
+          mix-blend-mode: unset;
+          opacity: 1;
+          background-image: url({{{ image }}});
+        }  
+        
+         .text { 
+        right: 1em;     
+      }
+
+        .dynamic-overflow {
+          max-height: 9em;
+        }   
+                .text .subheader {
+          padding-right: 0;
+        }
+                .full-overflow {
+          max-height: 7.1em;
+        }
+      }      
+
+      @media (width:1080px) and (height: 1920px){
+        .dynamic-overflow {
+          max-height: 9.1em;
+        } 
+        
+        .full-overflow {
+          max-height: 7.1em;
+        }
+
+        .text { 
+          right: 1em; 
+        }
+        
+        .text .subheader {
+          padding-right: 0;
+        }
+      }
+      
+      .showLogo-primary .logo-reversed{
+          display: none;
+      }
+
+      .showLogo-reversed .logo-blue{
+          display: none;
+      }
+
+    </style>
+  </head>
+  <body style="background: white">
+
+    <div class="page" style="background: white">
+
+
+      <div class="placeholder placeholder1"></div>
+      <div class="overlay"></div><!--overlay-->
+
+      <div class="image">
+        <div style="positon: relative; height: 100%;">
+          {{{ image-repositionable }}}
+        </div>
+      </div><!--image-->
+
+      <div class="logo logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+          <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+          <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+      </div>
+
+      <div class="text full-overflow">
+		<div class="check-overflow">
+        <div class="header" style="max-height: 4.1em;">
+          <div class="check-overflow">
+            <h1>{{{ header }}}</h1>
+          </div>
+        </div><!--header-->
+
+        <div class="subheader dynamic-overflow">
+          <div class="check-overflow">
+            <h2>{{{ plasma-subheader }}}</h2>
+          </div>
+        </div><!--subheader-->
+        </div>
+      </div><!--text-->
+
+      <div class="clip-1"></div><!--clip-->
+      <div class="clip-2"></div><!--clip-->
+
+    </div><!--page-->
+
+    <script>
+
+      window.showCrop = {{show-crop}};
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+    </script>
+    <script src="main.js"></script>
+    <script src="prefixfree.js"></script>
+  </body>
+</html>
