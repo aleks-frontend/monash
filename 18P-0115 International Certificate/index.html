@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  <style>
+    .test-background-image {
+      background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4884279311fb3e752d73227b99060040/18P-0115_Chinese_Agents_Award_Certificates_PRINT_Page_01.png');
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      opacity: 0.6;
+      background-size: cover;
+      background-repeat: no-repeat;
+      pointer-events: none;
+    }
+    
+    .hide-logo-lockup .school {
+      display: none;
+    }
+    
+    .clip {
+      background-image: url('{{{ M-image }}}');
+    }
+  </style>
+</head>
+<body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}} layout-two">
+  <!--<div class="test-background-image"></div>-->
+  {{#spreadsheet.international-certificates}}
+  <div class="page">
+     <div class="background">
+       <div class="background-image" style="background-image: url('{{ background-image }}')"></div>
+     </div><!--background-->
+
+     <div class="document">
+       <div class="content">
+         
+         <div class="logo"><img src="assets/images/monash-logo.svg"></div><!--logo-->
+         <div class="logo black-logo"><img src="assets/images/monash-logo-reverse.svg"></div><!--logo-->
+         
+        <div class="clip"></div>
+         
+         <div class="headline-overflow-container">
+           <div class="headline-overflow">
+             <div class="headline">
+               <p><span class="cert-line"></span></p>
+               <h1>{{{ name }}}</h1>
+               <p>in recognition for its</p>
+               <h2>{{{ certification }}}</h2>
+             </div><!-- headline -->
+           </div><!-- headline-overflow -->
+         </div><!-- headline-overflow-container -->
+         
+         <div class="signature"></div><!--signature-->
+         
+         <p class="CRICOS" style="color: #6D6F71;">18P-0115. SMC. CRICOS provider: Monash University 00008C</p>
+         
+       </div><!--content-->
+     </div><!--document-->
+
+   </div><!--page-->
+   {{/spreadsheet.international-certificates}}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  <script>smartquotes();</script>
+  <script>
+    
+    var certLine = document.getElementsByClassName('cert-line');
+     for ( i = 0 ; i < certLine.length ; i++ ) {
+       certLine[i].innerHTML = '{{{ certification-line }}}'
+     };
+    
+    var signature = document.getElementsByClassName('signature');
+    for ( i = 0 ; i < signature.length ; i++ ) {
+      signature[i].innerHTML = '<img src="{{{ signature }}}"/><p style="font-weight: 300;"><span style="font-weight: normal">{{{ certifier-name }}}</span><br>{{{ role }}}</p>'
+    };
+    
+    
+    
+     // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+        // At least Safari 3+: "[object HTMLElementConstructor]"
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+        // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+        // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+        // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+    if (isOpera == true) {
+      $('body').addClass('-js-opera-browser');
+    } if (isFirefox == true) {
+      $('body').addClass('-js-firefox-browser');
+    } if (isSafari == true) {
+      $('body').addClass('-js-safari-browser');
+    } if (isIE == true) {
+      $('body').addClass('-js-ie-browser');
+    } if (isEdge == true) {
+      $('body').addClass('-js-edge-browser');
+    } if (isChrome == true) {
+      $('body').addClass('-js-chrome-browser');
+    } if (isBlink == true) {
+      $('body').addClass('-js-blink-browser');
+    }
+    
+    $('#modal').on('click','a',function(event){
+      event.preventDefault();
+      $('div#modal').fadeOut('slow');
+      $('h1,h2,p').removeClass('blured_text');  
+    });
+    
+    /*!
+     * smartquotes.js v0.1.4
+     * http://github.com/kellym/smartquotesjs
+     * MIT licensed
+     *
+     * Copyright (C) 2013 Kelly Martin, http://kelly-martin.com
+     */
+    !function(e,n){"function"==typeof define&&define.amd?define(n):"object"==typeof exports?module.exports=n():e.smartquotes=n()}(this,function(){function e(n){return"undefined"==typeof n?e.element(document.body):"string"==typeof n?e.string(n):n instanceof HTMLElement?e.element(n):void 0}return e.string=function(e){return e.replace(/'''/g,"‴").replace(/(\W|^)"(\S)/g,"$1“$2").replace(/(\u201c[^"]*)"([^"]*$|[^\u201c"]*\u201c)/g,"$1”$2").replace(/([^0-9])"/g,"$1”").replace(/''/g,"″").replace(/(\W|^)'(\S)/g,"$1‘$2").replace(/([a-z])'([a-z])/gi,"$1’$2").replace(/((\u2018[^']*)|[a-z])'([^0-9]|$)/gi,"$1’$3").replace(/(\u2018)([0-9]{2}[^\u2019]*)(\u2018([^0-9]|$)|$|\u2019[a-z])/gi,"’$2$3").replace(/(\B|^)\u2018(?=([^\u2019]*\u2019\b)*([^\u2019\u2018]*\W[\u2019\u2018]\b|[^\u2019\u2018]*$))/gi,"$1’").replace(/'/g,"′")},e.element=function(n){function t(n){if(-1===["CODE","PRE","SCRIPT","STYLE"].indexOf(n.nodeName))for(var t=n.childNodes,r=0;r<t.length;r++){var a=t[r];a.nodeType===u&&(a.nodeValue=e.string(a.nodeValue))}}var u=Element.TEXT_NODE||3;t(n);for(var r=n.getElementsByTagName("*"),a=0;a<r.length;a++)t(r[a])},e});
+    //# sourceMappingURL=smartquotes.min.js.map
+    
+	smartquotes()
+    
+  </script>
+</body>
+</html>
