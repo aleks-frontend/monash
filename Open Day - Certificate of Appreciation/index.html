@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  <link rel="stylesheet" href="assets/stylesheets/crop.css">
+  
+  <style>
+    .test-background-image {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/6d85559080e81025c8f61f8efe639cc7/Screen%20Shot%202017-04-05%20at%209.55.10%20AM.png');
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      opacity: 0.6;
+      background-size: cover;
+      background-repeat: no-repeat;
+      z-index: 10;
+    }
+    
+    .show-crop-marks .test-background-image {
+      top: 0.48in;
+      left: 0.48in;
+      right: 0.48in;
+      bottom: 0.48in;
+    }
+
+    .mkt-theme-one .name h1 { color: #009fd9; border-bottom: 1px solid #009fd9; }
+    .mkt-theme-two .name h1 { color: #00ac3e; border-bottom: 1px solid #00ac3e; }
+    .mkt-theme-three .name h1 { color: #8177b4; border-bottom: 1px solid #8177b4; }
+    .mkt-theme-four .name h1 { color: #fc6228; border-bottom: 1px solid #fc6228; }
+    .mkt-theme-five .name h1 { color: #ff0026; border-bottom: 1px solid #ff0026; }  
+    
+    .mkt-theme-one .header-overlay { background-color: #009fd9; opacity: 0.7; }
+    .mkt-theme-two .header-overlay { background-color: #00ac3e; opacity: 0.7; }
+    .mkt-theme-three .header-overlay { background-color: #8177b4; opacity: 0.7; }
+    .mkt-theme-four .header-overlay { background-color: #fc6228; opacity: 0.7; }
+    .mkt-theme-five .header-overlay { background-color: #ff0026; opacity: 0.7; }   
+    
+    .header-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 27.3%;
+    }
+    
+    .showLogo-primary .logo-reversed{
+        display: none;
+    }
+
+    .showLogo-reversed .logo-blue{
+        display: none;
+    }
+    
+  </style>
+</head>
+<body class="{{theme-mkt}} {{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}} showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+  
+  {{#spreadsheet.certificate-name}}
+  <div class="page">
+    <!--<div class="test-background-image"></div>-->
+    
+    <div class="document">
+      <div class="content">
+        <div class="header-overlay"></div>
+        <div class="header">
+          <div class="logo logoContainer">
+              <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+              <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+          </div>
+          <h1>Certificate<br>of Appreciation</h1>
+          <div class="m1">
+          </div>
+
+        </div><!--header-->
+        <div class="section">
+          <div class="name">
+            <p>This certificate is presented to</p>
+            <h1>{{{ name }}}</h1>
+            <div class="cert-desc"></div>
+          </div><!--name-->
+          <div class="signature">
+            <div class="js-signature"></div>      
+            <p><strong class="professor-name"></strong></p>
+            <p class="professor-role"></p>
+            <p class="date"></p>
+          </div><!--signature-->
+          <div class="footer">
+            <p>Designed and produced by SMC Monash: 16P-0732. <span class="date"></span> CRICOS provider: Monash University 00008C</p>
+          </div>  
+        </div>
+      </div><!--content-->
+    </div><!--document-->
+
+  </div><!--page-->
+  {{/spreadsheet.certificate-name}}
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+  <script>smartquotes();</script>
+  <script>
+   // FIT TEXT FUNC
+     $(document).ready(function(){
+       
+       var els = $('.js-fittext h1');
+       
+       for(var i = 0; i < els.length; ++i) {
+         while($(els[i]).width() > $(els[i]).parent().width()) {
+           var size = parseInt($(els[i]).css('font-size')); 
+           $(els[i]).css('font-size', size - 1); 
+         }
+       }
+     });
+    
+    // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+        // At least Safari 3+: "[object HTMLElementConstructor]"
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+        // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+        // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+        // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+    if (isOpera == true) {
+      $('body').addClass('-js-opera-browser');
+    } if (isFirefox == true) {
+      $('body').addClass('-js-firefox-browser');
+    } if (isSafari == true) {
+      $('body').addClass('-js-safari-browser');
+    } if (isIE == true) {
+      $('body').addClass('-js-ie-browser');
+    } if (isEdge == true) {
+      $('body').addClass('-js-edge-browser');
+    } if (isChrome == true) {
+      $('body').addClass('-js-chrome-browser');
+    } if (isBlink == true) {
+      $('body').addClass('-js-blink-browser');
+    }
+    
+    $('.clip').mouseover(function () {
+      $('.clip-modal').addClass('show-modal');      
+    });
+    $('.clip').mouseout(function () {
+      $('.clip-modal').removeClass('show-modal');      
+    });
+    
+    // ADDING GLOBAL LOGOS
+     var logos = document.getElementsByClassName('js-signature');
+     for ( i = 0 ; i < logos.length ; i++ ) {
+       logos[i].innerHTML = '<img src="{{{ signature }}}">'
+     };
+    
+     var professorName = document.getElementsByClassName('professor-name');
+     for ( i = 0 ; i < professorName.length ; i++ ) {
+       professorName[i].innerHTML = '{{{ professor-name }}}'
+     };
+    
+     var professorRole = document.getElementsByClassName('professor-role');
+     for ( i = 0 ; i < professorRole.length ; i++ ) {
+       professorRole[i].innerHTML = '{{{ professor-role }}}'
+     };
+    
+     var professorRole = document.getElementsByClassName('cert-desc');
+     for ( i = 0 ; i < professorRole.length ; i++ ) {
+       professorRole[i].innerHTML = '<p>{{{ certificate-description }}}</p>'
+     };
+    
+     var date = document.getElementsByClassName('date');
+     for ( i = 0 ; i < date.length ; i++ ) {
+       date[i].innerHTML = '{{{ date }}}'
+     };
+    
+     var m1 = document.getElementsByClassName('m1');
+     for ( i = 0 ; i < m1.length ; i++ ) {
+       m1[i].innerHTML = '{{#image-mkt-nm}}<div class="moon" style="background-image: url({{{ image-mkt-nm }}});"></div>{{/image-mkt-nm}}{{^image-mkt-nm}}<div class="moon"><img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/59401ab50dcefb76a6fa685a6d26bb13/bg.png"></div>{{/image-mkt-nm}}'
+     }; 
+    
+
+    function getDate() {
+        var d = new Date();
+        var n = d.getFullYear();
+        document.getElementByClassName('year').innerHTML = n;
+    }
+    
+  </script>
+</body>
+</html>
