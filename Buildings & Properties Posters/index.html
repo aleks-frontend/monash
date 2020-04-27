@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}} {{{bpd-image-1}}} {{{bpd-image-2}}}">
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/crop.css">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js" type="text/javascript"></script>
+  
+  <style>
+    .test-background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      z-index: 10000;
+      opacity: 0.6;
+    }
+    
+    .show-crop-marks .test-background-image {
+      top: 0.5in;
+      left: 0.5in;
+      right: 0.5in;
+      bottom: 0.5in;
+    }
+  </style>
+</head>
+<body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}} {{#accent-colour}}{{accent-colour}}-accent{{/accent-colour}}">
+  <div class="clip-modal">Note: The preview of the M in this browser is broken and not reflective of what will be exported. Please use Chrome or Safari if you want a correct preview.</div>
+  <div class="page portrait">
+
+    <div class="document">
+    <div class="content">
+      <div class="blue-line"></div>
+      <div class="line"></div>      
+      
+      <div class="row-container">
+        <div class="row">
+          <div class="background-mask">
+            <svg class="mask" width="5158px" height="3716px" viewBox="0 0 5158 3716" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <defs></defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <path d="M0,0 L5158,0 L5158,3716 L0,3716 L0,0 Z M3612.45725,205.323855 L4189.7604,205.323855 L4288.72862,1218.45171 L4369.32592,205.323855 L4965,205.323855 L4965,3509.67615 L4602.24312,3509.67615 L4593.40297,2237.87808 L4475.04512,3509.67615 L4095.95468,3509.67615 L3974.90335,2237.87808 L3974.90335,3509.67615 L3612.45725,3509.67615 L3612.45725,205.323855 Z M0,205.323855 L3577.09665,205.323855 L3577.09665,3509.67615 L0,3509.67615 L0,205.323855 Z" id="Combined-Shape" fill="#221F20"></path> </g> </svg>
+
+            <div class="clip-image" style="overflow: hidden;">{{{bpd-image-1}}}</div>
+          </div><!--background-mask-->
+        </div><!--row-1-->
+
+        <div class="row">
+          <div class="col-container">
+
+            <div class="col">
+              {{#headline}}
+                <div class="headline-container">
+                  <div class="headline-overflow-container">
+                    <div class="headline-overflow"> 
+                      {{{headline}}}
+                    </div>
+                  </div>
+                </div>
+              {{/headline}}
+            </div><!--col-1-->
+
+            <div class="col">
+              <div class="col-inner-container">
+                <div>
+                   <div class="titles">
+                    <div class="titles-overflow-container">
+                      <div class="titles-overflow">
+                    	{{{building-and-property-title}}}                        
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {{#subheading}}<h5>{{{ subheading }}}</h5>{{/subheading}}
+                  
+                  {{#completion-date}}<h5>Completion: {{{completion-date}}}</h5>{{/completion-date}}
+                </div>
+                <div class="body-copy">
+                  <div class="body-copy-overflow-container">
+                    <div class="body-copy-overflow">
+                      {{{body-copy}}}
+                    </div><!--body-copy-overflow-->
+                  </div><!--body-copy-overflow-container-->
+                </div>
+                {{#contact-name}}
+                  <div class="border-column">
+                    <p style="font-weight: 500">Further information</p>
+                    <p>{{{contact-name}}}{{#contact-position}}, {{{contact-position}}}{{/contact-position}}</p>
+                    {{#phone-number}}<p>P: {{{phone-number}}}</p>{{/phone-number}}
+                    {{#email}}<p>E: {{{email}}}</p>{{/email}}
+                    <p><span style="font-weight: 500">monash.edu</span>{{#URL-extension}}/{{{URL-extension}}}{{/URL-extension}}</p>
+                  </div>
+                {{/contact-name}}
+              </div> <!--col-inner-container-->
+            </div><!--col-2-->
+
+          </div><!--col-container-->
+        </div><!--row-2-->
+        <div class="logos">
+          <img class="go8-logo {{group-of-eight-logo-visibility}}" src="assets/images/go8.svg">
+
+          <div class="logo">
+            <img class="logo-std" src="assets/images/monash-logo.svg">
+          </div><!--logo-->
+        </div><!--logos-->
+      </div><!--row-container-->
+
+      </div><!--content-->
+    </div><!--document-->
+
+  </div><!--page-->
+
+  <div class="page landscape">
+    
+    <div class="document">
+
+      <div class="content">
+        <div class="blue-line"></div>
+        <div class="line"></div>        
+        <div class="row-container">
+          <div class="row">
+            {{#headline}}
+                <div class="headline-container">
+                  <div class="headline-overlay">
+                    <div class="headline-overflow-container">
+                      <div class="headline-overflow headline-overflow-landscape"> 
+                        {{{headline}}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {{/headline}}
+            <div class="clip"></div>
+            <div class="background-image-container" style="overflow: hidden;">{{{bpd-image-2}}}</div>
+          </div><!--row-1-->
+
+          <div class="row">
+            <div class="col-container">
+                
+              <div class="col headings">
+                  <div class="titles">
+                    <div class="titles-overflow-container">
+                      <div class="titles-overflow">
+                    	{{{building-and-property-title}}}                        
+                      </div>
+                    </div>
+
+                  </div>
+                  {{#subheading}}<h5>{{{ subheading }}}</h5>{{/subheading}}
+                  {{#completion-date}}<h5>Completion: {{{completion-date}}}</h5>{{/completion-date}}
+                </div>
+              
+                <div class="col description">
+                  <div class="body-copy">
+                  <div class="body-copy-overflow-container">
+                    <div class="body-copy-overflow body-copy-overflow-landscape">
+                      {{{body-copy}}}
+                    </div><!--body-copy-overflow-->
+                  </div><!--body-copy-overflow-container-->
+                </div>
+                </div>
+              
+                {{#contact-name}}
+                  <div class="col contact">
+                    <div class="border-column" >
+                      <p style="font-weight: 500">Further information</p>
+                      <p>{{{contact-name}}}{{#contact-position}}, {{{contact-position}}}{{/contact-position}}</p>
+                      {{#phone-number}}<p>P: {{{phone-number}}}</p>{{/phone-number}}
+                      {{#email}}<p>E: {{{email}}}</p>{{/email}}
+                      <p><span style="font-weight: 500">monash.edu</span>{{#URL-extension}}/{{{URL-extension}}}{{/URL-extension}}</p>
+                    </div>
+                  </div>
+                {{/contact-name}}
+              
+                <div class="col logo"></div><!-- KEEP THIS -->
+              
+              </div> <!--col-inner-container-->
+          </div><!--row-2-->
+          <div class="logos">
+            <img class="go8-logo {{group-of-eight-logo-visibility}}" src="assets/images/go8.svg">
+
+            <div class="logo">
+              <img class="logo-std" src="assets/images/monash-logo.svg">
+            </div><!--logo-->
+          </div><!--logos-->
+        </div><!--row-container-->
+              
+      </div><!--content-->
+    </div><!--document-->
+
+  </div><!--page-->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  <script>smartquotes();</script>
+  <script>
+    function loop() {
+      checkHeight($(".headline-overflow"), 215);
+      checkHeight($(".headline-overflow-landscape"), 215);
+      checkHeight($(".titles-overflow"), 50);
+      checkHeight($(".body-copy-overflow"), 172);
+      checkHeight($(".body-copy-overflow-landscape"), 172);      
+    } setInterval(loop, 2000);
+
+    function checkHeight(element, maxHeight) {
+      var $height = element.height();
+      var $parentHeight = element.parent().height();
+      console.log($height);
+      console.log($parentHeight);
+      if ($height > $parentHeight) {
+        element.parent().parent().addClass('overflow');
+      } else {
+        element.parent().parent().removeClass('overflow');
+      }
+    }
+    
+     // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+        // At least Safari 3+: "[object HTMLElementConstructor]"
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+        // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+        // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+        // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+    if (isOpera == true) {
+      $('body').addClass('-js-opera-browser');
+    } if (isFirefox == true) {
+      $('body').addClass('-js-firefox-browser');
+    } if (isSafari == true) {
+      $('body').addClass('-js-safari-browser');
+    } if (isIE == true) {
+      $('body').addClass('-js-ie-browser');
+    } if (isEdge == true) {
+      $('body').addClass('-js-edge-browser');
+    } if (isChrome == true) {
+      $('body').addClass('-js-chrome-browser');
+    } if (isBlink == true) {
+      $('body').addClass('-js-blink-browser');
+    }
+    
+    $('#modal').on('click','a',function(event){
+      event.preventDefault();
+      $('div#modal').fadeOut('slow');
+      $('h1,h2,p').removeClass('blured_text');  
+    });
+    
+    $('.clip').mouseover(function () {
+      $('.clip-modal').addClass('show-modal');      
+    });
+    $('.clip').mouseout(function () {
+      $('.clip-modal').removeClass('show-modal');      
+    });
+  </script>
+</body>
+</html>
