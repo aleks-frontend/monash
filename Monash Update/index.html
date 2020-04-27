@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/crop.css">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  
+  <style>
+    .test-background-image {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/f43460562e2b89f0b14ceb5b04976622/Screen%20Shot%202017-03-08%20at%209.42.54%20am.png');
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      opacity: 0.6;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    
+    
+    .show-crop-marks .test-background-image {
+      top: 0.48in;
+      left: 0.48in;
+      right: 0.48in;
+      bottom: 0.48in;
+    }
+    
+    .tinymce_style--light {
+      color: #499ED5;
+    }
+  </style>
+</head>
+<body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+  <div class="page front-page">
+    <!--<div class="test-background-image"></div>-->
+    
+    <div class="document">
+      <div class="content">
+        <div class="blue-line"></div>
+        <div class="line"></div>
+
+        <div class="row-container">
+          
+          <div class="row header">
+            <div class="header-background-image" style="background-image: url('{{header-background}}')"></div>
+            
+            <div class="headlines">
+              <h1>Monash<br><span>Update</span></h1>
+              <p>News and information for career practitioners</p>
+              <h6>ISSUE&nbsp;{{{ issue-date }}}</h6>
+            </div><!--headlines-->
+            
+            <div class="clip" style="background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/8af7f72763e9390e315837f653f25353/monash-m.png')"></div>
+          </div><!--row header-->
+
+          <div class="row text">
+            <div class="main-copy-container">
+              
+              <div class="copy-container">
+                <div class="copy">
+                  {{{ page-copy }}}
+                </div>
+                
+                <div class="image-container" style="background-image: url('{{{ main-container-footer-image }}}');"></div>
+              </div><!--copy-container-->
+              
+            </div><!--main-copy-container-->
+            
+            <div class="sidebar">
+              <div class="sidebar-content">
+                <div class="list-container-one">
+                  <h4>In this issue</h4>
+                  <ul>
+                    {{#spreadsheet.in-this-issue-bullets}}
+                      <li>{{{ bullet-point }}}</li>
+                    {{/spreadsheet.in-this-issue-bullets}}
+                  </ul>
+
+                  <h4>Faculty updates</h4>
+                  <ul>
+                    {{#spreadsheet.faculty-updates}}
+                    <li>{{{ bullet-point }}}</li>
+                    {{/spreadsheet.faculty-updates}}
+                  </ul>
+
+                  <h4>Quick links/contact us</h4>
+                </div><!--list-container-one>-->
+
+                <div class="list-container-two">
+                  <h1>KEY DATES<br>FOR 2017</h1>
+                  <ul>
+                    {{#spreadsheet.key-dates}}                  
+                        <li>{{{ bullet-point }}}</li>
+                    {{/spreadsheet.key-dates}}
+                  </ul>
+                </div><!--list-container-two-->
+              </div><!--sidebar-content-->
+            </div><!--sidebar-->
+      
+            <div class="logo"></div>
+          </div><!--text-->
+        </div><!--row-container-->
+        <div class="page-number" style="visibility: hidden;"><p></p></div>
+      </div><!--content-->
+    </div><!--document-->
+  </div><!--page-->
+  
+  {{#collection.inner-pages}}
+  
+    {{#block.2-COL-R-SIDEBAR}}
+      
+      <div class="page page-layout-one">
+        <!--<div class="test-background-image"></div>-->
+        <div class="document">
+          <div class="content">
+            <div class="blue-line"></div>
+            <div class="line"></div>
+            
+            <div class="main-copy-container">
+              <div class="copy-container">
+                <div class="hero-copy">
+                  {{{ hero-copy }}}
+                </div><!--hero-copy-->
+                <div class="col-container">
+                  <div class="col1">{{{ column-one-copy }}}</div>
+                  <div class="col2">{{{ column-two-copy }}}</div>
+                </div><!--col-container-->
+              </div><!--copy-container-->
+            </div><!--main-copy-container-->
+            
+            <div class="line-divider"></div>
+            
+            <div class="sidebar">
+              <div class="sidebar-content">
+                {{{ sidebar-content }}}
+              </div>
+            </div><!--sidebar-->
+            
+            <div class="page-number"><p></p></div>
+          </div><!--content-->
+        </div><!--document-->
+      </div><!--page-->
+  
+    {{/block.2-COL-R-SIDEBAR}} 
+  
+  {{#block.page-layout-two}}
+
+        <div class="page page-layout-two">
+          <!--<div class="test-background-image"></div>-->
+          <div class="document">
+            <div class="content">
+              <div class="blue-line"></div>
+              <div class="line"></div>
+              
+              <div class="line-divider"></div>
+              
+              <div class="col-container">
+                <div class="col1">
+                  <div class="col1-content">
+                    <img src="{{{ column-one-image }}}"/>
+                    {{{ column-one-copy }}}
+                  </div>
+                </div>
+                <div class="col2">
+                  <div class="col2-content">
+                    {{{ column-two-copy }}}
+                    <img src="{{{ column-two-image }}}"/>
+                  </div>
+                </div>
+              </div><!--col-container-->
+
+              <div class="page-number" style="visibility: hidden;"><p></p></div>
+            </div><!--content-->
+          </div><!--document-->
+        </div><!--page-->
+
+      {{/block.page-layout-two}} 
+  
+    {{#block.page-layout-three}}
+    <div class="page page-layout-three {{^column-image}}no-image{{/column-image}}">
+      <!--<div class="test-background-image"></div>-->
+      <div class="document">
+        <div class="content">
+          <div class="blue-line"></div>
+          <div class="line"></div>
+		  
+          <div class="hero-col-container">
+            <div class="col-content">
+              {{{ hero-copy }}}
+            </div>
+          </div>
+          
+          <div class="col-container">
+            <div class="col1">
+              <div class="col1-content">
+                <div>{{{ column-one-copy }}}</div>
+                
+                {{#did-you-know}}
+                <div class="tooltip-overflow-container">
+                  <div class="tooltip-container">
+                    <h1>Did you know?</h1>
+                    {{{ did-you-know }}}
+                  </div>
+                </div>
+                {{/did-you-know}}
+              </div>
+            </div>
+            <div class="col2">
+              <div class="col2-content">
+                {{{ column-two-copy }}}
+              </div>
+            </div>
+            <div class="col3">
+              <div class="col3-content">
+                {{{ column-three-copy }}}
+              </div>
+            </div>
+            
+            <div class="page-layout-three-image" style="background-image: url('{{{ column-image }}}');"></div>
+            
+          </div><!--col-container-->
+
+          <div class="page-number" style="visibility: hidden;"><p></p></div>
+        </div><!--content-->
+      </div><!--document-->
+    </div><!--page-->
+
+    {{/block.page-layout-three}}
+  
+      {{#block.page-layout-four}}
+    <div class="page page-layout-four">
+      <!--<div class="test-background-image"></div>-->
+
+      <div class="document">
+        <div class="content">
+          <div class="blue-line"></div>
+          <div class="line"></div>
+
+          <div class="main-copy-container">
+            <div class="copy-container">
+              <div class="col-container">
+                <div class="col1">
+                  <div class="col1-content">
+                  	{{{ column-one-copy }}}
+                  </div>
+                </div>
+                <div class="col2">
+                  <div class="col2-content">
+                    {{{ column-two-copy }}}
+                  </div>
+                </div>
+              </div><!--col-container-->
+            </div><!--copy-container-->
+          </div><!--main-copy-container-->
+          <div class="sidebar" style="background-color: {{sidebar-background-color}};">
+            <div class="sidebar-content">
+              <div class="sidebar-inner-content">
+                {{#collection.sidebar-testimonials}}
+                  <div class="sidebar-image-container">
+                    <div class="testimonial-headshot" style="background-image: url('{{{ headshot }}}');"></div>
+                    <p>{{{ testimonial }}}</p>
+                    <p style="font-weight: 700;">{{{ author }}}</p>
+                    <p>{{{ author-degree }}}</p>
+                  </div>
+                {{/collection.sidebar-testimonials}}
+              </div>
+            </div>
+          </div><!--sidebar-->
+
+          <div class="page-number"><p></p></div>
+        </div><!--content-->
+      </div><!--document-->
+    </div><!--page-->
+
+    {{/block.page-layout-four}}
+  
+   {{#block.page-layout-five}}
+    <div class="page page-layout-five">
+      <!--<div class="test-background-image"></div>-->
+
+      <div class="document">
+        <div class="content">
+          <div class="blue-line"></div>
+          <div class="line"></div>
+          
+          <div class="main-copy-container">
+            <div class="copy-container">
+              <div class="hero-copy-container">
+                {{{ hero-copy }}}
+              </div>
+              <div class="col-container">
+                <div class="col1">{{{ column-one-copy }}}</div>
+                <div class="col2">{{{ column-two-copy }}}</div>
+              </div><!--col-container-->
+              <div class="footer-copy-container">
+                {{{ footer-copy }}}
+              </div>
+            </div><!--copy-container-->
+          </div><!--main-copy-container-->
+          <div class="sidebar" style="background-color: {{sidebar-background-color}};">
+            <div class="sidebar-background-image-container" style="background-image: url('{{{ sidebar-background-image }}}')">
+              {{{ sidebar-copy }}}
+            </div>
+            
+            <div class="sidebar-content">
+              <div class="sidebar-call-out-image" style="background-image: url('{{{ bottom-image }}}')"></div>
+              <div class="caption">{{{ image-caption }}}</div>
+            </div>
+          </div><!--sidebar-->
+
+          <div class="page-number"><p></p></div>
+        </div><!--content-->
+      </div><!--document-->
+    </div><!--page-->
+
+    {{/block.page-layout-five}}
+  
+    {{#block.page-layout-six}}
+      <div class="page page-layout-six">
+        <!--<div class="test-background-image"></div>-->
+
+        <div class="document">
+          <div class="content">
+            <div class="blue-line"></div>
+            <div class="line"></div>
+
+            <div class="hero-image" style="background-image: url('{{{ hero-image }}}')"></div>
+            
+            <div class="main-copy-container">
+              <div class="copy-container">
+                <div class="hero-copy-container">
+                  {{{ page-copy }}}
+                </div>
+              </div><!--copy-container-->
+            </div><!--main-copy-container-->
+            <div class="sidebar" style="background-color: {{sidebar-background-color}};">
+              <div class="sidebar-content">
+                <div class="sidebar-inner-content">
+                  <div class="sidebar-overflow-container">
+                    <div class="sidebar-container">
+                      {{{ sidebar-copy }}}  
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div><!--sidebar-->
+
+            <div class="page-number"><p></p></div>
+          </div><!--content-->
+        </div><!--document-->
+      </div><!--page-->
+
+      {{/block.page-layout-six}}
+  
+      {{#block.page-layout-seven}}
+
+      <div class="page page-layout-seven">
+        <!--<div class="test-background-image"></div>-->
+        <div class="document">
+          <div class="content">
+            <div class="blue-line"></div>
+            <div class="line"></div>
+
+            <div class="row-container">
+              <div class="row-overflow-container">
+                <div class="row-overflow">
+                  <div class="row1">
+                    <div class="row1-content">
+                      <div class="img-container"><img src="{{{ column-one-image }}}"/></div>
+                      <div style="max-width: 65%;">{{{ row-one-copy }}}</div>
+                    </div>
+                  </div>
+
+                  <div class="line-divider"></div>
+
+                  <div class="row2">
+                    <div class="row2-content">
+                      <div style="max-width: 65%;">{{{ row-two-copy }}}</div>
+                      <div class="img-container"><img src="{{{ column-two-image }}}"/></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!--col-container-->
+
+            <div class="page-number"><p></p></div>
+          </div><!--content-->
+        </div><!--document-->
+      </div><!--page-->
+
+      {{/block.page-layout-seven}} 
+  
+      {{#block.faculty-update-one}}
+
+      <div class="page faculty-update-one">
+        <!--<div class="test-background-image"></div>-->
+
+        <div class="document">
+          <div class="content">
+            <div class="blue-line"></div>
+            <div class="line"></div>
+			
+            <div class="faculty-update-headline">
+              <h1>{{{ headline }}}</h1>
+            </div>
+            
+            <div class="main-copy-container">
+              <div class="copy-container">
+                <div class="hero-copy">
+                  {{{ hero-copy }}}
+                </div><!--hero-copy-->
+                <div class="col-container">
+                  <div class="col1">{{{ column-one-copy }}}</div>
+                  <div class="col2">{{{ column-two-copy }}}</div>
+                </div><!--col-container-->
+                <img class="main-container-image" src="{{{ main-container-image }}}"/>
+              </div><!--copy-container-->
+            </div><!--main-copy-container-->
+            
+            <div class="line-divider"></div>
+            
+            <div class="sidebar">
+              <div class="sidebar-content">
+                {{{ sidebar-content }}}
+                {{#collection.sidebar-images}}
+                  <div class="sidebar-image-container">
+                    <img src="{{{ sidebar-image }}}"/>
+                    <p>{{{ sidebar-image-caption }}}</p>
+                  </div>
+                {{/collection.sidebar-images}}
+              </div>
+            </div><!--sidebar-->
+
+            <div class="page-number"><p></p></div>
+          </div><!--content-->
+        </div><!--document-->
+      </div><!--page-->
+
+      {{/block.faculty-update-one}} 
+  
+      {{#block.faculty-update-two}}
+
+      <div class="page faculty-update-two">
+        <!--<div class="test-background-image"></div>-->
+
+        <div class="document">
+          <div class="content">
+            <div class="blue-line"></div>
+            <div class="line"></div>
+			
+            <div class="faculty-update-headline">
+              <h1>{{{ headline }}}</h1>
+            </div>
+            
+            <div class="main-copy-container">
+              <div class="copy-container">
+                <div class="hero-copy">
+                  {{{ hero-copy }}}
+                </div><!--hero-copy-->
+                <div class="col-container">
+                  <div class="col1">{{{ column-one-copy }}}</div>
+                  <div class="col2">{{{ column-two-copy }}}</div>
+                </div><!--col-container-->
+              </div><!--copy-container-->
+            </div><!--main-copy-container-->
+            
+            <div class="main-image" style="background-image: url('{{{ main-image }}}')"></div>
+            
+            <div class="sidebar">
+              <div class="sidebar-content">
+                {{{ sidebar-content }}}
+              </div>
+            </div><!--sidebar-->
+            
+            <div class="sidebar-image" style="background-image: url('{{{ sidebar-image }}}')"></div>
+
+            <div class="page-number"><p></p></div>
+          </div><!--content-->
+        </div><!--document-->
+      </div><!--page-->
+
+      {{/block.faculty-update-two}} 
+  
+      {{#block.faculty-update-last-page}}
+      <div class="page faculty-update-three">
+        <!--<div class="test-background-image"></div>-->
+
+        <div class="document">
+          <div class="content">
+            <div class="blue-line"></div>
+            <div class="line"></div>
+			
+            <div class="faculty-update-headline">
+              <h1>{{{ headline }}}</h1>
+            </div>
+            
+            <div class="main-copy-container">
+              <div class="copy-container">
+                <div class="hero-copy">
+                  {{{ hero-copy }}}
+                </div><!--hero-copy-->
+                <div class="col-container">
+                  <div class="col1">{{{ column-one-copy }}}</div>
+                  <div class="col2">{{{ column-two-copy }}}</div>
+                </div><!--col-container-->
+                {{#main-image}}<img class="main-container-image" src="{{{ main-image }}}"/>{{/main-image}}
+              </div><!--copy-container-->
+            </div><!--main-copy-container-->
+            <div class="sidebar">
+              <div class="sidebar-content">
+                <div class="sidebar-inner-content">
+                  {{{ sidebar-content }}}
+                </div>
+              </div>
+            </div><!--sidebar-->
+            
+            <div class="disclaimers">
+              {{{ disclaimer }}} {{#publish-date}}Published {{{ publish-date }}}.{{/publish-date}}
+              <br>
+              <br>
+              16P-1553 CRICOS provider: Monash University 00008C, Monash College Pty Ltd 01857J
+            </div>
+
+            <div class="page-number"><p></p></div>
+          </div><!--content-->
+        </div><!--document-->
+      </div><!--page-->
+
+      {{/block.faculty-update-last-page}} 
+  
+  {{/collection.inner-pages}}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+  <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+  <script>smartquotes();</script>
+  <script>
+   function loop() {
+     checkHeight($(".front-page copy-container"))
+     checkHeight($(".page-layout-one .copy-container"));
+     checkHeight($(".faculty-update-one .copy-container"));
+     checkHeight($(".faculty-update-two .copy-container"));
+     checkHeight($(".faculty-update-three .copy-container"));
+     
+     checkHeight($(".page-layout-two .col1-content"));
+     checkHeight($(".page-layout-two .col2-content"));
+     
+     checkHeight($(".page-layout-three .col1-content"));
+     checkHeight($(".page-layout-three .col2-content"));
+     checkHeight($(".page-layout-three .col3-content"));
+     checkHeight($(".page-layout-three .hero-col-container .col-content"));
+     
+     checkHeight($(".page-layout-four .col1-content"));
+     checkHeight($(".page-layout-four .col2-content"));
+     
+     checkHeight($(".page-layout-five .copy-container"));
+     
+     checkHeight($(".page-layout-six .copy-container"));
+     checkHeight($(".page-layout-six .sidebar-container"));
+     
+     checkHeight($(".page-layout-seven .row-overflow"));
+     
+     checkHeight($(".front-page .sidebar-content"));
+     checkHeight($(".page-layout-one .sidebar-content"));
+     checkHeight($(".faculty-update-one .sidebar-content"));
+     checkHeight($(".faculty-update-two .sidebar-content"));
+     checkHeight($(".faculty-update-three .sidebar-inner-content"));
+     
+     
+   } setInterval(loop, 500);
+
+    function checkHeight(element) {
+      var height = element.height()
+      var $parent = element.parent();
+      var parentHeight = $parent.height();
+
+      if (height > parentHeight) {
+        $parent.addClass('overflow');
+      } else {
+        $parent.removeClass('overflow');
+      }
+    }
+    
+    // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+        // At least Safari 3+: "[object HTMLElementConstructor]"
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+        // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+        // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+        // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+    if (isOpera == true) {
+      $('body').addClass('-js-opera-browser');
+    } if (isFirefox == true) {
+      $('body').addClass('-js-firefox-browser');
+    } if (isSafari == true) {
+      $('body').addClass('-js-safari-browser');
+    } if (isIE == true) {
+      $('body').addClass('-js-ie-browser');
+    } if (isEdge == true) {
+      $('body').addClass('-js-edge-browser');
+    } if (isChrome == true) {
+      $('body').addClass('-js-chrome-browser');
+    } if (isBlink == true) {
+      $('body').addClass('-js-blink-browser');
+    }
+  </script>
+</body>
+</html>
