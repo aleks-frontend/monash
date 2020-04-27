@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html async lang="en" style="background: #ffffff;">
+
+<head>
+  <link type="text/css" rel="stylesheet" href="main.css" />
+  <style type="text/css"></style>
+  <style>
+    .showLogo-primary .logo-reversed{
+        display: none;
+    }
+
+    .showLogo-reversed .logo-blue{
+        display: none;
+    }
+  </style>
+</head>
+
+<body class="theme-{{{tf-theme}}}{{^tf-theme}}1{{/tf-theme}}">
+  <div id="print-container" class="wrapper">
+    <div class="test fit contain d-none"></div>
+    <div class="header">
+      <div class="background fit cover"></div>
+      <div class="big-m contain"></div>
+        <div class="logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+            <img src="{{account.logos.mu-logo-reversed}}" class="logo logo-reversed" alt="logo">
+            <img src="{{account.logos.mu-logo}}" class="logo logo-blue" alt="logo">
+        </div>
+      <div class="headings">
+        {{#headline}}
+        <div class="box-limit box-headline">
+          <div class="box-inner">
+            <h1 class="headline">{{{headline}}}</h1>
+          </div>
+        </div>
+        {{/headline}}
+      </div>
+    </div>    
+    <div class="main">
+      {{#table-headline}}
+      <div class="box-limit box-table-headline">
+        <div class="box-inner">
+          <h2 class="table-headline">{{{table-headline}}}</h2>
+        </div>
+      </div>
+      {{/table-headline}}
+      <table style="width: 100%;">
+        <thead>
+          <tr>
+            <th>FACULTY</th>
+            <th style="text-align: center;" colspan="2">PROGRAMS</th>
+            <th>AMOUNT (AUD)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#collection.table-flyer-table-rows}}
+          {{#block.table-row}}
+          <tr>          
+            <td style="width: 12.5%; text-transform: uppercase;" class="{{^faculty}}empty{{/faculty}}">
+              <p><strong>{{{faculty}}}</strong></p>
+            </td>
+            <td style="width: 28%;" class="{{^courses}}empty{{/courses}}">
+              {{{courses}}}            
+            </td>
+            <td style="width: 41.5%;" class="{{^programs}}empty{{/programs}}">
+              {{{programs}}}            
+            </td>
+            <td class="{{^amount}}empty{{/amount}}">
+              {{{amount}}}            
+            </td>          
+          </tr>
+          {{/block.table-row}}
+          {{/collection.table-flyer-table-rows}}
+        </tbody>        
+      </table>
+      <div class="notes">
+        {{{ft-terms-and-conditions}}}        
+      </div> 
+    </div>     
+  </div>
+  <script type="text/javascript" src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/outflo.0.1.1.min.js"></script>
+  <script>
+    const showCrop = '{{show-crop}}' === 'true';        
+    const print = new OutFlo({
+      domID: 'print-container',
+      marginTop: 0,
+      marginBottom: 40,
+      marginLeft: 0,
+      marginRight: 0,      
+      showCrop,
+      bleedPadding: '6.7mm',
+      createHeaderTemplate: function(pageNumber) { 
+        var header = document.createElement('div');                                                              
+        if (pageNumber > 1) {
+          header.classList.add('top-header');
+          header.innerHTML = [
+            '<table style="width: 100%; margin: 0;" cellspacing="0" cellpadding="0">',            
+            '<tr style="opacity: 0;">',
+            '<td style="width: 12.5%;"></td>',
+            '<td style="width: 28%;"></td>',
+            '<td style="width: 41.5%;"></td>',
+            '<td></td></tr>',
+            '<tr><th>FACULTY</th>',
+            '<th style="text-align: center;" colspan="2">PROGRAMS</th>',
+            '<th>AMOUNT (AUD)</th></tr>',
+            '</table>',
+          ].join('');
+        } else {
+          header.innerHTML = '';
+        }        
+        return header;
+      },
+      createFooterTemplate: function(pageNumber) {
+        var footer = document.createElement('div');
+        footer.innerHTML = '<div class="footer-container"><div class="footer"></div></div>';
+        return footer;
+      },
+      before: function() {},
+      after: function() {},
+    });
+
+    function cropMarks(showCrop) {
+      if (showCrop) {
+        document.querySelector('body').classList.add('crop');
+      }
+      
+      Array.prototype.slice.call(document.querySelectorAll('.page')).forEach(function (page) {
+        const parser = new DOMParser();
+        const cropString = '<div class="crop-marks"><span class="cm1"></span><span class="cm2"></span><span class="cm3"></span><span class="cm4"></span></div>';
+        const cropNode = parser.parseFromString(cropString, "text/html").body.firstChild;
+        !!showCrop && page.insertBefore(cropNode, null);
+      });
+    }
+
+    function heightObservable() {
+      Array.prototype.slice.call(document.querySelectorAll('.box-limit .box-inner')).forEach(function (e) {
+        checkHeight(e);
+      });
+    }
+
+    function checkHeight(element) {
+      const elementHeight = element.getBoundingClientRect().height;
+      const parent = element.parentElement;
+      const parentHeight = parent.getBoundingClientRect().height;
+
+      if (elementHeight > parentHeight) {
+        parent.classList.add('overflow');
+      } else {
+        parent.classList.remove('overflow');
+      }
+    }    
+
+    window.addEventListener('load', function () {
+      print.pagify();
+      heightObservable();
+    });
+
+    window.addEventListener('DOMSubtreeModified', function () {
+      heightObservable();
+    });    
+  </script>
+</body>
+
+</html>
