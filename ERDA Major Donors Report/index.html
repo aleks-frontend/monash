@@ -1,0 +1,379 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./base.css" />
+    <style>
+      @import "https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css";
+      @import "https://outfit-assets-production.s3.amazonaws.com/fonts/monash-helvetica-neue/stylesheet.css";
+      :root {
+      --white: #fff;
+      --black: #020202;
+      --dark: #aaa;
+      --gutter: 14mm;
+      --header-margin: 20mm;
+      --font-size-s: 9pt;
+      --font-size-m: 11pt;
+      --font-size-l: 13pt;
+      --margin-s: 0.4em;
+      --margin-m: 1.5em;
+      --margin-l: 3em;
+      --font-family: 'Helvetica Neue Condensed', helvetica, arial, sans-serif;
+      }
+      /** Base **/
+      html { -webkit-font-smoothing: antialiased; font-family: var(--font-family); font-size: var(--font-size-m) !important; line-height: 1.4; font-weight: 300; letter-spacing: 0.01em; }
+      .bleed-inner { padding: 3mm; }
+      body { color: #020202; }
+      /** Page **/
+      .page { background: var(--white); height: 100%; width: 100%; overflow: hidden; }
+      .page-inner { height: 100%; display: flex; flex-direction: column; padding: var(--gutter); }
+      .page-content { overflow: hidden; }
+      @media screen { .page { border-bottom: 2px solid #363535; } }
+      /*** Copy **/
+      .copy h1, .copy h2, .copy h3  { margin: var(--margin-m) 0 var(--margin-s) 0; font-weight: 500;  }
+      .copy h1:first-child, .copy h2:first-child, .copy h3:first-child { margin-top: 0; }
+      .copy h1 { text-transform: uppercase; letter-spacing: 0.12em; }
+      .copy h2 { text-transform: uppercase; letter-spacing: 0.12em; font-size: var(--font-size-s); }
+      .copy h3, .copy h4, .copy h5, .copy h6 { font-size: var(--font-size-s); }
+      .copy p, .copy ul, .copy ol { margin: var(--margin-s) 0; }
+      .copy ul, .copy ol { list-style: none; }
+      .copy li:before { content: '>'; position: absolute; top: 0; left: 0; }
+      .copy li { padding-left: 1.5em; position: relative; margin-bottom: 0.1em; }
+      /** Header **/
+      .page-header { display: flex; justify-content: space-between; margin-bottom: var(--header-margin); line-height: 1.2; }
+      .page-header-logo { width: 36mm; }
+      [data-page-layout]:nth-of-type(even) .page-header-logo { display: none; }
+      /** Front Page **/
+      .front-page .page-inner { justify-content: space-between; padding-bottom: 0; }
+      .front-page-header div { margin-left: 69%; }
+      .front-page-header-logo { display: block; width: 50mm; }
+      .front-content { display: flex; align-items: center; justify-content: space-between; }
+      .front-content-text { flex: 0 0 30%; }
+      .front-content-text h1 { margin-top: 0; margin-bottom: var(--margin-m); line-height: 1.4; }
+      .front-content-text h1 p { margin: 0; }
+      .front-content-text h1:last-of-type { margin-bottom: 0; }
+      .front-content-m-wrap { position: relative; flex: 0 0 55%; }
+      .front-content-m {
+      -webkit-clip-path: polygon(0% 0%, 0% 100%, 26.6% 100%, 27.6% 58%, 36% 100%, 64% 100%, 73% 59%, 73% 100%, 100% 100%, 100% 0%, 56% 0%, 50% 33%, 43% 0);
+      clip-path: polygon(0% 0%, 0% 100%, 26.6% 100%, 27.6% 58%, 36% 100%, 64% 100%, 73% 59%, 73% 100%, 100% 100%, 100% 0%, 56% 0%, 50% 33%, 43% 0); background: var(--black); padding-bottom: 254%; height: 0;
+      }
+      /*** Back Page **/
+      .back-page-header-logo { display: block; width: 50mm; }
+      .back-content { width: 80mm; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+      .back-content-contact { margin-top: 2.5em; }
+      .back-content-contact h2 { font-weight: 500; margin-bottom: var(--margin-s); }
+      .back-content-contact p { margin-top: 0; margin-bottom: 0; }
+      p.back-content-contact-meta { margin-top: var(--margin-s); }
+      .back-content-url { font-weight: 500; margin-bottom: var(--margin-l); }
+      /** Type **/
+      blockquote { font-size: var(--font-size-l); border-top: 1px solid var(--dark); border-bottom: 1px solid var(--dark); padding: var(--margin-m) var(--margin-s) var(--margin-m) 0; margin-top: var(--margin-l); }
+      strong { font-weight: 500; }
+      .font-weight-light { font-weight: 300 !important; }
+      .font-weight-bold { font-weight: 500 !important; }
+      .uppercase { text-transform: uppercase; letter-spacing: 0.12em; }
+      .font-size-s { font-size: var(--font-size-s); }
+      /** Images **/
+      .image { position: relative; overflow: hidden; background: #ccc; }
+      .caption { margin: calc(var(--margin-s) * 1.5) 0 0 0; font-size: var(--font-size-s); }
+      /** Page Style 1 **/
+      .style-1-page .page-content { display: flex; flex-direction: column-reverse; }
+      .style-1-page .image { padding-bottom: 50%;  }
+      .style-1-page .copy { margin-top: var(--margin-l); padding-right: calc(var(--gutter) * 2);  }
+      /** Page Style 2 **/
+      .style-2-page .page-content { display: flex; }
+      .style-2-page .image-item { margin-bottom: var(--margin-l); }
+      .style-2-page .image { padding-bottom: 133%; }
+      .style-2-page .page-content-left { flex: 0 0 65%; padding-right: calc(var(--gutter) * 2);  }
+      .style-2-page .page-content-right { flex: 1; }
+      /** Page Style 3 **/
+      .style-3-page .page-content { display: flex; flex-wrap: wrap; }
+      .style-3-page .page-content-top { flex: 0 0 100%; margin-bottom: var(--gutter);  }
+      .style-3-page .page-content-left { flex: 0 0 50%; padding-right: calc(var(--gutter) / 2);  }
+      .style-3-page .page-content-right { flex: 0 0 50%; padding-left: calc(var(--gutter) / 2); }
+      /** Page Style 4 **/
+      .style-4-page .page-content { display: flex; }
+      .style-4-page .page-content-left { flex: 0 0 50%; padding-right: calc(var(--gutter) / 2);  }
+      .style-4-page .page-content-right { flex: 0 0 50%; padding-left: calc(var(--gutter) / 2); }
+      .profile { display: flex; flex-direction: column-reverse; }
+      .profile-headshot { width: 60%; }
+      .profile-headshot-inner { padding-bottom: 133%; }
+      .profile-name { margin-top: var(--margin-s); margin-bottom: 0 !important; }
+      .profile-faculty { text-transform: uppercase; letter-spacing: 0.12em; margin-top: 0 !important; }
+      .profile-copy { margin-top: var(--margin-l); }
+      
+      /** Warning **/
+      .page-number-warning { display: none; position: fixed; top: 10mm; left: 50%; right: 10mm; padding: 6mm; font-weight: 500; z-index: 999; background: red; }
+      .page-number-warning.hide { display: none !important; }
+      .page-number-warning.show { display: block !important; }
+      
+      /** Blank **/
+      .blank-page-message { display: none; }
+      @media screen {
+      	.blank-page-message { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 16pt; font-weight: 500; }
+      }
+    </style>
+  </head>
+  <body>
+    <div data-page-header style="display: none!important;">
+      <div><img src="{{{account.logos.mu-logo}}}" class="page-header-logo" /></div>
+      <div>
+        <div class="font-weight-bold uppercase font-size-s"><div data-limit="2">{{{ document_description }}}</div></div>
+        <div class="uppercase font-size-s">{{{ document_name }}}</div>
+      </div>
+    </div>
+    <div class="page-number-warning">
+      <p>Error: This document requires your page count to be a multiple of 4. You currently have <span data-page-count></span> pages.</p>
+    </div>
+    <div class="page front-page">
+      <div class="bleed">
+        <div class="bleed-inner">
+          <div class="page-inner">
+            <div class="page-header front-page-header">
+              <div><img src="{{{account.logos.mu-logo}}}" class="page-header-logo front-page-header-logo" /></div>
+            </div>
+            <div class="front-content">
+              <div class="front-content-m-wrap">
+                <div class="front-content-m">
+                  {{{ front_page_image }}}
+                </div>
+              </div>
+              <div class="front-content-text copy">
+                <h1 data-limit="4">{{{ frontpage_headline }}}</h1>
+                <h1 class="font-weight-light">{{{ frontpage_headline_2 }}}</h1>
+                <h1 class="uppercase">{{{ document_name }}}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{ #collection.pages }}
+    {{ #block.page_layout_1 }} 
+    <div class="page style-1-page" data-page-layout="{{{ layout_name }}}">
+      <div class="bleed">
+        <div class="bleed-inner">
+          <div class="page-inner">
+            <div class="page-header"></div>
+            <div class="page-content">
+              <div class="copy">
+                {{{ layout_1_copy }}}
+              </div>
+              <p class="caption">{{{ layout_1_caption }}}</p>
+              <div class="image">
+                {{{ layout_1_image }}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ /block.page_layout_1 }} 
+    {{ #block.page_layout_2 }} 
+    <div class="page style-2-page" data-page-layout="{{{ layout_name }}}">
+      <div class="bleed">
+        <div class="bleed-inner">
+          <div class="page-inner">
+            <div class="page-header"></div>
+            <div class="page-content">
+              <div class="page-content-left">
+                <div class="copy">
+                  {{{ layout_2_copy }}}
+                </div>
+              </div>
+              <div class="page-content-right">
+                <div class="image-item">
+                  <div class="image">{{{ layout_2_image_1 }}}</div>
+                  <p class="caption">{{{ layout_2_caption_1 }}}</p>
+                </div>
+                <div class="image-item">
+                  <div class="image">{{{ layout_2_image_2 }}}</div>
+                  <p class="caption">{{{ layout_2_caption_2 }}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ /block.page_layout_2 }} 
+    {{ #block.page_layout_3 }} 
+    <div class="page style-3-page" data-page-layout="{{{ layout_name }}}">
+      <div class="bleed">
+        <div class="bleed-inner">
+          <div class="page-inner">
+            <div class="page-header"></div>
+            <div class="page-content">
+              <div class="page-content-top copy">
+                {{{ layout_3_intro }}}
+              </div>
+              <div class="page-content-left copy">
+                {{{ layout_3_left_column }}}
+              </div>
+              <div class="page-content-right copy">
+                {{{ layout_3_right_column }}}
+                {{ #layout_3_right_quote }}
+                <blockquote>
+                  {{{ layout_3_right_quote }}}
+                </blockquote>
+                {{ /layout_3_right_quote }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ /block.page_layout_3 }} 
+    {{ #block.page_layout_4 }} 
+    <div class="page style-4-page" data-page-layout="{{{ layout_name }}}">
+      <div class="bleed">
+        <div class="bleed-inner">
+          <div class="page-inner">
+            <div class="page-header"></div>
+            <div class="page-content">
+              <div class="page-content-left">
+                <div class="profile copy">
+                  <div class="profile-copy">{{{ copy_1 }}}</div>
+                  <div>
+                    <div class="profile-headshot">
+                      <div class="profile-headshot-inner image">
+                        {{{ headshot_1 }}}
+                      </div>
+                    </div>
+                    <h1 class="profile-name">
+                      {{{ title_1 }}}<br>
+                      {{{ name_1 }}}
+                    </h1>
+                    <p class="profile-faculty">{{{ faculty_1 }}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="page-content-right copy">
+                <div class="profile copy">
+                  <div class="profile-copy">{{{ copy_2 }}}</div>
+                  <div>
+                    <div class="profile-headshot">
+                      <div class="profile-headshot-inner image">
+                        {{{ headshot_2 }}}
+                      </div>
+                    </div>
+                    <h1 class="profile-name">
+                      {{{ title_2 }}}<br>
+                      {{{ name_2 }}}
+                    </h1>
+                    <p class="profile-faculty">{{{ faculty_2 }}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ /block.page_layout_4 }}
+ 	{{ #block.page_layout_blank }} 
+    <div class="page" data-page-layout>
+      <div class="bleed">
+        <div class="bleed-inner">
+          <div class="blank-page-message">
+          	<span>This page has been intentionally left blank</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ /block.page_layout_blank }}
+    
+    {{ /collection.pages }}
+    <div class="page back-page">
+      <div class="bleed">
+        <div class="bleed-inner">
+          <div class="page-inner">
+            <div class="page-header back-page-header">
+              <div><img src="{{{account.logos.mu-logo}}}" class="page-header-logo back-page-header-logo" /></div>
+            </div>
+            <div class="back-content">
+              <div>
+                <div class="copy">
+                  <h1 class="back-heading">{{{ back_heading }}}</h1>
+                  <p>{{{ back_copy }}}</p>
+                </div>
+                {{ #collection.back_page_contacts }}
+                <div class="back-content-contact">
+                  <h2>{{{ full_name }}}</h2>
+                  <p>
+                    {{{ role }}}
+                    {{{ faculty }}}
+                  </p>
+                  <p class="back-content-contact-meta">
+                    {{ #phone }} Phone: {{{ phone }}}<br>{{ /phone }}
+                    {{ #mobile}} Mobile: {{{ mobile}}} <br> {{ /mobile}}
+                    {{ #email }}Email: {{{ email }}} {{ /email }}
+                  </p>
+                </div>
+                {{ /collection.back_page_contacts }}
+              </div>
+              <div>
+                <p class="back-content-url">{{{ back_page_url }}}</p>
+                <p>{{{ cricos }}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.showCrop = {{show-crop}};
+      
+      var insertPageHeaderIntoLayouts = function() {
+        var pageHeader = document.querySelector('[data-page-header]'); 
+        var pageHeaderHTML = pageHeader.innerHTML;
+        var pageLayouts = document.querySelectorAll('[data-page-layout]');
+        for (i=0;i<pageLayouts.length;i++){
+          var currentPage = pageLayouts[i];
+          var pageHeader = currentPage.querySelector('.page-header');
+          if (pageHeader && !pageHeader.hasChildNodes()) {
+            pageHeader.innerHTML = pageHeaderHTML;
+          }
+        }
+      }; 
+      insertPageHeaderIntoLayouts();
+      
+      pageChecker();
+      function pageChecker(){
+        var numberOfPages = document.querySelectorAll('.page').length;
+        var warningEl = document.querySelector('.page-number-warning');
+        warningEl.querySelector('[data-page-count]').innerHTML = numberOfPages;
+        if (numberOfPages % 4 != 0) {
+          console.log('showing :D')
+          warningEl.classList.remove('hide');
+          warningEl.classList.add('show');
+        } else {
+          console.log('hiding :D')
+          warningEl.classList.remove('show');
+          warningEl.classList.add('hide');
+        }
+      }
+      
+      /*Matt Magin 27/03 - Removed associated setInterval as it is not required for a page checker*/
+      /*var checkNumberOfPages = function() {
+        var numberOfPages = document.querySelectorAll('.page').length;
+        var warningEl = document.querySelector('.page-number-warning');
+        warningEl.querySelector('[data-page-count]').innerHTML = numberOfPages;
+        if (numberOfPages % 4 != 0) {
+          console.log('showing :D')
+          warningEl.classList.remove('hide');
+          warningEl.classList.add('show');
+        } else {
+          console.log('hiding :D')
+          warningEl.classList.remove('show');
+          warningEl.classList.add('hide');
+        }
+      }
+      
+      setInterval(checkNumberOfPages, 1000);*/
+      
+    </script>
+	<script src="./line-limit.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
