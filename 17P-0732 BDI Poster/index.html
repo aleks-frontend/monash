@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  <style>
+    
+    .test-background-image {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/6378e0026de3dbe03c5115aa348a9aea/Screen%20Shot%202017-07-17%20at%2010.03.07%20am.png');
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      opacity: 0.6;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    
+    .semester-year, .affiliation h3, .visit-date .title {
+      color: {{ pop-color}};
+    }
+    
+    .headshot {
+      background-image: url("{{{ headshot }}}");
+      background-size: cover;
+    }
+    .go8-logo.hide {
+      display: none;
+    }
+  </style>
+</head>
+<body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+ 
+  <div class="page">
+     <div class="background">
+       <div class="background-color"></div>
+     </div><!--background-->
+    
+    
+     <div class="document">
+       <div class="content">
+         
+         <div class="logo"><img src="assets/images/monash-logo.svg"></div><!--logo-->
+         <div class="logo black-logo"><img src="assets/images/monash-logo-reverse.svg"></div><!--logo-->
+         
+         <div class="school">
+           <p>{{{ team.stacked-faculty-name }}}</p>
+         </div><!-- school -->
+         
+         <div class="copy-container">
+        
+
+          <div class="semester-year">
+            <h1>{{{ degree }}}</h1>
+          </div><!-- semester-year -->
+
+           <div class="name">
+             <div class="js-fittext">
+               <h1>{{name}}</h1>
+             </div>
+           </div>
+           
+           <div class="detail-overflow-container">
+             <div class="detail-overflow">
+               <div class="detail">
+                 <div class="headshot"></div><!-- headshot -->
+                 <div class="affiliation">
+                   <p>{{{ details }}}</p>
+                 </div><!-- affiliation -->
+               </div><!-- detail -->
+             </div><!-- detail-overflow -->
+           </div><!-- detail-overflow-container -->
+			
+           <div class="m-education-line"></div><!-- m-education-line -->
+           
+           <div class="m-education-overflow-container">
+             <div class="m-education-overflow">
+               <div class="m-education">
+                 {{{ body-copy }}}
+               </div><!-- m-education -->
+             </div><!-- m-education-overflow -->
+           </div><!-- m-education-overflow-container -->
+
+           <div class="m-education-line"></div><!-- m-education-line -->
+           
+         </div><!--copy-container-->
+           
+         <div class="clip" style="background-image: url('{{M-BDI}}')"></div>
+         
+         <div class="company-logo">
+           <img class="go8-logo {{{group-of-eight-logo-visibility}}}" src="group-eight.svg">
+           <div class="footer">
+             <div class="cricos">Produced by: Monash {{{team.faculty-name}}}, <span id="date"></span></div>
+             {{#cricos}}<div class="cricos">CRICOS provider: Monash University {{{cricos}}}</div>{{/cricos}}  
+           </div>
+         </div><!--logo-->
+         
+       </div><!--content-->
+     </div><!--document-->
+
+   </div><!--page-->
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/smartquotes.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  
+  <script>smartquotes();</script>
+  <script>
+    
+    // DATE TIME STAMP
+    window.onload = function() {
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];;
+        var date = new Date();
+
+        document.getElementById('date').innerHTML = months[date.getMonth()] + ' ' + date.getFullYear();
+    };
+    
+     // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+        // At least Safari 3+: "[object HTMLElementConstructor]"
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+        // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+        // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+        // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+    if (isOpera == true) {
+      $('body').addClass('-js-opera-browser');
+    } if (isFirefox == true) {
+      $('body').addClass('-js-firefox-browser');
+    } if (isSafari == true) {
+      $('body').addClass('-js-safari-browser');
+    } if (isIE == true) {
+      $('body').addClass('-js-ie-browser');
+    } if (isEdge == true) {
+      $('body').addClass('-js-edge-browser');
+    } if (isChrome == true) {
+      $('body').addClass('-js-chrome-browser');
+    } if (isBlink == true) {
+      $('body').addClass('-js-blink-browser');
+    }
+    
+    $('#modal').on('click','a',function(event){
+      event.preventDefault();
+      $('div#modal').fadeOut('slow');
+      $('h1,h2,p').removeClass('blured_text');  
+    });
+    
+    function loop() {
+      checkHeight($(".detail-overflow"));
+      checkHeight($(".m-education-overflow"));
+      
+      var els = $('.js-fittext h1');
+
+      for(var i = 0; i < els.length; ++i) {
+        while($(els[i]).width() > $(els[i]).parent().width()) {
+          var size = parseInt($(els[i]).css('font-size')); 
+          $(els[i]).css('font-size', size - 1); 
+        }
+      }
+      
+    } setInterval(loop, 500);
+
+    function checkHeight(element) {
+      var $height = element.height();
+      var $parent = element.parent();
+      var $parentHeight = $parent.height();
+
+      if ($height > $parentHeight) {
+        $parent.addClass('overflow');
+      } else {
+        $parent.removeClass('overflow');
+      }
+    }
+  </script>
+</body>
+</html>
