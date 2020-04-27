@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <style>
+      
+      * {
+        -webkit-font-smoothing: antialiased;
+      }
+      
+      .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-accelerate.amazonaws.com/media_library_items/4e392bbdb5059edf950d958c502ad7d1/18P-0053%20MC%20English%20Program%20Posters%20-%20A3%20-%20Outfit%20templates_Page_01.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      body {
+        font-family: 'Helvetica Neue Cond', helvetica, arial, sans-serif;
+        line-height: 0.8em;
+      }
+
+      h1, h2, h3, h4, h5, h6 { font-family: 'Helvetica Neue Cond'; font-weight: bold; }
+      p { font-size: 0.4em; }
+
+      h1 { font-size: 1em; }
+      h2 { font-size: 0.8em; }
+      h3 { font-size: 0.7em; }
+      h4 { font-size: 065em; }
+      h5 { font-size: 0.5em; }
+      h6 { font-size: 0.4em; }
+      
+      .logo { position: absolute; top: 0.6em; left: 0.6em; width: 3.9em; }
+      .logo img { width: 100%; }
+      
+      .top { position: absolute; top: 2.35em; left: 0.7em; right: 4.6em; height: 8.75em; }
+      .inner { position: relative; height: 100%; }
+      .text { position: absolute; bottom: 0.4em; left: 0.7em; right: 1em; color: white; }
+      .text h1 { line-height: 1em; font-size: 1.1em; }
+      .text h2 { font-size: 0.5em; }
+      
+      .bottom { position: absolute; top: 11.7em; left: 0.7em; right: 0.7em; height: 7.5em; }
+      .left { position: absolute; left: 0; max-width: 37%; height: 100%; }
+      .left strong { font-weight: bold; }
+      .left ul { position: relative; list-style-type: none; margin: 0 0 0 0.45em; }
+      .left li:before { position: absolute; top: 0; left: 0; content: "—";  margin: 0 0 0 -2.4em; font-size: 0.5em; }
+      .left li { position: relative; font-size: 0.35em; line-height: 1.2em; margin: 0 0 0.5em 0; }
+      .left p { font-size: 0.35em; }
+      
+      .right { position: absolute; right: 0; height: 100%; }
+      .right .wrap { display: flex; justify-content: flex-end; height: 100%; }
+      
+      .timetable { background-color: #e7e7e9; padding: 0 0.25em; max-width: 2.8em; }
+      .timetable h3 { margin: 1.6em 0 0 0; border-bottom: 1px solid black; padding: 0; font-size: 0.27em; line-height: 1.4em; text-transform: uppercase; }
+      .timetable p { margin: 0.8em 0; font-size: 0.27em; line-height: 1.2em; } 
+      
+      .staff { display: flex; flex-wrap: wrap; width: calc(2em + 0.4em); justify-content: flex-end; }
+      .width { width: calc(4em + 0.8em); }
+      .profile { width: 2em; margin: 0 0 0 0.4em; }
+      .profile .image { width: 2em; height: 2.2em; background-size: cover; background-repeat: no-repeat; background-position: center; }
+      .profile h3 { margin: 1em 0 0 0; font-size: 0.22em; font-weight: bold; line-height: 1em; }
+      .profile p { margin: 0.3em 0 0 0; font-size: 0.2em; line-height: 1em; }
+      
+      .overlay-image { position: absolute; top: 2.33em; right: 0.7em; width: 4.82em; }
+      .overlay-image img { width: 100%; }
+      
+      .top { background-color: {{{ cover-theme-colour}}}; }
+      
+      .appointment-block { display: none; background-color: #e7e7e9; padding: 0 0.25em; width: 2em; }
+      .appointment-block h3 { margin: 1em 0 0 0; border-bottom: 1px solid black; padding: 0; font-size: 0.27em; line-height: 1.4em; text-transform: uppercase; }
+      .appointment-block p { margin: 0.8em 0; font-size: 0.27em; line-height: 1.2em; } 
+      .hide { display: none; }
+      .show { display: block; }
+
+      .college-m {
+        position: absolute; top: 2.35em; right: 0.7em; width: 4.8em; height: 100%;
+        background-repeat: no-repeat;
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/14ba8c7c9376cc2a3b2147f6705a463f/mc-pattern-1.svg');
+      }
+
+      .pattern-2 .college-m {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/f5c8ecedbc743a7b9a3bf5d1dda50ae3/college-m-patternAsset%201.svg'); }
+      .pattern-3 .college-m {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/8b23f5c2b36c749f46ea572e8e685310/college-m-patternAsset%202.svg'); }
+      .pattern-4 .college-m {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/283c676efe260e0f7124088a4a268107/college-m-patternAsset%203.svg'); }
+      .pattern-5 .college-m {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/b24658260269fd204c9e09608a8c0565/college-mAsset%201%404x.png'); }
+      
+    </style>
+  </head>
+  <body style="background: white" class="{{college-pattern}}">
+
+    <div class="page">
+      <div class="bleed">
+        
+        <!--<div class="placeholder"></div>-->
+        
+        <div class="logo"><img src="{{{account.logos.mc-logo}}}"></div>
+        
+        <div class="top">
+          <div class="inner">
+            <div class="text">
+              <h1>{{{ headline }}}</h1>
+              <h2>{{{ subheading }}}</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="college-m"></div>
+        
+        <div class="bottom">
+          <div class="inner">
+            <div class="left">
+              {{{ copy }}}
+            </div>
+            <div class="right">
+              <div class="wrap">
+                <div class="timetable">  
+                  {{#time}}
+                  <div>
+                    <h3>Time</h3>
+                    <p>{{{ time }}}</p>
+                  {{/time}}
+                  </div>
+                  <div>
+                  {{#location}}
+                    <h3>Location</h3>
+                    <p>{{{ location }}}</p>
+                  {{/location}}
+                  </div>
+                  <div>
+                  {{#contact-1}}
+                    <h3>Contact</h3>
+                    <p>{{{ contact-1 }}}</p>
+                  {{/contact-1}}
+                  </div>        
+                </div>
+                <div class="staff">
+                  {{#collection.staff}}
+                    {{#block.profile}}
+                    <div class="profile">
+                      <div class="image" style="background-image: url({{{ image }}})"></div>
+                      <h3>{{{ name }}}</h3>
+                      <p>{{{ role-1 }}}</p>
+                    </div>
+                    {{/block.profile}}
+                  {{/collection.staff}}
+                  {{#email}}
+                  <div class="appointment-block">
+                    <h3>Appointments<br>available<br>via email</h3>
+                    <p>{{{ email }}}</p>
+                  </div>
+                  {{/email}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+  <script>
+    
+    window.showCrop = {{show-crop}};
+
+    function loop() {
+      checkProfileWidth()
+      checkAppointmentBlock()
+
+    } setInterval(loop, 2000);
+    
+    function checkProfileWidth() {
+      var profileBlock = document.querySelectorAll('.profile');
+      var staffWidth = document.querySelector('.staff');
+            
+      if (profileBlock.length > 2) {
+        staffWidth.classList.add('width');
+      } else {
+        staffWidth.classList.remove('width');
+      }
+      
+    }
+    
+    function checkAppointmentBlock() {
+      var profileBlock = document.querySelectorAll('.profile');
+      var appointmentBlock = document.querySelector('.appointment-block');
+            
+      if (profileBlock.length < 2) {
+        appointmentBlock.classList.add('show');
+      } else {
+        appointmentBlock.classList.remove('hide');
+      }
+      
+    }
+    
+  </script>
+  <script src="main.js"></script>
+  <script src="prefixfree.js"></script>
+  </body>
+</html>
