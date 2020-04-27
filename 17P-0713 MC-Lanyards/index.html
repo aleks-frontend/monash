@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+  <!-- {{{ event-title  }}} -->
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  
+  <style>
+    .test-background-image {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/197b76d5c2d46f751cb653393a177b9d/Screen%20Shot%202017-07-31%20at%205.15.14%20pm.png');
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      opacity: 0.6;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    
+    .show-crop-marks .test-background-image {
+      top: 0.48in;
+      left: 0.48in;
+      right: 0.48in;
+      bottom: 0.48in;
+    }
+
+    h1, h2, p { color: {{{ cover-theme-colour }}} !important; }
+    .header-background-image { background-color: {{{ cover-theme-colour }}} !important; }
+  </style>
+</head>
+<body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}} {{college-pattern}}">
+  
+  {{#spreadsheet.name-tags}}
+  <div class="page">
+    <!--<div class="test-background-image"></div>-->
+    
+    <div class="document">
+      <div class="content">
+        <div class="blue-line"></div>
+
+        <div class="row header">
+          <div class="hole-punch"></div>
+          
+          <div class="header-background-image"></div>
+            <div class="logo"><img src="{{{account.logos.mc-logo-reversed}}}"></div><!--logo-->
+            <div class="college-m"></div>
+        </div><!--row header-->
+
+        <div class="row text">
+          <div class="headline-overflow-container">
+            <div class="headline-overflow">
+              <div class="js-headline"></div>
+            </div>
+          </div>
+          
+          <div class="js-fittext"><h1> {{{ first-name}}} </h1></div>
+          <div class="js-fittext-2"><h1> {{{ last-name}}} </h1></div>
+          <p>{{{ title-position }}}</p>
+        </div><!--text-->
+        
+      </div><!--content-->
+    </div><!--document-->
+
+  </div><!--page-->
+  {{/spreadsheet.name-tags}}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  <script>smartquotes();</script>
+  <script>
+    // ADDING GLOBAL EVENT TITLE
+    var eventTitle = document.getElementsByClassName('js-headline');
+    for ( i = 0 ; i < eventTitle.length ; i++ ) {
+      eventTitle[i].innerHTML = '<h1>{{{ event-title }}}</h1>'
+    };
+
+    
+    // FIT TEXT FUNC
+     $(document).ready(function(){
+       var els = $('.js-fittext h1, .js-fittext-2 h1');
+       
+       for(var i = 0; i < els.length; ++i) {
+         while($(els[i]).width() > $(els[i]).parent().width()) {
+           var size = parseInt($(els[i]).css('font-size')); 
+           $(els[i]).css('font-size', size - 1); 
+         }
+       }
+     });
+    
+    function loop() {
+      checkHeight($(".headline-overflow"));
+    } setInterval(loop, 500);
+
+    function checkHeight(element) {
+      var height = element.height()
+      var $parent = element.parent();
+      var parentHeight = $parent.height();
+
+      if (height > parentHeight) {
+        $parent.addClass('overflow');
+      } else {
+        $parent.removeClass('overflow');
+      }
+    }
+    
+    // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+        // At least Safari 3+: "[object HTMLElementConstructor]"
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+        // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+        // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+        // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+    if (isOpera == true) {
+      $('body').addClass('-js-opera-browser');
+    } if (isFirefox == true) {
+      $('body').addClass('-js-firefox-browser');
+    } if (isSafari == true) {
+      $('body').addClass('-js-safari-browser');
+    } if (isIE == true) {
+      $('body').addClass('-js-ie-browser');
+    } if (isEdge == true) {
+      $('body').addClass('-js-edge-browser');
+    } if (isChrome == true) {
+      $('body').addClass('-js-chrome-browser');
+    } if (isBlink == true) {
+      $('body').addClass('-js-blink-browser');
+    }
+    
+    $('.clip').mouseover(function () {
+      $('.clip-modal').addClass('show-modal');      
+    });
+    $('.clip').mouseout(function () {
+      $('.clip-modal').removeClass('show-modal');      
+    });
+  </script>
+</body>
+</html>
