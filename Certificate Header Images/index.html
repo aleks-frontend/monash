@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css" rel="stylesheet">    
+    <script src="tinycolor.js"></script>
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <style>
+      html {
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Helvetica Neue Cond', helvetica, arial, sans-serif;
+        background-color: #fff;
+      }
+      
+      .page-1 .image-main { height: 100%; position: relative; }
+
+      .page-1 .image-1 { position: absolute; top: 3mm; left: 3mm; right: 0; bottom: 0; z-index: -2; }
+      .page-1 .image-container {
+        position: relative;
+        height: 110%;
+        width: 110%;
+        overflow: hidden;
+      }
+      
+      .image-container > div {
+        margin-left: 3mm;
+        margin-top: 3mm;
+      }
+
+      .page-1 .monash-m { position: absolute; top: 0; right: 1.5em; width: 4.93em; z-index: -1; mix-blend-mode: soft-light; }
+      .page-1 .monash-m img { width: 100%; }
+
+      .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+      }
+      
+      .mkt-theme-one .image-overlay { background-color: #009fd9; }
+      .mkt-theme-two .image-overlay { background-color: #00ac3e; }
+      .mkt-theme-three .image-overlay { background-color: #8177b4; }
+      .mkt-theme-four .image-overlay { background-color: #fc6228; }
+      .mkt-theme-five .image-overlay { background-color: #ff0026; } 
+      
+      
+      
+    </style>
+  </head>
+  <body>
+
+    <div class="page page-1">
+      <div class="bleed">
+
+        <!--<div class="monash-m" style="z-index: 9999;">
+          <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/c7e5f5832e1234e6172a7a7173defc8c/m.svg">
+        </div>-->
+
+        <div class="image-overlay"></div>
+        <div class="image-main">       
+            <div class='image-1'>{{{ resizable-background-image }}}</div>
+        </div>
+      </div><!--bleed-->
+    </div><!--page-1-->
+    
+    <script>
+
+      window.showCrop = {{show-crop}};
+
+    </script>
+    <script src="main.js"></script>
+    <script src="prefixfree.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </body>
+</html>
