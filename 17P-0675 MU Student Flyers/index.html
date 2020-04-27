@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+</head>
+<style>
+  
+  .test-background-image {
+    background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/3aed8078677f5f8e8a1a30ab2f27c809/Screen%20Shot%202017-07-12%20at%202.52.03%20pm.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.7;
+    z-index: 100;
+  }
+
+  .show-crop-marks .test-background-image {
+    top: 0.5in;
+    left: 0.5in;
+    right: 0.5in;
+    bottom: 0.5in;
+  }
+  
+  .header-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.5;
+    mix-blend-mode: soft-light;
+  }
+  
+  .theme-one .header-overlay {
+    background-color: #0F6DA9;
+  }
+  
+  .theme-one .col-left h3 {
+    color: #0F6DA9;
+  }
+  
+  .theme-one .header-background-image {
+    background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/f964540e28d52204c14b10320f186ca1/Asset%201%404x.png');
+  }
+  
+  .theme-two .header-overlay {
+    background-color: #66C78C;
+  }
+  
+  .theme-two .col-left h3 {
+    color: #66C78C;
+  }
+  
+  .theme-two .header-background-image {
+    background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/5969bd61df9efaeaaebe14b7f8439627/Asset%207%404x.png');
+  }
+
+  .theme-three .header-overlay {
+    background-color: #C3208B;
+  }
+  
+  .theme-three .col-left h3  {
+    color: #C3208B;
+  }
+  
+  .theme-three .header-background-image {
+    background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/fefffb63fb26a41ef3462c2fbdc195de/Asset%203%404x.png');
+  }
+  
+  .theme-four .header-overlay {
+    background-color: #94549D;
+  }
+  
+  .theme-four .col-left h3  {
+    color: #94549D;
+  }
+  
+  .theme-four .header-background-image {
+    background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/12e317e42960d71b2c5653f744e030ad/Asset%205%404x.png');
+  }
+  
+  .theme-five .header-overlay {
+    background-color: #819259;
+  }
+  
+  .theme-five .col-left h3 {
+    color: #819259;
+  }
+  
+  .theme-five .header-background-image {
+    background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/8ce34c760845695506ab1ea0bbcb7861/Asset%204%404x.png');
+  }
+  
+  .theme-six .header-overlay {
+    background-color: #EF643D;
+  }
+  
+  .theme-six .col-left h3 {
+    color: #EF643D;
+  }
+  
+  .theme-six .header-background-image {
+    background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/4f4d3c136615d2cb294fb0e67e071cae/Asset%206%404x.png');
+  }
+  
+  .theme-seven .header-overlay {
+    background-color: #77564B;
+  }
+  
+  .theme-seven .col-left h3 {
+    color: #77564B;
+  }
+  
+  .theme-seven .header-background-image {
+    background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/bd9171a6174b0c2f52c03e94de475f6b/Asset%2010%404x.png');
+  }
+  
+  .theme-eight .header-overlay {
+    background-color: #199FD8;
+  }
+  
+  .theme-eight .col-left h3 {
+    color: #199FD8;
+  }
+  
+  .theme-eight .header-background-image {
+    background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/f10d72badd41716d49fae8a62374b1d8/Asset%202%404x.png');
+  }
+  
+  .theme-nine .header-overlay {
+    background-color: #857516;
+  }
+  
+  .theme-nine .col-left h3 {
+    color: #857516;
+  }
+  
+  .theme-nine .header-background-image {
+    background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/983bb0c381cd4a60c6cb8e5de6df6d36/Asset%209%404x.png');
+  }
+  
+  .mkt-theme-one .col-left h3 { color: #009fd9 !important; }
+  .mkt-theme-two .col-left h3 { color: #00ac3e !important; }
+  .mkt-theme-three .col-left h3 { color: #8177b4 !important; }
+  .mkt-theme-four .col-left h3 { color: #fc6228 !important; }
+  .mkt-theme-five .col-left h3 { color: #ff0026 !important; }
+  
+  .mkt-theme-one .header-overlay { background: #009fd9 !important; opacity: 0.7; mix-blend-mode: initial; }
+  .mkt-theme-two .header-overlay { background: #00ac3e !important; opacity: 0.7; mix-blend-mode: initial; }
+  .mkt-theme-three .header-overlay { background: #8177b4 !important; opacity: 0.7; mix-blend-mode: initial; }
+  .mkt-theme-four .header-overlay { background: #fc6228 !important; opacity: 0.7; mix-blend-mode: initial; }
+  .mkt-theme-five .header-overlay { background: #ff0026 !important; opacity: 0.7; mix-blend-mode: initial; } 
+  
+  .showLogo-primary .logo-reversed{
+    display: none;
+  }
+
+  .showLogo-reversed .logo-blue{
+    display: none;
+  }
+  
+</style>
+<body class="{{theme-mkt}} {{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+  <div class="page {{{ theme-colour }}}">
+
+    <div class="document">
+      <div class="content">
+
+        <div class="row-container">
+          <div class="row header">
+            
+            {{#image-mkt-nm}}
+            <div class="header-background-image" style="background-image: url({{{ image-mkt-nm }}});"><div class="header-overlay"></div></div>
+            {{/image-mkt-nm}}
+            {{^image-mkt-nm}}
+            <div class="header-background-image"><div class="header-overlay"></div></div>
+			{{/image-mkt-nm}}
+            
+            <div class="col-container">
+              <div class="col">
+                <div class="row-lockup">
+                  <div class="logo logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+                    <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+                    <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+                  </div>
+                </div><!--row-1-->
+
+                <div class="headlines">
+                  {{#headline}}
+                  <div class="headline">
+                    <div class="headline-overflow-container">
+                      <div class="headline-overflow">
+                        {{{headline}}}
+                          </div>
+                        </div> 
+                      </div>
+                    {{/headline}}
+                    
+                    {{#subheading}}
+                      <div class="subheading">
+                        <div class="subheading-overflow-container">
+                          <div class="subheading-overflow">
+                            <h2>{{{subheading}}}</h2>
+                          </div>  
+                        </div>
+                      </div>
+                    {{/subheading}}
+                  </div><!--headlines-->
+                </div> <!--col-1-->
+
+                <div class="col">
+                  <div class="clip" style="background-image: url('{{M-generic}}')"></div>
+                </div><!--col-2-->
+              </div><!--col-container-->
+            </div><!--row header-->
+
+          <div class="row text">
+            <div class="col-container">
+              
+              <div class="col col-left">
+                <div class="col-overflow-container">
+                  <div class="col-overflow col-1-overflow">
+                    
+                    <h1>{{{ student-name }}}</h1>
+                    <h2>{{{ student-location }}}</h2>
+                    
+                    <h3>{{{ student-faculty }}}</h3>
+                    <p>{{{ student-about }}}</p>
+                    
+                    <h4>{{{ student-quote-title }}}</h4>
+                    <p>{{{ student-quote-body }}}</p>
+
+                  </div>
+                </div>
+              <div class="footer">
+                <div class="footnotes">
+                  <div class="cricos">Produced by: Monash {{{team.faculty-name}}}, <span id="date"></span></div>
+                  {{#cricos}}<div class="cricos">CRICOS provider: Monash University {{{cricos}}}</div>{{/cricos}}  
+                </div>
+              </div><!--footer-->                
+              </div><!--col-1-->
+              
+              <div class="col col-right">
+                <div class="col-overflow-container">
+                  <div class="col-overflow col-2-overflow">
+                    
+                    <div class="top">
+                      <div class="image">
+                        <img src="{{{ student-image }}}">
+                      </div>
+
+                      <div class="about">
+                        <div class="about-overflow-container">
+                          <div class="about-overflow">
+                            {{{ monash-blurb-about }}}
+                            {{{ monash-blurb-website }}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="bottom">
+                      <div class="contact">
+                        <h5>
+                          {{#contact-title}}
+                          <p>{{{ contact-title }}}</p>
+                          <p><strong>{{{ contact-name}}}</strong></p>
+                          <p>{{{ contact-position}}}</p>
+                          {{/contact-title}}
+                          {{#contact-email}}
+                          <p><strong>Email:</strong></p>
+                          <p>{{{ contact-email}}}</p>
+                          {{/contact-email}}
+                          {{#contact-mobile-number}}
+                          <p><strong>{{contact-mobile-number-title}}</strong></p>
+                          <p>{{{ contact-mobile-number}}}</p>
+                          {{/contact-mobile-number}}
+                          {{#contact-foreign-number}}
+                          <p><strong>{{contact-mobile-foreign-title}}</strong></p>
+                          <p>{{{ contact-foreign-number}}}</p>
+                          {{/contact-foreign-number}}
+                          {{#website-url}}
+                          <p><strong>Or visit our website:</strong></p>
+                          <p>{{{ website-url }}}</p>
+                          {{/website-url}}
+                        </h5>
+                      </div>
+                    </div>
+                      
+                 </div>
+                </div>
+              </div><!--col-2-->
+            </div><!--col-container-->
+
+          </div><!--text-->
+        </div><!--row-container-->
+
+    </div><!--content-->
+    </div><!--document-->
+
+  </div><!--page-->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  <script>smartquotes();</script>
+  <script>
+    function loop() {
+      checkHeight($(".headline-overflow"), 140);
+      checkHeight($(".subheading-overflow"), 70);
+      checkHeight($(".hero-text-overflow"), 90);
+      checkHeight($(".col-1-overflow"), 750);
+      checkHeight($(".about-overflow"), 750);
+    } setInterval(loop, 2000);
+
+    function checkHeight(element, maxHeight) {
+      var $height = element.height();
+      
+      if ($height > maxHeight) {
+        element.parent().parent().addClass('overflow');
+      } else {
+        element.parent().parent().removeClass('overflow');
+      }
+    }
+  </script>
+  
+  <script>
+    /* CHECK ON LIs */
+    
+    setInterval(function(){
+    if(jQuery('.highlight-copy ul > li').length > 4)
+        jQuery('.highlight-copy').addClass('error');
+    else
+        jQuery('.highlight-copy').removeClass('error');
+}, 2000);
+  </script>
+  
+     <script>
+    // DATE TIME STAMP
+    window.onload = function() {
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];;
+        var date = new Date();
+
+        document.getElementById('date').innerHTML = months[date.getMonth()] + ' ' + date.getFullYear();
+    };
+       
+        // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+        // At least Safari 3+: "[object HTMLElementConstructor]"
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+        // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+        // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+        // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+    if (isOpera == true) {
+      $('body').addClass('-js-opera-browser');
+    } if (isFirefox == true) {
+      $('body').addClass('-js-firefox-browser');
+    } if (isSafari == true) {
+      $('body').addClass('-js-safari-browser');
+    } if (isIE == true) {
+      $('body').addClass('-js-ie-browser');
+    } if (isEdge == true) {
+      $('body').addClass('-js-edge-browser');
+    } if (isChrome == true) {
+      $('body').addClass('-js-chrome-browser');
+    } if (isBlink == true) {
+      $('body').addClass('-js-blink-browser');
+    }
+    
+    $('#modal').on('click','a',function(event){
+      event.preventDefault();
+      $('div#modal').fadeOut('slow');
+      $('h1,h2,p').removeClass('blured_text');  
+    });
+    
+  </script>
+</body>
+</html>
+
