@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  <style>
+    
+    .test-background-image {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/964a4d52be4b986f052aaac7ebb9b7d1/Screen%20Shot%202017-01-06%20at%203.19.50%20pm.png');
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      opacity: 0.6;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    
+    .document {
+      background-color: {{{ college-theme }}};
+    }
+    
+  </style>
+</head>
+<body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+  <!--<div class="test-background-image"></div>-->
+  
+  <div class="page">
+
+     <div class="document">
+
+       <img class="image-overlay" src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/9d0a6d9d3da2880545fddf6509b1d775/Overlay.png">
+
+       <div class="content">
+         
+         <div class="logo"><img src="assets/images/monash-logo.svg"></div><!--logo-->
+                  
+         <div class="headline-overflow-container">
+           <div class="headline-overflow">
+             <div class="headline">
+               {{{ headline }}}
+             </div><!-- headline -->
+           </div><!-- headline-overflow -->
+         </div><!-- headline-overflow-container -->
+        
+         <p class="cricos">{{{ cricos }}}</p>
+         
+       </div><!--content-->
+     </div><!--document-->
+
+   </div><!--page-->
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  <script>smartquotes();</script>
+  <script>
+    function loop() {
+      checkHeight($(".headline-overflow"));
+    } setInterval(loop, 2000);
+
+    function checkHeight(element) {
+      var $height = element.height();
+      var $parent = element.parent();
+      var $parentHeight = $parent.height();
+
+      if ($height > $parentHeight) {
+        $parent.addClass('overflow');
+      } else {
+        $parent.removeClass('overflow');
+      }
+    }
+    
+    // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+        // At least Safari 3+: "[object HTMLElementConstructor]"
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+        // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+        // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+        // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+    if (isOpera == true) {
+      $('body').addClass('-js-opera-browser');
+    } if (isFirefox == true) {
+      $('body').addClass('-js-firefox-browser');
+    } if (isSafari == true) {
+      $('body').addClass('-js-safari-browser');
+    } if (isIE == true) {
+      $('body').addClass('-js-ie-browser');
+    } if (isEdge == true) {
+      $('body').addClass('-js-edge-browser');
+    } if (isChrome == true) {
+      $('body').addClass('-js-chrome-browser');
+    } if (isBlink == true) {
+      $('body').addClass('-js-blink-browser');
+    }
+  </script>
+</body>
+</html>
