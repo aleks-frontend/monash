@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html color-primary="{{account.colors.primary}}" logo-primary="{{account.logos.primary}}">
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    >
+    </script>
+    <script src="lu-helper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.1/tinycolor.min.js"></script>
+
+    <style>
+      body { color: #020202; }
+      
+      .placeholder {
+        position: absolute;
+        top: 3mm;
+        left: 3mm;
+        right: 3mm;
+        bottom: 3mm;
+        /*background-image: url('placeholder-b.png');*/
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 100;
+        pointer-events: none;
+        opacity: 0.7;
+        display: none;
+      }
+
+      .placeholder {
+        display: block;
+      }
+
+      .headline-overflow {
+        max-height: 40pt;
+      }
+
+      .bg-primary {
+        background-color: {{{account.colors.primary}}} !important;
+      }
+
+      .fg-primary {
+        color: {{{account.colors.primary}}} !important;
+      }
+
+      .logo-primary {
+        background-image: url("{{{account.logos.primary}}}") !important;
+      }
+
+      [color-reversed] {
+        color: white !important;
+      }
+
+      [logo-reversed] {
+        background-image: url("{{{account.logos.reversed}}}") !important;
+      }
+
+      .headline b, .headline strong {
+        color: {{{account.colors.monash-blue}}};
+      }
+	  .contact-details b, .contact-details strong {
+        color: {{{account.colors.monash-blue}}};
+      }
+      .blue {
+        color: {{{account.colors.monash-blue}}};
+      }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white">
+
+    <div class="page">
+
+      <div class="bleed center-children">
+        <div class="front theme-{{monash-theme}} fit">
+          <img class="logo" src="{{{account.logos.monash-reversed}}}">
+          <div class="texts">
+            <div class="headline" no-overflow>
+              {{{monash-headline-front}}}
+            </div>
+            <div class="faculty-lockup" no-overflow>
+              MONASH<br>TALENT
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page">
+      <div class="bleed center-children">
+        <div class="back fit">
+          <div class="placeholder"></div>
+          <div class="headline blue" no-overflow>
+            {{{monash-headline-back}}}
+          </div>
+          <div class="row">
+            <div class="copy">
+              {{{monash-copy}}}
+              <div class="end-flag"></div>
+            </div>
+            <div class="contact">
+              <!-- Contact Us -->
+              <div class="contact-details" no-overflow>
+                {{{monash-contact-detail}}}
+              </div>
+              <div class="cricos" no-overflow >
+                {{{monash-cricos}}}
+            </div>
+          </div>
+        </div>
+
+        <svg class="svg-1" width="145px" height="405px" viewBox="0 0 145 405" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+            <desc>Created with Sketch.</desc>
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <rect id="Rectangle" fill="#C7E1EF" x="122" y="116" width="22" height="289"></rect>
+                <rect id="Rectangle-Copy" fill="#C7E1EF" transform="translate(72.237833, 66.585014) rotate(-48.000000) translate(-72.237833, -66.585014) " x="61.2765751" y="-20.7510176" width="21.9225161" height="174.672063"></rect>
+            </g>
+        </svg>
+      </div>
+    </div>
+    </div>
+
+  <script>
+    window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+
+    if (window.showCrop) {
+        document.querySelector('body').classList.add('show-crop');
+    } else {
+        document.querySelector('body').classList.add('hide-crop');
+    }
+  </script>
+
+  <script src="main.js"></script>
+
+  <script src="prefixfree.js"></script>
+
+  <script>
+    LuHelper.lazy();
+  </script>
+
+  </body>
+</html>
