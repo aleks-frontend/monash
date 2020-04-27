@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Generic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue/stylesheet.css" rel="stylesheet">
+    <link href="https://outfit-assets-production.s3.amazonaws.com/fonts/helvetica-neue-condensed/stylesheet.css" rel="stylesheet">    
+    <script src="tinycolor.js"></script>
+    <link rel="stylesheet" type="text/css" href="minireset.css">
+    <link rel="stylesheet" type="text/css" href="crop.css">
+    <style>
+
+      .placeholder {
+        background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/9ecfc355de470b402ba3769dbbeca28a/Screen%20Shot%202017-09-20%20at%202.44.08%20pm.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.7;
+        z-index: 100;
+      }
+
+      .overflow{border:1px dashed red;position:relative}.overflow::before,.overflow:hover:after{position:absolute;right:5px;box-sizing:border-box}.overflow h1,.overflow h2,.overflow h3,.overflow h4,.overflow h5,.overflow h6,.overflow li,.overflow p{color:red!important}.overflow::before{content:'+';z-index:5;top:5px;height:15px;width:15px;border:1px solid red;color:red;padding:2px 2px 2px 3px;font-size:13px;line-height:8px;background-color:#fff;text-align:center}.overflow:hover:before{background-color:red;color:#fff}.overflow:after{display:none}.overflow:hover:after{display:block;content:'There is overset content in this column. Please remove it';top:25px;background-color:#020202;color:#fff;border-radius:2px;padding:5px;font-size:11px;font-weight:400;line-height:1.1em;text-align:right;width:15em}
+
+      html {
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Helvetica Neue Cond', helvetica, arial, sans-serif;
+        background-color: #fff;
+      }
+
+      strong { font-weight: 500; }
+
+      h1, h2, h3, h4, h5, h6 { margin: 0; line-height: 1.2em; }
+      
+      /* Page 1 */
+
+      .page-1 .logo { display: none !important; position: absolute; top: 0.6em; left: 0.7em; width: 3.8em; }
+      .page-1 .logo img { width: 100%; }
+
+      .page-1 .header-position { position: absolute; left: 0.6em; top: 1.4em; max-height: 1em; width: 8em; z-index: 1; }
+      .page-1 .header-position h2 { color: #fff; font-size: 0.45em; line-height: 1em; text-transform: uppercase; font-weight: bold; }   
+
+      .page-1 .subheader-position { position: absolute; top: 2.3em; left: 0.6em; width: 6em; max-height: 6.1em; z-index: 1; }
+      .page-1 .subheader-overflow h1 { margin: 0 0 0.3em 0; color: #216299; font-size: 0.47em; font-weight: normal; line-height: 1.2em; }
+
+      .page-1 .subheader-overflow h2 {
+        margin: 0 0 0.4em 0; color: #020202; font-size: 0.32em;
+        font-weight: 300; font-family: 'Helvetica Neue LT Std';
+      }
+
+      .page-1 .subheader-overflow p { 
+        margin: 0 0 1em 0; color: #fff; font-size: 0.2em;
+        font-weight: 300; line-height: 1.3em;
+      } 
+
+      .page-1 .subheader-1-position { position: absolute; top: 15.85em; left: 0.6em; width: 8.5em; max-height: 3.7em; z-index: 1; }
+      .page-1 .subheader-1-overflow h1 { margin: 0 0 0.3em 0; color: #216299; font-size: 0.45em; font-weight: bold; line-height: 1.2em; }
+
+      .page-1 .subheader-1-overflow h2 {
+        margin: 0 0 0.4em 0; color: #020202; font-size: 0.25em;
+        font-weight: 300; font-family: 'Helvetica Neue LT Std';
+      } 
+
+      .page-1 .subheader-1-overflow p { 
+        margin: 1em 0; color: #020202; font-size: 0.18em;
+        font-weight: 300; line-height: 1.3em;
+      }  
+
+      .page-1 .image-1 {
+        position: absolute; top: 0; left: 0; right: 0; height: 4.9em; z-index: -2;
+        background-size: cover; background-repeat: no-repeat; background-position: center center;
+      }
+
+      .page-1 .image-2 {
+        position: absolute; bottom: 0; right: 0; width: 7.6em; height: 7.05em; z-index: -3;
+        background-size: cover; background-repeat: no-repeat; background-position: center center;
+      }
+
+      .page-1 .monash-m { display: none !important; position: absolute; top: 0; right: 0.7em; width: 2.1em; z-index: -1; mix-blend-mode: soft-light; }
+      .page-1 .monash-m img { width: 100%; }
+
+      .page-1 .table-1-position { position: absolute; top: 1.4em; left: 7.7em; width: 6.6em; height: 6.6em; overflow: hidden; }
+      .page-1 .table-2-position { position: absolute; top: 10.3em; left: 0.6em; width: 13.2em; height: 5em; overflow: hidden; }
+
+      .page-1 .table-1-header { position: relative; }
+      .page-1 .table-1-header h1 { color: #216299; border-bottom: 5px solid #fff; font-size: 0.75em; font-weight: normal; }
+      .page-1 .table-1-header h2 { color: #020202; margin: 0.8em 0; font-size: 0.27em; font-weight: 500; }
+
+      .page-1 .shape-1 {
+        position: absolute; top: 0; left: 0; right: 0; height: 9.6em; width: 100%; background-color: #216299; z-index: -3;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 84.5%, 0% 100%); clip-path: polygon(0 0, 100% 0, 100% 84.5%, 0% 100%);
+      }
+
+      .page-1 .shape-2 {
+        position: absolute; top: 0; bottom: 0; right: 0; left: 0; background-color: #C7C8CA; z-index: -8;
+      }
+            
+      .page-1 .table-2-caption p { 
+        margin: 1em 0; color: #020202; font-size: 0.18em;
+        font-weight: 300; line-height: 1.3em;
+      }  
+
+      .page-1 .table-2-spreadsheet .col-wrap { width: 13em; text-align: center; }
+      .page-1 .table-2-spreadsheet tr { border-top: 1px solid #888; }
+      .page-1 .table-2-spreadsheet tr:first-of-type td { font-weight: bold; }
+      .page-1 .table-2-spreadsheet tr:last-of-type { border-bottom: 1px solid #888; }
+      .page-1 .table-2-spreadsheet td { border-right: 1px dotted #E9E9EA; }
+      .page-1 .table-2-spreadsheet td:last-of-type { border-right: none; }
+
+      .col-1 p, .col-2 p, .col-3 p, .col-4 p, .col-5 p, .col-6 p, .col-7 p, .col-8 p, .col-9 p { font-size: 0.16em; text-align: center; }
+      .col-1 p { text-align: left; }
+      
+      .col-wrap tr:first-of-type td { background: none; vertical-align: top; font-weight: 500; }
+      .col-wrap td:first-of-type p { color: #216299; font-weight: bold; }
+      
+      .col-1 { width: 25%; padding: 0.1em; }
+      .col-2 { width: 7%; padding: 0.1em; }
+      .col-3 { width: 9%; padding: 0.1em; background-color: #939598; }
+      .col-4 { width: 12%; padding: 0.1em; background-color: #B2B4B6; }
+      .col-5 { width: 13%; padding: 0.1em; background-color: #D1D3D4; }
+      .col-6 { width: 13%; padding: 0.1em; background-color: #DCDDDE; }
+      .col-7 { width: 4%; padding: 0.1em; background-color: #E9E9EA; }
+      .col-8 { width: 12%; padding: 0.1em; background-color: #F1F1F2; }
+      .col-9 { width: 5%; padding: 0.1em; background-color: #F8F8F8; }
+
+      .page-1 .table-1-spreadsheet .col-one p { font-size: 0.23em; font-weight: 500; }
+      .page-1 .table-1-spreadsheet .col-two p { font-size: 0.23em; font-weight: 500; }
+
+      .page-1 .table-2-header h1 { color: #216299; border-bottom: 1px solid #fff; font-size: 0.5em; font-weight: bold; }
+
+      .page-1 .table-2-spreadsheet .col-one { width: 100%; padding: 0.1em 0 0 0; }
+      .page-1 .table-2-spreadsheet .col-two { width: 100%; padding: 0 0 0.1em 0;  }
+
+      .page-1 .table-2-spreadsheet .col-one p { font-size: 0.22em; font-weight: 500; }
+      .page-1 .table-2-spreadsheet .col-two p { font-size: 0.17em; font-weight: 500; }   
+
+      .page-1 .table-label { position: absolute; bottom: 0.5em; left: 9.5em; width: 4.2em; min-height: 3.7em; max-height: 4em; background-color: #939598; padding: 0.4em; }
+      
+      .page-1 .table-label h2 { margin: 0 0 0.5em 0; font-size: 0.3em; color: #fff; font-weight: bold; }
+      .page-1 .table-label p { font-family: 'Helvetica Neue LT Std'; font-size: 0.22em; color: #fff; line-height: 1.3em; }
+      
+      .page-1 .table-1-spreadsheet { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; color: #fff; text-align: center; }      
+      .page-1 .table-1-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 40%; margin: 0 0.5em 0 0; }
+      .page-1 .table-1-wrap h1 { font-size: 0.3em; font-weight: bold; color: #fff; }
+      .page-1 .table-1-wrap h2 { font-family: 'Helvetica Neue LT Std'; font-size: 0.15em; color: #fff; }
+      .page-1 .table-1-wrap p { margin: 0.2em 0 0 0; font-size: 0.15em; color: #fff; }
+      
+      .page-1 .table-1-image {
+        height: 70px;
+        width: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        margin: 0.4em 0;
+      }
+      
+      /*
+      .page-1 .table-1-wrap:nth-child(1):before {
+        content: "";
+        height: 60px;
+        width: 60px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        margin: 0 0 0.2em 0;
+      }
+      .page-1 .table-1-wrap:nth-child(2):before {
+        content: "";
+        height: 60px;
+        width: 60px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        margin: 0 0 0.2em 0;
+      }      
+      .page-1 .table-1-wrap:nth-child(3):before {
+        content: "";
+        height: 70px;
+        width: 70px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        margin: 0.6em 0 0.2em 0;
+      }      
+      .page-1 .table-1-wrap:nth-child(4):before {
+        content: "";
+        height: 80px;
+        width: 80px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        margin: 0.6em 0 0.2em 0;
+      }
+      */
+      
+    </style>
+  </head>
+  <body>
+
+    <div class="page page-1">
+      <div class="bleed">
+
+        <div class="logo">
+          <img src="https://monash.outfit.io/previews/accf9560-98d9-11e7-9e03-af409ae3f83a/configurations/36106/p/assets/images/monash-logo.svg">
+        </div><!--logo-->
+
+        <div class="header-position">
+          <div class="header-overflow check-overflow">
+            <h2>{{{ header }}}</h2>
+          </div><!--header-overflow-->
+        </div><!--header-position-->
+
+        <div class="subheader-position">
+          <div class="subheader-overflow check-overflow">
+            <p>{{{ subheader }}}</p>
+          </div><!--subheader-overflow-->
+        </div><!--subheader-position-->
+
+        <div class="subheader-1-position">
+          <div class="subheader-1-overflow check-overflow">
+            {{{ body }}}
+          </div><!--subheader-overflow-->
+        </div><!--subheader-position-->
+
+        <div class="monash-m">
+          <img src="https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/c7e5f5832e1234e6172a7a7173defc8c/m.svg">
+        </div><!--monash-m-->
+        
+        <div class="table-2-position">
+          <div class="table-2-overflow check-overflow">
+
+            <div class="table-2-header">
+              <h1>{{{ table-1-title }}}</h1>
+            </div><!--table-2-header-->
+
+            <div class="table-2-spreadsheet">
+              <table class="col-wrap">
+              {{#spreadsheet.main-table}}
+                <tr>
+                  <td class="col-1"><p>{{{ col-1 }}}</p></td>
+                  <td class="col-2"><p>{{{ col-2 }}}</p></td>
+                  <td class="col-3"><p>{{{ col-3 }}}</p></td>
+                  <td class="col-4"><p>{{{ col-4 }}}</p></td>
+                  <td class="col-5"><p>{{{ col-5 }}}</p></td>
+                  <td class="col-6"><p>{{{ col-6 }}}</p></td>
+                  <td class="col-7"><p>{{{ col-7 }}}</p></td>
+                  <td class="col-8"><p>{{{ col-8 }}}</p></td>
+                  <td class="col-9"><p>{{{ col-9 }}}</p></td>
+                </tr>
+              {{/spreadsheet.main-table}}
+              </table>
+            </div><!--table-2-spreadsheet-->
+            
+            <div class="table-2-caption">
+              <p>{{{ table-1-caption }}}</p>
+            </div>
+
+          </div><!--table-2-overflow-->
+        </div><!--table-2-position-->
+
+        <div class="table-1-position">
+          <div class="table-1-overflow check-overflow">
+
+            <div class="table-1-spreadsheet">
+              {{#collection.info-table-mn}}
+              <div class="table-1-wrap">
+                <div class="table-1-image" style="background-image: url({{{ icon }}});"></div>
+                <h1>{{{ title }}}</h1>
+                <h2>{{{ text }}}</h2>
+                <p>{{{ caption }}}</p>
+              </div><!--table-1-wrap-->
+              {{/collection.info-table-mn}}
+            </div><!--table-1-spreadsheet-->
+
+          </div><!--table-1-overflow-->
+        </div><!--table-1-position-->
+
+        <div class="table-label">
+          <div class="table-label-overflow check-overflow">
+            <h2>TO FIND OUT MORE<br>INFORMATION CONTACT</h2>
+            <p>{{{ details }}}</p>
+          </div>
+        </div><!--table-label-->
+
+        <div class="shape-1"></div>
+
+      </div><!--bleed-->
+    </div><!--page-1-->
+
+    <script>
+
+      window.showCrop = {{show-crop}};
+
+    </script>
+    <script src="main.js"></script>
+    <script src="prefixfree.js"></script>
+    <script>
+
+      function loop() {
+        checkHeight(document.getElementsByClassName('check-overflow'));
+
+      } setInterval(loop, 500);
+
+      function checkHeight(element) {
+        for (i = 0 ; i < element.length ; i++ ) {
+          var currentElement = element[i];
+          var height         = currentElement.offsetHeight;
+          var parent         = currentElement.parentNode;
+          var parentHeight   = parent.offsetHeight;
+
+          if (height > parentHeight) {
+            parent.classList.add('overflow');
+          } else {
+            parent.classList.remove('overflow');
+          }
+
+          if ((currentElement).parentNode.classList.contains('overflow')) {
+            document.body.classList.add('overflow-true');
+          } else {
+            document.body.classList.remove('overflow-true'); 
+          }
+        }
+      }
+
+      window.onload = function() {
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];;
+        var date = new Date();
+
+        document.getElementById('date').innerHTML = months[date.getMonth()] + ' ' + date.getFullYear();
+      };
+
+    </script>
+  </body>
+</html>
