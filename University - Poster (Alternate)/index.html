@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  <style>
+    .test-background-image {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/7fd76b92fa51fb630ac5177d8821fe59/Screen%20Shot%202017-01-09%20at%2011.03.45%20am.png');
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      opacity: 0.6;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    
+    .headline h1 {
+      font-size: {{headline-font-size}}pt;
+    }
+    
+    .hide-logo-lockup .school {
+      display: none;
+    }
+
+    .mkt-theme-one.layout-one .background-color { background: #009fd9; }
+    .mkt-theme-two.layout-one .background-color { background: #00ac3e; }
+    .mkt-theme-three.layout-one .background-color { background: #8177b4; }
+    .mkt-theme-four.layout-one .background-color { background: #fc6228; }
+    .mkt-theme-five.layout-one .background-color { background: #ff0026; }
+
+    .mkt-theme-one.layout-two .headline h1 { color: #009fd9 !important; }
+    .mkt-theme-two.layout-two .headline h1 { color: #00ac3e !important; }
+    .mkt-theme-three.layout-two .headline h1 { color: #8177b4 !important; }
+    .mkt-theme-four.layout-two .headline h1 { color: #fc6228 !important; }
+    .mkt-theme-five.layout-two .headline h1 { color: #ff0026 !important; } 
+    
+    .mkt-theme-one.layout-two .copy p strong { color: #009fd9 !important; }
+    .mkt-theme-two.layout-two .copy p strong { color: #00ac3e !important; }
+    .mkt-theme-three.layout-two .copy p strong { color: #8177b4 !important; }
+    .mkt-theme-four.layout-two .copy p strong { color: #fc6228 !important; }
+    .mkt-theme-five.layout-two .copy p strong { color: #ff0026 !important; } 
+    
+    .mkt-theme-one.layout-two .subhead h2 { color: #009fd9 !important; }
+    .mkt-theme-two.layout-two .subhead h2 { color: #00ac3e !important; }
+    .mkt-theme-three.layout-two .subhead h2 { color: #8177b4 !important; }
+    .mkt-theme-four.layout-two .subhead h2 { color: #fc6228 !important; }
+    .mkt-theme-five.layout-two .subhead h2 { color: #ff0026 !important; } 
+    
+    .mkt-theme-one.layout-one .copy p strong { color: #fff !important; }
+    .mkt-theme-two.layout-one .copy p strong { color: #fff !important; }
+    .mkt-theme-three.layout-one .copy p strong { color: #fff !important; }
+    .mkt-theme-four.layout-one .copy p strong { color: #fff !important; }
+    .mkt-theme-five.layout-one .copy p strong { color: #fff !important; } 
+    
+    .m-clip-color-overlay {
+      position: absolute;
+      bottom: 14pt;
+      right: initial;
+      width: 286pt;
+      height: 692pt;
+      right: 14pt;
+      background-repeat: no-repeat;
+      -webkit-clip-path: polygon(0% 0%, 0% 100%, 27.2% 100%, 27.2% 58.2%, 35.3% 100%, 63.9% 100%, 71.6% 58.5%, 72% 100%, 100% 100%, 100% 0%, 56% 0%, 49.3% 35%, 43% 0);
+      clip-path: polygon(0% 0%, 0% 100%, 27.2% 100%, 27.2% 58.2%, 35.3% 100%, 63.9% 100%, 71.6% 58.5%, 72% 100%, 100% 100%, 100% 0%, 56% 0%, 49.3% 35%, 43% 0);
+      background-size: cover;
+      background-position: 50% 50%;
+      z-index: 10;
+    }
+    
+    .mkt-theme-one .m-clip-color-overlay { background-color: #009fd9; opacity: 0.7; }
+    .mkt-theme-two .m-clip-color-overlay { background-color: #00ac3e; opacity: 0.7; }
+    .mkt-theme-three .m-clip-color-overlay { background-color: #8177b4; opacity: 0.7; }
+    .mkt-theme-four .m-clip-color-overlay { background-color: #fc6228; opacity: 0.7; }
+    .mkt-theme-five .m-clip-color-overlay { background-color: #ff0026; opacity: 0.7; } 
+    
+    .mbs {
+      position: absolute;
+      bottom: 50pt;
+      left: 40pt;
+    }
+    .mbs { display: flex; height: 0.5em; }
+    .mbs img { height: 100%; }
+    .web-url { bottom: 25pt !important; }
+    
+    .faculty {
+      position: absolute;
+      right: 1.8em;
+      top: 2.8em;
+      font-size: 0.36em;
+      text-transform: uppercase;
+      line-height: 1.03em;
+      color: #fff;
+    }
+    
+    .layout-two .faculty { color: black; }
+    
+    .event-details-overflow-container--secondary {
+      display: none;
+    }
+    
+    .event-details-secondary .event-details-overflow-container {
+      display: none;
+    }
+    
+    .event-details-secondary .event-details-overflow-container--secondary {
+      display: block;
+    }
+    
+   .event-details .heading--secondary {
+      width: 15pt;
+    }
+    
+    .go8-logo {
+      position: absolute;
+      width: 63px;
+      bottom: 75px;
+      left: 52px;
+    }
+    
+    .go8-logo-show .go8-logo{
+      display: block;
+    }
+    
+    .go8-logo-hide .go8-logo{
+      display: none;
+    }
+    
+    .layout-one .go8-logo .go8-logo-white{ display: block; }
+    .layout-one .go8-logo .go8-logo-black{ display: none; }
+    
+    .layout-two .go8-logo .go8-logo-black{ display: block; }
+    .layout-two .go8-logo .go8-logo-white{ display: none; }
+
+    .showLogo-primary .logo-reversed{
+    	display: none;
+    }
+
+    .showLogo-reversed .logo-blue{
+        display: none;
+    }
+    
+  </style>
+</head>
+<body class="{{theme-mkt}} {{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}} {{ poster-layout }} {{^poster-layout}} layout-one {{/poster-layout}} {{lockup-visibility}} {{event-details-toggle}} {{go8-logo-visibility-poster}}">
+  <!--<div class="test-background-image"></div>-->
+  
+  <div class="page">
+     <div class="background">
+       <div class="background-color"></div>
+     </div><!--background-->
+    
+    <div class="faculty">{{{ mbs-faculty }}}</div>
+
+     <div class="document">
+       <div class="content">
+         
+        <div class="logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+            <img src="{{account.logos.mu-logo-reversed}}" class="logo logo-reversed" alt="logo">
+            <img src="{{account.logos.mu-logo}}" class="logo logo-blue" alt="logo">
+        </div>
+         
+         <div class="school">
+           <p>{{{ team.stacked-faculty-name }}}</p>
+         </div>
+         
+         <div class="m-clip-color-overlay"></div>
+        <div class="clip" style="background-image: url('{{mnhs-image}}{{image-mkt-nm}}{{M-generic}}{{ M-graduate-education }}{{M-education}}{{M-innovation}}{{M-pharmacy}}{{M-OLT}}{{M-MADA}}{{M-BDI}}{{M-MSDI}}{{M-Law}}')"></div>
+         
+         <div class="headline-overflow-container">
+           <div class="headline-overflow">
+             <div class="headline">
+               {{{ headline }}}
+             </div><!-- headline -->
+             
+             <div class="subhead">
+               <h2>{{{ subheading }}}</h2>
+             </div><!-- subhead -->
+           </div><!-- headline-overflow -->
+         </div><!-- headline-overflow-container -->
+         
+         <div class="copy-overflow-container">
+           <div class="copy-overflow">
+             <div class="copy">
+               {{{ copy }}}
+             </div><!-- copy -->
+           </div><!-- copy-overflow -->
+         </div><!-- copy-overflow-container -->
+         
+         <div class="event-details-overflow-container">
+           <div class="event-details-overflow">
+             <div class="event-details">
+               <div class="row">
+                 <p class="heading">{{^custom-date-title}}Date{{/custom-date-title}}{{{ custom-date-title }}}</p>
+                 <p>{{{ date }}}</p>
+               </div>
+               
+               <div class="row">
+                 <p class="heading">{{^custom-when-title}}When{{/custom-when-title}}{{{ custom-when-title }}}</p>
+                 <p>{{{ when }}}</p>
+               </div>
+               
+               <div class="row">
+                 <p class="heading">{{^custom-where-title}}Where{{/custom-where-title}}{{{ custom-where-title }}}</p>
+                 <p>{{{ where }}}</p>
+               </div>
+               
+             </div><!-- event-details -->
+           </div><!-- event-details-overflow -->
+         </div><!-- event-details-overflow-container -->
+         
+         
+         <div class="event-details-overflow-container event-details-overflow-container--secondary">
+           <div class="event-details-overflow">
+             <div class="event-details">
+               <div class="row">
+                 <p class="heading heading--secondary">T:</p>
+                 <p>{{{ phone }}}</p>
+               </div>
+
+               <div class="row">
+                 <p class="heading heading--secondary">E: </p>
+                 <p>{{{ email }}}</p>
+               </div>
+
+               <div class="row">               
+                 <p>{{{ URL }}}</p>
+               </div>
+
+             </div><!-- event-details -->
+           </div><!-- event-details-overflow -->
+         </div><!-- event-details-overflow-container -->
+
+
+         <p class="web-url">monash.edu.au</p>
+         
+         <div class="go8-logo">
+                 <img class="go8-logo-white" src="assets/images/go8.svg">
+                 <img class="go8-logo-black" src="assets/images/go8_blk.svg">
+         </div>
+         
+         <!--<div class="mbs"><img src="{{{ mbs }}}"></div>-->
+         
+         <!--<div class="go8-logo">
+             <img class="go8-logo-white" src="assets/images/go8.svg">
+             <img class="go8-logo-black" src="assets/images/go8_blk.svg">
+         </div>-->
+         
+       </div><!--content-->
+     </div><!--document-->
+
+   </div><!--page-->
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  <script>smartquotes();</script>
+  <script>
+    
+     // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+        // At least Safari 3+: "[object HTMLElementConstructor]"
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+        // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+        // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+        // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+    if (isOpera == true) {
+      $('body').addClass('-js-opera-browser');
+    } if (isFirefox == true) {
+      $('body').addClass('-js-firefox-browser');
+    } if (isSafari == true) {
+      $('body').addClass('-js-safari-browser');
+    } if (isIE == true) {
+      $('body').addClass('-js-ie-browser');
+    } if (isEdge == true) {
+      $('body').addClass('-js-edge-browser');
+    } if (isChrome == true) {
+      $('body').addClass('-js-chrome-browser');
+    } if (isBlink == true) {
+      $('body').addClass('-js-blink-browser');
+    }
+    
+    $('#modal').on('click','a',function(event){
+      event.preventDefault();
+      $('div#modal').fadeOut('slow');
+      $('h1,h2,p').removeClass('blured_text');  
+    });
+    
+    function loop() {
+      checkHeight($(".headline-overflow"));
+      checkHeight($(".subhead-overflow"));
+      checkHeight($(".copy-overflow"));
+	  checkHeight($(".copy-two-overflow"));
+      checkHeight($(".event-details-overflow"));
+    } setInterval(loop, 2000);
+
+    function checkHeight(element) {
+      var $height = element.height();
+      var $parent = element.parent();
+      var $parentHeight = $parent.height();
+
+      if ($height > $parentHeight) {
+        $parent.addClass('overflow');
+      } else {
+        $parent.removeClass('overflow');
+      }
+    }
+    
+    /*!
+     * smartquotes.js v0.1.4
+     * http://github.com/kellym/smartquotesjs
+     * MIT licensed
+     *
+     * Copyright (C) 2013 Kelly Martin, http://kelly-martin.com
+     */
+    !function(e,n){"function"==typeof define&&define.amd?define(n):"object"==typeof exports?module.exports=n():e.smartquotes=n()}(this,function(){function e(n){return"undefined"==typeof n?e.element(document.body):"string"==typeof n?e.string(n):n instanceof HTMLElement?e.element(n):void 0}return e.string=function(e){return e.replace(/'''/g,"‴").replace(/(\W|^)"(\S)/g,"$1“$2").replace(/(\u201c[^"]*)"([^"]*$|[^\u201c"]*\u201c)/g,"$1”$2").replace(/([^0-9])"/g,"$1”").replace(/''/g,"″").replace(/(\W|^)'(\S)/g,"$1‘$2").replace(/([a-z])'([a-z])/gi,"$1’$2").replace(/((\u2018[^']*)|[a-z])'([^0-9]|$)/gi,"$1’$3").replace(/(\u2018)([0-9]{2}[^\u2019]*)(\u2018([^0-9]|$)|$|\u2019[a-z])/gi,"’$2$3").replace(/(\B|^)\u2018(?=([^\u2019]*\u2019\b)*([^\u2019\u2018]*\W[\u2019\u2018]\b|[^\u2019\u2018]*$))/gi,"$1’").replace(/'/g,"′")},e.element=function(n){function t(n){if(-1===["CODE","PRE","SCRIPT","STYLE"].indexOf(n.nodeName))for(var t=n.childNodes,r=0;r<t.length;r++){var a=t[r];a.nodeType===u&&(a.nodeValue=e.string(a.nodeValue))}}var u=Element.TEXT_NODE||3;t(n);for(var r=n.getElementsByTagName("*"),a=0;a<r.length;a++)t(r[a])},e});
+    //# sourceMappingURL=smartquotes.min.js.map
+    
+	smartquotes()
+    
+  </script>
+</body>
+</html>
