@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+<head>
+  <title>Print Generic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/main.css">
+  
+  <style>
+    .test-background-image {
+      background-image: url('https://outfit-v2-exports-production.s3-ap-southeast-2.amazonaws.com/media_library_items/24ab1af024278f02f67bf8b7ec5ad277/Directional-Signage-A3-297x420mm.jpg');
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      opacity: 0.6;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    
+    .show-crop-marks .test-background-image {
+      top: 0.48in;
+      left: 0.48in;
+      right: 0.48in;
+      bottom: 0.48in;
+    }
+    
+    .header-background-image {
+      background-image: url('{{{header-background}}}');
+    }
+    
+    .clip {
+      background-image: url('{{{M-generic}}}{{{M-graduate-education}}}{{{M-education}}}{{{M-pharmacy}}}{{{M-innovation}}}{{M-OLT}}{{M-MADA}}');
+    }
+    .arrow.blue {
+      fill: {{{account.colors.monash-blue}}};
+    }
+    .arrow.black {
+      fill: #221F20;
+    }
+
+    .showLogo-primary .logo-reversed{
+      display: none;
+    }
+
+    .showLogo-reversed .logo-blue{
+      display: none;
+    }
+  </style>
+  </head>
+<body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}} {{{arrow-position}}} {{^arrow-position}}left-arrow{{/arrow-position}}">
+  
+  <div class="page">
+    <!--<div class="test-background-image"></div>-->
+    
+    <div class="document">
+      <div class="content">
+        <div class="blue-line"></div>
+        <div class="line"></div>
+
+        <div class="row header">
+          
+          <div class="header-background-image"></div>
+          <div class="logo logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+            <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+            <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+          </div>
+
+          <div class="logo logoContainer showLogo-{{logo-colour}} {{^logo-colour}} showLogo-primary {{/logo-colour}}">
+            <img src="{{account.logos.mu-logo-reversed}}" class="logo-reversed" alt="logo">
+            <img src="{{account.logos.mu-logo}}" class="logo-blue" alt="logo">
+          </div>
+
+            <div class="headline-overflow-container">
+              <div class="headline-overflow">
+                <div class="headline"><h1>{{{ event-title }}}</h1></div>
+              </div>
+            </div>
+          
+            <div class="clip"></div>
+        </div><!--row header-->
+
+        <div class="row text">
+          <svg class="arrow {{{arrow-color}}}" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 400.7 461.2" style="enable-background:new 0 0 400.7 461.2;" xml:space="preserve"><polygon class="st0" points="168.3,3.3 136.4,35.3 309.1,208 5.1,208 5.1,253.2 309.1,253.2 136.4,425.9 168.3,457.9 395.6,230.6 "/> </svg>
+          
+          <p class="codes">17P-0000&nbsp;&nbsp;&nbsp;CRICOS provider: Monash University 00008C, Monash College Pty Ltd 01857J</p>
+        </div><!--text-->
+        
+      </div><!--content-->
+    </div><!--document-->
+
+  </div><!--page-->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/main.js"></script>
+  <script>smartquotes();</script>
+  <script>
+    
+    function loop() {
+      checkHeight($(".headline-overflow"));
+    } setInterval(loop, 500);
+
+    function checkHeight(element) {
+      var height = element.height()
+      var $parent = element.parent();
+      var parentHeight = $parent.height();
+
+      if (height > parentHeight) {
+        $parent.addClass('overflow');
+      } else {
+        $parent.removeClass('overflow');
+      }
+    }
+    
+    // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+        // At least Safari 3+: "[object HTMLElementConstructor]"
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+        // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+        // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+        // Chrome 1+
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
+        // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+    if (isOpera == true) {
+      $('body').addClass('-js-opera-browser');
+    } if (isFirefox == true) {
+      $('body').addClass('-js-firefox-browser');
+    } if (isSafari == true) {
+      $('body').addClass('-js-safari-browser');
+    } if (isIE == true) {
+      $('body').addClass('-js-ie-browser');
+    } if (isEdge == true) {
+      $('body').addClass('-js-edge-browser');
+    } if (isChrome == true) {
+      $('body').addClass('-js-chrome-browser');
+    } if (isBlink == true) {
+      $('body').addClass('-js-blink-browser');
+    }
+    
+    $('#modal').on('click','a',function(event){
+      event.preventDefault();
+      $('div#modal').fadeOut('slow');
+      $('h1,h2,p').removeClass('blured_text');  
+    });
+  </script>
+</body>
+</html>
