@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}}">
+  <head>
+    <title>Hoarding</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .headline {
+        max-height: 4em;
+        text-transform: uppercase;
+        color: white;
+        font-size: 4em;
+        font-family: 'Century Schoolbook';
+        font-weight: normal;
+        letter-spacing: 0.07em;
+      }
+
+      .subheadline {
+
+        text-transform: uppercase;
+        font-size: 90pt;
+        color: white;
+        font-weight: bold;
+        margin-bottom: 0.2em;
+        font-family: 'Helvetica Neue Cond';
+      }
+
+      .overflow-subheadline-container {
+        max-height: 10em;
+      }
+
+      .subheadline-reg {
+        font-weight: 300;
+        text-transform: uppercase;
+        font-size: 90pt;
+        color: white;
+        font-family: 'Helvetica Neue Cond';
+      }
+
+      .image-container {
+
+
+        width: 50%;
+        height: 100%;
+
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+        .three .document {
+          font-size: 50% !important;
+        }
+        
+        .three .subheadline {
+              font-size: 42pt;
+        }
+        .three .subheadline-reg {
+              font-size: 42pt;
+        }
+        
+        .three .image-container {
+          width: 108%;
+        }
+
+
+        .two .image-container {
+          width: 62%;
+        }
+        .two .image-three {
+          display: none;
+        }
+        .two .image-spacer-2 {
+          display: none;
+        }
+      
+
+
+        .one .image-container {
+          width: 50%;
+        }
+        .one .image-three {
+          display: none;
+        }
+        .one .image-two {
+          display: none;
+        }
+
+        .one .image-spacer-1 {
+          display: none;
+        }
+
+        .one .image-spacer-2 {
+          display: none;
+        }
+
+
+      .image-one {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        background: rgba(157, 157, 156, 1);
+        overflow: hidden;
+      }
+
+      .image-two {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        background: rgba(157, 157, 156, 1);
+        overflow: hidden;
+      }
+
+      .image-three {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        background: rgba(157, 157, 156, 1);
+        overflow: hidden;
+      }
+
+      .image-spacer-1 {
+        padding: 1em;
+      }
+      .image-spacer-2 {
+        padding: 1em;
+      }
+
+      .conditions {
+        position: absolute;
+        bottom: 4em;
+        right: 4em;
+        font-size: 6pt;
+        text-align: right;
+        color: rgba(157, 157, 156, 1);
+        font-family: 'Helvetica Neue LT Std Condensed', 'Helvetica Neue Condensed', helvetica, arial, sans-serif;
+      }
+
+      .overflow {
+        background: red;
+      }
+      
+
+    </style>
+
+  </head>
+  <body class="{{crop-marks}}-crop-marks {{^crop-marks}}show-crop-marks{{/crop-marks}} {{{image-count}}}">
+    <div class="page">
+
+      <div class="document">
+        <div class="content">
+          <div class="blue-line"></div>
+          <div class="line"></div>
+
+          <div class="row-container">
+            <div class="column header">
+
+              <div class="logo"><img src="assets/images/monash-logo.svg"></div><!--logo-->
+
+              <div class="headline">
+                <div class="overflow-headline">
+                  {{{hoarding-headline}}}
+                </div>
+              </div><!--headline-->
+
+              <div class="overflow-subheadline-container">
+                <div class="overflow-subheadline">
+                  <div class="subheadline">
+                    {{{hoarding-subheadline-line-one}}}
+                  </div><!--subheadline-->
+                  <div class="subheadline-reg">
+                    {{{hoarding-subheadline-line-two}}}
+                  </div><!--subheadline-->
+                </div>
+              </div>
+
+
+
+            </div><!--row header-->
+
+
+
+
+            <div class="image-container">
+
+              <div class="image-one">
+                {{{hoarding-image-one}}}
+              </div>
+
+              <div class="image-spacer-1"></div>
+
+              <div class="image-two">
+                {{{hoarding-image-two}}}
+              </div>
+
+              <div class="image-spacer-2"></div>
+
+              <div class="image-three">
+                {{{hoarding-image-three}}}
+              </div>
+
+
+            </div><!--image-container-->
+
+
+
+          </div><!--row-container-->
+
+
+
+          <div class="conditions">
+            Images are artistic impressions only and some aspects are subject to change.<br>
+            CRICOS provider: Monash University 00008C. Designed and produced by SMC Monash: 17P-0000. August 2017.
+          </div>
+
+
+
+
+        </div><!--content-->
+      </div><!--document-->
+
+    </div><!--page-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/smartquotes.min.js"></script>
+    <script type="text/javascript" src="assets/javascripts/main.js"></script>
+    <script>smartquotes();</script>
+    <script>
+      function loop() {
+        checkHeight($(".overflow-headline"));
+        checkHeight($(".overflow-subheadline"));
+
+      } setInterval(loop, 2000);
+
+      function checkHeight(element) {
+        var $height = element.height();
+        var $parentHeight = element.parent().height();
+
+        if ($height > $parentHeight) {
+          element.parent().addClass('overflow');
+        } else {
+          element.parent().removeClass('overflow');
+        }
+      }
+    </script>
+
+   <!--<script>
+
+      (function(){ var wr; function gcd(a,b) {if(b>a) {temp = a; a = b; b = temp} while(b!=0) {m=a%b; a=b; b=m;} return a;} function r(x,y) {c=gcd(x,y); return ""+(x/c)+"/"+(y/c)} function setwr() { wr = r(window.innerWidth, window.innerHeight); var rd = document.createElement("div"); rd.id = 'rd'; rd.style.position = 'absolute'; rd.style.backgroundColor = '#000'; rd.style.color = '#FFF'; rd.style.top = 0; rd.style.left = 0; var rt = document.createTextNode(wr); rd.appendChild(rt); document.body.appendChild(rd); } function updatewr(){ wr = r(window.innerWidth, window.innerHeight); document.querySelector('#rd').innerText = wr; } window.addEventListener('resize', updatewr); setwr(); })();
+
+    </script>-->
+
+  </body>
+</html>
+
