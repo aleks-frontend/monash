@@ -178,7 +178,12 @@
                 <p>{{{ team.stacked-faculty-name }}}</p>
               </div>
               <div class="m-clip-color-overlay"></div>
+              {{#background-d-t2}}
+              <div class="clip" style="background-image: url('{{background-d-t2}}')"></div>
+              {{/background-d-t2}}
+              {{^background-d-t2}}
               <div class="clip" style="background-image: url('{{mnhs-image}}{{image-mkt-nm}}{{M-generic}}{{ M-graduate-education }}{{M-education}}{{M-innovation}}{{M-pharmacy}}{{M-OLT}}{{M-MADA}}{{M-BDI}}{{M-MSDI}}{{M-Law}}{{background-image-peer-mentoring}}{{background-image-monash-mentoring}}')"></div>
+              {{/background-d-t2}}
              
             </div><!--col 2-->
           </div><!--col-container-->
