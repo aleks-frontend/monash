@@ -75,26 +75,78 @@
       sup { top: -0.45em; }
       sub { bottom: 0.45em; }
 
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+
     </style>
 
   </head>
-  <body class="{{m-position}} {{hide-page-content}} {{theme-mkt}} backgroundImage--{{MCH_background-layout--usm}}{{^MCH_background-layout--usm}}original{{/MCH_background-layout--usm}}">
+  <body data-pop-color="{{pop-colour-2}}{{^pop-colour-2}}fuschia{{/pop-colour-2}}"
+        class="{{m-position}} 
+               {{hide-page-content}} 
+               {{theme-mkt}} 
+               backgroundImage--{{MCH_background-layout--usm}}{{^MCH_background-layout--usm}}original{{/MCH_background-layout--usm}}
+               format--{{{MCH_format--usm}}}{{^MCH_format--usm}}facebook{{/MCH_format--usm}}">
     <div class="page {{show-facebook-twenty-percent-grid}}"> 
       <!--<div class="test-background-image"></div>-->
       <div class="document">
         <div class="overlay"></div>
+         {{#background-d-t2-repo}}
+        <div class="backgroundImage"><div class="reposition-fix">{{{background-d-t2-repo}}}</div></div>
+         {{/background-d-t2-repo}}
+        
+        {{^background-d-t2-repo}}
         <div class="customer-background-image customer-background-image--original">
           {{#custom-background-image}}{{{custom-background-image}}}{{/custom-background-image}}          
           {{^custom-background-image}}<span></span>{{{ image-mkt }}}{{/custom-background-image}} <!--original image input-->
         </div>
-
+        {{/background-d-t2-repo}}
+        
+        
+         {{^background-d-t2-repo}}
         <div class="customer-background-image customer-background-image--peerMentoring">       
           {{{ image-mkt--peer-mentoring }}}
         </div>
+         {{/background-d-t2-repo}}
 
+        {{^background-d-t2-repo}}
         <div class="customer-background-image customer-background-image--mentoring">    
           {{{ image-mkt-monash-mentoring }}}
         </div>
+        {{/background-d-t2-repo}}
 
         <div class="content">
           <div class="logo"></div>
